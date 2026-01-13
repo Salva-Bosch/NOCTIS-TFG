@@ -1,0 +1,22 @@
+/* INTER FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-dark: #0a0b0d;
+  --bg-blue: #0b1a3a;
+
+  --purple: #5b0db5;
+  --purple-soft: #6a1bd8;
+
+  --white: #ffffff;
+  --muted: rgba(255,255,255,.7);
+
+  --glass-bg: rgba(255,255,255,.08);
+  --glass-border: rgba(255,255,255,.25);
+  --glass-blur: blur(18px);
+
+  --radius-pill: 999px;
+  --radius-md: 18px;
+
+  --font-main: 'Inter', sans-serif;
+}

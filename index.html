@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Noctis</title>
+</head>
+
+<body>
+
+    <!-- Auth Flow de cuenta -->
+    <script type="module">
+        import { supabase } from "./js/core/supabaseClient.js";
+
+        const {
+            data: { session },
+        } = await supabase.auth.getSession();
+
+        if (session) {
+            window.location.href = "home.html";
+        } else {
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+
+</html>

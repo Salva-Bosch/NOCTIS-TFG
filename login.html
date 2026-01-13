@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Noctis · Login</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/base/reset.css">
+    <link rel="stylesheet" href="css/base/variables.css">
+    <link rel="stylesheet" href="css/components/auth.css">    
+</head>
+
+<body>
+
+    <main class="auth auth--login">
+
+        <!-- LADO IZQUIERDO: MENSAJE -->
+        <section class="auth__side">
+            <h2>¡Hola!</h2>
+            <p>Crea tu cuenta</p>
+            <a href="register.html">Registrarte</a>
+        </section>
+
+        <!-- LADO DERECHO: FORM -->
+        <section class="auth__form">
+            <h1>Iniciar sesión</h1>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Correo electrónico" required />
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Contraseña" required />
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="auth__divider"></div>
+
+            <div class="auth__google">
+                <p>O accede con Google</p>
+                <button type="button">Google</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Conectar el formulario de login con Auth.js -->
+    <script type="module">
+        import { login } from "./js/core/auth.js";
+
+        const form = document.getElementById("login-form");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                await login(email, password);
+                window.location.href = "home.html";
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
