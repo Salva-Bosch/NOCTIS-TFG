@@ -1,3 +1,7 @@
 .auth--register .auth__side {
-    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
+    position: relative;
+    background-image: url("/assets/Icons sesión/register-side.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

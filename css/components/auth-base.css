@@ -100,3 +100,19 @@
     width: fit-content;
     font-family: var(--font-main);
 }
+
+/* Animación salida hacia login */
+.auth--slide-out {
+  animation: slideOutToLeft 0.6s ease forwards;
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
