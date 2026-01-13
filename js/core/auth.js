@@ -1,5 +1,5 @@
 // IMPORT SUPABASE DATA
-import { supabase } from "./supabaseClient.js";
+import { supabase } from "/js/core/supabase.js";
 
 // REGISTER
 export async function register(name, email, password) {

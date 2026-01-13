@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <title>Noctis · Registro</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/base/reset.css">
-    <link rel="stylesheet" href="css/base/variables.css">
-    <link rel="stylesheet" href="css/components/auth-base.css">
-    <link rel="stylesheet" href="css/components/register.css">    
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
+    <link rel="stylesheet" href="/css/components/auth-base.css">
+    <link rel="stylesheet" href="/css/components/register.css">    
 </head>
 
 <body>
@@ -48,14 +48,14 @@
             <img src="/assets/logo/NOCTIS_logo.png" alt="Noctis Logo" class="logo-auth">
             <h2>¡Bienvenido!</h2>
             <p>Inicia sesión con tu cuenta</p>
-            <a href="login.html">Iniciar sesión</a>
+            <a href="/pages/auth/login.html">Iniciar sesión</a>
         </section>
 
     </main>
 
     <!-- Concetar el formulario de registro con Auth.js -->
     <script type="module">
-        import { register } from "./js/core/auth.js";
+        import { register } from "/js/core/auth.js";
 
         const form = document.getElementById("register-form");
 
@@ -68,7 +68,7 @@
 
             try {
                 await register(name, email, password);
-                window.location.href = "home.html";
+                window.location.href = "/pages/app/home.html";
             } catch (error) {
                 alert(error.message);
             }
