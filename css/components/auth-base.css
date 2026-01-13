@@ -67,12 +67,16 @@
     color: var(--muted);
 }
 
-/* SIDE */
+/* SIDE (estructura, sin fondo) */
 .auth__side {
-    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.logo-auth {
+    width: 100px;
+    margin-bottom: 20px;
 }
 
 .auth__side h2 {

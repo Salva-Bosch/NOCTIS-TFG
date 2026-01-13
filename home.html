@@ -7,15 +7,33 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/base/reset.css">
     <link rel="stylesheet" href="css/base/variables.css">
-    <link rel="stylesheet" href="css/pages/home.css">    
+    <link rel="stylesheet" href="css/pages/home.css">
 </head>
 
 <body>
-    <h1>Home</h1>
-    <p>Usuario logueado</p>
+    <!-- CENTRO -->
+    <main class="home-center">
+        <img src="assets/logo/NOCTIS_logo_name.svg" alt="Noctis" class="logo-text" />
+        <img src="assets/logo/NOCTIS_logo.png" alt="Noctis symbol" class="logo-symbol" />
 
-    <button id="logout">Logout</button>
+        <!-- NAVBAR -->
+        <nav class="home-nav">
+            <!-- Cambia los src por tus iconos reales -->
+            <a href="#"><img src="assets/icons/home.svg" alt=""></a>
+            <a href="#"><img src="assets/icons/star.svg" alt=""></a>
+            <a href="#"><img src="assets/icons/favourites.svg" alt=""></a>
+            <a href="#"><img src="assets/icons/information.svg" alt=""></a>
+            <a href="#"><img src="assets/icons/location.svg" alt=""></a>
+            <a href="#"><img src="assets/icons/settings.svg" alt=""></a>
+        </nav>
+    </main>
 
+    <!-- PERFIL LATERAL -->
+    <div class="home-avatar">
+        <a href="#"><img src="assets/icons/account.svg" alt=""></a>
+    </div>
+
+    <!-- SCRIPT DE SUPABASE -->
     <script type="module">
         import { supabase } from "./js/core/supabaseClient.js";
 
@@ -27,10 +45,12 @@
             window.location.href = "login.html";
         }
 
+        /*
         document.getElementById("logout").addEventListener("click", async () => {
             await supabase.auth.signOut();
             window.location.href = "login.html";
         });
+        */
     </script>
 </body>
 

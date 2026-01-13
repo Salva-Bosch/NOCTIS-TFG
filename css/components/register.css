@@ -1,0 +1,3 @@
+.auth--register .auth__side {
+    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
+}
