@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* 🌌 FONDO GLOBAL */
+body {
+    min-height: 100vh;
+    background-image: url("../../assets/landing/FondoNoctis_Landing (1).png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+.logo {
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    padding: 60px;
+    border-radius: 12px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #8fd3ff;
+}
+
+/* BOTÓN */
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 40px;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: white;
+    color: black;
+}
+
+/* ABOUT */
+.about {
+    display: flex;
+    padding: 120px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    gap: 80px;
+}
+
+.about-image img {
+    width: 400px;
+}
+
+/* FEATURES */
+.features {
+    padding: 120px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+/* FOOTER */
+footer {
+    padding: 40px;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+}
