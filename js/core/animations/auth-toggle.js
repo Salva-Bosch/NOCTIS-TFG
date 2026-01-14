@@ -1,11 +1,14 @@
-const signUpButton = document.getElementById("signUp");
-const signInButton = document.getElementById("signIn");
-const container = document.getElementById("auth-container");
+const loginView = document.getElementById("login-view");
+const registerView = document.getElementById("register-view");
 
-signUpButton.addEventListener("click", () => {
-    container.classList.add("right-panel-active");
+document.getElementById("go-register").addEventListener("click", (e) => {
+    e.preventDefault();
+    loginView.classList.add("hidden");
+    registerView.classList.remove("hidden");
 });
 
-signInButton.addEventListener("click", () => {
-    container.classList.remove("right-panel-active");
+document.getElementById("go-login").addEventListener("click", (e) => {
+    e.preventDefault();
+    registerView.classList.add("hidden");
+    loginView.classList.remove("hidden");
 });

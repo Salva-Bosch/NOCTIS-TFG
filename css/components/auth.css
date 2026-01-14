@@ -1,97 +1,51 @@
-/* CONTENEDOR PRINCIPAL */
-.auth-container {
-    position: relative;
-    overflow: hidden;
+.hidden {
+    display: none;
 }
 
-/* FORMULARIOS */
-.form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    padding: 96px;
-    transition: transform 0.8s cubic-bezier(.77, 0, .18, 1);
+/* Fondos como antes */
+.auth--login .auth__side {
+    background: radial-gradient(circle at left, var(--bg-blue) 0%, transparent 70%);
 }
 
-.sign-in-container {
-    left: 0;
-    z-index: 2;
+.auth--register .auth__side {
+    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
 }
 
-.sign-up-container {
-    left: 0;
-    z-index: 1;
-    opacity: 0;
-}
+/* ---------- REGISTER SIDE IMAGE ---------- */
 
-/* OVERLAY */
-.overlay-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.8s cubic-bezier(.77, 0, .18, 1);
-    z-index: 100;
-}
+/* Register */
 
-.overlay {
-    position: relative;
-    left: -100%;
-    width: 200%;
-    height: 100%;
-    background-image: url("../../assets/Icons sesión/register-side.png");
+.auth--register .auth__side {
+    background-image: url("../../assets/Icons_sesión/register-side.png");
     background-size: cover;
     background-position: center;
-    transition: transform 0.8s cubic-bezier(.77, 0, .18, 1);
+    background-repeat: no-repeat;
 }
 
-/* PANEL OVERLAY */
-.overlay-panel {
+/* Login */
+
+.auth--login .auth__side {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth--login .auth__side::before {
+    content: "";
     position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 96px;
-    color: var(--white);
+    inset: 0;
+
+    background-image: url("../../assets/Icons_sesión/register-side.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scaleX(-1);
+    z-index: 0;
 }
 
-.overlay-left {
-    transform: translateX(-20%);
+/* El contenido va por encima */
+.auth--login .auth__side > * {
+    position: relative;
+    z-index: 1;
 }
 
-.overlay-right {
-    right: 0;
-}
-
-/* BOTÓN TRANSPARENTE */
-button.ghost {
-    background: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
-    margin-top: 24px;
-}
-
-/* ===== ESTADO ACTIVO ===== */
-
-.auth-container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
-}
-
-.auth-container.right-panel-active .overlay-container {
-    transform: translateX(-100%);
-}
-
-.auth-container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-}
-
-.auth-container.right-panel-active .overlay {
-    transform: translateX(50%) scaleX(-1);
-}
