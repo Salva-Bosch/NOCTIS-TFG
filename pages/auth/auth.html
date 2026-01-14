@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Noctis · Acceso</title>
+
+    <link rel="stylesheet" href="../../css/base/reset.css">
+    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/components/auth-base.css">
+    <link rel="stylesheet" href="../../css/components/auth.css">
+</head>
+
+<body>
+
+<main class="auth auth-container" id="auth-container">
+
+    <!-- SIGN UP -->
+    <section class="form-container sign-up-container">
+        <h1>Regístrate</h1>
+
+        <form id="register-form">
+            <div class="input-group">
+                <input type="text" placeholder="Nombre" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" placeholder="Correo electrónico" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit">Crear cuenta</button>
+        </form>
+    </section>
+
+    <!-- SIGN IN -->
+    <section class="form-container sign-in-container">
+        <h1>Iniciar sesión</h1>
+
+        <form id="login-form">
+            <div class="input-group">
+                <input type="email" placeholder="Correo electrónico" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <!-- OVERLAY -->
+    <section class="overlay-container">
+        <div class="overlay">
+
+            <div class="overlay-panel overlay-left">
+                <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
+                <h2>¡Bienvenido!</h2>
+                <p>Inicia sesión con tu cuenta</p>
+                <button class="ghost" id="signIn">Iniciar sesión</button>
+            </div>
+
+            <div class="overlay-panel overlay-right">
+                <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
+                <h2>¡Hola!</h2>
+                <p>Crea tu cuenta</p>
+                <button class="ghost" id="signUp">Registrarte</button>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<script src="../../js/core/animations/auth-toggle.js"></script>
+
+</body>
+</html>
