@@ -7,10 +7,13 @@
 }
 
 /* columnas */
-.auth__form,
-.auth__side {
+.auth__form, .auth__side {
     width: 50%;
     padding: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 /* FORM */
