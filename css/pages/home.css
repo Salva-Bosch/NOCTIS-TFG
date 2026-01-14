@@ -2,9 +2,10 @@ body {
     height: 100vh;
     font-family: var(--font-main);
     color: var(--white);
-    background: url("/assets/images/home_bg.png") center / cover no-repeat;
+    background: url("../../assets/images/home_bg.png") center / cover no-repeat;
     overflow: hidden;
 }
+
 
 /* CENTRO */
 .home-center {

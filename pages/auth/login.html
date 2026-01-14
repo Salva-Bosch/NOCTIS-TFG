@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <title>Noctis · Login</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/base/reset.css">
-    <link rel="stylesheet" href="/css/base/variables.css">
-    <link rel="stylesheet" href="/css/components/auth-base.css">
-    <link rel="stylesheet" href="/css/components/login.css">    
+    <link rel="stylesheet" href="../../css/base/reset.css">
+    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/components/auth-base.css">
+    <link rel="stylesheet" href="../../css/components/login.css">
 </head>
 
 <body>
@@ -17,10 +17,10 @@
 
         <!-- LADO IZQUIERDO: MENSAJE -->
         <section class="auth__side">
-            <img src="/assets/logo/NOCTIS_logo.png" alt="Noctis Logo" class="logo-auth">
+            <img src="../../assets/logo/NOCTIS_logo.png" alt="Noctis Logo" class="logo-auth">
             <h2>¡Hola!</h2>
             <p>Crea tu cuenta</p>
-            <a href="/pages/auth/register.html" id="go-register">Registrarte</a>
+            <a href="../../pages/auth/register.html" id="go-register">Registrarte</a>
 
         </section>
 
@@ -52,7 +52,7 @@
 
     <!-- Conectar el formulario de login con Auth.js -->
     <script type="module">
-        import { login } from "/js/core/auth.js";
+        import { login } from "../../js/core/auth.js";
 
         const form = document.getElementById("login-form");
 
@@ -64,7 +64,7 @@
 
             try {
                 await login(email, password);
-                window.location.href = "/pages/app/home.html";
+                window.location.href = "../../pages/app/home.html";
             } catch (error) {
                 alert(error.message);
             }

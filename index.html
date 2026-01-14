@@ -8,14 +8,14 @@
 
 <body>
     <script type="module">
-        import { supabase } from "/js/core/supabaseClient.js";
+        import { supabase } from "js/core/supabaseClient.js";
 
         const { data: { session } } = await supabase.auth.getSession();
 
         if (session) {
-            window.location.replace("/pages/app/home.html");
+            window.location.replace("pages/app/home.html");
         } else {
-            window.location.replace("/pages/auth/login.html");
+            window.location.replace("pages/auth/login.html");
         }
     </script>
 </body>
