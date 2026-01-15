@@ -13,67 +13,64 @@
 
 <body>
 
-<!-- LOGIN -->
-<main class="auth auth--login" id="login-view">
+<main class="auth auth--login" id="auth">
 
-    <section class="auth__side">
-        <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
-        <h2>¡Hola!</h2>
-        <p>Crea tu cuenta</p>
-        <a href="#" id="go-register">Registrarte</a>
+    <!-- FORM -->
+    <section class="auth__form">
+
+        <!-- LOGIN -->
+        <div class="auth-panel auth-panel--login active">
+            <h1>Iniciar sesión</h1>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="email" placeholder="Correo electrónico" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" placeholder="Contraseña" required>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="auth-panel auth-panel--register">
+            <h1>Regístrate</h1>
+
+            <form id="register-form">
+                <div class="input-group">
+                    <input type="text" placeholder="Nombre" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" placeholder="Correo electrónico" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" placeholder="Contraseña" required>
+                </div>
+
+                <button type="submit">Crear cuenta</button>
+            </form>
+        </div>
+
     </section>
 
-    <section class="auth__form">
-        <h1>Iniciar sesión</h1>
+    <!-- SIDE -->
+    <section class="auth__side">
+        <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
 
-        <form id="login-form">
-            <div class="input-group">
-                <input type="email" placeholder="Correo electrónico" required>
-            </div>
+        <h2 id="side-title">¡Hola!</h2>
+        <p id="side-text">Crea tu cuenta</p>
 
-            <div class="input-group">
-                <input type="password" placeholder="Contraseña" required>
-            </div>
-
-            <button type="submit">Login</button>
-        </form>
+        <a href="#" id="toggle-auth">Registrarte</a>
     </section>
 
 </main>
 
-<!-- REGISTER -->
-<main class="auth auth--register hidden" id="register-view">
-
-    <section class="auth__form">
-        <h1>Regístrate</h1>
-
-        <form id="register-form">
-            <div class="input-group">
-                <input type="text" placeholder="Nombre" required>
-            </div>
-
-            <div class="input-group">
-                <input type="email" placeholder="Correo electrónico" required>
-            </div>
-
-            <div class="input-group">
-                <input type="password" placeholder="Contraseña" required>
-            </div>
-
-            <button type="submit">Crear cuenta</button>
-        </form>
-    </section>
-
-    <section class="auth__side">
-        <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
-        <h2>¡Bienvenido!</h2>
-        <p>Inicia sesión con tu cuenta</p>
-        <a href="#" id="go-login">Iniciar sesión</a>
-    </section>
-
-</main>
-
-<script src="../../js/core/animations/auth-toggle.js"></script>
+<script src="../../js/core/animations/auth-simple-transition.js"></script>
 
 </body>
 </html>

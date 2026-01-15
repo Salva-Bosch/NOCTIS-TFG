@@ -1,51 +1,84 @@
-.hidden {
-    display: none;
-}
+/* =========================
+   ESTADOS GENERALES
+========================= */
 
-/* Fondos como antes */
-.auth--login .auth__side {
-    background: radial-gradient(circle at left, var(--bg-blue) 0%, transparent 70%);
-}
-
-.auth--register .auth__side {
-    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
-}
-
-/* ---------- REGISTER SIDE IMAGE ---------- */
-
-/* Register */
-
-.auth--register .auth__side {
-    background-image: url("../../assets/Icons_sesión/register-side.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Login */
-
-.auth--login .auth__side {
+.auth {
     position: relative;
     overflow: hidden;
 }
 
-.auth--login .auth__side::before {
+/* =========================
+   FORM PANELS
+========================= */
+
+.auth__form {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(40px);
+    pointer-events: none;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.auth-panel.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+    position: relative;
+}
+
+/* =========================
+   SIDE IMAGE
+========================= */
+
+.auth__side {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth__side::before {
     content: "";
     position: absolute;
     inset: 0;
-
     background-image: url("../../assets/Icons_sesión/register-side.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    transform: scaleX(-1);
+    transition: transform 0.6s ease-out;
     z-index: 0;
 }
 
-/* El contenido va por encima */
-.auth--login .auth__side > * {
+/* Contenido por encima */
+.auth__side > * {
     position: relative;
     z-index: 1;
 }
 
+/* LOGIN (imagen invertida) */
+.auth--login .auth__side::before {
+    transform: scaleX(-1);
+}
+
+/* REGISTER (imagen normal) */
+.auth--register .auth__side::before {
+    transform: scaleX(1);
+}
+
+/* =========================
+   LAYOUT DINÁMICO LOGIN / REGISTER
+========================= */
+
+/* REGISTER → form izquierda, side derecha (default) */
+.auth--register {
+    flex-direction: row;
+}
+
+/* LOGIN → side izquierda, form derecha */
+.auth--login {
+    flex-direction: row-reverse;
+}
