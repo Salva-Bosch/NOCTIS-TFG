@@ -82,3 +82,167 @@
 .auth--login {
     flex-direction: row-reverse;
 }
+
+/* =========================
+   DIVIDER GOOGLE
+========================= */
+
+.auth-divider {
+    position: relative;
+    margin: 2rem 0 1.5rem;
+    text-align: center;
+}
+
+.auth-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.auth-divider span {
+    position: relative;
+    padding: 0 1rem;
+    background-color: var(--bg-dark); /* o el fondo real del form */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    z-index: 1;
+}
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
+    border: none;
+
+    background-color: #ffffff;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+/* Hover / focus */
+.google-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   ICONOS EN INPUTS (NO ESTILOS)
+========================= */
+
+.input-group.has-icon {
+    position: relative;
+}
+
+.input-group.has-icon .input-icon {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    transform: translateY(-50%);
+
+    width: 25px;
+    height: 25px;
+
+    pointer-events: none;
+}
+
+/* Solo desplazamos el texto */
+.input-group.has-icon input {
+    padding-left: 60px;
+}
+/* =========================
+   INPUT FOCUS (CORRECTO)
+========================= */
+
+/* Transiciones suaves */
+.input-group.has-icon input {
+    transition: background 0.25s ease, outline 0.25s ease, color 0.25s ease;
+}
+
+/* Estado activo */
+.input-group.has-icon:focus-within input {
+    background: var(--white);          /* ← clave */
+    color: var(--bg-dark);             /* texto legible */
+    outline: 3px solid var(--purple-soft);
+    outline-offset: -2px;
+}
+
+/* Placeholder cuando está activo */
+.input-group.has-icon:focus-within input::placeholder {
+    color: var(--bg-dark);
+    opacity: 0.7;
+}
+
+/* =========================
+   ICONOS
+========================= */
+
+.input-icon.icon-active {
+    opacity: 0;
+}
+
+.input-group.has-icon:focus-within .icon-default {
+    opacity: 0;
+}
+
+.input-group.has-icon:focus-within .icon-active {
+    opacity: 1;
+}
+
+/* =========================
+   BOTONES – HOVER UNIFICADO
+========================= */
+
+/* Botones principales (Login / Crear cuenta) */
+.auth__form button {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth__form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.auth__form button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón lateral (Registrarte / Iniciar sesión) */
+.auth__side a {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth__side a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.auth__side a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
