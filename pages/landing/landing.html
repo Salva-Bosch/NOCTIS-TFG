@@ -8,13 +8,18 @@
 <body>
 
 <header class="navbar">
-    <div class="logo">NOCTIS</div>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Sobre nosotros</a>
-        <a href="#">Noctis</a>
-        <a href="#">Features</a>
-        <a href="#">Contact</a>
+    <nav class="nav-container">
+        <div class="nav-left">
+            <a href="#home">Home</a>
+            <a href="#about">Sobre nosotros</a>
+        </div>
+
+        <div class="logo">NOCTIS</div>
+
+        <div class="nav-right">
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 </header>
 
@@ -26,23 +31,31 @@
     </div>
 </section>
 
-<section class="about">
-    <div class="about-box">
-        <h2>¿Quiénes somos?</h2>
-        <p>
-            Noctis es un proyecto desarrollado como Trabajo de Fin de Grado del Grado Superior de
-            Desarrollo de Aplicaciones Web. Nuestro objetivo es acercar la astronomía al público
-            de una forma visual, interactiva y accesible.
-        </p>
+<section class="about" id="about">
+    <div class="about-text">
+
+        <div class="about-card title-card">
+            <h2>¿Quiénes somos?</h2>
+        </div>
+
+        <div class="about-card info-card">
+            <p>
+                Noctis es un proyecto desarrollado como Trabajo de Fin de Grado del Grado Superior de
+                Desarrollo de Aplicaciones Web. Nuestro objetivo es acercar la astronomía al público
+                de una forma visual, interactiva y accesible.
+            </p>
+        </div>
+
     </div>
 
     <div class="about-image">
-        <img src="../../assets/landing/image 7 (1).png" alt="Constelación">
+        <img src="../../assets/landing/image 7 (1).png">
     </div>
 </section>
 
-<section class="features">
-    <h2>Características principales</h2>
+
+<section class="features" id="features">
+    <h2 class="features-title">Características principales</h2>
 
     <div class="features-grid">
         <div class="card">
