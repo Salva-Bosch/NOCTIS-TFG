@@ -34,26 +34,11 @@
         <a href="#"><img src="../../assets/icons/account.svg" alt=""></a>
     </div>
 
-    <!-- SCRIPT DE SUPABASE -->
+    <!-- SCRIPT FIREBASE -->
     <script type="module">
-        import { supabase } from "../../js/core/supabaseClient.js";
-
-        const {
-            data: { session },
-        } = await supabase.auth.getSession();
-
-        if (!session) {
-            window.location.href = "../../pages/auth/login.html";
-        }
-
-        // LOGOUT (Añadir a la página de Profile luego)
-        /*
-        document.getElementById("logout").addEventListener("click", async () => {
-            await supabase.auth.signOut();
-            window.location.href = "login.html";
-        });
-        */
-    </script>
+        import { requireSession } from "../../js/guards/sessionGuard.js";
+        await requireSession();
+      </script>
 </body>
 
 </html>
