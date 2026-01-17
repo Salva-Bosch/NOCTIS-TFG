@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Noctis · Home</title>
-    <!-- CSS -->
+
     <link rel="stylesheet" href="../../css/base/reset.css">
     <link rel="stylesheet" href="../../css/base/variables.css">
     <link rel="stylesheet" href="../../css/pages/home.css">
 </head>
 
 <body>
+
     <!-- CENTRO -->
     <main class="home-center">
         <img src="../../assets/logo/NOCTIS_logo_name.svg" alt="Noctis" class="logo-text" />
@@ -18,7 +19,6 @@
 
         <!-- NAVBAR -->
         <nav class="home-nav">
-            <!-- Cambia los src por tus iconos reales -->
             <a href="./home.html"><img src="../../assets/icons/home.svg" alt=""></a>
             <a href="./sistema_solar.html"><img src="../../assets/icons/planet.svg" alt=""></a>
             <a href="./mapa_estrellas.html"><img src="../../assets/icons/star.svg" alt=""></a>
@@ -29,16 +29,16 @@
         </nav>
     </main>
 
-    <!-- PERFIL LATERAL -->
+    <!-- PERFIL -->
     <div class="home-avatar">
         <a href="#"><img src="../../assets/icons/account.svg" alt=""></a>
     </div>
 
-    <!-- SCRIPT FIREBASE -->
+    <!-- GUARD -->
     <script type="module">
         import { requireSession } from "../../js/guards/sessionGuard.js";
         await requireSession();
-      </script>
-</body>
+    </script>
 
+</body>
 </html>

@@ -6,8 +6,10 @@ body {
     overflow: hidden;
 }
 
+/* =========================
+   CENTRO
+========================= */
 
-/* CENTRO */
 .home-center {
     position: absolute;
     inset: 0;
@@ -27,39 +29,66 @@ body {
     width: 12vw;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
+
 .home-nav {
     position: absolute;
-    bottom: 20vh;
+    bottom: 18vh; /* más separación respecto a los logos */
     left: 50%;
     transform: translateX(-50%);
 
     display: flex;
     align-items: center;
     gap: 28px;
-    padding: 18px 34px;
+    padding: 18px 24px;
 
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 24px;
+    border-radius: 20px;
+    pointer-events: auto;
 }
 
 .home-nav a {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
+/* Iconos */
 .home-nav img {
     width: 26px;
     height: 26px;
     opacity: 0.9;
+    cursor: pointer;
+    transition: transform 0.25s ease;
 }
 
-/* PERFIL */
+/* Hover SOLO en el icono */
+.home-nav img:hover {
+    transform: translateY(-2px) scale(1.08);
+}
+
+/* Separadores entre botones */
+.home-nav a:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -14px;
+    height: 100%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+/* =========================
+   PERFIL
+========================= */
+
 .home-avatar {
     position: absolute;
     bottom: 32px;
