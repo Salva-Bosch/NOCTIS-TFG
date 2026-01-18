@@ -4,6 +4,7 @@ import { auth, db } from "./firebase.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
@@ -41,4 +42,9 @@ export async function login(email, password) {
   );
 
   return userCredential.user;
+}
+
+// LOGOUT
+export async function logout() {
+  await signOut(auth);
 }
