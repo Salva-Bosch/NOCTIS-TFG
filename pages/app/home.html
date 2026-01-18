@@ -14,25 +14,46 @@
 
     <!-- CENTRO -->
     <main class="home-center">
-        <img src="../../assets/logo/NOCTIS_logo_name.svg" alt="Noctis" class="logo-text" />
-        <img src="../../assets/logo/NOCTIS_logo.png" alt="Noctis symbol" class="logo-symbol" />
 
-        <!-- NAVBAR -->
-        <nav class="home-nav">
-            <a href="./home.html"><img src="../../assets/icons/home.svg" alt=""></a>
-            <a href="./sistema_solar.html"><img src="../../assets/icons/planet.svg" alt=""></a>
-            <a href="./mapa_estrellas.html"><img src="../../assets/icons/star.svg" alt=""></a>
-            <a href="./mapa_ubicaciones.html"><img src="../../assets/icons/location.svg" alt=""></a>
-            <a href="./favoritos.html"><img src="../../assets/icons/favourites.svg" alt=""></a>
-            <a href="./info.html"><img src="../../assets/icons/information.svg" alt=""></a>
-            <a href="./ajustes.html"><img src="../../assets/icons/settings.svg" alt=""></a>
-        </nav>
+        <div class="home-group">
+            <img src="../../assets/logo/NOCTIS_logo_name.svg" alt="Noctis" class="logo-text" />
+            <img src="../../assets/logo/NOCTIS_logo.png" alt="Noctis symbol" class="logo-symbol" />
+
+            <!-- NAVBAR -->
+            <nav class="home-nav">
+                <a href="./home.html"><img src="../../assets/icons/home.svg" alt=""></a>
+                <a href="./sistema_solar.html"><img src="../../assets/icons/planet.svg" alt=""></a>
+                <a href="./mapa_estrellas.html"><img src="../../assets/icons/star.svg" alt=""></a>
+                <a href="./mapa_ubicaciones.html"><img src="../../assets/icons/location.svg" alt=""></a>
+                <a href="./favoritos.html"><img src="../../assets/icons/favourites.svg" alt=""></a>
+                <a href="./info.html"><img src="../../assets/icons/information.svg" alt=""></a>
+                <a href="./ajustes.html"><img src="../../assets/icons/settings.svg" alt=""></a>
+            </nav>
+        </div>
+
     </main>
+
 
     <!-- PERFIL -->
     <div class="home-avatar">
         <a href="../perfil/perfil.html"><img src="../../assets/icons/account.svg" alt=""></a>
     </div>
+
+    <!-- BACKGROUND ROTATOR -->
+    <script>
+        const backgrounds = [
+            "../../assets/images/home_bg.png",
+            "../../assets/images/home_bg_2.png",
+        ];
+
+        let current = 0;
+        const body = document.body;
+
+        setInterval(() => {
+            current = (current + 1) % backgrounds.length;
+            body.style.setProperty("--bg-image", `url("${backgrounds[current]}")`);
+        }, 15000);
+    </script>
 
     <!-- GUARD -->
     <script type="module">

@@ -2,8 +2,22 @@ body {
     height: 100vh;
     font-family: var(--font-main);
     color: var(--white);
-    background: url("../../assets/images/home_bg.png") center / cover no-repeat;
     overflow: hidden;
+
+    --bg-image: url("../../assets/images/home_bg.png");
+    position: relative;
+}
+
+/* Fondo animado */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: var(--bg-image) center / cover no-repeat;
+    transition: background-image 1.2s ease-in-out;
+
+    z-index: -1;
 }
 
 /* =========================
@@ -13,13 +27,14 @@ body {
 .home-center {
     position: absolute;
     inset: 0;
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 32px;
+
     pointer-events: none;
 }
+
 
 .logo-text {
     width: 30vw;
@@ -29,20 +44,26 @@ body {
     width: 12vw;
 }
 
+.home-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+    pointer-events: auto;
+}
+
+
 /* =========================
    NAVBAR
 ========================= */
 
 .home-nav {
-    position: absolute;
-    bottom: 18vh; /* más separación respecto a los logos */
-    left: 50%;
-    transform: translateX(-50%);
-
     display: flex;
     align-items: center;
     gap: 28px;
     padding: 18px 24px;
+    margin-top: 20px;  /* Para controlar el espacio del nav y el logo */
 
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
@@ -50,8 +71,8 @@ body {
 
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
-    pointer-events: auto;
 }
+
 
 .home-nav a {
     display: flex;
@@ -74,7 +95,7 @@ body {
     transform: translateY(-2px) scale(1.08);
 }
 
-/* Separadores entre botones */
+/* Separadores */
 .home-nav a:not(:last-child)::after {
     content: "";
     position: absolute;
