@@ -1,98 +1,248 @@
+/* =========================
+   ESTADOS GENERALES
+========================= */
+
 .auth {
-    display: flex;
-    height: 100vh;
-    font-family: var(--font-main);
-    background: var(--bg-dark);
-    color: var(--white);
+    position: relative;
+    overflow: hidden;
 }
 
-/* columnas */
-.auth__form,
+/* =========================
+   FORM PANELS
+========================= */
+
+.auth__form {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(40px);
+    pointer-events: none;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.auth-panel.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+    position: relative;
+}
+
+/* =========================
+   SIDE IMAGE
+========================= */
+
 .auth__side {
-    width: 50%;
-    padding: 96px;
+    position: relative;
+    overflow: hidden;
 }
 
-/* FORM */
-.auth__form h1 {
-    font-size: 48px;
-    font-weight: 600;
-    margin-bottom: 48px;
+.auth__side::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../../assets/Icons_sesión/register-side.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.6s ease-out;
+    z-index: 0;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 20px 28px;
-    border-radius: var(--radius-pill);
-    border: none;
-    background: linear-gradient(135deg, var(--purple), var(--purple-soft));
-    color: var(--white);
-    font-size: 16px;
-    margin-bottom: 24px;
-    font-family: var(--font-main);
+/* Contenido por encima */
+.auth__side > * {
+    position: relative;
+    z-index: 1;
 }
 
-.input-group input::placeholder {
-    color: var(--white);
-    opacity: .8;
+/* LOGIN (imagen invertida) */
+.auth--login .auth__side::before {
+    transform: scaleX(-1);
 }
 
-.auth__form button {
-    padding: 16px 48px;
-    border-radius: var(--radius-pill);
-    border: none;
-    background: #1a245a;
-    color: var(--white);
-    font-weight: 600;
-    letter-spacing: 2px;
-    cursor: pointer;
-    font-family: var(--font-main);
+/* REGISTER (imagen normal) */
+.auth--register .auth__side::before {
+    transform: scaleX(1);
 }
 
-.auth__divider {
-    height: 2px;
-    width: 100%;
-    background: var(--white);
-    opacity: .3;
-    margin: 48px 0;
+/* =========================
+   LAYOUT DINÁMICO LOGIN / REGISTER
+========================= */
+
+/* REGISTER → form izquierda, side derecha (default) */
+.auth--register {
+    flex-direction: row;
 }
 
-/* GOOGLE */
-.auth__google {
+/* LOGIN → side izquierda, form derecha */
+.auth--login {
+    flex-direction: row-reverse;
+}
+
+/* =========================
+   DIVIDER GOOGLE
+========================= */
+
+.auth-divider {
+    position: relative;
+    margin: 2rem 0 1.5rem;
     text-align: center;
 }
 
-.auth__google p {
-    margin-bottom: 24px;
-    color: var(--muted);
+.auth-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
-/* SIDE */
-.auth__side {
-    background: radial-gradient(circle at right, var(--bg-blue) 0%, transparent 70%);
+.auth-divider span {
+    position: relative;
+    padding: 0 1rem;
+    background-color: var(--bg-dark); /* o el fondo real del form */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    z-index: 1;
+}
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-btn {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
+    border: none;
+
+    background-color: #ffffff;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.auth__side h2 {
-    font-size: 56px;
-    font-weight: 600;
-    margin-bottom: 16px;
+.google-btn img {
+    width: 22px;
+    height: 22px;
 }
 
-.auth__side p {
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 32px;
+/* Hover / focus */
+.google-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
+.google-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   ICONOS EN INPUTS (NO ESTILOS)
+========================= */
+
+.input-group.has-icon {
+    position: relative;
+}
+
+.input-group.has-icon .input-icon {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    transform: translateY(-50%);
+
+    width: 25px;
+    height: 25px;
+
+    pointer-events: none;
+}
+
+/* Solo desplazamos el texto */
+.input-group.has-icon input {
+    padding-left: 60px;
+}
+/* =========================
+   INPUT FOCUS (CORRECTO)
+========================= */
+
+/* Transiciones suaves */
+.input-group.has-icon input {
+    transition: background 0.25s ease, outline 0.25s ease, color 0.25s ease;
+}
+
+/* Estado activo */
+.input-group.has-icon:focus-within input {
+    background: var(--white);          /* ← clave */
+    color: var(--bg-dark);             /* texto legible */
+    outline: 3px solid var(--purple-soft);
+    outline-offset: -2px;
+}
+
+/* Placeholder cuando está activo */
+.input-group.has-icon:focus-within input::placeholder {
+    color: var(--bg-dark);
+    opacity: 0.7;
+}
+
+/* =========================
+   ICONOS
+========================= */
+
+.input-icon.icon-active {
+    opacity: 0;
+}
+
+.input-group.has-icon:focus-within .icon-default {
+    opacity: 0;
+}
+
+.input-group.has-icon:focus-within .icon-active {
+    opacity: 1;
+}
+
+/* =========================
+   BOTONES – HOVER UNIFICADO
+========================= */
+
+/* Botones principales (Login / Crear cuenta) */
+.auth__form button {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth__form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.auth__form button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón lateral (Registrarte / Iniciar sesión) */
 .auth__side a {
-    padding: 14px 40px;
-    border-radius: var(--radius-pill);
-    border: 2px solid var(--purple);
-    color: var(--white);
-    text-decoration: none;
-    width: fit-content;
-    font-family: var(--font-main);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.auth__side a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.auth__side a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

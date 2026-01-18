@@ -1,0 +1,140 @@
+.auth {
+    display: flex;
+    height: 100vh;
+    font-family: var(--font-main);
+    background: var(--bg-dark);
+    color: var(--white);
+}
+
+/* columnas */
+.auth__form {
+    width: 50%;
+    padding: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* FORM */
+.auth__form h1 {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 48px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 20px 28px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: linear-gradient(135deg, var(--purple), var(--purple-soft));
+    color: var(--white);
+    font-size: 16px;
+    margin-bottom: 24px;
+    font-family: var(--font-main);
+}
+
+.input-group input::placeholder {
+    color: var(--white);
+    opacity: .8;
+}
+
+.auth__form button {
+    padding: 16px 48px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: #1a245a;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-family: var(--font-main);
+}
+
+.auth__divider {
+    height: 2px;
+    width: 100%;
+    background: var(--white);
+    opacity: .3;
+    margin: 48px 0;
+}
+
+/* GOOGLE */
+.auth__google {
+    text-align: center;
+}
+
+.auth__google p {
+    margin-bottom: 24px;
+    color: var(--muted);
+}
+
+/* SIDE (estructura, sin fondo) */
+.auth__side {
+    width: 50%;
+    padding: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-auth {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.auth__side h2 {
+    font-size: 56px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.auth__side p {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 32px;
+}
+
+.auth__side a {
+    padding: 14px 40px;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--purple);
+    color: var(--white);
+    text-decoration: none;
+    width: fit-content;
+    font-family: var(--font-main);
+}
+
+/* Animación salida hacia login */
+.auth--slide-out {
+  animation: slideOutToLeft 0.6s ease forwards;
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Animación salida hacia la derecha */
+.auth--slide-out-right {
+    animation: slideOutToRight 0.6s ease forwards;
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}

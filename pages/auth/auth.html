@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Noctis · Acceso</title>
+
+    <link rel="stylesheet" href="../../css/base/reset.css">
+    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/components/auth-base.css">
+    <link rel="stylesheet" href="../../css/components/auth.css">
+</head>
+
+<body>
+
+    <main class="auth auth--login" id="auth">
+
+        <!-- FORM -->
+        <section class="auth__form">
+
+            <!-- LOGIN -->
+            <div class="auth-panel auth-panel--login active">
+                <h1>Iniciar sesión</h1>
+
+                <form id="login-form">
+                    <div class="input-group has-icon">
+                        <img src="../../assets/Icons_sesión/Account_Fill.svg" class="input-icon icon-default" alt="">
+                        <img src="../../assets/Icons_sesión/Account_Fill_active.svg" class="input-icon icon-active"
+                            alt="">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+
+                    <div class="input-group has-icon">
+                        <img src="../../assets/Icons_sesión/Lock.svg" class="input-icon icon-default" alt="">
+                        <img src="../../assets/Icons_sesión/Lock_active.svg" class="input-icon icon-active" alt="">
+                        <input type="password" placeholder="Contraseña" required>
+                    </div>
+
+                    <button type="submit">Login</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>O accede con Google</span>
+                </div>
+
+                <button class="google-btn" type="button" aria-label="Acceder con Google">
+                    <img src="../../assets/Logos_social/google-icon.svg" alt="Google">
+                </button>
+
+            </div>
+
+            <!-- REGISTER -->
+            <div class="auth-panel auth-panel--register">
+                <h1>Regístrate</h1>
+
+                <form id="register-form">
+                    <div class="input-group has-icon">
+                        <img src="../../assets/Icons_sesión/Account_Fill.svg" class="input-icon icon-default" alt="">
+                        <img src="../../assets/Icons_sesión/Account_Fill_active.svg" class="input-icon icon-active"
+                            alt="">
+                        <input type="text" placeholder="Nombre" required>
+                    </div>
+
+                    <div class="input-group has-icon">
+                        <img src="../../assets/Icons_sesión/Account_Fill.svg" class="input-icon icon-default" alt="">
+                        <img src="../../assets/Icons_sesión/Account_Fill_active.svg" class="input-icon icon-active"
+                            alt="">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+
+                    <div class="input-group has-icon">
+                        <img src="../../assets/Icons_sesión/Lock.svg" class="input-icon icon-default" alt="">
+                        <img src="../../assets/Icons_sesión/Lock_active.svg" class="input-icon icon-active" alt="">
+                        <input type="password" placeholder="Contraseña" required>
+                    </div>
+
+                    <button type="submit">Crear cuenta</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>O accede con Google</span>
+                </div>
+
+                <button class="google-btn" type="button" aria-label="Acceder con Google">
+                    <img src="../../assets/Logos_social/google-icon.svg" alt="Google">
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- SIDE -->
+        <section class="auth__side">
+            <img src="../../assets/logo/NOCTIS_logo.png" class="logo-auth">
+
+            <h2 id="side-title">¡Hola!</h2>
+            <p id="side-text">Crea tu cuenta</p>
+
+            <a href="#" id="toggle-auth">Registrarte</a>
+        </section>
+
+    </main>
+
+    <!-- SCRIPT ANIMACIÓN -->
+    <script src="../../js/core/animations/auth-simple-transition.js"></script>
+
+    <!-- SCRIPT AUTH FIREBASE -->
+    <script type="module" src="../../js/pages/auth.js"></script>
+
+</body>
+
+</html>
