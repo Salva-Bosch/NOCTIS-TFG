@@ -9,79 +9,142 @@
 
 <header class="navbar">
     <nav class="nav-container">
-        <div class="nav-left">
+        <div class="nav-group left">
             <a href="#home">Home</a>
             <a href="#about">Sobre nosotros</a>
         </div>
 
-        <div class="logo">NOCTIS</div>
+        <div class="logo">
+            <img src="../../assets/logo/NOCTIS_logo.png" alt="Logo Noctis">
+        </div>
 
-        <div class="nav-right">
+        <div class="nav-group right">
             <a href="#features">Features</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 </header>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>EXPLORA EL <span>UNIVERSO NOCTURNO</span></h1>
-        <p>Descubre los secretos del universo con Noctis, tu observatorio astronómico virtual.</p>
+<section class="hero" id="home">
+    <div class="hero-content container">
+        <h1>EXPLORA EL <span><br>UNIVERSO NOCTURNO</span></h1>
+        <p>Descubre los secretos del universo con Noctis,<br> tu observatorio astronómico virtual.</p>
         <a href="#" class="btn">Explorar el universo</a>
     </div>
 </section>
 
 <section class="about" id="about">
-    <div class="about-text">
+    <div class="container about-inner">
+        <div class="about-text">
+            <h2 class="about-title">¿Quiénes somos?</h2>
 
-        <div class="about-card title-card">
-            <h2>¿Quiénes somos?</h2>
+            <div class="about-card about-description">
+                <p>
+                    Noctis es un proyecto desarrollado como Trabajo de Fin de Grado del Grado Superior de
+                    Desarrollo de Aplicaciones Web. Nuestro objetivo es acercar la astronomía al público
+                    de una forma visual, interactiva y accesible. Creamos un observatorio astronómico virtual
+                    donde los usuarios pueden explorar el cielo nocturno, conocer los próximos eventos cósmicos
+                    y aprender sobre planetas y constelaciones.
+                </p>
+            </div>
         </div>
 
-        <div class="about-card info-card">
-            <p>
-                Noctis es un proyecto desarrollado como Trabajo de Fin de Grado del Grado Superior de
-                Desarrollo de Aplicaciones Web. Nuestro objetivo es acercar la astronomía al público
-                de una forma visual, interactiva y accesible.
-            </p>
+        <div class="about-image">
+            <img src="../../assets/landing/image 7 (1).png" alt="Noctis observatorio">
         </div>
-
-    </div>
-
-    <div class="about-image">
-        <img src="../../assets/landing/image 7 (1).png">
     </div>
 </section>
-
 
 <section class="features" id="features">
-    <h2 class="features-title">Características principales</h2>
+    <div class="container">
+        <h2 class="features-title">Características principales</h2>
 
-    <div class="features-grid">
-        <div class="card">
-            <h3>Explora el cielo nocturno en 3D</h3>
-            <p>Navega por una representación interactiva del universo.</p>
-        </div>
+        <div class="features-grid">
 
-        <div class="card">
-            <h3>Consulta los próximos eventos astronómicos</h3>
-            <p>Mantente informado sobre eclipses y lluvias de meteoros.</p>
-        </div>
+            <div class="card">
+                <div class="card-icon">
+                    <img src="../../assets/landing/telescopio_landing.png" alt="Icono telescopio">
+                </div>
+                <h3>Explora el cielo nocturno en 3D</h3>
+                <p>Sumérgete en una experiencia tridimensional del universo y descubre las maravillas del cosmos en tiempo real.</p>
+            </div>
 
-        <div class="card">
-            <h3>Aprende sobre planetas y constelaciones</h3>
-            <p>Información clara y visual sobre el espacio.</p>
-        </div>
+            <div class="card">
+                <div class="card-icon">
+                    <img src="../../assets/landing/estrellas_landing.png" alt="Icono eventos">
+                </div>
+                <h3>Consulta los próximos eventos astronómicos</h3>
+                <p>Mantente informado sobre eclipses, lluvias de meteoros y otros fenómenos celestes.</p>
+            </div>
 
-        <div class="card">
-            <h3>Descubre el cielo desde tu ubicación</h3>
-            <p>Visualiza el firmamento en tiempo real.</p>
+            <div class="card">
+                <div class="card-icon">
+                    <img src="../../assets/landing/luna_landing.png" alt="Icono planetas">
+                </div>
+                <h3>Aprende sobre planetas y constelaciones</h3>
+                <p>Amplía tus conocimientos con información detallada sobre el sistema solar y las estrellas.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">
+                    <img src="../../assets/landing/brujula_landing.png" alt="Icono ubicación">
+                </div>
+                <h3>Descubre el cielo desde tu ubicación</h3>
+                <p>Personaliza tu experiencia astronómica según tu posición geográfica y zona horaria.</p>
+            </div>
+
         </div>
     </div>
 </section>
 
-<footer>
-    <p>NOCTIS · Proyecto TFG · DAW · 2025</p>
+<footer id="contact">
+    <div class="footer-main">
+        <div class="footer-inner container">
+
+            <div class="footer-col">
+                <div class="footer-logo">NOCTIS</div>
+                <p class="footer-text">
+                    Explorando el universo a través de la tecnología.
+                    Un proyecto dedicado a acercar las estrellas a todos.
+                </p>
+
+                <div class="footer-icons">
+                    <span></span>
+                    <span>in</span>
+                    <span>✉</span>
+                </div>
+
+                <a href="#" class="footer-btn">Explorar el Universo</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Fuentes de Datos</h4>
+                <div class="data-card">
+                    <strong>NASA API</strong>
+                    <span>Datos astronómicos</span>
+                </div>
+                <div class="data-card">
+                    <strong>Open Meteo</strong>
+                    <span>Datos meteorológicos</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#about">Sobre el proyecto</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        Proyecto TFG — Noctis © 2025
+    </div>
 </footer>
 
 </body>
