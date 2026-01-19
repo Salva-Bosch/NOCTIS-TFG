@@ -2,9 +2,9 @@
 LÓGICA DE LA PÁGINA PERFIL
 */
 
-import { auth, db } from "../../js/firebase.js";
-import { requireSession } from "../../js/guards/sessionGuard.js";
-import { logout } from "../../js/core/auth_logic.js";
+import { auth, db } from "../core/firebase.js";
+import { requireSession } from "../guards/sessionGuard.js";
+import { logout } from "../core/auth_logic.js";
 
 import {
     doc,
@@ -13,7 +13,7 @@ import {
 
 const user = await requireSession(); // debe devolver el user autenticado
 
-// Leer Firestore
+// Leer tus datos de cuenta en Firestore
 const ref = doc(db, "users", user.uid);
 const snap = await getDoc(ref);
 
@@ -29,6 +29,6 @@ if (snap.exists()) {
 // Logout
 document.getElementById("logout").addEventListener("click", async () => {
     await logout();
-    window.location.replace("../auth/auth.html");
+    window.location.replace("../../pages/auth/auth.js");
 });
 
