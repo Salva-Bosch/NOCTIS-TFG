@@ -13,21 +13,16 @@
     <main style="padding:40px">
         <h1>Perfil Nuevo</h1>
 
+        <p id="name"></p>
+        <p id="email"></p>
+        <p id="created"></p>
+
         <button id="logout">Cerrar sesión</button>
     </main>
 
-    <!-- SCRIPT DE AUTENTIFICACIÓN DE CUENTA -->
-    <script type="module">
-        import { requireSession } from "../../js/guards/sessionGuard.js";
-        import { logout } from "../../js/core/auth_logic.js";
-
-        await requireSession();
-
-        document.getElementById("logout").addEventListener("click", async () => {
-            await logout();
-            window.location.replace("../auth/auth.html");
-        });
-    </script>
+    <!-- SCRIPT DE CONEXIÓN CON JS -->
+    <script type="module" src="./perfil.js"></script>
+    
 </body>
 
 </html>
