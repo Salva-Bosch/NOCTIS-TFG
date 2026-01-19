@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <title>Noctis – Explora el universo</title>
 
-    <!-- FUENTE LEXEND GIGA -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="../../css/landing/landing.css">
 </head>
 <body>
 
 <header class="navbar">
     <nav class="nav-container">
-        <div class="nav-group left">
-            <a href="#home">Home</a>
-            <a href="#about">Sobre nosotros</a>
-        </div>
+        <div class="nav-items">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">Sobre nosotros</a>
 
-        <div class="logo">
-            <img src="../../assets/logo/NOCTIS_logo.png" alt="Logo Noctis">
-        </div>
+            <div class="nav-logo">
+                <img src="../../assets/logo/NOCTIS_logo.png" alt="Logo Noctis">
+                <span>NOCTIS</span>
+            </div>
 
-        <div class="nav-group right">
-            <a href="#features">Features</a>
-            <a href="#contact">Contact</a>
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 </header>
 
 <section class="hero" id="home">
     <div class="hero-content container">
-        <h1>EXPLORA EL <span><br>UNIVERSO NOCTURNO</span></h1>
-        <p>Descubre los secretos del universo con Noctis,<br> tu observatorio astronómico virtual.</p>
-        <a href="#" class="btn">Explorar el universo</a>
+        <h1>EXPLORA EL <br>UNIVERSO NOCTURNO</h1>
+
+        <p>
+            Descubre los secretos del universo con Noctis,<br>
+            tu observatorio astronómico virtual.
+        </p>
+
+        <a href="#" class="btn btn-primary">Explorar el universo</a>
     </div>
 </section>
 
@@ -42,7 +44,7 @@
         <div class="about-text">
             <h2 class="about-title">¿Quiénes somos?</h2>
 
-            <div class="about-card about-description">
+            <div class="about-description">
                 <p>
                     Noctis es un proyecto desarrollado como Trabajo de Fin de Grado del Grado Superior de
                     Desarrollo de Aplicaciones Web. Nuestro objetivo es acercar la astronomía al público
@@ -52,7 +54,7 @@
         </div>
 
         <div class="about-image">
-            <img src="../../assets/landing/geminis_land.png" alt="Noctis observatorio">
+            <img src="../../assets/landing/geminis_land.png" alt="Observatorio Noctis">
         </div>
     </div>
 </section>
@@ -62,39 +64,29 @@
         <h2 class="features-title">Características principales</h2>
 
         <div class="features-grid">
-
-            <div class="card">
-                <div class="card-icon">
-                    <img src="../../assets/landing/telescopio_landing.png" alt="">
-                </div>
+            <div class="feature-card">
+                <img src="../../assets/landing/telescopio_landing.png" alt="">
                 <h3>Explora el cielo nocturno en 3D</h3>
                 <p>Sumérgete en una experiencia tridimensional del universo.</p>
             </div>
 
-            <div class="card">
-                <div class="card-icon">
-                    <img src="../../assets/landing/estrellas_landing.png" alt="">
-                </div>
-                <h3>Consulta los próximos eventos astronómicos</h3>
-                <p>Mantente informado sobre eclipses y lluvias de meteoros.</p>
+            <div class="feature-card">
+                <img src="../../assets/landing/estrellas_landing.png" alt="">
+                <h3>Eventos astronómicos</h3>
+                <p>Eclipses, lluvias de meteoros y fenómenos destacados.</p>
             </div>
 
-            <div class="card">
-                <div class="card-icon">
-                    <img src="../../assets/landing/luna_landing.png" alt="">
-                </div>
-                <h3>Aprende sobre planetas y constelaciones</h3>
-                <p>Información detallada y accesible.</p>
+            <div class="feature-card">
+                <img src="../../assets/landing/luna_landing.png" alt="">
+                <h3>Planetas y constelaciones</h3>
+                <p>Información clara y visual para todos los niveles.</p>
             </div>
 
-            <div class="card">
-                <div class="card-icon">
-                    <img src="../../assets/landing/brujula_landing.png" alt="">
-                </div>
-                <h3>Descubre el cielo desde tu ubicación</h3>
-                <p>Personaliza tu experiencia astronómica.</p>
+            <div class="feature-card">
+                <img src="../../assets/landing/brujula_landing.png" alt="">
+                <h3>Cielo según tu ubicación</h3>
+                <p>Visualiza el firmamento desde tu posición exacta.</p>
             </div>
-
         </div>
     </div>
 </section>
@@ -104,10 +96,8 @@
         <div class="footer-inner container">
             <div class="footer-col">
                 <div class="footer-logo">NOCTIS</div>
-                <p class="footer-text">
-                    Explorando el universo a través de la tecnología.
-                </p>
-                <a href="#" class="footer-btn">Explorar el Universo</a>
+                <p>Explorando el universo a través de la tecnología.</p>
+                <a href="#" class="btn btn-primary">Explorar el Universo</a>
             </div>
         </div>
     </div>

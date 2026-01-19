@@ -1,3 +1,9 @@
+@import '../base/variables.css';
+
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,30 +11,23 @@
     font-family: 'Lexend Giga', sans-serif;
 }
 
-/* CONTENEDOR */
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 10 10px; /* 🔑 mitad del margen */
+    padding: 0 20px;
 }
 
 body {
-    min-height: 100vh;
-    background-image: url("../../assets/landing/FondoNoctis_Landing (1).png");
+    background-image: url("../../assets/landing/FondoNoctis_Landing.png");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    color: white;
+    color: var(--white);
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* ================= NAVBAR ================= */
 
 .navbar {
     position: fixed;
-    top: 0;
     width: 100%;
     background: rgba(0,0,0,0.35);
     backdrop-filter: blur(10px);
@@ -36,84 +35,92 @@ body {
 }
 
 .nav-container {
-    max-width: 900px;
-    margin: 0 auto;
-    height: 70px;
-
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 80px;
 }
 
-.nav-group {
+.nav-items {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 115px;
 }
 
-.navbar a {
-    color: white;
+.nav-link {
+    color: var(--white);
     text-decoration: none;
     font-size: 14px;
-    letter-spacing: 1px;
-    opacity: 0.8;
+    opacity: 0.75;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.logo img {
-    height: 32px;
-    opacity: 0.9;
+.nav-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
-/* =========================
-   HERO
-========================= */
+.nav-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-logo img {
+    height: 28px;
+}
+
+/* ================= HERO ================= */
 
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    text-align: center;
     padding-top: 120px;
 }
 
 .hero h1 {
-    font-size: 80px;           /* 🔑 */
-    font-weight: 700;          /* 🔑 bold */
-    margin-bottom: 20px;
-
-    background: linear-gradient(to right, white, #555);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    font-weight: 700;
 }
 
 .hero p {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    font-size: 32px;           /* 🔑 */
+    font-size: 32px;
     opacity: 0.9;
 }
 
-/* =========================
-   BOTÓN
-========================= */
+/* ================= BOTONES ================= */
 
 .btn {
     padding: 14px 38px;
-    border: 1px solid white;
     border-radius: 30px;
-    color: white;
     text-decoration: none;
-    transition: 0.3s;
+    font-size: 14px;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
 
-/* =========================
-   ABOUT
-========================= */
+.btn-primary {
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--white);
+    color: var(--bg-dark);
+    transform: translateY(-2px);
+}
+
+/* ================= ABOUT ================= */
 
 .about {
     padding: 120px 0;
@@ -121,8 +128,8 @@ body {
 
 .about-inner {
     display: flex;
-    gap: 80px;
     align-items: center;
+    gap: 80px;
 }
 
 .about-image img {
@@ -141,9 +148,7 @@ body {
     backdrop-filter: blur(8px);
 }
 
-/* =========================
-   FEATURES
-========================= */
+/* ================= FEATURES ================= */
 
 .features {
     padding: 120px 0;
@@ -151,38 +156,43 @@ body {
 
 .features-title {
     text-align: center;
-    margin-bottom: 80px;
     font-size: 34px;
+    margin-bottom: 80px;
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
 }
 
-.card {
+.feature-card {
     background: rgba(255,255,255,0.14);
     backdrop-filter: blur(8px);
-    padding: 20px 20px 20px;
-    border-radius: 25px;
+    padding: 50px 40px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.feature-card img {
+    width: 48px;
+}
+
+/* ================= FOOTER ================= */
 
 .footer-main {
     background: rgba(0,0,0,0.55);
 }
 
 .footer-inner {
-    padding: 80px 20px; /* 🔑 mitad del margen */
+    padding: 80px 20px;
 }
 
 .footer-bottom {
+    background: rgba(0,0,0,0.65);
     text-align: center;
     padding: 20px;
-    background: rgba(0,0,0,0.65);
     font-size: 13px;
 }
