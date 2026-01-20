@@ -10,15 +10,42 @@
 </head>
 
 <body>
-    <main style="padding:40px">
-        <h1>Perfil Nuevo</h1>
+    <main class="page" style="padding:40px; max-width:720px;">
+        <header style="margin-bottom:24px;">
+            <h1 class="h1">Perfil</h1>
+            <p class="muted">Gestiona tu cuenta y tus datos.</p>
+        </header>
 
-        <p id="name"></p>
-        <p id="email"></p>
-        <p id="created"></p>
+        <section class="card"
+            style="padding:20px; border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:16px;">
+            <div style="display:grid; gap:14px;">
+                <label>
+                    <div class="muted" style="margin-bottom:6px;">Nombre</div>
+                    <input id="inputName" class="input" type="text" placeholder="Tu nombre">
+                </label>
 
-        <button id="logout">Cerrar sesión</button>
+                <label>
+                    <div class="muted" style="margin-bottom:6px;">Email</div>
+                    <input id="inputEmail" class="input" type="email" placeholder="tu@email.com">
+                </label>
+
+                <div>
+                    <div class="muted" style="margin-bottom:6px;">Cuenta creada</div>
+                    <div id="created" class="mono"></div>
+                </div>
+
+                <div id="msg" class="muted" style="min-height:20px;"></div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+                    <button id="btnSave" class="btn">Guardar cambios</button>
+                    <button id="btnPassword" class="btn-secondary" type="button">Cambiar contraseña</button>
+                    <button id="btnDelete" class="btn-danger" type="button">Eliminar cuenta</button>
+                    <button id="logout" class="btn-ghost" type="button">Cerrar sesión</button>
+                </div>
+            </div>
+        </section>
     </main>
+
 
     <!-- SCRIPT DE CONEXIÓN CON JS -->
     <script type="module" src="../../js/pages/perfil.js"></script>
