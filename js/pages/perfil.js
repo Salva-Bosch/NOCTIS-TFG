@@ -22,6 +22,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 /* ELEMENTOS */
+const avatarImg = document.getElementById("avatar");
+
 const inputName = document.getElementById("inputName");
 const inputEmail = document.getElementById("inputEmail");
 const createdEl = document.getElementById("created");
@@ -45,6 +47,8 @@ if (snap.exists()) {
     inputName.value = data.name ?? "";
     inputEmail.value = data.email ?? "";
     createdEl.textContent = data.createdAt?.toDate().toLocaleString();
+
+    avatarImg.src = data.photoURL ?? "/assets/avatars/avatar-luna.png";
 }
 
 /* GUARDAR CAMBIOS */
@@ -109,4 +113,30 @@ btnDelete.addEventListener("click", async () => {
 btnLogout.addEventListener("click", async () => {
     await logout();
     window.location.replace("../../pages/auth/auth.html");
+});
+
+/* SELECTOR DE AVATAR */
+const avatarOptions = document.querySelectorAll(".avatar-picker img");
+
+avatarOptions.forEach(img => {
+  img.addEventListener("click", async () => {
+    const newAvatar = img.dataset.avatar;
+
+    try {
+      await setDoc(
+        userRef,
+        { photoURL: newAvatar },
+        { merge: true }
+      );
+
+      avatarImg.src = newAvatar;
+
+      avatarOptions.forEach(i => i.classList.remove("active"));
+      img.classList.add("active");
+
+      msgEl.textContent = "Avatar actualizado";
+    } catch (err) {
+      msgEl.textContent = err.message;
+    }
+  });
 });

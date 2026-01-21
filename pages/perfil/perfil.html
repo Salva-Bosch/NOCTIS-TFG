@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="../../css/base/reset.css">
     <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/pages/perfil.css">
 </head>
 
 <body>
@@ -18,6 +19,30 @@
 
         <section class="card"
             style="padding:20px; border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:16px;">
+            <!-- Imagen de Perfil -->
+            <div class="avatar-block" style="margin-bottom:24px;">
+                <img id="avatar" src="../../assets/avatar-default.png" alt="Avatar de perfil" />
+
+                <label class="btn-secondary">
+                    Cambiar foto
+                    <input id="avatarInput" type="file" accept="image/png,image/jpeg" hidden>
+                </label>
+            </div>
+
+            <!-- Selector de Avatares de Perfil -->
+            <div class="avatar-picker">
+                <img data-avatar="/assets/avatars/avatar-alien.png" src="../../assets/avatars/avatar-alien.png">
+                <img data-avatar="/assets/avatars/avatar-astronauta.png" src="../../assets/avatars/avatar-astronauta.png">
+                <img data-avatar="/assets/avatars/avatar-blackhole.png" src="../../assets/avatars/avatar-blackhole.png">
+                <img data-avatar="/assets/avatars/avatar-eclipse.png" src="../../assets/avatars/avatar-eclipse.png">
+                <img data-avatar="/assets/avatars/avatar-galaxia.png" src="../../assets/avatars/avatar-galaxia.png">
+                <img data-avatar="/assets/avatars/avatar-luna.png" src="../../assets/avatars/avatar-luna.png">
+                <img data-avatar="/assets/avatars/avatar-nave.png" src="../../assets/avatars/avatar-nave.png">
+                <img data-avatar="/assets/avatars/avatar-planeta.png" src="../../assets/avatars/avatar-planeta.png">
+                <img data-avatar="/assets/avatars/avatar-telescopio.png" src="../../assets/avatars/avatar-telescopio.png">
+            </div>
+
+            <!-- Resto de Datos del Usuario -->
             <div style="display:grid; gap:14px;">
                 <label>
                     <div class="muted" style="margin-bottom:6px;">Nombre</div>
@@ -36,6 +61,7 @@
 
                 <div id="msg" class="muted" style="min-height:20px;"></div>
 
+                <!-- Botones de Editar Perfil -->
                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
                     <button id="btnSave" class="btn">Guardar cambios</button>
                     <button id="btnPassword" class="btn-secondary" type="button">Cambiar contraseña</button>
