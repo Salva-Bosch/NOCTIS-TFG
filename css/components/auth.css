@@ -5,6 +5,11 @@
 .auth {
     position: relative;
     overflow: hidden;
+
+    background-image: url("../../assets/Fondos/Fondo_auth.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* =========================
@@ -73,7 +78,7 @@
    LAYOUT DINÁMICO LOGIN / REGISTER
 ========================= */
 
-/* REGISTER → form izquierda, side derecha (default) */
+/* REGISTER → form izquierda, side derecha */
 .auth--register {
     flex-direction: row;
 }
@@ -84,7 +89,7 @@
 }
 
 /* =========================
-   DIVIDER GOOGLE
+   DIVIDER GOOGLE (FONDO DIFUMINADO)
 ========================= */
 
 .auth-divider {
@@ -105,10 +110,17 @@
 
 .auth-divider span {
     position: relative;
-    padding: 0 1rem;
-    background-color: var(--bg-dark); /* o el fondo real del form */
+    padding: 0.4rem 1.2rem;
+
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 999px;
+
     font-size: 0.85rem;
     color: var(--text-muted);
+
     z-index: 1;
 }
 
@@ -151,7 +163,7 @@
 }
 
 /* =========================
-   ICONOS EN INPUTS (NO ESTILOS)
+   ICONOS EN INPUTS
 ========================= */
 
 .input-group.has-icon {
@@ -170,35 +182,30 @@
     pointer-events: none;
 }
 
-/* Solo desplazamos el texto */
+/* Desplazamiento del texto */
 .input-group.has-icon input {
     padding-left: 60px;
-}
-/* =========================
-   INPUT FOCUS (CORRECTO)
-========================= */
-
-/* Transiciones suaves */
-.input-group.has-icon input {
     transition: background 0.25s ease, outline 0.25s ease, color 0.25s ease;
 }
 
-/* Estado activo */
+/* =========================
+   INPUT FOCUS
+========================= */
+
 .input-group.has-icon:focus-within input {
-    background: var(--white);          /* ← clave */
-    color: var(--bg-dark);             /* texto legible */
+    background: var(--white);
+    color: var(--bg-dark);
     outline: 3px solid var(--purple-soft);
     outline-offset: -2px;
 }
 
-/* Placeholder cuando está activo */
 .input-group.has-icon:focus-within input::placeholder {
     color: var(--bg-dark);
     opacity: 0.7;
 }
 
 /* =========================
-   ICONOS
+   ICONOS ACTIVOS
 ========================= */
 
 .input-icon.icon-active {
@@ -217,7 +224,7 @@
    BOTONES – HOVER UNIFICADO
 ========================= */
 
-/* Botones principales (Login / Crear cuenta) */
+/* Botones principales */
 .auth__form button {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -232,7 +239,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón lateral (Registrarte / Iniciar sesión) */
+/* Botón lateral */
 .auth__side a {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
