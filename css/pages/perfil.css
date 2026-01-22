@@ -1,17 +1,18 @@
 .avatar-picker {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
 }
 
 .avatar-picker img {
-    width: 44px;
-    height: 44px;
+    width: 64px;
+    height: 64px;
     border-radius: 9999px;
     cursor: pointer;
-    opacity: 0.6;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    opacity: 0.7;
+    border: 2px solid transparent;
+    justify-self: center;
 }
 
 .avatar-picker img:hover {
@@ -20,5 +21,40 @@
 
 .avatar-picker img.active {
     opacity: 1;
-    border-color: white;
+    border-color: #3b82f6;
+    /* azul limpio */
+}
+
+/* Selector de avatares */
+.avatar-details {
+    position: relative;
+}
+
+.avatar-details>div {
+    pointer-events: auto;
+}
+
+.avatar-details summary {
+    cursor: pointer;
+    list-style: none;
+    pointer-events: auto;
+}
+
+.avatar-details summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Ocultar el selector SIEMPRE cuando tenga hidden */
+.avatar-picker.hidden {
+    display: none;
+}
+
+/* Cuando el details está abierto, el summary NO debe capturar clicks */
+.avatar-details[open]>summary {
+    pointer-events: none;
+}
+
+/* El picker sí debe recibir interacción */
+.avatar-details[open] .avatar-picker {
+    pointer-events: auto;
 }

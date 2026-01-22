@@ -2,6 +2,17 @@
 LÓGICA DE LA PÁGINA PERFIL
 */
 
+console.log("perfil.js cargado");
+
+const toggleBtn = document.getElementById("toggleAvatars");
+console.log("toggleBtn:", toggleBtn);
+
+toggleBtn?.addEventListener("click", () => {
+    console.log("CLICK en Cambiar avatar");
+});
+
+
+
 import { auth, db } from "../core/firebase.js";
 import { requireSession } from "../guards/sessionGuard.js";
 import { logout } from "../core/auth_logic.js";
@@ -115,28 +126,47 @@ btnLogout.addEventListener("click", async () => {
     window.location.replace("../../pages/auth/auth.html");
 });
 
-/* SELECTOR DE AVATAR */
-const avatarOptions = document.querySelectorAll(".avatar-picker img");
+
+// Fuerza oculto inicial (por si el CSS no aplica)
+avatarPicker.classList.add("hidden");
+
+toggleBtn.addEventListener("click", () => {
+    avatarPicker.hidden = !avatarPicker.hidden;
+});
+
+// Marcar activo al cargar
+if (snap.exists()) {
+    const data = snap.data();
+    avatarOptions.forEach(img => {
+        if (img.dataset.avatar === data.photoURL) {
+            img.classList.add("active");
+        }
+    });
+}
+
+// Avatares
+const toggleBtn = document.getElementById("toggleAvatars");
+const avatarPicker = document.getElementById("avatarPicker");
+const avatarOptions = document.querySelectorAll("#avatarPicker img");
+
+toggleBtn.addEventListener("click", () => {
+    avatarPicker.style.display =
+        avatarPicker.style.display === "none" ? "grid" : "none";
+});
 
 avatarOptions.forEach(img => {
-  img.addEventListener("click", async () => {
-    const newAvatar = img.dataset.avatar;
+    img.addEventListener("click", async () => {
+        const newAvatar = img.dataset.avatar;
 
-    try {
-      await setDoc(
-        userRef,
-        { photoURL: newAvatar },
-        { merge: true }
-      );
+        await setDoc(userRef, { photoURL: newAvatar }, { merge: true });
 
-      avatarImg.src = newAvatar;
+        avatarImg.src = newAvatar;
 
-      avatarOptions.forEach(i => i.classList.remove("active"));
-      img.classList.add("active");
+        avatarOptions.forEach(i => i.classList.remove("active"));
+        img.classList.add("active");
 
-      msgEl.textContent = "Avatar actualizado";
-    } catch (err) {
-      msgEl.textContent = err.message;
-    }
-  });
+        avatarPicker.style.display = "none";
+        msgEl.textContent = "Avatar actualizado";
+    });
 });
+
