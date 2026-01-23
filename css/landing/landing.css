@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background-image: url("../../assets/landing/Landing_fondo.jpg");
+    background-image: url("../../assets/backgrounds/landing/landing-bg-2.jpg");
     background-size: cover;
     background-position: center;
     color: var(--white);
