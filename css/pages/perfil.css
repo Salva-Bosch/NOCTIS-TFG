@@ -1,8 +1,23 @@
+/* CSS DE LA PÁGINA PERFIL */
+
+/* Avatar grande (actual) */
+.avatar-block img {
+    width: 96px;
+    height: 96px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Picker en grid de 3 */
 .avatar-picker {
     display: grid;
+    /* el JS alterna display:none / grid */
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     margin-top: 16px;
+    max-width: 260px;
+    /* para que se vea compacto */
 }
 
 .avatar-picker img {
@@ -10,9 +25,10 @@
     height: 64px;
     border-radius: 9999px;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.75;
     border: 2px solid transparent;
     justify-self: center;
+    object-fit: cover;
 }
 
 .avatar-picker img:hover {
@@ -23,38 +39,4 @@
     opacity: 1;
     border-color: #3b82f6;
     /* azul limpio */
-}
-
-/* Selector de avatares */
-.avatar-details {
-    position: relative;
-}
-
-.avatar-details>div {
-    pointer-events: auto;
-}
-
-.avatar-details summary {
-    cursor: pointer;
-    list-style: none;
-    pointer-events: auto;
-}
-
-.avatar-details summary::-webkit-details-marker {
-    display: none;
-}
-
-/* Ocultar el selector SIEMPRE cuando tenga hidden */
-.avatar-picker.hidden {
-    display: none;
-}
-
-/* Cuando el details está abierto, el summary NO debe capturar clicks */
-.avatar-details[open]>summary {
-    pointer-events: none;
-}
-
-/* El picker sí debe recibir interacción */
-.avatar-details[open] .avatar-picker {
-    pointer-events: auto;
 }

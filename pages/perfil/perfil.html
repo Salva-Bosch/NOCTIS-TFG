@@ -19,6 +19,7 @@
 
         <section class="card"
             style="padding:20px; border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:16px;">
+
             <!-- Avatar actual -->
             <div class="avatar-block" style="margin-bottom:16px;">
                 <img id="avatar" alt="Avatar de perfil" />
@@ -28,19 +29,19 @@
             <button id="toggleAvatars" class="btn-secondary" type="button">
                 Cambiar avatar
             </button>
-            
-            <div id="avatarPicker" class="avatar-picker" style="display: none;">
-                <img data-avatar="/assets/avatars/avatar-alien.png" src="../../assets/avatars/avatar-alien.png">
-                <img data-avatar="/assets/avatars/avatar-astronauta.png" src="../../assets/avatars/avatar-astronauta.png">
-                <img data-avatar="/assets/avatars/avatar-blackhole.png" src="../../assets/avatars/avatar-blackhole.png">
-                <img data-avatar="/assets/avatars/avatar-eclipse.png" src="../../assets/avatars/avatar-eclipse.png">
-                <img data-avatar="/assets/avatars/avatar-galaxia.png" src="../../assets/avatars/avatar-galaxia.png">
-                <img data-avatar="/assets/avatars/avatar-luna.png" src="../../assets/avatars/avatar-luna.png">
-                <img data-avatar="/assets/avatars/avatar-nave.png" src="../../assets/avatars/avatar-nave.png">
-                <img data-avatar="/assets/avatars/avatar-planeta.png" src="../../assets/avatars/avatar-planeta.png">
-                <img data-avatar="/assets/avatars/avatar-telescopio.png" src="../../assets/avatars/avatar-telescopio.png">
-            </div>
 
+            <!-- Importante: oculto inline para que NADA lo pise -->
+            <div id="avatarPicker" class="avatar-picker" style="display:none;">
+                <img data-avatar="/assets/avatars/avatar-alien.png" src="../../assets/avatars/avatar-alien.png" alt="Alien">
+                <img data-avatar="/assets/avatars/avatar-astronauta.png" src="../../assets/avatars/avatar-astronauta.png" alt="Astronauta">
+                <img data-avatar="/assets/avatars/avatar-blackhole.png" src="../../assets/avatars/avatar-blackhole.png" alt="Agujero negro">
+                <img data-avatar="/assets/avatars/avatar-eclipse.png" src="../../assets/avatars/avatar-eclipse.png" alt="Eclipse">
+                <img data-avatar="/assets/avatars/avatar-galaxia.png" src="../../assets/avatars/avatar-galaxia.png" alt="Galaxia">
+                <img data-avatar="/assets/avatars/avatar-luna.png" src="../../assets/avatars/avatar-luna.png" alt="Luna">
+                <img data-avatar="/assets/avatars/avatar-nave.png" src="../../assets/avatars/avatar-nave.png" alt="Nave">
+                <img data-avatar="/assets/avatars/avatar-planeta.png" src="../../assets/avatars/avatar-planeta.png" alt="Planeta">
+                <img data-avatar="/assets/avatars/avatar-telescopio.png" src="../../assets/avatars/avatar-telescopio.png" alt="Telescopio">
+            </div>
 
             <!-- Datos del usuario -->
             <div style="display:grid; gap:14px; margin-top:24px;">
