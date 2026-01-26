@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Noctis - Información</title>
+    <title>Noctis · NoctisLab</title>
 
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab.css">
 </head>
 
 <body>
-    <h1>Información</h1>
+
+    <main class="noctis-lab-content">
+        <h1>NoctisLab</h1>
+        <p>Explora información astronómica avanzada.</p>
+    </main>
 
     <script type="module">
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
         import { requireSession } from "../../../js/guards/sessionGuard.js";
-        await requireSession();
-    </script>
-</body>
 
+        await requireSession();
+        await loadSideNav();
+    </script>
+
+</body>
 </html>
