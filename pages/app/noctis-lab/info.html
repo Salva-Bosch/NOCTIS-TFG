@@ -2,15 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Noctis · NoctisLab</title>
+    <title>Noctis · NoctisLab Sistema Solar</title>
 
+    <!-- CSS base -->
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab.css">
-    <link rel="stylesheet" href="../../../css/components/noctis-lab-topnav.css">
-</head>
 
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-topnav.css">
+
+    <!-- Página específica -->
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-sistema-solar.css">
+</head>
 <body>
 
     <!-- NAVBAR SUPERIOR NOCTIS LAB -->
@@ -37,8 +42,7 @@
         </nav>
     </header>
 
-
-
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="noctis-lab-content solar-system">
 
         <!-- HERO -->
@@ -81,6 +85,7 @@
 
             <div class="planets-grid">
 
+                <!-- Rocosos -->
                 <article class="planet-card">
                     <div class="planet planet-mercury"></div>
                     <h3>Mercurio</h3>
@@ -121,6 +126,7 @@
                     <span class="planet-data">Distancia al Sol: 227,9 M km</span>
                 </article>
 
+                <!-- Gaseosos -->
                 <article class="planet-card">
                     <div class="planet planet-jupiter"></div>
                     <h3>Júpiter</h3>
@@ -167,6 +173,7 @@
     </main>
 
 
+    <!-- Scripts -->
     <script type="module">
         import { loadSideNav } from "../../../js/core/loadSideNav.js";
         import { requireSession } from "../../../js/guards/sessionGuard.js";

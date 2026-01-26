@@ -1,22 +1,10 @@
-body {
-    min-height: 100vh;
-    font-family: var(--font-main);
-    color: var(--white);
-    background: var(--bg-dark);
-}
-
-.noctis-lab-content {
-    margin-left: 120px;     /* side nav */
-    padding: 48px;
-    padding-top: 140px;     /* navbar superior */
-}
-
 /* =========================
    SISTEMA SOLAR · INFO
 ========================= */
 
 .solar-system {
     max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* HERO */
@@ -135,4 +123,21 @@ body {
     font-size: 12px;
     letter-spacing: 1px;
     opacity: 0.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .solar-sun {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .planets-grid {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .planets-grid {
+        gap: 24px;
+    }
 }

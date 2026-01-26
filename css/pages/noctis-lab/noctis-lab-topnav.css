@@ -1,5 +1,5 @@
 /* =========================
-   NOCTIS LAB · TOP NAVBAR
+   NoctisLab · Top Navbar
 ========================= */
 
 .navbar {
@@ -12,7 +12,6 @@
     z-index: 100;
 }
 
-/* Contenedor general */
 .nav-container {
     height: 80px;
     display: flex;
@@ -25,7 +24,6 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-
     width: 100%;
     max-width: 1300px;
     padding: 0 40px;
