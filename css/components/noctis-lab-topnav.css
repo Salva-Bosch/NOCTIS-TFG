@@ -1,77 +1,81 @@
-.noctis-lab-topnav {
-    width: 100%;
-    padding: 20px 0;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(10px);
-    position: sticky;
+/* =========================
+   NOCTIS LAB · TOP NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
     top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 100;
 }
 
-.topnav-container {
+/* Contenedor general */
+.nav-container {
+    height: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
 }
 
-/* Logo centrado */
+/* Grid principal del navbar */
+.nav-items {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 40px;
+}
+
+/* Bloque izquierdo y derecho */
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.nav-left {
+    justify-content: flex-end;
+}
+
+.nav-right {
+    justify-content: flex-start;
+}
+
+/* Links */
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.75;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Logo central */
 .nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
+    margin: 0 70px;
 }
 
 .nav-logo img {
     height: 28px;
 }
 
-/* Links */
-.nav-links {
-    display: flex;
-    gap: 100px; /* espacio uniforme entre links */
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--white);
-    font-size: 14px;
-    opacity: 0.75;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.nav-links a:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .nav-links {
-        gap: 60px;
-    }
-}
-
-@media (max-width: 768px) {
-    .topnav-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .nav-logo {
-        position: static;
-        transform: none;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 15px;
-    }
+.nav-logo span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.85;
 }

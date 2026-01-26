@@ -13,35 +13,159 @@
 
 <body>
 
-    <!-- NAV SUPERIOR estilo landing -->
-    <header class="noctis-lab-topnav">
-        <div class="topnav-container">
-            <!-- Links izquierda -->
-            <div class="nav-links left-links">
-                <a href="sistema_solar.html">Sistema Solar</a>
-                <a href="eclipses.html">Eclipses</a>
-            </div>
+    <!-- NAVBAR SUPERIOR NOCTIS LAB -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-items">
 
-            <!-- Logo centrado -->
-            <div class="nav-logo">
-                <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
-                <span>NOCTIS</span>
-            </div>
+                <div class="nav-left">
+                    <a href="#" class="nav-link">Sistema Solar</a>
+                    <a href="./eclipses.html" class="nav-link">Eclipses</a>
+                </div>
 
-            <!-- Links derecha -->
-            <div class="nav-links right-links">
-                <a href="constelaciones.html">Constelaciones</a>
-                <a href="eventos_astronomicos.html">Eventos Astronómicos</a>
+                <div class="nav-logo">
+                    <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
+                    <span>NOCTIS</span>
+                </div>
+
+                <div class="nav-right">
+                    <a href="./constelaciones.html" class="nav-link">Constelaciones</a>
+                    <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+                </div>
+
             </div>
-        </div>
+        </nav>
     </header>
 
 
 
-    <main class="noctis-lab-content">
-        <h1>NoctisLab</h1>
-        <p>Explora información astronómica avanzada.</p>
+    <main class="noctis-lab-content solar-system">
+
+        <!-- HERO -->
+        <section class="solar-hero">
+            <h1>Sistema Solar</h1>
+            <p class="solar-intro">
+                El Sistema Solar es un conjunto de cuerpos celestes dominado por el Sol,
+                una estrella que concentra más del 99,8% de la masa total.
+                A su alrededor orbitan planetas, satélites, asteroides y otros objetos
+                que forman un delicado equilibrio gravitacional.
+            </p>
+        </section>
+
+        <!-- SOL -->
+        <section class="solar-sun">
+            <div class="sun-info">
+                <h2>El Sol</h2>
+                <p>
+                    El Sol es una estrella de tipo G situada en el centro del Sistema Solar.
+                    Su energía, producida mediante fusión nuclear, es la base de la vida en la Tierra
+                    y gobierna el movimiento de todos los cuerpos que lo rodean.
+                </p>
+
+                <ul class="sun-facts">
+                    <li><strong>Tipo:</strong> Estrella G2V</li>
+                    <li><strong>Edad:</strong> ~4.600 millones de años</li>
+                    <li><strong>Temperatura superficial:</strong> 5.500 °C</li>
+                    <li><strong>Diámetro:</strong> 1.392.700 km</li>
+                </ul>
+            </div>
+
+            <div class="sun-visual">
+                <div class="sun-circle"></div>
+            </div>
+        </section>
+
+        <!-- PLANETAS -->
+        <section class="solar-planets">
+            <h2>Planetas</h2>
+
+            <div class="planets-grid">
+
+                <article class="planet-card">
+                    <div class="planet planet-mercury"></div>
+                    <h3>Mercurio</h3>
+                    <p>
+                        El planeta más cercano al Sol y el más pequeño del Sistema Solar.
+                        Presenta temperaturas extremas y carece de atmósfera significativa.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 57,9 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-venus"></div>
+                    <h3>Venus</h3>
+                    <p>
+                        Conocido como el planeta más caliente debido a su densa atmósfera
+                        rica en dióxido de carbono y su efecto invernadero extremo.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 108,2 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-earth"></div>
+                    <h3>Tierra</h3>
+                    <p>
+                        El único planeta conocido que alberga vida.
+                        Posee agua líquida, una atmósfera estable y un campo magnético protector.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 149,6 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-mars"></div>
+                    <h3>Marte</h3>
+                    <p>
+                        El planeta rojo. Su superficie muestra evidencias de agua en el pasado
+                        y es uno de los principales objetivos de exploración humana.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 227,9 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-jupiter"></div>
+                    <h3>Júpiter</h3>
+                    <p>
+                        El planeta más grande del Sistema Solar.
+                        Su enorme gravedad influye en la estabilidad de las órbitas planetarias.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 778,5 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-saturn"></div>
+                    <h3>Saturno</h3>
+                    <p>
+                        Famoso por su sistema de anillos, compuesto principalmente
+                        de hielo y fragmentos rocosos.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 1.433 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-uranus"></div>
+                    <h3>Urano</h3>
+                    <p>
+                        Un gigante helado con un eje de rotación extremadamente inclinado,
+                        lo que provoca estaciones extremas.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 2.872 M km</span>
+                </article>
+
+                <article class="planet-card">
+                    <div class="planet planet-neptune"></div>
+                    <h3>Neptuno</h3>
+                    <p>
+                        El planeta más lejano del Sistema Solar,
+                        caracterizado por vientos supersónicos y un intenso color azul.
+                    </p>
+                    <span class="planet-data">Distancia al Sol: 4.495 M km</span>
+                </article>
+
+            </div>
+        </section>
+
     </main>
+
 
     <script type="module">
         import { loadSideNav } from "../../../js/core/loadSideNav.js";

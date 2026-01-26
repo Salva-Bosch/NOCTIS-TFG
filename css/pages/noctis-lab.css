@@ -6,6 +6,133 @@ body {
 }
 
 .noctis-lab-content {
-    margin-left: 120px;
+    margin-left: 120px;     /* side nav */
     padding: 48px;
+    padding-top: 140px;     /* navbar superior */
+}
+
+/* =========================
+   SISTEMA SOLAR · INFO
+========================= */
+
+.solar-system {
+    max-width: 1200px;
+}
+
+/* HERO */
+.solar-hero {
+    margin-bottom: 120px;
+}
+
+.solar-hero h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.solar-intro {
+    max-width: 720px;
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+/* SOL */
+.solar-sun {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 160px;
+}
+
+.sun-info h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.sun-info p {
+    line-height: 1.8;
+    opacity: 0.85;
+    margin-bottom: 30px;
+}
+
+.sun-facts {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.sun-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.sun-circle {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffd27d, #ff9f1c, #c76b00);
+    box-shadow: 0 0 80px rgba(255, 170, 0, 0.6);
+}
+
+/* PLANETAS */
+.solar-planets h2 {
+    font-size: 28px;
+    margin-bottom: 60px;
+}
+
+.planets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px;
+}
+
+.planet-card {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 32px;
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease;
+}
+
+.planet-card:hover {
+    transform: translateY(-6px);
+}
+
+.planet {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Colores planetas */
+.planet-mercury { background: #b1b1b1; }
+.planet-venus   { background: #e6b566; }
+.planet-earth   { background: #4aa3df; }
+.planet-mars    { background: #c1440e; }
+.planet-jupiter { background: #d8b48a; }
+.planet-saturn  { background: #e2c590; }
+.planet-uranus  { background: #7ad1d1; }
+.planet-neptune { background: #3f54ba; }
+
+.planet-card h3 {
+    margin-bottom: 12px;
+}
+
+.planet-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 16px;
+}
+
+.planet-data {
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.6;
 }
