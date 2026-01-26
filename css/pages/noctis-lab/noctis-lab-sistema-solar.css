@@ -9,7 +9,7 @@
 
 /* HERO */
 .solar-hero {
-    margin-bottom: 120px;
+    margin-bottom: 100px;
 }
 
 .solar-hero h1 {
@@ -31,7 +31,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
-    margin-bottom: 160px;
+    margin-bottom: 100px;
 }
 
 .sun-info h2 {
@@ -67,24 +67,38 @@
     box-shadow: 0 0 80px rgba(255, 170, 0, 0.6);
 }
 
-/* PLANETAS */
-.solar-planets h2 {
-    font-size: 28px;
-    margin-bottom: 60px;
+/* CARRUSELES DE PLANETAS */
+.planet-carousel-section {
+    margin-bottom: 80px;
 }
 
-.planets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 40px;
+.planet-carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    gap: 20px;
+}
+
+.planet-carousel {
+    overflow: hidden;
+    width: 100%;
+    max-width: 520px;
+}
+
+.planet-carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
 }
 
 .planet-card {
+    flex: 0 0 100%;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 16px;
     padding: 32px;
     backdrop-filter: blur(6px);
     transition: transform 0.3s ease;
+    text-align: center;
 }
 
 .planet-card:hover {
@@ -125,19 +139,60 @@
     opacity: 0.6;
 }
 
-/* RESPONSIVE */
+/* Botones carrusel */
+.carousel-btn {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    font-size: 24px;
+    color: var(--white);
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Cinturón de Asteroides */
+.kuiper-belt {
+    text-align: center;
+    margin: 80px 0;
+}
+
+.kuiper-belt h2 {
+    font-size: 26px;
+    margin-bottom: 16px;
+}
+
+.kuiper-belt p {
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 1024px) {
     .solar-sun {
         grid-template-columns: 1fr;
         gap: 60px;
     }
-    .planets-grid {
-        gap: 30px;
+
+    .planet-carousel {
+        max-width: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .planets-grid {
-        gap: 24px;
+    .solar-hero h1 {
+        font-size: 36px;
+    }
+
+    .planet-carousel {
+        max-width: 100%;
     }
 }
