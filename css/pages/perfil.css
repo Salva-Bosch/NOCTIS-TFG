@@ -1,0 +1,314 @@
+/* CSS DE LA PÁGINA PERFIL */
+
+/* Avatar grande (actual) */
+.avatar-block img {
+    width: 96px;
+    height: 96px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Picker en grid de 3 */
+.avatar-picker {
+    display: grid;
+    /* el JS alterna display:none / grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+    max-width: 260px;
+    /* para que se vea compacto */
+}
+
+.avatar-picker img {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    cursor: pointer;
+    opacity: 0.75;
+    border: 2px solid transparent;
+    justify-self: center;
+    object-fit: cover;
+}
+
+.avatar-picker img:hover {
+    opacity: 1;
+}
+
+.avatar-picker img.active {
+    opacity: 1;
+    border-color: #3b82f6;
+    /* azul limpio */
+}
+
+/* ===== PAGE ===== */
+.profile-page {
+    min-height: 100vh;
+    background:
+        url("../../assets/Fondos/Perfil_fondo.png");
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+
+}
+
+/* ===== HEADER ===== */
+.profile-header {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(255, 255, 255, .06);
+    backdrop-filter: blur(18px);
+    z-index: 9999;
+}
+
+.profile-header h1 {
+    font-size: 42px;
+    font-weight: 600;
+}
+
+.back-btn {
+    position: absolute;
+    left: 32px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+.back-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+/* ===== LAYOUT (FULL WIDTH, como Figma) ===== */
+.profile-layout {
+    width: 100vw;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 50px;
+
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-top: 10vh;
+}
+
+/* ===== LEFT CARD (azul sólido) ===== */
+.profile-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 50vw;
+    height: 100vh;
+
+    background-color: var(--bg-blue-settings);
+    border-radius: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    gap: 3vw;
+
+    padding: 92px 48px 48px; /* 92px = altura del header */
+    margin-top: 10vh;
+    z-index: 1;
+}
+
+
+.profile-card-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-top: 24px;
+}
+
+.profile-avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, .22);
+}
+
+.profile-card h2 {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.profile-card-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, .35);
+    width: 100%;
+}
+
+.profile-card-bottom {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+
+/* ===== RIGHT PANEL (grande, glass, borde visible) ===== */
+.profile-editor {
+    min-height: 560px;
+    width: 100%;
+    
+    margin-left: 50vw;
+    position: relative;
+    padding: 34px 40px 42px;
+
+    background: rgba(255, 255, 255, .06);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 28px;
+}
+
+/* ===== TOP ACTIONS ===== */
+.editor-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+/* ===== FORM ===== */
+.editor-form {
+    display: grid;
+    gap: 18px;
+}
+
+.editor-form label span {
+    display: block;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, .8);
+    font-size: 14px;
+    text-transform: none;
+}
+
+.input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .18);
+    color: var(--white);
+    outline: none;
+}
+
+.readonly {
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .18);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, .35);
+    margin: 22px 0;
+}
+
+/* ===== BOTTOM (2 botones a la izquierda, guardar a la derecha) ===== */
+.editor-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 26px;
+    align-items: end;
+}
+
+.editor-bottom-left {
+    display: grid;
+    gap: 16px;
+    max-width: 360px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 999px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: var(--purple);
+    color: var(--white);
+    padding: 14px 28px;
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .22);
+    color: var(--white);
+    padding: 14px 28px;
+}
+
+.btn-outline.danger {
+    background: var(--red);
+}
+
+.save {
+    padding: 16px 44px;
+    align-self: end;
+}
+
+/* ===== AVATAR PICKER ===== */
+.avatar-picker {
+    position: absolute;
+    top: 96px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+
+    max-width: 260px;
+    padding: 18px;
+    border-radius: 18px;
+
+    background: rgba(20, 30, 45, 0.85);
+    backdrop-filter: blur(12px);
+}
+
+
+.avatar-picker img {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    cursor: pointer;
+    opacity: .75;
+    border: 2px solid transparent;
+    object-fit: cover;
+}
+
+.avatar-picker img.active {
+    opacity: 1;
+    border-color: var(--purple);
+}
+
+/* ===== FEEDBACK ===== */
+.feedback {
+    margin-top: 14px;
+    min-height: 18px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .7);
+}

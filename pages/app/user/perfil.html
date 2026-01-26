@@ -3,31 +3,117 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Noctis - Perfil</title>
+    <title>Noctis – Perfil</title>
 
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/base/reset.css">
+    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../css/pages/perfil.css">
 </head>
 
 <body>
-    <main style="padding:40px">
-        <h1>Perfil</h1>
+    <main class="profile-page">
 
-        <button id="logout">Cerrar sesión</button>
+        <!-- HEADER -->
+        <header class="profile-header">
+            <a href="../../index.html" class="back-btn">
+                <img src="../../assets/icons/arrow.svg" alt="Volver">
+            </a>
+            <h1>Perfil</h1>
+        </header>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <section class="profile-layout">
+
+            <!-- PANEL IZQUIERDO -->
+            <aside class="profile-card">
+                <div class="profile-card-top">
+                    <div class="profile-avatar">
+                        <img id="avatar" alt="Avatar">
+                    </div>
+
+                    <h2 id="profileName">Nombre Apellido</h2>
+                </div>
+
+                <div class="profile-card-divider"></div>
+
+                <div class="profile-card-bottom">
+                    <button class="btn btn-primary pill">
+                        <img src="../../assets/icons/account.svg" alt="">
+                        Perfil
+                    </button>
+                </div>
+            </aside>
+
+            <!-- PANEL DERECHO -->
+            <div class="profile-editor">
+
+                <!-- TOP ACTIONS -->
+                <div class="editor-actions">
+                    <button id="toggleAvatars" class="btn btn-outline pill">
+                        Cambiar foto
+                    </button>
+                    <button id="btnLogout" class="btn btn-outline pill">
+                        Cerrar Sesión
+                    </button>
+                </div>
+
+                <!-- AVATAR PICKER -->
+                <div id="avatarPicker" class="avatar-picker" style="display:none;">
+                    <img data-avatar="/assets/avatars/avatar-alien.png" src="../../assets/avatars/avatar-alien.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-astronauta.png" src="../../assets/avatars/avatar-astronauta.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-blackhole.png" src="../../assets/avatars/avatar-blackhole.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-eclipse.png" src="../../assets/avatars/avatar-eclipse.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-galaxia.png" src="../../assets/avatars/avatar-galaxia.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-luna.png" src="../../assets/avatars/avatar-luna.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-nave.png" src="../../assets/avatars/avatar-nave.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-planeta.png" src="../../assets/avatars/avatar-planeta.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-telescopio.png" src="../../assets/avatars/avatar-telescopio.png" alt="">
+                </div>
+
+                <!-- FORM -->
+                <div class="editor-form">
+                    <label>
+                        <span>Nombre</span>
+                        <input id="inputName" class="input" type="text">
+                    </label>
+
+                    <label>
+                        <span>Correo electronico</span>
+                        <input id="inputEmail" class="input" type="email">
+                    </label>
+
+                    <label>
+                        <span>Cuenta creada</span>
+                        <div id="created" class="readonly"></div>
+                    </label>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- BOTTOM ACTIONS (como en Figma) -->
+                <div class="editor-bottom">
+                    <div class="editor-bottom-left">
+                        <button id="btnPassword" class="btn btn-outline pill">
+                            Cambiar contraseña
+                        </button>
+                        <button id="btnDelete" class="btn btn-outline pill danger">
+                            Eliminar cuenta
+                        </button>
+                    </div>
+
+                    <button id="btnSave" class="btn btn-primary pill save">
+                        Guardar
+                    </button>
+                </div>
+
+                <div id="msg" class="feedback"></div>
+            </div>
+
+        </section>
+
     </main>
 
-    <!-- SCRIPT DE AUTENTIFICACIÓN DE CUENTA -->
-    <script type="module">
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        import { logout } from "../../../js/core/auth_logic.js";
-
-        await requireSession();
-
-        document.getElementById("logout").addEventListener("click", async () => {
-            await logout();
-            window.location.replace("../../public/auth.html");
-        });
-    </script>
+    <script type="module" src="../../../js/pages/perfil.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,7 @@
+/*
+LÓGICA DEL PROCESO DE AUTENTICACIÓN DE USUARIOS (LOGIN Y LOGOUT)
+*/
+
 import { register, login } from "../core/auth_logic.js";
 
 const loginForm = document.getElementById("login-form");

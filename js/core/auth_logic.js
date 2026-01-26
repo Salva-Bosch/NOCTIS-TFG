@@ -1,5 +1,6 @@
 // IMPORT FIREBASE
 import { auth, db } from "./firebase.js";
+import { getRandomAvatar } from "./avatars.js";
 
 import {
   createUserWithEmailAndPassword,
@@ -23,11 +24,12 @@ export async function register(name, email, password) {
 
   const user = userCredential.user;
 
-  // Crear documento de usuario (equivalente a profiles)
+  // Crear usuario en Firestore
   await setDoc(doc(db, "users", user.uid), {
     name,
     email,
-    createdAt: serverTimestamp(),
+    photoURL: getRandomAvatar(),
+    createdAt: serverTimestamp()
   });
 
   return user;
