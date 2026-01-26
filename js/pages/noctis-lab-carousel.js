@@ -10,15 +10,17 @@ const state = {
 
 function updateCarousel(type) {
     const carousel = carousels[type];
+    const inner = carousel.querySelector('.planet-carousel-inner');
     const index = state[type];
     const width = carousel.offsetWidth;
-    carousel.style.transform = `translateX(-${index * width}px)`;
+    inner.style.transform = `translateX(-${index * width}px)`;
 }
 
 document.querySelectorAll('.carousel-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const type = btn.dataset.carousel;
-        const cards = carousels[type].children.length;
+        const inner = carousels[type].querySelector('.planet-carousel-inner');
+        const cards = inner.children.length;
         if(btn.classList.contains('next')) {
             state[type] = (state[type] + 1) % cards;
         } else {
