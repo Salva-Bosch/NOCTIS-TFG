@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Noctis · Home</title>
+
+    <link rel="stylesheet" href="../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../css/pages/home.css">
+</head>
+
+<body>
+
+    <!-- CENTRO -->
+    <main class="home-center">
+
+        <div class="home-group">
+            <img src="../../../assets/branding/logo/noctis_logo_name.svg" alt="Noctis name" class="logo-text" />
+            <img src="../../../assets/branding/logo/noctis-logo.png" alt="Noctis logo" class="logo-symbol" />
+
+            <!-- NAVBAR -->
+            <nav class="home-nav">
+                <a href="./home.html"><img src="../../../assets/icons/nav/home.svg" alt="Home"></a>
+                <a href="../solar-system/sistema_solar.html"><img src="../../../assets/icons/nav/planet.svg" alt="Planet"></a>
+                <a href="../map/mapa_estrellas.html"><img src="../../../assets/icons/nav/star.svg" alt="Star"></a>
+                <a href="../map/mapa_ubicaciones.html"><img src="../../../assets/icons/nav/location.svg" alt="Locations"></a>
+                <a href="../favorites/favoritos.html"><img src="../../../assets/icons/nav/favourites.svg" alt="Favourites"></a>
+                <a href="../noctis-lab/info.html"><img src="../../../assets/icons/nav/information.svg" alt="Information"></a>
+                <a href="../settings/ajustes.html"><img src="../../../assets/icons/nav/settings.svg" alt="Settings"></a>
+            </nav>
+        </div>
+
+    </main>
+
+
+    <!-- PERFIL -->
+    <div class="home-avatar">
+        <a href="../user/perfil.html"><img src="../../../assets/icons/user/account.svg" alt="Account"></a>
+    </div>
+
+    <!-- BACKGROUND ROTATOR -->
+    <script>
+        const backgrounds = [
+            "../../../assets/backgrounds/app/home_bg.png",
+            "../../../assets/backgrounds/app/home_bg_2.png",
+        ];
+
+        let current = 0;
+        const body = document.body;
+
+        setInterval(() => {
+            current = (current + 1) % backgrounds.length;
+            body.style.setProperty("--bg-image", `url("${backgrounds[current]}")`);
+        }, 15000);
+    </script>
+
+    <!-- GUARD -->
+    <script type="module">
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        await requireSession();
+    </script>
+
+</body>
+</html>

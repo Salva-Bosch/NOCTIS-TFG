@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <title>Noctis - Perfil</title>
 
-    <link rel="stylesheet" href="../../css/base/reset.css">
-    <link rel="stylesheet" href="../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../css/base/variables.css">
 </head>
 
 <body>
@@ -18,14 +18,14 @@
 
     <!-- SCRIPT DE AUTENTIFICACIÓN DE CUENTA -->
     <script type="module">
-        import { requireSession } from "../../js/guards/sessionGuard.js";
-        import { logout } from "../../js/core/auth_logic.js";
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { logout } from "../../../js/core/auth_logic.js";
 
         await requireSession();
 
         document.getElementById("logout").addEventListener("click", async () => {
             await logout();
-            window.location.replace("../auth/auth.html");
+            window.location.replace("../../public/auth.html");
         });
     </script>
 </body>
