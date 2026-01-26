@@ -21,66 +21,76 @@ import {
     deleteUser
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-/* ELEMENTOS */
-const avatarImg = document.getElementById("avatar");
-const toggleBtn = document.getElementById("toggleAvatars");
-const avatarPicker = document.getElementById("avatarPicker");
-const avatarOptions = document.querySelectorAll("#avatarPicker img");
+async function initPerfil() {
 
-const inputName = document.getElementById("inputName");
-const inputEmail = document.getElementById("inputEmail");
-const createdEl = document.getElementById("created");
-const msgEl = document.getElementById("msg");
+    /* ELEMENTOS */
+    const avatarImg = document.getElementById("avatar");
+    const toggleBtn = document.getElementById("toggleAvatars");
+    const avatarPicker = document.getElementById("avatarPicker");
+    const avatarOptions = document.querySelectorAll("#avatarPicker img");
 
-const btnSave = document.getElementById("btnSave");
-const btnPassword = document.getElementById("btnPassword");
-const btnDelete = document.getElementById("btnDelete");
-const btnLogout = document.getElementById("logout");
+    const inputName = document.getElementById("inputName");
+    const inputEmail = document.getElementById("inputEmail");
+    const createdEl = document.getElementById("created");
+    const msgEl = document.getElementById("msg");
 
-/* Seguridad mínima por si falta algo en el DOM */
-if (!avatarImg || !toggleBtn || !avatarPicker || !inputName || !inputEmail || !createdEl || !msgEl) {
-    throw new Error("Faltan elementos en el DOM del perfil (IDs incorrectos o HTML desactualizado).");
-}
+    const btnSave = document.getElementById("btnSave");
+    const btnPassword = document.getElementById("btnPassword");
+    const btnDelete = document.getElementById("btnDelete");
+    const btnLogout = document.getElementById("btnLogout");
+    const profileNameEl = document.getElementById("profileName");
 
-/* SESIÓN */
-const user = await requireSession();
-const userRef = doc(db, "users", user.uid);
+    /* Seguridad mínima */
+    if (!avatarImg || !inputName || !inputEmail || !createdEl || !profileNameEl) {
+        console.error("DOM incompleto en perfil.html");
+        return;
+    }
 
-/* CARGAR DATOS */
-const snap = await getDoc(userRef);
+    /* SESIÓN */
+    const user = await requireSession();
+    const userRef = doc(db, "users", user.uid);
 
-let currentPhotoURL = "/assets/avatars/avatar-luna.png";
+    /* CARGAR DATOS */
+    const snap = await getDoc(userRef);
 
-if (snap.exists()) {
-    const data = snap.data();
+    let currentPhotoURL = "/assets/avatars/avatar-luna.png";
 
-    inputName.value = data.name ?? "";
-    inputEmail.value = data.email ?? "";
-    createdEl.textContent = data.createdAt?.toDate().toLocaleString() ?? "";
+    if (snap.exists()) {
+        const data = snap.data();
 
-    currentPhotoURL = data.photoURL ?? currentPhotoURL;
-}
+        inputName.value = data.name ?? "";
+        inputEmail.value = data.email ?? "";
+        createdEl.textContent = data.createdAt?.toDate().toLocaleString() ?? "";
+        profileNameEl.textContent = data.name ?? "Perfil";
 
-avatarImg.src = currentPhotoURL;
+        currentPhotoURL = data.photoURL ?? currentPhotoURL;
+    }
 
-/* Marcar avatar activo al cargar */
-avatarOptions.forEach(img => {
-    if (img.dataset.avatar === currentPhotoURL) img.classList.add("active");
-});
+    avatarImg.src = currentPhotoURL;
 
-/* TOGGLE PICKER */
-toggleBtn.addEventListener("click", () => {
-    const isHidden = avatarPicker.style.display === "none" || avatarPicker.style.display === "";
-    avatarPicker.style.display = isHidden ? "grid" : "none";
-});
+    avatarOptions.forEach(img => {
+        if (img.dataset.avatar === currentPhotoURL) {
+            img.classList.add("active");
+        }
+    });
 
-/* CAMBIAR AVATAR */
-avatarOptions.forEach(img => {
-    img.addEventListener("click", async () => {
-        const newAvatar = img.dataset.avatar;
-        if (!newAvatar) return;
+    /* TOGGLE PICKER */
+    if (toggleBtn && avatarPicker) {
+        toggleBtn.addEventListener("click", () => {
+            const isHidden =
+                avatarPicker.style.display === "none" ||
+                avatarPicker.style.display === "";
 
-        try {
+            avatarPicker.style.display = isHidden ? "grid" : "none";
+        });
+    }
+
+    /* CAMBIAR AVATAR */
+    avatarOptions.forEach(img => {
+        img.addEventListener("click", async () => {
+            const newAvatar = img.dataset.avatar;
+            if (!newAvatar) return;
+
             await setDoc(userRef, { photoURL: newAvatar }, { merge: true });
 
             currentPhotoURL = newAvatar;
@@ -91,72 +101,76 @@ avatarOptions.forEach(img => {
 
             avatarPicker.style.display = "none";
             msgEl.textContent = "Avatar actualizado";
-        } catch (err) {
-            msgEl.textContent = err?.message ?? "Error al actualizar el avatar";
-        }
+        });
     });
-});
 
-/* GUARDAR CAMBIOS */
-btnSave.addEventListener("click", async () => {
-    const name = inputName.value.trim();
-    const email = inputEmail.value.trim();
+    /* GUARDAR CAMBIOS */
+    if (btnSave) {
+        btnSave.addEventListener("click", async () => {
+            const name = inputName.value.trim();
+            const email = inputEmail.value.trim();
 
-    if (!name || !email) {
-        msgEl.textContent = "Nombre y email obligatorios";
-        return;
+            if (!name || !email) {
+                msgEl.textContent = "Nombre y email obligatorios";
+                return;
+            }
+
+            if (auth.currentUser.displayName !== name) {
+                await updateProfile(auth.currentUser, { displayName: name });
+            }
+
+            if (auth.currentUser.email !== email) {
+                await updateEmail(auth.currentUser, email);
+            }
+
+            await setDoc(
+                userRef,
+                { name, email, updatedAt: serverTimestamp() },
+                { merge: true }
+            );
+
+            profileNameEl.textContent = name;
+            msgEl.textContent = "Cambios guardados correctamente";
+        });
     }
 
-    try {
-        if (auth.currentUser.displayName !== name) {
-            await updateProfile(auth.currentUser, { displayName: name });
-        }
-
-        if (auth.currentUser.email !== email) {
-            await updateEmail(auth.currentUser, email);
-        }
-
-        await setDoc(
-            userRef,
-            {
-                name,
-                email,
-                updatedAt: serverTimestamp()
-            },
-            { merge: true }
-        );
-
-        msgEl.textContent = "Cambios guardados correctamente";
-    } catch (err) {
-        msgEl.textContent = err?.message ?? "Error al guardar cambios";
+    /* CAMBIAR CONTRASEÑA */
+    if (btnPassword) {
+        btnPassword.addEventListener("click", async () => {
+            await sendPasswordResetEmail(auth, auth.currentUser.email);
+            msgEl.textContent = "Email de cambio de contraseña enviado";
+        });
     }
-});
 
-/* CAMBIAR CONTRASEÑA */
-btnPassword.addEventListener("click", async () => {
-    try {
-        await sendPasswordResetEmail(auth, auth.currentUser.email);
-        msgEl.textContent = "Email de cambio de contraseña enviado";
-    } catch (err) {
-        msgEl.textContent = err?.message ?? "Error al enviar email";
+    /* ELIMINAR CUENTA */
+    if (btnDelete) {
+        btnDelete.addEventListener("click", async () => {
+            if (!confirm("¿Seguro que quieres eliminar tu cuenta?")) return;
+
+            try {
+                await deleteDoc(userRef);
+                await deleteUser(auth.currentUser);
+                window.location.replace("../../pages/auth/auth.html");
+            } catch (err) {
+                if (err.code === "auth/requires-recent-login") {
+                    msgEl.textContent = "Vuelve a iniciar sesión para eliminar la cuenta";
+                    await logout();
+                    window.location.replace("../../pages/auth/auth.html");
+                } else {
+                    msgEl.textContent = err.message;
+                }
+            }
+        });
     }
-});
 
-/* ELIMINAR CUENTA */
-btnDelete.addEventListener("click", async () => {
-    if (!confirm("¿Seguro que quieres eliminar tu cuenta?")) return;
-
-    try {
-        await deleteDoc(userRef);
-        await deleteUser(auth.currentUser);
-        window.location.replace("../../pages/auth/auth.html");
-    } catch (err) {
-        msgEl.textContent = err?.message ?? "Error al eliminar la cuenta";
+    /* LOGOUT */
+    if (btnLogout) {
+        btnLogout.addEventListener("click", async () => {
+            await logout();
+            window.location.replace("../../pages/auth/auth.html");
+        });
     }
-});
+}
 
-/* LOGOUT */
-btnLogout.addEventListener("click", async () => {
-    await logout();
-    window.location.replace("../../pages/auth/auth.html");
-});
+initPerfil();
+
