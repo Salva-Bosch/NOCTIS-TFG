@@ -45,12 +45,12 @@
 .profile-page {
     min-height: 100vh;
     background:
-        linear-gradient(rgba(10, 11, 13, .65), rgba(10, 11, 13, .85)),
-        url("../../assets/Fondos/Fondo Estelar.PNG");
+        url("../../assets/Fondos/Perfil_fondo.png");
     background-size: cover;
     background-position: center;
     color: var(--white);
-    font-family: var(--font-main);
+    font-family: 'Inter', sans-serif;
+
 }
 
 /* ===== HEADER ===== */
@@ -64,7 +64,6 @@
 }
 
 .profile-header h1 {
-    letter-spacing: .35em;
     font-size: 42px;
     font-weight: 600;
 }
@@ -127,7 +126,6 @@
 .profile-card h2 {
     font-size: 38px;
     font-weight: 600;
-    letter-spacing: .04em;
 }
 
 .profile-card-divider {
@@ -171,7 +169,6 @@
     display: block;
     margin-bottom: 10px;
     color: rgba(255, 255, 255, .8);
-    letter-spacing: .14em;
     font-size: 14px;
     text-transform: none;
 }
@@ -219,10 +216,6 @@
     border: none;
     cursor: pointer;
     font-weight: 600;
-    letter-spacing: .10em;
-}
-
-.pill {
     border-radius: 999px;
 }
 
