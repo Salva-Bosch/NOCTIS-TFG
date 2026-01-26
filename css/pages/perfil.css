@@ -87,25 +87,29 @@
 
 /* ===== LAYOUT (FULL WIDTH, como Figma) ===== */
 .profile-layout {
-    width: calc(100vw - 120px);
-    margin: 44px auto 0;
-    display: grid;
-    grid-template-columns: 50vw 1fr;
-    gap: 40px;
-    align-items: stretch;
+    display: block;
 }
 
 /* ===== LEFT CARD (azul sólido) ===== */
 .profile-card {
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+
     width: 50vw;
+    height: 100vh;
+
     background-color: var(--bg-blue-settings);
-    border-radius: 28px;
+    border-radius: 0;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 56px 48px;
+
+    padding: 92px 48px 48px; /* 92px = altura del header */
+    z-index: 1;
 }
+
 
 .profile-card-top {
     display: flex;
@@ -142,6 +146,7 @@
 
 /* ===== RIGHT PANEL (grande, glass, borde visible) ===== */
 .profile-editor {
+    margin-left: 50vw;
     position: relative;
     min-height: 560px;
     background: rgba(255, 255, 255, .06);
