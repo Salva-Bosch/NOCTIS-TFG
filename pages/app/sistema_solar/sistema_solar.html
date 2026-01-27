@@ -11,12 +11,16 @@
 </head>
 
 <body>
-    <h1>Sistema Solar</h1>
+    <canvas id="solarCanvas"></canvas>
 
+    <!-- Script de seguridad de Auth -->
     <script type="module">
         import { requireSession } from "../../../js/guards/sessionGuard.js";
         await requireSession();
     </script>
+
+    <!-- Conexión con JS -->
+    <script type="module" src="/js/pages/solar-system.js"></script>
 </body>
 
 </html>
