@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Noctis · NoctisLab Eclipses</title>
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../css/base/variables.css">
+
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-topnav.css">
+
+    <!-- Página específica -->
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-eclipses.css">
+</head>
+<body>
+
+    <!-- NAVBAR SUPERIOR NOCTIS LAB -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-items">
+
+                <div class="nav-left">
+                    <a href="./info.html" class="nav-link">Sistema Solar</a>
+                    <a href="#" class="nav-link">Eclipses</a>
+                </div>
+
+                <div class="nav-logo">
+                    <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
+                    <span>NOCTIS</span>
+                </div>
+
+                <div class="nav-right">
+                    <a href="./constelaciones.html" class="nav-link">Constelaciones</a>
+                    <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="noctis-lab-content eclipses">
+
+        <!-- HERO -->
+        <section class="eclipses-hero">
+            <h1>Eclipses</h1>
+            <p class="eclipses-intro">
+                Descubre los eclipses solares y lunares, sus características y cuándo podrás observarlos.
+            </p>
+        </section>
+
+    </main>
+    
+    <!-- Scripts -->
+    <script type="module">
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
+
+        await requireSession();
+        await loadSideNav();
+    </script>
+
+</body>
+</html>
