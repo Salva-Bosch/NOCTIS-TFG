@@ -16,7 +16,7 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     await login(email, password);
-    window.location.replace("../app/home.html");
+    window.location.replace("../app/home/home.html");
   } catch (err) {
     alert(err.message);
   }
