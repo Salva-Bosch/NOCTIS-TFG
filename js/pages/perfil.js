@@ -150,12 +150,12 @@ async function initPerfil() {
             try {
                 await deleteDoc(userRef);
                 await deleteUser(auth.currentUser);
-                window.location.replace("../../pages/auth/auth.html");
+                window.location.replace("../../pages/public/auth.html");
             } catch (err) {
                 if (err.code === "auth/requires-recent-login") {
                     msgEl.textContent = "Vuelve a iniciar sesión para eliminar la cuenta";
                     await logout();
-                    window.location.replace("../../pages/auth/auth.html");
+                    window.location.replace("../../pages/public/auth.html");
                 } else {
                     msgEl.textContent = err.message;
                 }
@@ -167,7 +167,7 @@ async function initPerfil() {
     if (btnLogout) {
         btnLogout.addEventListener("click", async () => {
             await logout();
-            window.location.replace("../../pages/auth/auth.html");
+            window.location.replace("../../../pages/public/auth.html");
         });
     }
 }

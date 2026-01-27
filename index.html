@@ -13,9 +13,9 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                window.location.replace("./pages/app/home.html");
+                window.location.replace("./pages/app/home/home.html");
             } else {
-                window.location.replace("./pages/auth/auth.html");
+                window.location.replace("./pages/public/auth.html");
             }
         });
     </script>
