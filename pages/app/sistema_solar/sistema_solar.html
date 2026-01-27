@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <title>Noctis - Sistema Solar</title>
 
+    <!-- Importamos ThreeJS para el mapa 3D -->
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+          }
+        }
+    </script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
     <link rel="stylesheet" href="../../../css/pages/sistema_solar.css">
@@ -19,8 +30,8 @@
         await requireSession();
     </script>
 
-    <!-- Conexión con JS -->
-    <script type="module" src="/js/pages/solar-system.js"></script>
+    <!-- Conexión con JS de Sistema Solar -->
+    <script type="module" src="../../../js/pages/sistema_solar.js"></script>
 </body>
 
 </html>
