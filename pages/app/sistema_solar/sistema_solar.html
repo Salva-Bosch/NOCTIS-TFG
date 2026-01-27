@@ -2,30 +2,25 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Noctis - Sistema Solar</title>
+  <meta charset="UTF-8">
+  <title>Noctis - Sistema Solar</title>
 
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
+  <link rel="stylesheet" href="../../../css/base/reset.css">
+  <link rel="stylesheet" href="../../../css/base/variables.css">
+  <link rel="stylesheet" href="../../../css/pages/sistema_solar.css">
 </head>
 
 <body>
-    <h1>Sistema Solar</h1>
+  <canvas id="solarCanvas"></canvas>
 
-    <script type="module">
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        await requireSession();
-    </script>
-    
-    <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+  <!-- Script de seguridad de Auth -->
+  <script type="module">
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+    await requireSession();
+  </script>
 
-        await requireSession();
-        await loadSideNav();
-    </script>
-
+  <!-- Conexión con JS -->
+  <script type="module" src="/js/pages/solar-system.js"></script>
 </body>
 
 </html>
