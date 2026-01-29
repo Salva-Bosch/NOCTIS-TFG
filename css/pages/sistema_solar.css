@@ -1,0 +1,154 @@
+/* ====== CSS DEL SISTEMA SOLAR ====== */
+
+/* BARRA DE TIEMPO */
+.timebar,
+.timebar * {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72px;
+    padding: 10px 18px;
+    z-index: 20;
+    pointer-events: auto;
+
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.55));
+}
+
+/* ---- Display (siempre visible) ---- */
+.timebar-display {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 100%;
+    color: var(--time-neutral);
+}
+
+.timebar-date {
+    justify-self: start;
+    letter-spacing: .08em;
+    font-size: 12px;
+}
+
+.timebar-clock {
+    justify-self: end;
+    letter-spacing: .08em;
+    font-size: 12px;
+}
+
+.timebar-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.timebar-status {
+    font-weight: 600;
+    letter-spacing: .18em;
+    font-size: 14px;
+}
+
+/* Orb central */
+.timebar-orb {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: var(--time-neutral);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+    transition: background .2s, box-shadow .2s;
+}
+
+/* ---- Controls (solo hover) ---- */
+.timebar-controls {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 
+        opacity .3s ease-out, 
+        transform .3s ease-out;
+}
+
+/* Animación del hover del timebar */
+.timebar:hover .timebar-controls {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.timebar-buttons {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.timebar-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+}
+
+.timebar-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+/* Presets */
+.timebar-presets {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.timebar-preset {
+    font-size: 11px;
+    letter-spacing: .08em;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    cursor: pointer;
+}
+
+.timebar-preset.is-active {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ---- STATES ---- */
+
+/* REAL TIME (verde) */
+.timebar--realtime .timebar-status {
+    color: var(--time-green);
+}
+
+.timebar--realtime .timebar-orb {
+    background: var(--time-green);
+    box-shadow: 0 0 12px var(--time-green-glow);
+}
+
+/* PAUSED (naranja) */
+.timebar--paused .timebar-status {
+    color: var(--time-orange);
+}
+
+.timebar--paused .timebar-orb {
+    background: var(--time-orange);
+    box-shadow: 0 0 12px var(--time-orange-glow);
+}
+
+/* ACCEL / REWIND (neutral) */
+.timebar--rate .timebar-status,
+.timebar--rewind .timebar-status {
+    color: var(--time-neutral);
+}

@@ -6,13 +6,26 @@ export function createCamera(renderer) {
         60,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000
+        10000 // esto crea una vista más global
     );
 
-    camera.position.set(0, 20, 40);
-
     const controls = new OrbitControls(camera, renderer.domElement);
+
+    // Vista inicial
+    camera.position.set(1200, 600, 1200);
+
+    // Empieza alejado mirando al sol
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    // Suavidad
     controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // ZOOM
+    controls.zoomSpeed = 10;
+    controls.minDistance = 10;
+    controls.maxDistance = 20000;
 
     return { camera, controls };
 }
