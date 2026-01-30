@@ -1,103 +1,143 @@
 NOCTIS-TFG/
-- index.html
-- README.md
-- assets/
-  - README.md
-  - backgrounds/
-    - app/
-      - home_bg_2.png
-      - home_bg.png
-    - auth/
-      - auth-bg.jpg
-      - register-side.png
-    - landing/
-      - landing-bg-2.jpg
-      - landing-bg-1.png
-      - landing-bg.png
-  - branding/
-    - logo/
-      - noctis_logo_name.svg
-      - noctis-logo.png
-  - data-sources/
-    - google-maps-logo.webp
-    - nasa_logo.png
-  - icons/
-    - auth/
-      - lock.svg
-      - lock-active.svg
-      - user-active.svg
-      - user.svg
-    - landing/
-      - luna.png
-      - estrellas.png
-      - brujula.png
-      - telescopio.png
-    - ui/
-      - share.svg
-      - arrow.svg
-    - user/
-      - account-fill.svg
-      - account.svg
-    - nav/
-      - information.svg
-      - home.svg
-      - location.svg
-      - favourites.svg
-      - planet.svg
-      - settings.svg
-      - star.svg
-  - illustrations/
-    - space/
-      - asteroid-belt.png
-    - landing/
-      - gemini-constellation.png
-  - social/
-    - networks/
-      - google.svg
-      - github.svg
-      - mail.svg
-- css/
-  - base/
-    - reset.css
-    - variables.css
-  - components/
-    - auth-base.css
-    - auth.css
-    - navbar.css
-  - landing/
-    - landing.css
-  - pages/
-    - favorites.css
-    - home.css
-    - legal.css
-    - map.css
-    - solar-system.css
-    - user.css
-    - settings.css
-    - noctis-lab/
-      - noctis-lab.css
-      - noctis-lab-topnav.css
-      - noctis-lab-constelaciones.css
-      - noctis-lab-eclipses.css
-      - noctis-lab-eventos.css
-      - noctis-lab-sistema-solar.css
-- js/
-  - core/
-    - auth_logic.js
-    - firebase.js
-    - loadSideNav.js
-    - animations/
-      - auth-simple-transition.js
-  - guards/
-    - sessionGuard.js
-  - pages/
-    - auth.js
-    - noctis-lab-carousel.js
-- pages/
-  - public/
-    - landing.html
-    - auth.html
-  - app/
+│
+├── index.html
+├── README.md
+├── tree.txt
+│
+├── assets/
+│   ├── README.md
+│   ├── backgrounds/
+│   │   ├── app/
+│   │   │   ├── home_bg.png
+│   │   │   └── home_bg_2.png
+│   │   ├── auth/
+│   │   │   ├── auth-bg.jpg
+│   │   │   └── register-side.png
+│   │   └── landing/
+│   │       ├── landing-bg-1.png
+│   │       ├── landing-bg-2.jpg
+│   │       └── landing-bg.png
+│   ├── branding/
+│   │   └── logo/
+│   │       ├── noctis-logo.png
+│   │       └── noctis_logo_name.svg
+│   ├── data-sources/
+│   │   ├── google-maps-logo.webp
+│   │   └── nasa_logo.png
+│   ├── icons/
+│   │   ├── auth/
+│   │   │   ├── lock-active.svg
+│   │   │   ├── lock.svg
+│   │   │   ├── user-active.svg
+│   │   │   └── user.svg
+│   │   ├── landing/
+│   │   │   ├── brujula.png
+│   │   │   ├── estrellas.png
+│   │   │   ├── luna.png
+│   │   │   └── telescopio.png
+│   │   ├── nav/
+│   │   │   ├── favourites.svg
+│   │   │   ├── home.svg
+│   │   │   ├── information.svg
+│   │   │   ├── location.svg
+│   │   │   ├── planet.svg
+│   │   │   ├── settings.svg
+│   │   │   └── star.svg
+│   │   ├── ui/
+│   │   │   ├── arrow.svg
+│   │   │   └── share.svg
+│   │   └── user/
+│   │       ├── account-fill.svg
+│   │       └── account.svg
+│   ├── illustrations/
+│   │   ├── landing/
+│   │   │   └── gemini-constellation.png
+│   │   ├── planets/
+│   │   │   ├── pluton.png
+│   │   │   ├── sol.png
+│   │   │   ├── gas/
+│   │   │   │   ├── jupiter.png
+│   │   │   │   ├── neptuno.png
+│   │   │   │   ├── saturno.png
+│   │   │   │   └── urano.png
+│   │   │   └── rocky/
+│   │   │       ├── marte.png
+│   │   │       ├── mercurio.png
+│   │   │       ├── tierra.png
+│   │   │       └── venus.png
+│   │   └── space/
+│   │       └── asteroid-belt.png
+│   └── social/
+│       └── networks/
+│           ├── github.svg
+│           ├── google.svg
+│           └── mail.svg
+│
+├── css/
+│   ├── base/
+│   │   ├── reset.css
+│   │   └── variables.css
+│   ├── components/
+│   │   ├── auth-base.css
+│   │   ├── auth.css
+│   │   └── navbar.css
+│   ├── landing/
+│   │   └── landing.css
+│   └── pages/
+│       ├── favorites.css
+│       ├── home.css
+│       ├── legal.css
+│       ├── map.css
+│       ├── settings.css
+│       ├── solar-system.css
+│       ├── user.css
+│       └── noctis-lab/
+│           ├── noctis-lab-constelaciones.css
+│           ├── noctis-lab-eclipses.css
+│           ├── noctis-lab-eventos.css
+│           ├── noctis-lab-sistema-solar.css
+│           ├── noctis-lab-topnav.css
+│           └── noctis-lab.css
+│
+├── js/
+│   ├── core/
+│   │   ├── auth_logic.js
+│   │   ├── firebase.js
+│   │   ├── loadSideNav.js
+│   │   └── animations/
+│   │       └── auth-simple-transition.js
+│   ├── guards/
+│   │   └── sessionGuard.js
+│   └── pages/
+│       ├── auth.js
+│       ├── noctis-lab-carousel.js
+│       └── noctis-lab-sistema-solar.js
+│
+└── pages/
+    ├── app/
+    │   ├── components/
+    │   │   └── side-nav.html
+    │   ├── favorites/
+    │   │   └── favoritos.html
+    │   ├── home/
+    │   │   └── home.html
+    │   ├── map/
+    │   │   ├── mapa_estrellas.html
+    │   │   └── mapa_ubicaciones.html
+    │   ├── noctis-lab/
+    │   │   ├── constelaciones.html
+    │   │   ├── eclipses.html
+    │   │   ├── eventos.html
+    │   │   └── sistema-solar.html
+    │   ├── settings/
+    │   │   └── ajustes.html
+    │   ├── solar-system/
+    │   │   └── sistema_solar.html
+    │   └── user/
+    │       └── perfil.html
+    └── public/
+        ├── auth.html
+        └── landing.html
     - components/
       - side-nav.html
     - favorites/
