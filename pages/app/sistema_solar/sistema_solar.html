@@ -32,70 +32,85 @@
 
   <!-- ====== BARRA DE TIEMPO ====== -->
   <div class="timebar timebar--realtime" id="timebar">
+    <div class="timebar timebar--realtime" id="timebar">
 
-    <!-- Capa visible siempre -->
-    <div class="timebar-display">
-      <div class="timebar-date" id="timeDate">JAN 29, 2026</div>
+      <!-- Capa visible siempre -->
+      <div class="timebar-display">
+        <div class="timebar-date" id="timeDate">JAN 29, 2026</div>
+        <!-- Capa visible siempre -->
+        <div class="timebar-display">
+          <div class="timebar-date" id="timeDate">JAN 29, 2026</div>
 
-      <div class="timebar-center">
-        <div class="timebar-orb" aria-hidden="true"></div>
-        <div class="timebar-status" id="timeStatus">REAL RATE</div>
+          <div class="timebar-center">
+            <div class="timebar-orb" aria-hidden="true"></div>
+            <div class="timebar-status" id="timeStatus">TIEMPO REAL</div>
+          </div>
+
+          <div class="timebar-clock" id="timeClock">04:43:20 PM</div>
+        </div>
+        <div class="timebar-clock" id="timeClock">04:43:20 PM</div>
       </div>
 
-      <div class="timebar-clock" id="timeClock">04:43:20 PM</div>
-    </div>
+      <!-- Capa controles (solo hover) -->
+      <div class="timebar-controls">
+        <!-- Capa controles (solo hover) -->
+        <div class="timebar-controls">
 
-    <!-- Capa controles (solo hover) -->
-    <div class="timebar-controls">
-
-      <!-- Controles principales -->
-      <div class="timebar-buttons">
-        <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind">⏪</button>
-        <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">⏸</button>
-        <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward">⏩</button>
+          <!-- Controles principales -->
+          <div class="timebar-buttons">
+            <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind"><img
+                src="../../../assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn"></button>
+            <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">⏸</button>
+            <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward"><img
+                src="../../../assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn"></button>
+          </div>
+        </div>
       </div>
 
-      <!-- Presets de velocidad -->
-      <div class="timebar-presets">
-        <button class="timebar-preset" data-scale="-31536000">-1Y/S</button>
-        <button class="timebar-preset" data-scale="-2592000">-30D/S</button>
-        <button class="timebar-preset" data-scale="-86400">-1D/S</button>
-        <button class="timebar-preset" data-scale="-3600">-1H/S</button>
-        <button class="timebar-preset" data-scale="-60">-1M/S</button>
+      <!-- Botón de Live -->
+      <button class="live-btn" id="liveBtn">
+        <span class="live-dot"></span> LIVE
+      </button>
 
-        <button class="timebar-preset is-active" data-scale="1">REAL</button>
 
-        <button class="timebar-preset" data-scale="60">+1M/S</button>
-        <button class="timebar-preset" data-scale="3600">+1H/S</button>
-        <button class="timebar-preset" data-scale="86400">+1D/S</button>
-        <button class="timebar-preset" data-scale="2592000">+30D/S</button>
-        <button class="timebar-preset" data-scale="31536000">+1Y/S</button>
-      </div>
-
-    </div>
-  </div>
-
+      <!-- ====== SCRIPTS ====== -->
+      <!-- Menú lateral de Noctis -->
+      <script type="module">
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
   <!-- ====== SCRIPTS ====== -->
-  <!-- Menú lateral de Noctis -->
-  <script type="module">
-    import { loadSideNav } from "../../../js/core/loadSideNav.js";
-    import { requireSession } from "../../../js/guards/sessionGuard.js";
+  < !--Menú lateral de Noctis-- >
+          <script type="module">
+            import {loadSideNav} from "../../../js/core/loadSideNav.js";
+            import {requireSession} from "../../../js/guards/sessionGuard.js";
 
-    await requireSession();
-    await loadSideNav();
-  </script>
+            await requireSession();
+            await loadSideNav();
+      </script>
+      await requireSession();
+      await loadSideNav();
+      </script>
 
-  <!-- Script de seguridad de Auth -->
-  <script type="module">
-    import { requireSession } from "../../../js/guards/sessionGuard.js";
-    await requireSession();
-  </script>
+      <!-- Script de seguridad de Auth -->
+      <script type="module">
+      import {requireSession} from "../../../js/guards/sessionGuard.js";
+      await requireSession();
+      </script>
+      <!-- Script de seguridad de Auth -->
+      <script type="module">
+      import {requireSession} from "../../../js/guards/sessionGuard.js";
+      await requireSession();
+      </script>
 
-  <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
-  <script type="module" src="/js/core/logica_ui/sistema_solar.ui.js"></script>
+      <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
+      <script type="module" src="/js/core/logica_ui/sistema_solar.ui.js"></script>
+      <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
+      <script type="module" src="/js/core/logica_ui/sistema_solar.ui.js"></script>
 
-  <!-- Conexión con JS de Sistema Solar -->
-  <script type="module" src="../../../js/pages/sistema_solar.js"></script>
+      <!-- Conexión con JS de Sistema Solar -->
+      <script type="module" src="../../../js/pages/sistema_solar.js"></script>
+      <!-- Conexión con JS de Sistema Solar -->
+      <script type="module" src="../../../js/pages/sistema_solar.js"></script>
 </body>
 
 </html>

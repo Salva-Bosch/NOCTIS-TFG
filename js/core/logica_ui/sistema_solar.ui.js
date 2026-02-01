@@ -21,6 +21,8 @@ const btnRewind = document.getElementById("timeRewind");
 const btnForward = document.getElementById("timeForward");
 const presetBtns = Array.from(document.querySelectorAll(".timebar-preset"));
 
+const liveBtn = document.getElementById("liveBtn");
+
 // Helpers formato
 const pad = n => String(n).padStart(2, "0");
 const fmtTime = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
@@ -30,7 +32,30 @@ const fmtDate = d =>
 // Estado UI
 let lastNonZeroScale = 1;
 
+const TIME_STEPS = [
+    -31536000, // -1 YEAR / S
+    -2592000,  // -30 DAYS / S
+    -86400,    // -1 DAY / S
+    -3600,     // -1 HOUR / S
+    -60,       // -1 MIN / S
+    1,         // REAL RATE
+    60,        // +1 MIN / S
+    3600,      // +1 HOUR / S
+    86400,     // +1 DAY / S
+    2592000,   // +30 DAYS / S
+    31536000   // +1 YEAR / S
+];
+
+
 // ---- Estado visual ----
+
+// CLick del botón LIVE
+liveBtn.addEventListener("click", () => {
+    timeEngine.syncToNow();
+    timeEngine.play();
+    syncUI();
+});
+
 function setBarStateFromScale(scale) {
     timebar.classList.remove(
         "timebar--realtime",
@@ -41,14 +66,14 @@ function setBarStateFromScale(scale) {
 
     if (scale === 0) {
         timebar.classList.add("timebar--paused");
-        statusEl.textContent = "PAUSED";
+        statusEl.textContent = "PAUSADO";
         btnPlayPause.textContent = "▶";
         return;
     }
 
     if (scale === 1) {
         timebar.classList.add("timebar--realtime");
-        statusEl.textContent = "REAL RATE";
+        statusEl.textContent = "TIEMPO REAL";
         btnPlayPause.textContent = "⏸";
         return;
     }
@@ -68,10 +93,10 @@ function formatRate(scale) {
     const s = Math.abs(scale);
     const sign = scale < 0 ? "-" : "+";
 
-    if (s >= 31536000) return `${sign}1 YEAR / S`;
-    if (s >= 2592000) return `${sign}30 DAYS / S`;
-    if (s >= 86400) return `${sign}1 DAY / S`;
-    if (s >= 3600) return `${sign}1 HOUR / S`;
+    if (s >= 31536000) return `${sign}1 AÑO / S`;
+    if (s >= 2592000) return `${sign}30 DÍAS / S`;
+    if (s >= 86400) return `${sign}1 DÍA / S`;
+    if (s >= 3600) return `${sign}1 HORA / S`;
     if (s >= 60) return `${sign}1 MIN / S`;
     return `${sign}${s} SEC / S`;
 }
@@ -94,15 +119,15 @@ btnPlayPause.addEventListener("click", () => {
 });
 
 btnRewind.addEventListener("click", () => {
-    const s = lastNonZeroScale || 60;
-    timeEngine.setTimeScale(-Math.abs(s));
-    syncUI();
+    const current = timeEngine.getTimeScale();
+    const idx = getNearestStepIndex(current);
+    applyStepByIndex(idx - 1);
 });
 
 btnForward.addEventListener("click", () => {
-    const s = lastNonZeroScale || 60;
-    timeEngine.setTimeScale(Math.abs(s));
-    syncUI();
+    const current = timeEngine.getTimeScale();
+    const idx = getNearestStepIndex(current);
+    applyStepByIndex(idx + 1);
 });
 
 presetBtns.forEach(btn => {
@@ -135,6 +160,7 @@ function syncUI() {
     const scale = timeEngine.getTimeScale();
     setBarStateFromScale(scale);
     setActivePreset(scale === 0 ? lastNonZeroScale : scale);
+    liveBtn.classList.toggle("is-live", timeEngine.getTimeScale() === 1);
 }
 
 // Init
@@ -142,3 +168,35 @@ function syncUI() {
     syncUI();
     updateClock();
 })();
+
+function getNearestStepIndex(scale) {
+    const idx = TIME_STEPS.indexOf(scale);
+    if (idx !== -1) return idx;
+
+    // Si el scale no coincide exactamente, aproximamos
+    let nearest = 0;
+    let minDiff = Infinity;
+    TIME_STEPS.forEach((s, i) => {
+        const d = Math.abs(Math.abs(scale) - Math.abs(s));
+        if (d < minDiff) {
+            minDiff = d;
+            nearest = i;
+        }
+    });
+    return nearest;
+}
+
+function applyStepByIndex(index) {
+    const clamped = Math.max(0, Math.min(TIME_STEPS.length - 1, index));
+    const scale = TIME_STEPS[clamped];
+
+    if (scale === 1) {
+        timeEngine.syncToNow();
+        timeEngine.play();
+    } else {
+        timeEngine.setTimeScale(scale);
+    }
+    lastNonZeroScale = scale === 0 ? lastNonZeroScale : scale;
+    syncUI();
+}
+
