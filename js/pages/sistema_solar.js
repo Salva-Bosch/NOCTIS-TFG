@@ -198,6 +198,37 @@ earthLabel.scale.set(20, 5, 10);
 earthLabel.position.y = earthRadius * 10;
 earth.add(earthLabel);
 
+/* ================= MARTE ================= */
+
+// Órbita de Marte
+scene.add(
+    createOrbit(
+        ORBITS.mars.distance_km * DISTANCE_SCALE,
+        0xef4444 // rojo suave NASA-style
+    )
+);
+
+// Grupo de Marte (orbita alrededor del Sol)
+const marsGroup = new THREE.Group();
+scene.add(marsGroup);
+
+// Marte
+const marsRadius = ORBITS.mars.radius_km * RADIUS_SCALE;
+const mars = new THREE.Mesh(
+    new THREE.SphereGeometry(marsRadius, 32, 32),
+    new THREE.MeshStandardMaterial({
+        color: 0xb91c1c // rojo oscuro, elegante
+    })
+);
+
+marsGroup.add(mars);
+
+// Label Marte
+const marsLabel = createLabel("Marte");
+marsLabel.scale.set(18, 4.5, 1);
+marsLabel.position.y = marsRadius * 10;
+mars.add(marsLabel);
+
 /* ================= LUNA ================= */
 
 // Pivot orbital
@@ -241,7 +272,7 @@ moonLabelGroup.add(moonLabel);
 
 /* ================= CLICKABLE OBJECTS ================= */
 
-clickableObjects.push(sun, earth, moon);
+clickableObjects.push(sun, earth, moon, mars);
 
 /* ================= CLICK HANDLERS ================= */
 
@@ -259,6 +290,8 @@ window.addEventListener("click", (event) => {
     if (clicked === sun) startFocusOn(sun, 10);
     if (clicked === earth) startFocusOn(earth, 6);
     if (clicked === moon) startFocusOn(moon, 4);
+    if (clicked === mars) startFocusOn(mars, 6);
+
 });
 
 window.addEventListener("dblclick", () => {
@@ -274,13 +307,26 @@ function animate() {
     const daysElapsed = (now - EPOCH_DATE) / DAY_MS;
 
     // Tierra alrededor del Sol
-    const earthAngle = (daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
+    const earthAngle = -(daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
     const earthDistance = ORBITS.earth.distance_km * DISTANCE_SCALE;
 
     earthGroup.position.set(
         Math.cos(earthAngle) * earthDistance,
         0,
         Math.sin(earthAngle) * earthDistance
+    );
+
+    // Marte alrededor del Sol
+    const marsAngle =
+        -(daysElapsed / ORBITS.mars.period_days) * Math.PI * 2;
+
+    const marsDistance =
+        ORBITS.mars.distance_km * DISTANCE_SCALE;
+
+    marsGroup.position.set(
+        Math.cos(marsAngle) * marsDistance,
+        0,
+        Math.sin(marsAngle) * marsDistance
     );
 
     // Luna alrededor de la Tierra
@@ -290,6 +336,13 @@ function animate() {
     // Labels
     const earthPx = getScreenRadius(earth, camera);
     earthLabel.visible = earthPx < EARTH_LABEL_HIDE_PX;
+
+    // Ocultar label de Marte al hacer zoom cercano
+    const marsPx = getScreenRadius(mars, camera);
+    marsLabel.visible = marsPx < EARTH_LABEL_HIDE_PX;
+
+    // Billboard
+    marsLabel.quaternion.copy(camera.quaternion);
 
     const moonPx = getScreenRadius(moon, camera);
     moonLabel.visible = moonPx < MOON_LABEL_HIDE_PX;
