@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NOCTIS · Constelaciones</title>
+
+    <!-- CSS DE LA PÁGINA -->
+    <link rel="stylesheet" href="../../../css/pages/constelaciones.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+</head>
+<body>
+
+<!-- NAV SUPERIOR -->
+<header class="top-bar">
+    <nav class="top-nav left">
+        <a href="../sistema-solar/index.html">Sistema Solar</a>
+        <a href="../eclipses/index.html">Eclipses</a>
+    </nav>
+
+    <div class="logo">NOCTIS</div>
+
+    <nav class="top-nav right">
+        <a href="#" class="active">Constelaciones</a>
+        <a href="../eventos/index.html">Eventos astronómicos</a>
+    </nav>
+</header>
+
+<!-- NAV LATERAL (CARGADO POR JS) -->
+
+<main class="landing">
+
+<!-- ORIÓN -->
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Orión</h2>
+        <p>
+            Orión es una de las constelaciones más reconocibles del cielo nocturno,
+            visible desde casi todo el mundo. Destaca por su famoso cinturón
+            formado por tres estrellas alineadas.
+        </p>
+        <ul>
+            <li><strong>Visibilidad:</strong> Ambos hemisferios</li>
+            <li><strong>Estrellas destacadas:</strong> Betelgeuse, Rigel</li>
+        </ul>
+    </div>
+    <div class="planet-image constellation">
+        <img src="../../../assets/noctislab/constelaciones/ChatGPT Image 2 feb 2026, 18_52_16.png" alt="Constelación de Orión">
+    </div>
+</section>
+
+<!-- OSA MAYOR -->
+<section class="planet-section reverse">
+    <div class="planet-image constellation">
+        <img src="../../../assets/noctislab/constelaciones/ChatGPT Image 2 feb 2026, 18_53_33.png" alt="Constelación Osa Mayor">
+    </div>
+    <div class="planet-info">
+        <h2>Osa Mayor</h2>
+        <p>
+            La Osa Mayor es famosa por el asterismo del “Carro”, utilizado
+            desde la antigüedad para orientarse y localizar la Estrella Polar.
+        </p>
+        <ul>
+            <li><strong>Visibilidad:</strong> Hemisferio norte</li>
+            <li><strong>Uso histórico:</strong> Navegación</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CASIOPEA -->
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Casiopea</h2>
+        <p>
+            Casiopea tiene una forma característica de “W” o “M”,
+            dependiendo de su posición en el cielo. Es circumpolar
+            en muchas regiones del hemisferio norte.
+        </p>
+        <ul>
+            <li><strong>Visibilidad:</strong> Hemisferio norte</li>
+            <li><strong>Forma:</strong> W característica</li>
+        </ul>
+    </div>
+    <div class="planet-image constellation">
+        <img src="../../../assets/noctislab/constelaciones/ChatGPT Image 2 feb 2026, 18_54_40.png" alt="Constelación Casiopea">
+    </div>
+</section>
+
+<!-- ESCORPIO -->
+<section class="planet-section reverse">
+    <div class="planet-image constellation">
+        <img src="../../../assets/noctislab/constelaciones/ChatGPT Image 2 feb 2026, 18_57_33.png" alt="Constelación Escorpio">
+    </div>
+    <div class="planet-info">
+        <h2>Escorpio</h2>
+        <p>
+            Escorpio es una constelación brillante del zodiaco,
+            fácilmente reconocible por su forma curva y la estrella
+            rojiza Antares en su centro.
+        </p>
+        <ul>
+            <li><strong>Visibilidad:</strong> Hemisferio sur</li>
+            <li><strong>Estrella principal:</strong> Antares</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CRUZ DEL SUR -->
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Cruz del Sur</h2>
+        <p>
+            La Cruz del Sur es una constelación pequeña pero muy importante
+            para la orientación en el hemisferio sur, equivalente a la
+            Estrella Polar del norte.
+        </p>
+        <ul>
+            <li><strong>Visibilidad:</strong> Hemisferio sur</li>
+            <li><strong>Uso:</strong> Orientación</li>
+        </ul>
+    </div>
+    <div class="planet-image constellation">
+        <img src="../../../assets/noctislab/constelaciones/ChatGPT Image 2 feb 2026, 18_58_47.png" alt="Cruz del Sur">
+    </div>
+</section>
+
+</main>
+
+<script type="module">
+    import { loadSideNav } from "../../../js/core/loadSideNav.js";
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+
+    await requireSession();
+    await loadSideNav();
+</script>
+
+<script src="../../../js/pages/noctislab.js"></script>
+</body>
+</html>

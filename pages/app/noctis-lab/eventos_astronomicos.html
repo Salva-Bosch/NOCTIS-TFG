@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NOCTIS · Eventos astronómicos</title>
+    <link rel="stylesheet" href="../../../css/pages/eventos_astronomicos.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <nav class="top-nav left">
+        <a href="../sistema-solar/index.html">Sistema Solar</a>
+        <a href="../eclipses/index.html">Eclipses</a>
+    </nav>
+
+    <div class="logo">NOCTIS</div>
+
+    <nav class="top-nav right">
+        <a href="../constelaciones/index.html">Constelaciones</a>
+        <a href="#" class="active">Eventos astronómicos</a>
+    </nav>
+</header>
+
+<main class="landing">
+
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Lluvia de meteoros Perseidas</h2>
+        <p>
+            Las Perseidas son una de las lluvias de meteoros más intensas del año,
+            originadas por restos del cometa Swift-Tuttle que entran en la atmósfera terrestre.
+        </p>
+        <ul>
+            <li><strong>Fecha:</strong> Agosto</li>
+            <li><strong>Pico:</strong> 12–13 de agosto</li>
+            <li><strong>Visibilidad:</strong> Ambos hemisferios</li>
+        </ul>
+    </div>
+    <div class="planet-image event">
+        <img src="../../../assets/noctislab/eventos astronomicos/image 15 (1).png" alt="Perseidas">
+    </div>
+</section>
+
+<section class="planet-section reverse">
+    <div class="planet-image event">
+        <img src="../../../assets/noctislab/eventos astronomicos/image 16 (1).png "alt="Conjunción planetaria">
+    </div>
+    <div class="planet-info">
+        <h2>Conjunción planetaria</h2>
+        <p>
+            Una conjunción planetaria sucede cuando dos o más planetas parecen
+            alinearse en el cielo nocturno, creando una escena visual llamativa.
+        </p>
+        <ul>
+            <li><strong>Frecuencia:</strong> Variable</li>
+            <li><strong>Observación:</strong> A simple vista</li>
+        </ul>
+    </div>
+</section>
+
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Superluna</h2>
+        <p>
+            La superluna ocurre cuando la Luna llena coincide con su punto más cercano
+            a la Tierra, aumentando su tamaño y brillo aparente.
+        </p>
+        <ul>
+            <li><strong>Tipo:</strong> Fenómeno lunar</li>
+            <li><strong>Efecto:</strong> Mayor luminosidad</li>
+        </ul>
+    </div>
+    <div class="planet-image event">
+        <img src="../../../assets/noctislab/eventos astronomicos/image 17 (1).png" alt="Superluna">
+    </div>
+</section>
+
+<section class="planet-section reverse">
+    <div class="planet-image event">
+        <img src="../../../assets/noctislab/eventos astronomicos/image 18 (1).png" alt="Oposición de Marte">
+    </div>
+    <div class="planet-info">
+        <h2>Oposición de Marte</h2>
+        <p>
+            Durante la oposición, Marte se encuentra más cerca de la Tierra,
+            ofreciendo condiciones óptimas para su observación astronómica.
+        </p>
+        <ul>
+            <li><strong>Frecuencia:</strong> Cada 26 meses</li>
+            <li><strong>Observación:</strong> Excelente</li>
+        </ul>
+    </div>
+</section>
+
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Visita de cometas</h2>
+        <p>
+            Algunos cometas se vuelven visibles desde la Tierra al acercarse al Sol,
+            desarrollando colas brillantes de gas y polvo.
+        </p>
+        <ul>
+            <li><strong>Duración:</strong> Semanas</li>
+            <li><strong>Visibilidad:</strong> Variable</li>
+        </ul>
+    </div>
+    <div class="planet-image event">
+        <img src="../../../assets/noctislab/eventos astronomicos/image 19 (1).png" alt="Cometa visible">
+    </div>
+</section>
+
+</main>
+
+<script type="module">
+    import { loadSideNav } from "../../../js/core/loadSideNav.js";
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+    await requireSession();
+    await loadSideNav();
+</script>
+
+<script src="../../../js/pages/noctislab.js"></script>
+</body>
+</html>
