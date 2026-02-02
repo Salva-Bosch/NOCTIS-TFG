@@ -17,6 +17,7 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <header class="navbar">
         <nav class="nav-container">
             <div class="nav-items">
@@ -40,26 +41,30 @@
         </nav>
     </header>
 
+    <!-- CONTENIDO -->
     <main class="main-content">
 
-        <!-- HERO -->
-        <section class="solar-hero reveal">
+        <!-- HERO (sin reveal) -->
+        <section class="solar-hero">
             <div class="solar-hero__content">
                 <h1 class="solar-hero__title">Sistema Solar</h1>
                 <span class="solar-hero__divider"></span>
+
                 <p class="solar-hero__subtitle">
                     Explora los planetas, sus órbitas y los cuerpos que forman nuestro sistema.
                 </p>
 
                 <div class="solar-hero__image">
-                    <img src="../../../assets/illustrations/space/sistema-solar.PNG" alt="Ilustración del sistema solar">
+                    <img
+                        src="../../../assets/illustrations/space/sistema-solar.PNG"
+                        alt="Ilustración del sistema solar">
                 </div>
             </div>
         </section>
 
         <!-- EL SOL -->
-        <section class="solar-info reveal">
-            <div class="solar-info__container">
+        <section class="solar-info">
+            <div class="solar-info__container reveal">
 
                 <div class="solar-info__text">
                     <span class="solar-info__tag">Estrella principal</span>
@@ -94,7 +99,9 @@
                 </div>
 
                 <div class="solar-info__image">
-                    <img src="../../../assets/illustrations/planets/sol.png" alt="Ilustración del Sol">
+                    <img
+                        src="../../../assets/illustrations/planets/sol.png"
+                        alt="Ilustración del Sol">
                 </div>
 
             </div>
@@ -102,6 +109,7 @@
 
     </main>
 
+    <!-- SCRIPTS -->
     <script type="module">
         import { loadSideNav } from "../../../js/core/loadSideNav.js";
         import { requireSession } from "../../../js/guards/sessionGuard.js";
