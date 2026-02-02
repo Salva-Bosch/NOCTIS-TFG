@@ -18,6 +18,29 @@ const DAY_MS = 1000 * 60 * 60 * 24;
 const EARTH_LABEL_HIDE_PX = 2;
 const MOON_LABEL_HIDE_PX = 1.5;
 
+/* ================= CAMERA FOCUS STATE ================= */
+
+const CameraState = {
+    FREE: "free",
+    FOCUS: "focus",
+};
+
+let cameraState = CameraState.FREE;
+let focusedObject = null;
+
+let focusTarget = new THREE.Vector3();
+let focusDistance = 10;
+
+const FOCUS_LERP = 0.08;
+
+/* ================= RAYCASTER ================= */
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+// Lista clicable (la llenamos después de crear los meshes)
+const clickableObjects = [];
+
 /* ================= HELPERS ================= */
 
 function createOrbit(radius, color = 0xffffff) {
@@ -26,7 +49,7 @@ function createOrbit(radius, color = 0xffffff) {
         color,
         side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.6
+        opacity: 0.6,
     });
     const orbit = new THREE.Mesh(geometry, material);
     orbit.rotation.x = Math.PI / 2;
@@ -38,13 +61,7 @@ function createOrbitLine(radius, color = 0xffffff, segments = 256) {
     const points = [];
     for (let i = 0; i <= segments; i++) {
         const a = (i / segments) * Math.PI * 2;
-        points.push(
-            new THREE.Vector3(
-                Math.cos(a) * radius,
-                0,
-                Math.sin(a) * radius
-            )
-        );
+        points.push(new THREE.Vector3(Math.cos(a) * radius, 0, Math.sin(a) * radius));
     }
 
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -52,7 +69,7 @@ function createOrbitLine(radius, color = 0xffffff, segments = 256) {
         color,
         transparent: true,
         opacity: 0.35,
-        depthTest: false
+        depthTest: false,
     });
 
     const line = new THREE.LineLoop(geometry, material);
@@ -77,7 +94,7 @@ function createLabel(text) {
     const material = new THREE.SpriteMaterial({
         map: texture,
         transparent: true,
-        depthTest: false
+        depthTest: false,
     });
 
     const sprite = new THREE.Sprite(material);
@@ -100,6 +117,23 @@ function getScreenRadius(mesh, camera) {
     return (radius / distance) * (screenHeight / (2 * Math.tan(vFOV / 2)));
 }
 
+function startFocusOn(object, distanceMultiplier = 6) {
+    if (!object || !object.geometry) return;
+
+    object.geometry.computeBoundingSphere();
+
+    const worldPos = new THREE.Vector3();
+    object.getWorldPosition(worldPos);
+
+    focusedObject = object;
+    focusTarget.copy(worldPos);
+
+    const radius = object.geometry.boundingSphere.radius || 1;
+    focusDistance = radius * distanceMultiplier;
+
+    cameraState = CameraState.FOCUS;
+}
+
 /* ================= INIT ================= */
 
 const canvas = document.getElementById("solarCanvas");
@@ -115,6 +149,16 @@ window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+/* ================= CAMERA UX ================= */
+
+// Si el usuario empieza a mover la cámara, cancelamos el focus
+controls.addEventListener("start", () => {
+    if (cameraState === CameraState.FOCUS) {
+        cameraState = CameraState.FREE;
+        focusedObject = null;
+    }
+});
+
 /* ================= SOL ================= */
 
 const sun = new THREE.Mesh(
@@ -122,7 +166,7 @@ const sun = new THREE.Mesh(
     new THREE.MeshStandardMaterial({
         color: 0xffff00,
         emissive: 0xffaa00,
-        emissiveIntensity: 1
+        emissiveIntensity: 1,
     })
 );
 scene.add(sun);
@@ -136,10 +180,8 @@ scene.add(fillLight);
 
 /* ================= TIERRA ================= */
 
-// Órbita de la Tierra (en unidades Three coherentes con DISTANCE_SCALE)
-scene.add(
-    createOrbit(ORBITS.earth.distance_km * DISTANCE_SCALE, 0x3b82f6)
-);
+// Órbita de la Tierra
+scene.add(createOrbit(ORBITS.earth.distance_km * DISTANCE_SCALE, 0x3b82f6));
 
 const earthGroup = new THREE.Group();
 scene.add(earthGroup);
@@ -152,62 +194,76 @@ const earth = new THREE.Mesh(
 earthGroup.add(earth);
 
 const earthLabel = createLabel("Tierra");
-// Label más pequeño que el de la Luna
 earthLabel.scale.set(20, 5, 10);
-
 earthLabel.position.y = earthRadius * 10;
 earth.add(earthLabel);
 
 /* ================= LUNA ================= */
 
-// Pivot orbital: rota TODO (Luna + órbita) alrededor de la Tierra
+// Pivot orbital
 const moonPivot = new THREE.Group();
 earthGroup.add(moonPivot);
 
-// Ajuste visual de distancia lunar (NASA-style)
+// Ajuste visual de distancia lunar
 const MOON_DISTANCE_VISUAL_MULTIPLIER = 5;
 const moonOrbitRadius =
     ORBITS.moon.distance_km * DISTANCE_SCALE * MOON_DISTANCE_VISUAL_MULTIPLIER;
 
-// Órbita lunar (ligada al pivot, no estática)
 const moonOrbit = createOrbitLine(moonOrbitRadius, 0xbfbfbf, 256);
 moonPivot.add(moonOrbit);
 
-// Luna (escala REAL según RADIUS_SCALE)
 const moonRadius = ORBITS.moon.radius_km * RADIUS_SCALE;
 const moon = new THREE.Mesh(
     new THREE.SphereGeometry(moonRadius, 64, 64),
     new THREE.MeshStandardMaterial({
         color: 0xbfbfbf,
         roughness: 1,
-        metalness: 0
+        metalness: 0,
     })
 );
 
-// Luz de relleno suave
 moon.material.emissive = new THREE.Color(0x222222);
 moon.material.emissiveIntensity = 0.35;
-
 moon.renderOrder = 2;
 
-// 🔑 POSICIÓN LOCAL: distancia Tierra–Luna
 moon.position.set(moonOrbitRadius, 0, 0);
 moonPivot.add(moon);
 
-/* ===== Label Luna ===== */
-
-// Grupo que sigue a la Luna
+// Label luna
 const moonLabelGroup = new THREE.Group();
 moonPivot.add(moonLabelGroup);
-
-// El grupo se coloca exactamente donde está la Luna
 moonLabelGroup.position.copy(moon.position);
 
-// Label
 const moonLabel = createLabel("Luna");
 moonLabel.scale.set(6, 1.5, 1);
 moonLabel.position.set(0, moonRadius * 6, 0);
 moonLabelGroup.add(moonLabel);
+
+/* ================= CLICKABLE OBJECTS ================= */
+
+clickableObjects.push(sun, earth, moon);
+
+/* ================= CLICK HANDLERS ================= */
+
+window.addEventListener("click", (event) => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(clickableObjects, false);
+    if (intersects.length === 0) return;
+
+    const clicked = intersects[0].object;
+
+    if (clicked === sun) startFocusOn(sun, 10);
+    if (clicked === earth) startFocusOn(earth, 6);
+    if (clicked === moon) startFocusOn(moon, 4);
+});
+
+window.addEventListener("dblclick", () => {
+    startFocusOn(sun, 10);
+});
 
 /* ================= ANIMACIÓN ================= */
 
@@ -218,11 +274,8 @@ function animate() {
     const daysElapsed = (now - EPOCH_DATE) / DAY_MS;
 
     // Tierra alrededor del Sol
-    const earthAngle =
-        (daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
-
-    const earthDistance =
-        ORBITS.earth.distance_km * DISTANCE_SCALE;
+    const earthAngle = (daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
+    const earthDistance = ORBITS.earth.distance_km * DISTANCE_SCALE;
 
     earthGroup.position.set(
         Math.cos(earthAngle) * earthDistance,
@@ -230,23 +283,43 @@ function animate() {
         Math.sin(earthAngle) * earthDistance
     );
 
-    // Luna alrededor de la Tierra (rotación del pivot)
-    const moonAngle =
-        (daysElapsed / ORBITS.moon.period_days) * Math.PI * 2;
-
+    // Luna alrededor de la Tierra
+    const moonAngle = (daysElapsed / ORBITS.moon.period_days) * Math.PI * 2;
     moonPivot.rotation.y = moonAngle;
 
-    // Ocultar label de la Tierra al hacer zoom cercano
+    // Labels
     const earthPx = getScreenRadius(earth, camera);
     earthLabel.visible = earthPx < EARTH_LABEL_HIDE_PX;
 
-    // Ocultar label de la Luna al hacer zoom cercano
     const moonPx = getScreenRadius(moon, camera);
     moonLabel.visible = moonPx < MOON_LABEL_HIDE_PX;
 
-    // Billboard: labels siempre miran a cámara
+    // Billboard
     earthLabel.quaternion.copy(camera.quaternion);
     moonLabel.quaternion.copy(camera.quaternion);
+
+    /* ================= CAMERA FOCUS UPDATE ================= */
+
+    if (cameraState === CameraState.FOCUS && focusedObject) {
+        focusedObject.getWorldPosition(focusTarget);
+
+        controls.target.lerp(focusTarget, FOCUS_LERP);
+
+        const dir = new THREE.Vector3()
+            .subVectors(camera.position, controls.target)
+            .normalize();
+
+        const desiredPos = new THREE.Vector3()
+            .copy(focusTarget)
+            .add(dir.multiplyScalar(focusDistance));
+
+        camera.position.lerp(desiredPos, FOCUS_LERP);
+
+        if (camera.position.distanceTo(desiredPos) < 0.05) {
+            cameraState = CameraState.FREE;
+            focusedObject = null;
+        }
+    }
 
     controls.update();
     renderer.render(scene, camera);
