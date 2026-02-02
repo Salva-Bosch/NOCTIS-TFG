@@ -2,28 +2,207 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Noctis · NoctisLab</title>
-
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <title>NOCTIS · Sistema Solar</title>
     <link rel="stylesheet" href="../../../css/pages/noctis-lab.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
 </head>
-
 <body>
 
-    <main class="noctis-lab-content">
-        <h1>NoctisLab</h1>
-        <p>Explora información astronómica avanzada.</p>
-    </main>
+<!-- NAV SUPERIOR -->
+<header class="top-bar">
+    <nav class="top-nav left">
+        <a href="#">Sistema Solar</a>
+        <a href="#">Eclipses</a>
+    </nav>
 
-    <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+    <div class="logo">NOCTIS</div>
 
-        await requireSession();
-        await loadSideNav();
-    </script>
+    <nav class="top-nav right">
+        <a href="#">Constelaciones</a>
+        <a href="#">Eventos astronómicos</a>
+    </nav>
+</header>
 
+<!-- NAV LATERAL -->
+
+
+<!-- CONTENIDO -->
+<main class="landing">
+
+<section id="sol" class="planet-section">
+    <div class="planet-info">
+        <h2>El Sol</h2>
+        <p>
+            El Sol contiene más del 99 % de la masa total del sistema solar y su energía alimenta las atmósferas y climas de los planetas más cercanos. 
+            Es una estrella de tipo G que lleva unos 4.600 millones de años brillando.
+        </p>
+        <ul>
+            <li><strong>Tipo:</strong> Estrella</li>
+            <li><strong>Edad:</strong> 4.600 millones de años</li>
+            <li><strong>Temperatura:</strong> 5.500 °C</li>
+        </ul>
+    </div>
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 11 (1).png">
+    </div>
+</section>
+
+<section id="mercurio" class="planet-section reverse">
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 12.png">
+    </div>
+    <div class="planet-info">
+        <h2>Mercurio</h2>
+        <p>
+            Mercurio tiene un núcleo metálico enorme que ocupa la mayor parte de su volumen, lo que lo hace muy denso. 
+            No tiene atmósfera significativa, por lo que su superficie sufre extremos térmicos entre el día y la noche.
+        </p>
+        <ul>
+            <li><strong>Distancia:</strong> 57,9 millones km</li>
+            <li><strong>Día:</strong> 59 días</li>
+            <li><strong>Satélites:</strong> 0</li>
+        </ul>
+    </div>
+</section>
+
+<section id="venus" class="planet-section">
+    <div class="planet-info">
+        <h2>Venus</h2>
+        <p>
+            Venus está envuelto en una atmósfera densa rica en dióxido de carbono, con nubes de ácido sulfúrico que provocan un efecto invernadero extremo. 
+            Su superficie es más caliente que la de Mercurio, a pesar de estar más lejos del Sol.
+        </p>
+        <ul>
+            <li><strong>Temperatura:</strong> 470 °C</li>
+            <li><strong>Satélites:</strong> 0</li>
+        </ul>
+    </div>
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/venus 1.png ">
+    </div>
+</section>
+
+<section id="tierra" class="planet-section reverse">
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 13.png ">
+    </div>
+    <div class="planet-info">
+        <h2>Tierra</h2>
+        <p>
+            La Tierra es única por tener agua líquida estable en su superficie y una atmósfera que protege la vida. 
+            Está en la zona habitable del sistema solar, donde el agua puede existir en estado líquido.
+        </p>
+        <ul>
+            <li><strong>Distancia:</strong> 149,6 millones km</li>
+            <li><strong>Satélites:</strong> 1 (Luna)</li>
+        </ul>
+    </div>
+</section>
+
+<section id="marte" class="planet-section">
+    <div class="planet-info">
+        <h2>Marte</h2>
+        <p>
+            Marte tiene la montaña volcánica más alta del sistema solar, Olympus Mons, y evidencia de antiguos ríos y lagos, lo que sugiere que pudo haber tenido agua líquida en el pasado. 
+            Su fina atmósfera no retiene bien el calor.
+        </p>
+        <ul>
+            <li><strong>Satélites:</strong> 2</li>
+        </ul>
+    </div>
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 14.png">
+    </div>
+</section>
+
+<section id="jupiter" class="planet-section reverse">
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/jupiter 1.png">
+    </div>
+    <div class="planet-info">
+        <h2>Júpiter</h2>
+        <p>
+            Júpiter es tan masivo que posee una gran influencia gravitacional sobre asteroides y cometas. 
+            Su famosa Gran Mancha Roja es una tormenta más grande que la Tierra que ha durado siglos.
+        </p>
+        <ul>
+            <li><strong>Satélites:</strong> 95+</li>
+        </ul>
+    </div>
+</section>
+
+<section id="saturno" class="planet-section">
+    <div class="planet-info">
+        <h2>Saturno</h2>
+        <p>
+            Saturno es famoso por su sistema de anillos brillantes y complejos, hechos de hielo y roca. 
+            Además de esto, tiene docenas de lunas interesantes, como Titán, que posee una atmósfera densa.
+        </p>
+        <ul>
+            <li><strong>Satélites:</strong> 83+</li>
+        </ul>
+    </div>
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 17.png">
+    </div>
+</section>
+
+<section id="urano" class="planet-section reverse">
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/urano 1.png">
+    </div>
+    <div class="planet-info">
+        <h2>Urano</h2>
+        <p>
+            Urano gira de lado, con su eje casi paralelo al plano de su órbita, lo que provoca estaciones extremas que duran décadas. 
+            Es un gigante helado, con una atmósfera rica en metano que le da su color azul verdoso
+        </p>
+        <ul>
+            <li><strong>Temperatura:</strong> -224 °C</li>
+        </ul>
+    </div>
+</section>
+
+<section id="neptuno" class="planet-section">
+    <div class="planet-info">
+        <h2>Neptuno</h2>
+        <p>
+            Neptuno es conocido por tener los vientos más rápidos del sistema solar, con velocidades que pueden superar los 2 000 km/h.
+            Es un gigante helado con una composición rica en elementos volátiles.
+        </p>
+        <ul>
+            <li><strong>Vientos:</strong> 2.000 km/h</li>
+        </ul>
+    </div>
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/neptuno 1.png">
+    </div>
+</section>
+
+<section id="pluton" class="planet-section reverse">
+    <div class="planet-image">
+        <img src="../../../assets/noctislab/image 21.png">
+    </div>
+    <div class="planet-info">
+        <h2>Plutón</h2>
+        <p>
+            Aunque ya no se considera un planeta principal, Plutón es un mundo complejo con hielo de nitrógeno y metano. 
+            Misiones como New Horizons han mostrado que puede tener características geológicas activas.
+        </p>
+        <ul>
+            <li><strong>Tipo:</strong> Planeta enano</li>
+        </ul>
+    </div>
+</section>
+</main>
+<script type="module">
+    import{loadSideNav} from"../../../js/core/loadSideNav.js";
+    import{requireSession} from "../../../js/guards/sessionGuard.js";
+
+    await requireSession();
+    await loadSideNav();
+</script>
+<script src="../../../js/pages/noctislab.js"></script>
 </body>
 </html>
+
