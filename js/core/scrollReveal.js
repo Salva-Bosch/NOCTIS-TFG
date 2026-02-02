@@ -3,7 +3,7 @@ const revealElements = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if(entry.isIntersecting){
                 entry.target.classList.add('reveal--visible');
                 observer.unobserve(entry.target);
             }

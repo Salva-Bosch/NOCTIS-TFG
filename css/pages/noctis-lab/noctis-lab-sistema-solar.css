@@ -1,20 +1,18 @@
 /* =========================
-   FONDO GLOBAL
+   FONDO GLOBAL DE PÁGINA
 ========================= */
-
-body {
+.main-content {
     background-image:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0,0,0,0)),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.3)),
         url('../../../assets/backgrounds/app/sistema-solar-bg.jpg');
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
 /* =========================
    HERO
 ========================= */
-
 .solar-hero {
     width: 100%;
     padding: 7rem 0 3rem;
@@ -28,13 +26,13 @@ body {
 }
 
 .solar-hero__title {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-size: clamp(5.5rem, 4vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 0.04em;
     margin-bottom: 1.5rem;
-    background: linear-gradient(90deg, #7aa2ff, #b48cff);
-    -webkit-background-clip: text;
+    background: linear-gradient(90deg, #ffffff, #7982ff);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -42,14 +40,27 @@ body {
     width: min(520px, 80%);
     height: 2px;
     margin: 0 auto 1.5rem;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    animation: dividerFade 1.2s ease forwards;
+}
+
+@keyframes dividerFade {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
 }
 
 .solar-hero__subtitle {
     max-width: 700px;
     margin: 0 auto 3rem;
     line-height: 1.7;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .solar-hero__image {
@@ -64,50 +75,48 @@ body {
 }
 
 /* =========================
-   SECCIÓN EL SOL (CARD)
+   CARD SOL
 ========================= */
-
 .solar-info {
     padding: 6rem 0;
+    padding-left: clamp(50px, 8vw, 120px);
+    padding-right: clamp(50px, 4vw, 120px);
 }
 
 .solar-info__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: clamp(1.5rem, 4vw, 3rem);
-
+    padding: 3rem 2rem;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: center;
-
     background: rgba(20, 20, 30, 0.55);
     backdrop-filter: blur(14px);
     border-radius: 22px;
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.55),
-        inset 0 0 0 1px rgba(255,255,255,0.05);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
-
-/* TEXTO */
 
 .solar-info__tag {
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .solar-info__title {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     margin: 1rem 0 1.5rem;
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .solar-info__intro {
     max-width: 520px;
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: 2.5rem;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .solar-info__data {
@@ -115,55 +124,136 @@ body {
     grid-template-columns: repeat(3, auto);
     gap: 2.5rem;
     margin-bottom: 2.5rem;
+    color: aliceblue;
 }
 
-.solar-info__data span {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.5);
+.solar-info__data strong {
+    font-size: 1.05rem;
 }
 
 .solar-info__fact {
     max-width: 520px;
     padding-left: 1.2rem;
-    border-left: 2px solid rgba(122,162,255,0.6);
+    border-left: 2px solid rgba(255, 180, 70, 0.7);
+    color: rgba(255, 255, 255, 0.85);
 }
-
-.solar-info__fact strong {
-    position: relative;
-}
-
-.solar-info__fact strong::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #7aa2ff, #b48cff);
-}
-
-/* IMAGEN SOL */
 
 .solar-info__image img {
-    max-width: 480px;
+    max-width: 520px;
     width: 100%;
-    filter: drop-shadow(0 0 35px rgba(255,170,0,0.35));
-    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: drop-shadow(0 0 40px rgba(255, 170, 0, 0.45)) drop-shadow(0 0 90px rgba(255, 120, 0, 0.35));
+    transition: transform 0.8s ease, filter 0.8s ease;
 }
 
 .solar-info__image img:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 55px rgba(255,190,80,0.5));
+    transform: scale(1.08) rotate(1deg);
+    filter: drop-shadow(0 0 60px rgba(255, 190, 80, 0.6)) drop-shadow(0 0 130px rgba(255, 140, 20, 0.5));
+}
+
+/* =========================
+   CARRUSEL PLANETAS ROCOSOS
+========================= */
+.rocky-planets {
+    padding: 6rem 0;
+    padding-left: clamp(50px, 8vw, 120px);
+    padding-right: clamp(50px, 4vw, 120px);
+}
+
+.rocky-planets__title {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    color: white;
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rocky-planets__carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rocky-planets__track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+}
+
+.planet-card {
+    flex: 0 0 auto;
+    width: 250px;
+    background: rgba(20, 20, 30, 0.55);
+    backdrop-filter: blur(14px);
+    border-radius: 22px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.planet-card__image img {
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 40px rgba(255, 170, 0, 0.45));
+    transition: transform 0.5s ease;
+}
+
+.planet-card__image img:hover {
+    transform: scale(1.05) rotate(1deg);
+    filter: drop-shadow(0 0 60px rgba(255, 190, 80, 0.6));
+}
+
+.planet-card__name {
+    font-size: 1.3rem;
+    color: white;
+    margin-top: 0.5rem;
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-btn.prev {
+    left: -25px;
+}
+
+.carousel-btn.next {
+    right: -25px;
+}
+
+.rocky-planets__track::-webkit-scrollbar {
+    display: none;
+}
+
+.rocky-planets__track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* =========================
    SCROLL REVEAL
 ========================= */
-
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .reveal--visible {
@@ -174,8 +264,7 @@ body {
 /* =========================
    RESPONSIVE
 ========================= */
-
-@media (max-width: 900px) {
+@media(max-width:900px) {
     .solar-info__container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -183,7 +272,49 @@ body {
 
     .solar-info__fact {
         border-left: none;
-        border-top: 2px solid rgba(122,162,255,0.6);
+        border-top: 2px solid rgba(255, 180, 70, 0.7);
         padding: 1.2rem 0 0;
     }
+
+    .rocky-planets__track {
+        gap: 1rem;
+    }
+
+    .planet-card {
+        width: 180px;
+    }
+
+    .carousel-btn.prev {
+        left: -15px;
+    }
+
+    .carousel-btn.next {
+        right: -15px;
+    }
+}
+
+/* Slider wrapper */
+.rocky-planets__slider { position:relative; overflow:hidden; }
+
+/* Ocultar todas las cards excepto la visible */
+.planet-slide { display:none; }
+.planet-slide.active { display:grid; grid-template-columns:1.1fr 0.9fr; gap:4rem; align-items:center; 
+    background:rgba(20,20,30,0.55); backdrop-filter:blur(14px); border-radius:22px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.05);
+    padding:3rem 2rem;
+}
+
+/* Botones */
+.carousel-btn { position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(0,0,0,0.5); border:none; color:white; font-size:2rem; width:50px; height:50px;
+    border-radius:50%; cursor:pointer; z-index:10;
+}
+.carousel-btn.prev { left:-25px; }
+.carousel-btn.next { right:-25px; }
+
+/* Responsive */
+@media(max-width:900px){
+    .planet-slide { grid-template-columns:1fr; text-align:center; }
+    .carousel-btn.prev { left:-15px; }
+    .carousel-btn.next { right:-15px; }
 }
