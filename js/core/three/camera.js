@@ -6,15 +6,17 @@ export function createCamera(renderer) {
         60,
         window.innerWidth / window.innerHeight,
         0.1,
-        10000 // esto crea una vista más global
+        10000
     );
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
-    // Vista inicial
-    camera.position.set(1200, 600, 1200);
+    // Con DISTANCE_SCALE = 1/1_000_000:
+    // - Órbita de la Tierra ≈ 149.6 unidades
+    // Por tanto, una vista inicial a ~300 es correcta.
+    camera.position.set(260, 130, 260);
 
-    // Empieza alejado mirando al sol
+    // Target inicial: el Sol
     controls.target.set(0, 0, 0);
     controls.update();
 
@@ -22,10 +24,12 @@ export function createCamera(renderer) {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
 
-    // ZOOM
+    // Zoom
     controls.zoomSpeed = 10;
-    controls.minDistance = 10;
-    controls.maxDistance = 20000;
+
+    // Rango de distancias coherente con la escena
+    controls.minDistance = 0.2;
+    controls.maxDistance = 3000;
 
     return { camera, controls };
 }
