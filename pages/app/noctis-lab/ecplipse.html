@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NOCTIS · Eclipses 2026</title>
+
+    <!-- CSS DE LA PÁGINA -->
+    <link rel="stylesheet" href="../../../css/pages/eclipses.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+</head>
+<body>
+
+<!-- NAV SUPERIOR -->
+<header class="top-bar">
+    <nav class="top-nav left">
+        <a href="../sistema-solar/index.html">Sistema Solar</a>
+        <a href="#" class="active">Eclipses</a>
+    </nav>
+
+    <div class="logo">NOCTIS</div>
+
+    <nav class="top-nav right">
+        <a href="../constelaciones/index.html">Constelaciones</a>
+        <a href="../eventos/index.html">Eventos astronómicos</a>
+    </nav>
+</header>
+
+<!-- NAV LATERAL (CARGADO POR JS) -->
+
+<main class="landing">
+
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Eclipse solar total</h2>
+        <p>
+            Un eclipse solar total ocurre cuando la Luna cubre completamente
+            el Sol, permitiendo observar la corona solar durante unos minutos.
+        </p>
+        <ul>
+            <li><strong>Fecha:</strong> 12 de agosto de 2026</li>
+            <li><strong>Tipo:</strong> Solar total</li>
+            <li><strong>Visibilidad:</strong> Europa y Atlántico Norte</li>
+        </ul>
+    </div>
+    <div class="planet-image eclipse">
+        <img src="../../../assets/noctislab/eclipses/image 11 (3).png" alt="Eclipse solar total">
+    </div>
+</section>
+
+<section class="planet-section reverse">
+    <div class="planet-image eclipse">
+        <img src="../../../assets/noctislab/eclipses/image 12 (1).png" alt="Eclipse solar parcial">
+    </div>
+    <div class="planet-info">
+        <h2>Eclipse solar parcial</h2>
+        <p>
+            En este eclipse la Luna cubre solo una parte del Sol,
+            siendo visible desde amplias regiones del planeta.
+        </p>
+        <ul>
+            <li><strong>Fecha:</strong> 17 de febrero de 2026</li>
+            <li><strong>Tipo:</strong> Solar parcial</li>
+            <li><strong>Visibilidad:</strong> Europa y África</li>
+        </ul>
+    </div>
+</section>
+
+<section class="planet-section">
+    <div class="planet-info">
+        <h2>Eclipse lunar total</h2>
+        <p>
+            Durante un eclipse lunar total, la Luna adquiere un tono rojizo
+            conocido como “Luna de sangre”.
+        </p>
+        <ul>
+            <li><strong>Fecha:</strong> 3 de marzo de 2026</li>
+            <li><strong>Tipo:</strong> Lunar total</li>
+            <li><strong>Visibilidad:</strong> América y Europa</li>
+        </ul>
+    </div>
+   <div class="planet-image eclipse">
+        <img src="../../../assets/noctislab/eclipses/image 13 (1).png" alt="Eclipse lunar total">
+    </div>
+</section>
+
+<section class="planet-section reverse">
+    <div class="planet-image eclipse">
+        <img src="../../../assets/noctislab/eclipses/image 14 (1).png" alt="Eclipse lunar parcial">
+    </div>
+    <div class="planet-info">
+        <h2>Eclipse lunar parcial</h2>
+        <p>
+            Solo una parte de la Luna entra en la sombra de la Tierra,
+            creando un contraste visible entre luz y oscuridad.
+        </p>
+        <ul>
+            <li><strong>Fecha:</strong> 28 de agosto de 2026</li>
+            <li><strong>Tipo:</strong> Lunar parcial</li>
+            <li><strong>Visibilidad:</strong> Asia y Pacífico</li>
+        </ul>
+    </div>
+</section>
+
+</main>
+
+<script type="module">
+    import { loadSideNav } from "../../../js/core/loadSideNav.js";
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+
+    await requireSession();
+    await loadSideNav();
+</script>
+
+<script src="../../../js/pages/noctislab.js"></script>
+</body>
+</html>
