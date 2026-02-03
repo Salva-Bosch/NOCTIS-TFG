@@ -373,31 +373,36 @@
 }
 
 
-/* Planet titles */
+/* Planet titles – SIN fondo, color sólido */
 .planet-title {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    color: white;
 }
 
+/* Colores por planeta */
 .planet--mercury .planet-title {
-    background: linear-gradient(90deg, var(--mercury-color), #ffffff);
+    color: var(--mercury-color);
 }
 
 .planet--venus .planet-title {
-    background: linear-gradient(90deg, var(--venus-color), #fff1c1);
+    color: var(--venus-color);
 }
 
 .planet--earth .planet-title {
-    background: linear-gradient(90deg, var(--earth-color), #8fd3ff);
+    color: var(--earth-color);
 }
 
 .planet--mars .planet-title {
-    background: linear-gradient(90deg, var(--mars-color), #ff9a7a);
+    color: var(--mars-color);
 }
+
+
 
 /* Planet images */
 .planet-image img {
-    width: 260px;
+    width: 560px;
     height: 260px;
     object-fit: contain;
 }
