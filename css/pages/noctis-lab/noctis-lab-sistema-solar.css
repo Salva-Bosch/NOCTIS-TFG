@@ -89,6 +89,7 @@ body {
 
 .solar-hero__image img {
     width: 900px;
+    height: auto;
     max-width: 100%;
     opacity: 0.95;
 }
@@ -132,7 +133,8 @@ body {
 }
 
 .solar-info__intro {
-    max-width: 520px;
+    max-width: 100%;
+    text-align: center;
     line-height: 1.8;
     margin-bottom: 2.5rem;
     color: rgba(255, 255, 255, 0.8);
@@ -194,6 +196,8 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .rocky-planets__track {
@@ -202,6 +206,8 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding-bottom: 1rem;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .planet-card {
@@ -471,6 +477,9 @@ body {
 .planet-slide.active .solar-info__text {
     position: relative;
     z-index: 2;
+    text-align: center;
+    
+
 }
 
 .planet-title {
@@ -558,6 +567,8 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .gas-planets__slider {
@@ -566,6 +577,8 @@ body {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding-bottom: 1rem;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 /* Colores títulos */
