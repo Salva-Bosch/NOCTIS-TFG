@@ -1,3 +1,20 @@
+// ScrollReveal para animaciones de entrada
+const revealElements = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('reveal--visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.15 }
+);
+
+revealElements.forEach(el => observer.observe(el));
+
 // Carrusel de planetas rocosos tipo slider
 const slides = document.querySelectorAll('.planet-slide');
 const prevBtn = document.querySelector('.carousel-btn.prev');

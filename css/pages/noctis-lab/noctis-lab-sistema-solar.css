@@ -1,3 +1,10 @@
+:root {
+    --mercury-color: #b5b5b5;
+    --venus-color: #e6b566;
+    --earth-color: #4aa3ff;
+    --mars-color: #ff6b4a;
+}
+
 /* =========================
    FONDO GLOBAL DE PÁGINA
 ========================= */
@@ -166,6 +173,9 @@
     background: linear-gradient(90deg, #ffb347, #ffcc33);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .rocky-planets__carousel {
@@ -294,27 +304,157 @@
 }
 
 /* Slider wrapper */
-.rocky-planets__slider { position:relative; overflow:hidden; }
+.rocky-planets__slider {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 /* Ocultar todas las cards excepto la visible */
-.planet-slide { display:none; }
-.planet-slide.active { display:grid; grid-template-columns:1.1fr 0.9fr; gap:4rem; align-items:center; 
-    background:rgba(20,20,30,0.55); backdrop-filter:blur(14px); border-radius:22px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.05);
-    padding:3rem 2rem;
+.planet-slide {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.planet-slide.active {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+    background: rgba(20, 20, 30, 0.55);
+    backdrop-filter: blur(14px);
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 3rem 2rem;
 }
 
 /* Botones */
-.carousel-btn { position:absolute; top:50%; transform:translateY(-50%);
-    background:rgba(0,0,0,0.5); border:none; color:white; font-size:2rem; width:50px; height:50px;
-    border-radius:50%; cursor:pointer; z-index:10;
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
 }
-.carousel-btn.prev { left:-25px; }
-.carousel-btn.next { right:-25px; }
+
+.carousel-btn.prev {
+    left: -25px;
+}
+
+.carousel-btn.next {
+    right: -25px;
+}
 
 /* Responsive */
-@media(max-width:900px){
-    .planet-slide { grid-template-columns:1fr; text-align:center; }
-    .carousel-btn.prev { left:-15px; }
-    .carousel-btn.next { right:-15px; }
+@media(max-width:900px) {
+    .planet-slide {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .carousel-btn.prev {
+        left: -15px;
+    }
+
+    .carousel-btn.next {
+        right: -15px;
+    }
+}
+
+
+/* Planet titles */
+.planet-title {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.planet--mercury .planet-title {
+    background: linear-gradient(90deg, var(--mercury-color), #ffffff);
+}
+
+.planet--venus .planet-title {
+    background: linear-gradient(90deg, var(--venus-color), #fff1c1);
+}
+
+.planet--earth .planet-title {
+    background: linear-gradient(90deg, var(--earth-color), #8fd3ff);
+}
+
+.planet--mars .planet-title {
+    background: linear-gradient(90deg, var(--mars-color), #ff9a7a);
+}
+
+/* Planet images */
+.planet-image img {
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+}
+
+.planet--mercury img {
+    filter: drop-shadow(0 0 35px rgba(180, 180, 180, 0.4));
+}
+
+.planet--venus img {
+    filter: drop-shadow(0 0 35px rgba(230, 181, 102, 0.45));
+}
+
+.planet--earth img {
+    filter: drop-shadow(0 0 40px rgba(74, 163, 255, 0.45));
+}
+
+.planet--mars img {
+    filter: drop-shadow(0 0 40px rgba(255, 107, 74, 0.45));
+}
+
+/* Data spacing */
+.solar-info__data div {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.solar-info__data span {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+/* Buttons closer */
+.carousel-btn.prev {
+    left: -10px;
+}
+
+.carousel-btn.next {
+    right: -10px;
+}
+
+@media(max-width:900px) {
+    .carousel-btn.prev {
+        left: -5px;
+    }
+
+    .carousel-btn.next {
+        right: -5px;
+    }
+}
+
+/* Asegurar visibilidad de títulos en el carrusel */
+.planet-slide.active .solar-info__text {
+    position: relative;
+    z-index: 2;
+}
+
+.planet-title {
+    position: relative;
+    z-index: 2;
 }

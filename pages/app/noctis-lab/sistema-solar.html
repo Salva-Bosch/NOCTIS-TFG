@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Noctis · NoctisLab Sistema Solar</title>
@@ -15,9 +16,9 @@
     <!-- Página específica -->
     <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-sistema-solar.css">
 </head>
+
 <body>
 
-    <!-- NAVBAR -->
     <header class="navbar">
         <nav class="nav-container">
             <div class="nav-items">
@@ -26,7 +27,7 @@
                     <a href="./eclipses.html" class="nav-link">Eclipses</a>
                 </div>
                 <div class="nav-logo">
-                    <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
+                    <img src="../../../assets/branding/logo/noctis-logo.png">
                     <span>NOCTIS</span>
                 </div>
                 <div class="nav-right">
@@ -37,7 +38,6 @@
         </nav>
     </header>
 
-    <!-- CONTENIDO -->
     <main class="main-content">
 
         <!-- HERO -->
@@ -49,7 +49,7 @@
                     Explora los planetas, sus órbitas y los cuerpos que forman nuestro sistema.
                 </p>
                 <div class="solar-hero__image">
-                    <img src="../../../assets/illustrations/space/sistema-solar.PNG" alt="Ilustración del sistema solar">
+                    <img src="../../../assets/illustrations/space/sistema-solar.PNG">
                 </div>
             </div>
         </section>
@@ -62,8 +62,6 @@
                     <h2 class="solar-info__title">El Sol</h2>
                     <p class="solar-info__intro">
                         El Sol es una estrella situada en el centro del sistema solar.
-                        Su gravedad mantiene a los planetas en órbita y su energía
-                        hace posible la vida en la Tierra.
                     </p>
                     <div class="solar-info__data">
                         <div><span>Tipo</span><strong>Enana amarilla</strong></div>
@@ -71,12 +69,11 @@
                         <div><span>Diámetro</span><strong>1.392.700 km</strong></div>
                     </div>
                     <p class="solar-info__fact">
-                        El Sol concentra aproximadamente el <strong>99,8 %</strong> de toda
-                        la masa del sistema solar.
+                        El Sol concentra aproximadamente el <strong>99,8 %</strong> de la masa del sistema solar.
                     </p>
                 </div>
                 <div class="solar-info__image">
-                    <img src="../../../assets/illustrations/planets/sol.png" alt="Ilustración del Sol">
+                    <img src="../../../assets/illustrations/planets/sol.png">
                 </div>
             </div>
         </section>
@@ -88,87 +85,101 @@
             <div class="rocky-planets__carousel">
                 <button class="carousel-btn prev">&#10094;</button>
 
-                <!-- Slider wrapper -->
                 <div class="rocky-planets__slider">
-                    <!-- Card Mercurio -->
-                    <div class="solar-info__container planet-slide">
+
+                    <!-- MERCURIO -->
+                    <div class="solar-info__container planet-slide planet--mercury">
                         <div class="solar-info__text">
                             <span class="solar-info__tag">Planeta rocoso</span>
-                            <h2 class="solar-info__title">Mercurio</h2>
+                            <h2 class="solar-info__title planet-title">Mercurio</h2>
                             <p class="solar-info__intro">
-                                Mercurio es el planeta más cercano al Sol. Su superficie es rocosa y
-                                carece de atmósfera significativa, lo que produce temperaturas extremas.
+                                El planeta más cercano al Sol y el más pequeño del sistema solar.
                             </p>
                             <div class="solar-info__data">
                                 <div><span>Diámetro</span><strong>4.879 km</strong></div>
-                                <div><span>Distancia al Sol</span><strong>57.9 millones km</strong></div>
-                                <div><span>Días</span><strong>88 días</strong></div>
+                                <div><span>Distancia</span><strong>57.9 M km</strong></div>
+                                <div><span>Órbita</span><strong>88 días</strong></div>
                             </div>
+                            <p class="solar-info__fact">
+                                Mercurio experimenta cambios extremos de temperatura: puede superar los
+                                <strong>430 °C</strong> de día y caer por debajo de <strong>-180 °C</strong> por la
+                                noche.
+                            </p>
                         </div>
-                        <div class="solar-info__image">
-                            <img src="../../../assets/illustrations/planets/rocky/mercurio.png" alt="Mercurio">
+                        <div class="solar-info__image planet-image">
+                            <img src="../../../assets/illustrations/planets/rocky/mercurio.png">
                         </div>
                     </div>
 
-                    <!-- Card Venus -->
-                    <div class="solar-info__container planet-slide">
+                    <!-- VENUS -->
+                    <div class="solar-info__container planet-slide planet--venus">
                         <div class="solar-info__text">
                             <span class="solar-info__tag">Planeta rocoso</span>
-                            <h2 class="solar-info__title">Venus</h2>
+                            <h2 class="solar-info__title planet-title">Venus</h2>
                             <p class="solar-info__intro">
-                                Venus es el segundo planeta desde el Sol y es conocido por su densa
-                                atmósfera de dióxido de carbono y temperaturas extremas.
+                                Un planeta envuelto en una atmósfera extremadamente densa y caliente.
                             </p>
                             <div class="solar-info__data">
                                 <div><span>Diámetro</span><strong>12.104 km</strong></div>
-                                <div><span>Distancia al Sol</span><strong>108.2 millones km</strong></div>
-                                <div><span>Días</span><strong>225 días</strong></div>
+                                <div><span>Distancia</span><strong>108.2 M km</strong></div>
+                                <div><span>Órbita</span><strong>225 días</strong></div>
                             </div>
+                            <p class="solar-info__fact">
+                                Venus es el planeta más caliente del sistema solar debido a un intenso
+                                <strong>efecto invernadero</strong> provocado por su atmósfera.
+                            </p>
                         </div>
-                        <div class="solar-info__image">
-                            <img src="../../../assets/illustrations/planets/rocky/venus.png" alt="Venus">
+                        <div class="solar-info__image planet-image">
+                            <img src="../../../assets/illustrations/planets/rocky/venus.png">
                         </div>
                     </div>
 
-                    <!-- Card Tierra -->
-                    <div class="solar-info__container planet-slide">
+                    <!-- TIERRA -->
+                    <div class="solar-info__container planet-slide planet--earth">
                         <div class="solar-info__text">
                             <span class="solar-info__tag">Planeta rocoso</span>
-                            <h2 class="solar-info__title">Tierra</h2>
+                            <h2 class="solar-info__title planet-title">Tierra</h2>
                             <p class="solar-info__intro">
-                                La Tierra es nuestro planeta y el único conocido que alberga vida.
-                                Su atmósfera y océanos mantienen un clima estable.
+                                El único planeta conocido que alberga vida.
                             </p>
                             <div class="solar-info__data">
                                 <div><span>Diámetro</span><strong>12.742 km</strong></div>
-                                <div><span>Distancia al Sol</span><strong>149.6 millones km</strong></div>
-                                <div><span>Días</span><strong>365 días</strong></div>
+                                <div><span>Distancia</span><strong>149.6 M km</strong></div>
+                                <div><span>Órbita</span><strong>365 días</strong></div>
                             </div>
+                            <p class="solar-info__fact">
+                                La Tierra posee agua en estado líquido, una atmósfera protectora
+                                y un campo magnético que hacen posible la vida.
+                            </p>
                         </div>
-                        <div class="solar-info__image">
-                            <img src="../../../assets/illustrations/planets/rocky/tierra.png" alt="Tierra">
+                        <div class="solar-info__image planet-image">
+                            <img src="../../../assets/illustrations/planets/rocky/tierra.png">
                         </div>
                     </div>
 
-                    <!-- Card Marte -->
-                    <div class="solar-info__container planet-slide">
+                    <!-- MARTE -->
+                    <div class="solar-info__container planet-slide planet--mars">
                         <div class="solar-info__text">
                             <span class="solar-info__tag">Planeta rocoso</span>
-                            <h2 class="solar-info__title">Marte</h2>
+                            <h2 class="solar-info__title planet-title">Marte</h2>
                             <p class="solar-info__intro">
-                                Marte es conocido como el planeta rojo. Tiene un terreno rocoso y
-                                volcanes gigantes, así como valles profundos.
+                                Conocido como el planeta rojo por el óxido de hierro en su superficie.
                             </p>
                             <div class="solar-info__data">
                                 <div><span>Diámetro</span><strong>6.779 km</strong></div>
-                                <div><span>Distancia al Sol</span><strong>227.9 millones km</strong></div>
-                                <div><span>Días</span><strong>687 días</strong></div>
+                                <div><span>Distancia</span><strong>227.9 M km</strong></div>
+                                <div><span>Órbita</span><strong>687 días</strong></div>
                             </div>
+                            <p class="solar-info__fact">
+                                Marte contiene evidencias de antiguos ríos y podría haber albergado
+                                <strong>agua líquida</strong> en el pasado.
+                            </p>
                         </div>
-                        <div class="solar-info__image">
-                            <img src="../../../assets/illustrations/planets/rocky/marte.png" alt="Marte">
+                        <div class="solar-info__image planet-image">
+                            <img src="../../../assets/illustrations/planets/rocky/marte.png">
                         </div>
                     </div>
+
 
                 </div>
 
@@ -178,16 +189,14 @@
 
     </main>
 
-    <!-- SCRIPTS -->
     <script type="module">
         import { loadSideNav } from "../../../js/core/loadSideNav.js";
         import { requireSession } from "../../../js/guards/sessionGuard.js";
-        import "../../../js/core/scrollReveal.js";
         import "../../../js/pages/noctis-lab-sistema-solar.js";
-
         await requireSession();
         await loadSideNav();
     </script>
 
 </body>
+
 </html>
