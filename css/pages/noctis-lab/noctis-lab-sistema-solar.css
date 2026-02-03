@@ -5,6 +5,18 @@
     --mars-color: #ff6b4a;
 }
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+
+
 /* =========================
    FONDO GLOBAL DE PÁGINA
 ========================= */
@@ -170,7 +182,7 @@
     font-size: 2.4rem;
     margin-bottom: 2rem;
     color: white;
-    background: linear-gradient(90deg, #ffb347, #ffcc33);
+    background: linear-gradient(90deg, #b19273, #d9b38c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     max-width: 1200px;
@@ -241,11 +253,13 @@
 }
 
 .carousel-btn.prev {
-    left: -25px;
+    display: none;
 }
 
 .carousel-btn.next {
-    right: -25px;
+    right: 20px;
+    position: absolute;
+    z-index: 20;
 }
 
 .rocky-planets__track::-webkit-scrollbar {
@@ -349,11 +363,11 @@
 }
 
 .carousel-btn.prev {
-    left: -25px;
+    left: -15px;
 }
 
 .carousel-btn.next {
-    right: -25px;
+    right: -15px;
 }
 
 /* Responsive */
@@ -364,11 +378,11 @@
     }
 
     .carousel-btn.prev {
-        left: -15px;
+        display: none;
     }
 
     .carousel-btn.next {
-        right: -15px;
+        right: 20px;
     }
 }
 
@@ -402,7 +416,7 @@
 
 /* Planet images */
 .planet-image img {
-    width: 560px;
+    width: 360px;
     height: 260px;
     object-fit: contain;
 }
@@ -436,20 +450,20 @@
 
 /* Buttons closer */
 .carousel-btn.prev {
-    left: -10px;
+    display: none;
 }
 
 .carousel-btn.next {
-    right: -10px;
+    right: 20px;
 }
 
 @media(max-width:900px) {
     .carousel-btn.prev {
-        left: -5px;
+        display: none;
     }
 
     .carousel-btn.next {
-        right: -5px;
+        right: 20px;
     }
 }
 
@@ -462,4 +476,128 @@
 .planet-title {
     position: relative;
     z-index: 2;
+}
+
+/* =========================
+   ASTEROID BELT SECTION
+========================= */
+
+.asteroid-belt {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+}
+
+.asteroid-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenedor del texto */
+.asteroid-text {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 800px;
+    padding: 20px 30px;
+
+    /* 🔹 Difuminado SOLO AQUÍ */
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 999px;
+    text-align: center;
+}
+
+/* Texto */
+.asteroid-text h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: #be9bff;
+}
+
+.asteroid-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+}
+
+/* =========================
+   PLANETAS GASEOSOS
+========================= */
+
+:root {
+    --jupiter-color: #d9b38c;
+    --saturn-color: #f1d18a;
+    --uranus-color: #7ad0d6;
+    --neptune-color: #4b6fff;
+}
+
+.gas-planets {
+    padding: 6rem 0;
+    padding-left: clamp(50px, 8vw, 120px);
+    padding-right: clamp(50px, 4vw, 120px);
+}
+
+.gas-planets__title {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(90deg, #7ad0d6, #4b6fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gas-planets__carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.gas-planets__slider {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+}
+
+/* Colores títulos */
+.planet--jupiter .planet-title {
+    color: var(--jupiter-color);
+}
+
+.planet--saturn .planet-title {
+    color: var(--saturn-color);
+}
+
+.planet--uranus .planet-title {
+    color: var(--uranus-color);
+}
+
+.planet--neptune .planet-title {
+    color: var(--neptune-color);
+}
+
+/* Sombras imágenes */
+.planet--jupiter img {
+    filter: drop-shadow(0 0 40px rgba(217, 179, 140, 0.45));
+}
+
+.planet--saturn img {
+    filter: drop-shadow(0 0 40px rgba(241, 209, 138, 0.45));
+}
+
+.planet--uranus img {
+    filter: drop-shadow(0 0 40px rgba(122, 208, 214, 0.45));
+}
+
+.planet--neptune img {
+    filter: drop-shadow(0 0 40px rgba(75, 111, 255, 0.45));
 }

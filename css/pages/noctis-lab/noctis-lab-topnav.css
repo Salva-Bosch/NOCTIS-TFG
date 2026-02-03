@@ -76,4 +76,5 @@
     font-size: 12px;
     letter-spacing: 2px;
     opacity: 0.85;
+    color: var(--white);
 }

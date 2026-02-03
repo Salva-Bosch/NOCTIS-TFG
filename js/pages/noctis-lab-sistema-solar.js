@@ -1,10 +1,10 @@
-// ScrollReveal para animaciones de entrada
+// ScrollReveal
 const revealElements = document.querySelectorAll('.reveal');
 
 const observer = new IntersectionObserver(
-    (entries) => {
+    entries => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){
+            if (entry.isIntersecting) {
                 entry.target.classList.add('reveal--visible');
                 observer.unobserve(entry.target);
             }
@@ -15,30 +15,33 @@ const observer = new IntersectionObserver(
 
 revealElements.forEach(el => observer.observe(el));
 
-// Carrusel de planetas rocosos tipo slider
-const slides = document.querySelectorAll('.planet-slide');
-const prevBtn = document.querySelector('.carousel-btn.prev');
-const nextBtn = document.querySelector('.carousel-btn.next');
+// =========================
+// Carruseles reutilizables
+// =========================
+document.querySelectorAll('.rocky-planets__carousel, .gas-planets__carousel')
+    .forEach(carousel => {
 
-let currentSlide = 0;
+        const slides = carousel.querySelectorAll('.planet-slide');
+        const prevBtn = carousel.querySelector('.carousel-btn.prev');
+        const nextBtn = carousel.querySelector('.carousel-btn.next');
 
-// Función mostrar slide
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        showSlide(currentSlide);
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
     });
-}
-
-// Inicializamos con el primer slide
-showSlide(currentSlide);
-
-// Botones
-nextBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-});
-
-prevBtn.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-});
