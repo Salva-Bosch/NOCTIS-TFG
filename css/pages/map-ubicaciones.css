@@ -1,74 +1,205 @@
 /* =========================
-   MAPA DE UBICACIONES – NOCTIS
+   MAPA FULLSCREEN – NOCTIS
 ========================= */
 
-.map-page {
-    min-height: 100vh;
-    padding: 4rem 5vw;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.85),
-            rgba(0, 0, 0, 0.95)
-        ),
-        url("../../assets/backgrounds/app/home_bg.png");
-    background-size: cover;
-    background-position: center;
+.map-fullscreen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.map-header {
-    max-width: 900px;
-    margin-bottom: 2.5rem;
+/* =========================
+   SIDE NAV
+========================= */
+
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 3000;
+}
+/* =========================
+   FIX DEFINITIVO SIDENAV
+========================= */
+
+/* Aislamos el side-nav del mapa */
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 72px; /* mismo ancho que en el resto de Noctis */
+    padding: 1.2rem 0;
+
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.map-header h1 {
-    font-size: 2.6rem;
+/* =========================
+   SIDENAV – FIX DEFINITIVO
+========================= */
+
+body > .side-nav {
+    position: fixed !important;
+    top: 50% !important;
+    left: 0 !important;
+    transform: translateY(-50%) !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 72px;
+    padding: 1.2rem 0;
+
+    z-index: 2000;
+}
+
+
+.leaflet-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+
+
+/* Iconos */
+.side-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0.8rem 0;
+}
+
+.side-nav img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+
+
+
+
+/* =========================
+   MAPA
+========================= */
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Suavizado visual del mapa */
+.leaflet-container {
+    filter: saturate(0.9) brightness(0.95);
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.map-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.4rem 3rem;
+    z-index: 2000;
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.map-topbar h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
     background: linear-gradient(90deg, #7aa2ff, #b07cff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.map-header p {
-    margin-top: 0.8rem;
-    color: #cfcfcf;
-}
+/* =========================
+   BOTÓN INFO
+========================= */
 
-.map-container {
-    height: 70vh;
-    border-radius: 18px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.5);
+.map-info-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(6px);
-}
-
-/* MAPA */
-#map {
-    width: 100%;
-    height: 100%;
-}
-
-/* POPUP */
-.leaflet-popup-content-wrapper {
-    background: rgba(15, 15, 20, 0.95);
-    color: #e0e0e0;
-    border-radius: 12px;
-}
-
-.leaflet-popup-tip {
-    background: rgba(15, 15, 20, 0.95);
-}
-
-.popup-title {
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.popup-btn {
-    margin-top: 0.6rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    border: none;
-    background: #7aa2ff;
-    color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-info-btn img {
+    width: 26px;
+    height: 26px;
+    opacity: 0.85;
+}
+
+/* =========================
+   MODAL INFO
+========================= */
+
+.map-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 4000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-modal {
+    width: min(90%, 680px);
+    padding: 2.5rem;
+    border-radius: 18px;
+
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.map-modal h2 {
+    margin-bottom: 1rem;
+}
+
+.map-modal p {
+    opacity: 0.85;
+    line-height: 1.6;
+}
+
+.map-modal ul {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
 }

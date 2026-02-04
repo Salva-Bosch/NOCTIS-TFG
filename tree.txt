@@ -6,72 +6,30 @@ NOCTIS-TFG/
 │
 ├── assets/
 │   ├── README.md
+│   ├── avatars/
 │   ├── backgrounds/
 │   │   ├── app/
-│   │   │   ├── home_bg.png
-│   │   │   └── home_bg_2.png
+│   │   │   └── sistema-solar-bg.avif
 │   │   ├── auth/
-│   │   │   ├── auth-bg.jpg
-│   │   │   └── register-side.png
 │   │   └── landing/
-│   │       ├── landing-bg-1.png
-│   │       ├── landing-bg-2.jpg
-│   │       └── landing-bg.png
 │   ├── branding/
 │   │   └── logo/
-│   │       ├── noctis-logo.png
-│   │       └── noctis_logo_name.svg
 │   ├── data-sources/
-│   │   ├── google-maps-logo.webp
-│   │   └── nasa_logo.png
+│   ├── Fondos/
 │   ├── icons/
 │   │   ├── auth/
-│   │   │   ├── lock-active.svg
-│   │   │   ├── lock.svg
-│   │   │   ├── user-active.svg
-│   │   │   └── user.svg
 │   │   ├── landing/
-│   │   │   ├── brujula.png
-│   │   │   ├── estrellas.png
-│   │   │   ├── luna.png
-│   │   │   └── telescopio.png
 │   │   ├── nav/
-│   │   │   ├── favourites.svg
-│   │   │   ├── home.svg
-│   │   │   ├── information.svg
-│   │   │   ├── location.svg
-│   │   │   ├── planet.svg
-│   │   │   ├── settings.svg
-│   │   │   └── star.svg
 │   │   ├── ui/
-│   │   │   ├── arrow.svg
-│   │   │   └── share.svg
 │   │   └── user/
-│   │       ├── account-fill.svg
-│   │       └── account.svg
 │   ├── illustrations/
 │   │   ├── landing/
-│   │   │   └── gemini-constellation.png
 │   │   ├── planets/
-│   │   │   ├── pluton.png
-│   │   │   ├── sol.png
 │   │   │   ├── gas/
-│   │   │   │   ├── jupiter.png
-│   │   │   │   ├── neptuno.png
-│   │   │   │   ├── saturno.png
-│   │   │   │   └── urano.png
 │   │   │   └── rocky/
-│   │   │       ├── marte.png
-│   │   │       ├── mercurio.png
-│   │   │       ├── tierra.png
-│   │   │       └── venus.png
 │   │   └── space/
-│   │       └── asteroid-belt.png
 │   └── social/
 │       └── networks/
-│           ├── github.svg
-│           ├── google.svg
-│           └── mail.svg
 │
 ├── css/
 │   ├── base/
@@ -84,12 +42,13 @@ NOCTIS-TFG/
 │   ├── landing/
 │   │   └── landing.css
 │   └── pages/
-│       ├── favorites.css
+│       ├── favoritos.css
 │       ├── home.css
 │       ├── legal.css
-│       ├── map.css
+│       ├── map-ubicaciones.css
+│       ├── perfil.css
 │       ├── settings.css
-│       ├── solar-system.css
+│       ├── sistema_solar.css
 │       ├── user.css
 │       └── noctis-lab/
 │           ├── noctis-lab-constelaciones.css
@@ -102,6 +61,7 @@ NOCTIS-TFG/
 ├── js/
 │   ├── core/
 │   │   ├── auth_logic.js
+│   │   ├── avatars.js
 │   │   ├── firebase.js
 │   │   ├── loadSideNav.js
 │   │   └── animations/
@@ -110,20 +70,22 @@ NOCTIS-TFG/
 │   │   └── sessionGuard.js
 │   └── pages/
 │       ├── auth.js
-│       ├── noctis-lab-carousel.js
-│       └── noctis-lab-sistema-solar.js
+│       ├── map-ubicaciones.js
+│       ├── noctis-lab-sistema-solar.js
+│       └── perfil.js
 │
 └── pages/
     ├── app/
     │   ├── components/
     │   │   └── side-nav.html
-    │   ├── favorites/
+    │   ├── favoritos/
     │   │   └── favoritos.html
     │   ├── home/
     │   │   └── home.html
     │   ├── map/
     │   │   ├── mapa_estrellas.html
-    │   │   └── mapa_ubicaciones.html
+    │   │   └── mapa-ubicaciónes/
+    │   │       └── mapa_ubicaciones.html
     │   ├── noctis-lab/
     │   │   ├── constelaciones.html
     │   │   ├── eclipses.html
@@ -131,30 +93,10 @@ NOCTIS-TFG/
     │   │   └── sistema-solar.html
     │   ├── settings/
     │   │   └── ajustes.html
-    │   ├── solar-system/
+    │   ├── sistema_solar/
     │   │   └── sistema_solar.html
     │   └── user/
     │       └── perfil.html
     └── public/
         ├── auth.html
         └── landing.html
-    - components/
-      - side-nav.html
-    - favorites/
-      - favoritos.html
-    - home/
-      - home.html
-    - map/
-      - mapa_estrellas.html
-      - mapa_ubicaciones.html
-    - noctis-lab/
-      - constelaciones.html
-      - eclipses.html
-      - eventos.html
-      - info.html
-    - settings/
-      - ajustes.html
-    - solar-system/
-      - sistema_solar.html
-    - user/
-      - perfil.html

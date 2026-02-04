@@ -10,45 +10,51 @@
     <link rel="stylesheet" href="../../../../css/components/navbar.css">
     <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
 
-    <!-- Leaflet CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
+
 <body>
 
-    <!-- El SideNav se carga por JS -->
+    <!-- SideNav por JS -->
 
-    <main class="map-page">
+    <!-- TOP BAR -->
+    <header class="map-topbar">
+        <h1>Mejores lugares para observar las estrellas</h1>
+    </header>
 
-        <header class="map-header">
-            <h1>Mejores lugares para observar las estrellas</h1>
-            <p>
-                Ubicaciones seleccionadas por su baja contaminación lumínica
-                y condiciones óptimas de observación.
-            </p>
-        </header>
-
-        <section class="map-container">
-            <div id="map"></div>
-        </section>
-
+    <!-- MAPA -->
+    <main class="map-fullscreen">
+        <div id="map"></div>
     </main>
 
-    <!-- Leaflet JS -->
+    <!-- BOTÓN INFO -->
+    <button class="map-info-btn" id="openMapInfo">
+        <img src="/assets/icons/ui/info.svg" alt="Info">
+    </button>
+
+    <!-- MODAL -->
+    <div class="map-modal-overlay" id="mapModal">
+        <div class="map-modal">
+            <h2>Mapa de observación</h2>
+            <p>
+                Este mapa recoge algunos de los mejores lugares del mundo para la observación astronómica,
+                seleccionados por su baja contaminación lumínica y condiciones atmosféricas.
+            </p>
+
+            <ul>
+                <li>⭐ Lugares ideales para observación visual</li>
+                <li>🔭 Zonas con observatorios astronómicos</li>
+                <li>🌌 Cielos protegidos</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Scripts Noctis -->
+    <!-- JS -->
     <script type="module" src="../../../../js/pages/map-ubicaciones.js"></script>
-    
-    <script type="module">
-        import { loadSideNav } from "../../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../../js/guards/sessionGuard.js";
-
-        await requireSession();
-        await loadSideNav();
-    </script>
 
 </body>
 </html>

@@ -12,9 +12,14 @@ await loadSideNav();
 const map = L.map("map").setView([20, 0], 2);
 
 // Capa oscura (OpenStreetMap)
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "© OpenStreetMap contributors",
-}).addTo(map);
+L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+        attribution: "© Esri, Maxar, Earthstar Geographics",
+        maxZoom: 19,
+    }
+).addTo(map);
+
 
 // Icono personalizado
 const starIcon = L.icon({
@@ -81,5 +86,22 @@ document.addEventListener("click", (e) => {
             localStorage.setItem("noctisFavorites", JSON.stringify(favorites));
             alert("Añadido a favoritos");
         }
+    }
+});
+
+/* =========================
+   MODAL INFO
+========================= */
+
+const openBtn = document.getElementById("openMapInfo");
+const modal = document.getElementById("mapModal");
+
+openBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+});
+
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
     }
 });
