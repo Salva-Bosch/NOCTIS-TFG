@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Noctis - Mapa Ubicaciones</title>
+    <title>Noctis · Mapa de Ubicaciones</title>
 
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <!-- CSS base -->
+    <link rel="stylesheet" href="../../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 </head>
-
 <body>
-    <h1>Mapa de Ubicaciones</h1>
 
-    <script type="module">
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        await requireSession();
-    </script>
+    <!-- El SideNav se carga por JS -->
+
+    <main class="map-page">
+
+        <header class="map-header">
+            <h1>Mejores lugares para observar las estrellas</h1>
+            <p>
+                Ubicaciones seleccionadas por su baja contaminación lumínica
+                y condiciones óptimas de observación.
+            </p>
+        </header>
+
+        <section class="map-container">
+            <div id="map"></div>
+        </section>
+
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Scripts Noctis -->
+    <script type="module" src="../../../../js/pages/map-ubicaciones.js"></script>
     
     <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { loadSideNav } from "../../../../js/core/loadSideNav.js";
+        import { requireSession } from "../../../../js/guards/sessionGuard.js";
 
         await requireSession();
         await loadSideNav();
     </script>
 
 </body>
-
 </html>

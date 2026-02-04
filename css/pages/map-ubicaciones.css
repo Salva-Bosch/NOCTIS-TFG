@@ -1,0 +1,74 @@
+/* =========================
+   MAPA DE UBICACIONES – NOCTIS
+========================= */
+
+.map-page {
+    min-height: 100vh;
+    padding: 4rem 5vw;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.95)
+        ),
+        url("../../assets/backgrounds/app/home_bg.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.map-header {
+    max-width: 900px;
+    margin-bottom: 2.5rem;
+}
+
+.map-header h1 {
+    font-size: 2.6rem;
+    background: linear-gradient(90deg, #7aa2ff, #b07cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.map-header p {
+    margin-top: 0.8rem;
+    color: #cfcfcf;
+}
+
+.map-container {
+    height: 70vh;
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+}
+
+/* MAPA */
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* POPUP */
+.leaflet-popup-content-wrapper {
+    background: rgba(15, 15, 20, 0.95);
+    color: #e0e0e0;
+    border-radius: 12px;
+}
+
+.leaflet-popup-tip {
+    background: rgba(15, 15, 20, 0.95);
+}
+
+.popup-title {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.popup-btn {
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: #7aa2ff;
+    color: #000;
+    cursor: pointer;
+}
