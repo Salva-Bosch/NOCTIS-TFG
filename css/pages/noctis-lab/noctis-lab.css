@@ -1,0 +1,16 @@
+/* =========================
+   NoctisLab · Estilo general
+========================= */
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-main);
+    color: var(--white);
+    background: var(--bg-dark);
+}
+
+.noctis-lab-content {
+    margin-left: 120px;     /* espacio para side nav */
+    padding: 48px;
+    padding-top: 140px;     /* espacio para navbar superior */
+}

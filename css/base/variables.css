@@ -1,5 +1,5 @@
-/* INTER FONT IMPORT */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* LEXEND GIGA FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
 
 :root {
   --bg-dark: #0a0b0d;
@@ -20,5 +20,5 @@
   --radius-pill: 999px;
   --radius-md: 18px;
 
-  --font-main: 'Inter', sans-serif;
+  --font-main: 'Lexend', sans-serif;
 }

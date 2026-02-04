@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Noctis · NoctisLab Constelaciones</title>
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../css/base/variables.css">
+
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-topnav.css">
+
+    <!-- Página específica -->
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab.css">
+    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-constelaciones.css">
+</head>
+<body>
+
+    <!-- NAVBAR SUPERIOR NOCTIS LAB -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-items">
+
+                <div class="nav-left">
+                    <a href="./sistema-solar.html" class="nav-link">Sistema Solar</a>
+                    <a href="./eclipses.html" class="nav-link">Eclipses</a>
+                </div>
+
+                <div class="nav-logo">
+                    <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
+                    <span>NOCTIS</span>
+                </div>
+
+                <div class="nav-right">
+                    <a href="#" class="nav-link">Constelaciones</a>
+                    <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="noctis-lab-content constelaciones">
+
+        <!-- HERO -->
+        <section class="constelaciones-hero">
+            <h1>Constelaciones</h1>
+            <p class="constelaciones-intro">
+                Explora las constelaciones visibles en el cielo nocturno y sus historias mitológicas.
+            </p>
+        </section>
+
+    </main>
+    
+    <!-- Scripts -->
+    <script type="module">
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
+
+        await requireSession();
+        await loadSideNav();
+    </script>
+
+</body>
+</html>
