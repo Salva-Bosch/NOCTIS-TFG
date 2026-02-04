@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    
 </head>
 
 <body>
@@ -16,6 +18,15 @@
         import { requireSession } from "../../../js/guards/sessionGuard.js";
         await requireSession();
     </script>
+    
+    <script type="module">
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
+        import { requireSession } from "../../../js/guards/sessionGuard.js";
+
+        await requireSession();
+        await loadSideNav();
+    </script>
+
 </body>
 
 </html>
