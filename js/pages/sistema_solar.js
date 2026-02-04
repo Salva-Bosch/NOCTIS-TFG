@@ -10,6 +10,8 @@ import { createCamera } from "../core/three/camera.js";
 import { ORBITS } from "../core/data/orbits.js";
 import { DISTANCE_SCALE, RADIUS_SCALE } from "../core/data/scales.js";
 
+const astros = [];
+
 // Fecha inicial
 const EPOCH_DATE = new Date("2026-01-01T00:00:00Z");
 const DAY_MS = 1000 * 60 * 60 * 24;
@@ -193,6 +195,18 @@ const earth = new THREE.Mesh(
 );
 earthGroup.add(earth);
 
+// Añadir la Tierra a la lista de astros
+astros.push({
+    id: "earth",
+    mesh: earth,
+    group: earthGroup,
+    orbitRadius: ORBITS.earth.distance_km * DISTANCE_SCALE,
+    period_days: ORBITS.earth.period_days,
+    initial_phase: ORBITS.earth.initial_phase,
+    parentGroup: scene
+});
+
+// Label Tierra
 const earthLabel = createLabel("Tierra");
 earthLabel.scale.set(20, 5, 10);
 earthLabel.position.y = earthRadius * 10;
@@ -222,6 +236,17 @@ const mars = new THREE.Mesh(
 );
 
 marsGroup.add(mars);
+
+// Añadir Marte a la lista de astros
+astros.push({
+    id: "mars",
+    mesh: mars,
+    group: marsGroup,
+    orbitRadius: ORBITS.mars.distance_km * DISTANCE_SCALE,
+    period_days: ORBITS.mars.period_days,
+    initial_phase: ORBITS.mars.initial_phase,
+    parentGroup: scene
+});
 
 // Label Marte
 const marsLabel = createLabel("Marte");
@@ -259,6 +284,17 @@ moon.renderOrder = 2;
 
 moon.position.set(moonOrbitRadius, 0, 0);
 moonPivot.add(moon);
+
+// Añadir la Luna a la lista de astros
+astros.push({
+    id: "moon",
+    mesh: moon,
+    group: moonPivot,
+    orbitRadius: moonOrbitRadius,
+    period_days: ORBITS.moon.period_days,
+    initial_phase: ORBITS.moon.initial_phase,
+    parentGroup: earthGroup
+});
 
 // Label luna
 const moonLabelGroup = new THREE.Group();
@@ -307,7 +343,10 @@ function animate() {
     const daysElapsed = (now - EPOCH_DATE) / DAY_MS;
 
     // Tierra alrededor del Sol
-    const earthAngle = -(daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
+    const earthAngle =
+        ORBITS.earth.initial_phase -
+        (daysElapsed / ORBITS.earth.period_days) * Math.PI * 2;
+
     const earthDistance = ORBITS.earth.distance_km * DISTANCE_SCALE;
 
     earthGroup.position.set(
@@ -318,7 +357,9 @@ function animate() {
 
     // Marte alrededor del Sol
     const marsAngle =
-        -(daysElapsed / ORBITS.mars.period_days) * Math.PI * 2;
+        ORBITS.mars.initial_phase -
+        (daysElapsed / ORBITS.mars.period_days) * Math.PI * 2;
+
 
     const marsDistance =
         ORBITS.mars.distance_km * DISTANCE_SCALE;
@@ -330,7 +371,10 @@ function animate() {
     );
 
     // Luna alrededor de la Tierra
-    const moonAngle = (daysElapsed / ORBITS.moon.period_days) * Math.PI * 2;
+    const moonAngle =
+        ORBITS.moon.initial_phase -
+        (daysElapsed / ORBITS.moon.period_days) * Math.PI * 2;
+
     moonPivot.rotation.y = moonAngle;
 
     // Labels
