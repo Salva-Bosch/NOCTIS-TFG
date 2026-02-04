@@ -22,14 +22,16 @@ export const ORBITS = {
         radius_km: 6371,
         distance_km: 149_597_870,
         period_days: 365.25,
-        initial_phase: 0
+        initial_phase: 6.240,
+        inclination_deg: 0.000
     },
 
     mars: {
         radius_km: 3389.5,
         distance_km: 227_943_824,
         period_days: 686.98,
-        initial_phase: Math.PI * 0.65
+        initial_phase: 0.338,
+        inclination_deg: 1.850
     },
 
     jupiter: {
@@ -62,7 +64,8 @@ export const ORBITS = {
         distance_km: 384_400,
         period_days: 27.32,
         parent: "earth",
-        initial_phase: Math.PI * 1.2
+        initial_phase: 3.958,
+        inclination_deg: 5.145 
     },
 
     phobos: {
