@@ -3,197 +3,139 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     background: #0b0b0b;
     color: white;
+    font-family: 'Inter', sans-serif;
 }
 
-/* =========================
-   NAV SUPERIOR
-========================= */
-.top-bar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    background: rgba(15,15,20,0.9);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 40px;
-    z-index: 100;
-}
-
-.top-nav {
-    position: absolute;
-    display: flex;
-    align-items: center;
-}
-
-.top-nav.left {
-    left: 40px;
-}
-
-.top-nav.right {
-    right: 40px;
-}
-
-.top-nav a {
-    color: #aaa;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 14px;
-}
-
-.top-nav a:hover {
-    color: white;
-}
-
-.logo {
-    font-size: 20px;
-    letter-spacing: 3px;
-}
-
-/* =========================
-   NAV LATERAL (ICON DOCK)
-========================= */
-.side-menu {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    width: 96px;
-    height: calc(100vh - 220px);
-    background: rgba(15,15,20,0.9);
-    backdrop-filter: blur(12px);
-    border-right: 1px solid rgba(255,255,255,0.05);
-    border-radius: 0 20px 20px 0;
-    display: flex;
-    justify-content: center;
-    z-index: 90;
-}
-
-.side-menu-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-}
-
-/* ITEM ICONO */
-.side-item {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-.side-item img {
-    width: 24px;
-    height: 24px;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-
-/* Hover */
-.side-item:hover {
-    background: rgba(255,140,0,0.15);
-}
-
-.side-item:hover img {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* Activo */
-.side-item.active {
-    background: linear-gradient(
-        135deg,
-        rgba(255,140,0,0.45),
-        rgba(255,140,0,0.15)
-    );
-    box-shadow:
-        inset 3px 0 0 #ff8c00,
-        0 0 18px rgba(255,140,0,0.35);
-}
-
-.side-item.active img {
-    opacity: 1;
-}
-
-/* Separadores */
-.divider {
-    width: 28px;
-    height: 1px;
-    background: rgba(255,255,255,0.12);
-}
-
-/* =========================
-   CONTENIDO PRINCIPAL
-========================= */
+/* CONTENIDO */
 .landing {
     margin-left: 140px;
     padding-top: 70px;
 }
 
-/* =========================
-   SECCIONES PLANETAS
-========================= */
-.planet-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 80px;
+/* =====================
+   HERO SOL
+===================== */
+.hero-sol {
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
     gap: 80px;
+    padding: 100px;
+    align-items: center;
+    background: radial-gradient(circle, rgba(255,140,0,0.15), transparent 70%);
 }
 
-.reverse {
-    flex-direction: row-reverse;
+.hero-sol img {
+    width: 100%;
+    max-width: 420px;
+    justify-self: center;
 }
 
-.planet-info {
-    max-width: 450px;
-}
-
-.planet-info h2 {
-    font-size: 48px;
+.hero-info h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 56px;
     margin-bottom: 20px;
 }
 
-.planet-info p {
+.hero-info p {
     color: #ccc;
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 20px;
 }
 
-.planet-info ul {
-    list-style: none;
+.label {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #ff8c00;
 }
 
-.planet-info li {
+/* =====================
+   GRUPOS
+===================== */
+.group {
+    padding: 80px 100px;
+}
+
+.group h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* =====================
+   GRID PLANETAS
+===================== */
+.planet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+}
+
+.planet-grid.small {
+    max-width: 400px;
+}
+
+.planet-card {
+    background: rgba(20,20,25,0.9);
+    border-radius: 24px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.planet-card img {
+    width: 120px;
+    margin-bottom: 16px;
+}
+
+.planet-card h3 {
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
-/* IMÁGENES PLANETAS */
-.planet-image img {
-    width: 460px;
-    height: 380px;
-    border-radius: 28px;
-    object-fit: contain;
-    background: #000;
-    box-shadow: 0 0 40px rgba(255,140,0,0.35);
+.planet-card p {
+    color: #bbb;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
-/* SCROLL */
-html {
-    scroll-behavior: smooth;
+.meta {
+    font-size: 12px;
+    color: #888;
+}
+
+/* VARIANTES */
+.planet-card.wide {
+    grid-column: span 2;
+}
+
+.planet-card.highlight {
+    border-color: rgba(80,150,255,0.4);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 900px) {
+    .landing {
+        margin-left: 0;
+    }
+
+    .hero-sol {
+        grid-template-columns: 1fr;
+        padding: 60px 40px;
+        text-align: center;
+    }
+
+    .group {
+        padding: 60px 40px;
+    }
 }
