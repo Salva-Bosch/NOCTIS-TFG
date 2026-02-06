@@ -40,6 +40,9 @@ const FOCUS_LERP = 0.08;
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
+// Configurar el Raycaster
+// raycaster.params.Line.threshold = 4; // Ya no es necesario para texto
+
 // Lista clicable (la llenamos después de crear los meshes)
 const clickableObjects = [];
 
@@ -183,6 +186,7 @@ scene.add(fillLight);
 /* ================= TIERRA ================= */
 
 // Órbita de la Tierra
+// const earthOrbit = createOrbit(ORBITS.earth.distance_km * DISTANCE_SCALE, 0x3b82f6);
 scene.add(createOrbit(ORBITS.earth.distance_km * DISTANCE_SCALE, 0x3b82f6));
 
 const earthGroup = new THREE.Group();
@@ -194,6 +198,10 @@ const earth = new THREE.Mesh(
     new THREE.MeshStandardMaterial({ color: 0x2a6bd4 })
 );
 earthGroup.add(earth);
+
+// Configurar click en órbita (ELIMINADO)
+// earthOrbit.userData.target = earth;
+// earthOrbit.userData.focusDistance = 6;
 
 // Añadir la Tierra a la lista de astros
 astros.push({
@@ -212,9 +220,14 @@ earthLabel.scale.set(20, 5, 10);
 earthLabel.position.y = earthRadius * 10;
 earth.add(earthLabel);
 
+// Click en label
+earthLabel.userData.target = earth;
+earthLabel.userData.focusDistance = 6;
+
+
 /* ================= MARTE ================= */
 
-// Órbita de Marte
+// Órbita de Marte (ya no la guardamos en variable para click)
 scene.add(
     createOrbit(
         ORBITS.mars.distance_km * DISTANCE_SCALE,
@@ -237,6 +250,10 @@ const mars = new THREE.Mesh(
 
 marsGroup.add(mars);
 
+// Configurar click en órbita (ELIMINADO)
+// marsOrbit.userData.target = mars;
+// marsOrbit.userData.focusDistance = 6;
+
 // Añadir Marte a la lista de astros
 astros.push({
     id: "mars",
@@ -254,6 +271,10 @@ marsLabel.scale.set(18, 4.5, 1);
 marsLabel.position.y = marsRadius * 10;
 mars.add(marsLabel);
 
+// Click en label
+marsLabel.userData.target = mars;
+marsLabel.userData.focusDistance = 6;
+
 /* ================= LUNA ================= */
 
 // Pivot orbital
@@ -265,8 +286,8 @@ const MOON_DISTANCE_VISUAL_MULTIPLIER = 5;
 const moonOrbitRadius =
     ORBITS.moon.distance_km * DISTANCE_SCALE * MOON_DISTANCE_VISUAL_MULTIPLIER;
 
-const moonOrbit = createOrbitLine(moonOrbitRadius, 0xbfbfbf, 256);
-moonPivot.add(moonOrbit);
+// const moonOrbit = createOrbitLine(moonOrbitRadius, 0xbfbfbf, 256);
+moonPivot.add(createOrbitLine(moonOrbitRadius, 0xbfbfbf, 256));
 
 const moonRadius = ORBITS.moon.radius_km * RADIUS_SCALE;
 const moon = new THREE.Mesh(
@@ -284,6 +305,10 @@ moon.renderOrder = 2;
 
 moon.position.set(moonOrbitRadius, 0, 0);
 moonPivot.add(moon);
+
+// Configurar click en órbita de Luna (ELIMINADO)
+// moonOrbit.userData.target = moon;
+// moonOrbit.userData.focusDistance = 4;
 
 // Añadir la Luna a la lista de astros
 astros.push({
@@ -306,9 +331,14 @@ moonLabel.scale.set(6, 1.5, 1);
 moonLabel.position.set(0, moonRadius * 6, 0);
 moonLabelGroup.add(moonLabel);
 
+// Click en label
+moonLabel.userData.target = moon;
+moonLabel.userData.focusDistance = 4;
+
+
 /* ================= CLICKABLE OBJECTS ================= */
 
-clickableObjects.push(sun, earth, moon, mars);
+clickableObjects.push(sun, earth, moon, mars, earthLabel, marsLabel, moonLabel);
 
 /* ================= CLICK HANDLERS ================= */
 
@@ -323,10 +353,16 @@ window.addEventListener("click", (event) => {
 
     const clicked = intersects[0].object;
 
+    // Lógica para objetos directos
     if (clicked === sun) startFocusOn(sun, 10);
-    if (clicked === earth) startFocusOn(earth, 6);
-    if (clicked === moon) startFocusOn(moon, 4);
-    if (clicked === mars) startFocusOn(mars, 6);
+    else if (clicked === earth) startFocusOn(earth, 6);
+    else if (clicked === moon) startFocusOn(moon, 4);
+    else if (clicked === mars) startFocusOn(mars, 6);
+
+    // Lógica para labels (userData)
+    else if (clicked.userData.target) {
+        startFocusOn(clicked.userData.target, clicked.userData.focusDistance || 6);
+    }
 
 });
 
