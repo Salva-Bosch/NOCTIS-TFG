@@ -6,7 +6,7 @@ export function createCamera(renderer) {
         60,
         window.innerWidth / window.innerHeight,
         0.1,
-        10000
+        50000
     );
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -28,8 +28,8 @@ export function createCamera(renderer) {
     controls.zoomSpeed = 10;
 
     // Rango de distancias coherente con la escena
-    controls.minDistance = 0.2;
-    controls.maxDistance = 3000;
+    controls.minDistance = 0.1;
+    controls.maxDistance = 20000;
 
     return { camera, controls };
 }
