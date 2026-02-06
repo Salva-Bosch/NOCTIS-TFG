@@ -2,58 +2,128 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Noctis · Mapa de Ubicaciones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noctis · Mapa de Observación</title>
 
     <!-- CSS base -->
     <link rel="stylesheet" href="../../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
     <link rel="stylesheet" href="../../../../css/components/navbar.css">
 
-    <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+
+    <!-- CSS del mapa -->
+    <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
 </head>
 
 <body>
+    
+    <!-- SideNav se carga dinámicamente -->
 
-    <!-- SideNav por JS -->
-
-    <!-- TOP BAR -->
-    <header class="map-topbar">
-        <h1>Mejores lugares para observar las estrellas</h1>
+    <!-- BARRA SUPERIOR -->
+    <header class="map-header">
+        <div class="header-content">
+            <div class="header-icon">⭐</div>
+            <h1>Mejores Lugares para Observar las Estrellas</h1>
+            <p class="header-subtitle">Zonas de baja contaminación lumínica en España</p>
+        </div>
     </header>
 
-    <!-- MAPA -->
-    <main class="map-fullscreen">
-        <div id="map"></div>
-    </main>
+    <!-- MAPA COMPLETO -->
+    <div id="map"></div>
 
-    <!-- BOTÓN INFO -->
-    <button class="map-info-btn" id="openMapInfo">
-        <img src="/assets/icons/ui/info.svg" alt="Info">
+    <!-- BOTÓN DE INFORMACIÓN -->
+    <button class="noctis-btn info-btn" id="infoBtn" aria-label="Información">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
     </button>
 
-    <!-- MODAL -->
-    <div class="map-modal-overlay" id="mapModal">
-        <div class="map-modal">
-            <h2>Mapa de observación</h2>
-            <p>
-                Este mapa recoge algunos de los mejores lugares del mundo para la observación astronómica,
-                seleccionados por su baja contaminación lumínica y condiciones atmosféricas.
+    <!-- MODAL DE INFORMACIÓN -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="modal-header">
+                <div class="modal-icon">🌌</div>
+                <h2>Mapa de Observación Astronómica</h2>
+            </div>
+            
+            <p class="modal-intro">
+                Este mapa muestra los mejores lugares de España para la observación de estrellas, 
+                seleccionados por su <strong>baja contaminación lumínica</strong> y excelentes 
+                condiciones atmosféricas.
             </p>
 
-            <ul>
-                <li>⭐ Lugares ideales para observación visual</li>
-                <li>🔭 Zonas con observatorios astronómicos</li>
-                <li>🌌 Cielos protegidos</li>
-            </ul>
+            <div class="info-section">
+                <h3>🔍 Cómo usar el mapa</h3>
+                <ul>
+                    <li>Haz clic en los marcadores ⭐ para ver información de cada ubicación</li>
+                    <li>Cambia entre vista oscura y satélite usando el control superior derecho</li>
+                    <li>Usa los botones + / - o la rueda del ratón para hacer zoom</li>
+                    <li>Arrastra el mapa para explorar diferentes zonas</li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3>⭐ Tipos de ubicaciones</h3>
+                <div class="location-types">
+                    <div class="location-type">
+                        <span class="type-badge observatory">🔭</span>
+                        <div>
+                            <strong>Observatorios</strong>
+                            <p>Instalaciones profesionales con equipamiento avanzado</p>
+                        </div>
+                    </div>
+                    <div class="location-type">
+                        <span class="type-badge dark-sky">🌌</span>
+                        <div>
+                            <strong>Reservas Starlight</strong>
+                            <p>Certificación de cielos oscuros protegidos</p>
+                        </div>
+                    </div>
+                    <div class="location-type">
+                        <span class="type-badge natural">🏔️</span>
+                        <div>
+                            <strong>Parques Naturales</strong>
+                            <p>Zonas de baja contaminación lumínica</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>💡 Consejos para observar</h3>
+                <ul>
+                    <li>Elige noches sin luna o con luna nueva para mejor visibilidad</li>
+                    <li>Evita las luces artificiales al menos 30 minutos antes</li>
+                    <li>Comprueba las condiciones meteorológicas previamente</li>
+                    <li>Lleva ropa de abrigo, incluso en verano las noches son frías</li>
+                </ul>
+            </div>
+
+            <p class="modal-footer">
+                <small>Datos actualizados • Selección basada en certificaciones oficiales y estudios de contaminación lumínica</small>
+            </p>
         </div>
     </div>
 
-    <!-- Leaflet -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
 
-    <!-- JS -->
+    <!-- JavaScript del mapa -->
     <script type="module" src="../../../../js/pages/map-ubicaciones.js"></script>
 
 </body>
