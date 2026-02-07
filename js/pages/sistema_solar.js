@@ -1,654 +1,113 @@
-/* LÓGICA DEL SISTEMA SOLAR 3D */
-import * as THREE from "three";
-
-// Control de tiempo
-import * as timeEngine from "../core/timeEngine.js";
-
-import { createRenderer } from "../core/three/renderer.js";
-import { createScene } from "../core/three/scene.js";
-import { createCamera } from "../core/three/camera.js";
-import { ORBITS } from "../core/data/orbits.js";
-import { DISTANCE_SCALE, RADIUS_SCALE } from "../core/data/scales.js";
-import { initSearchBar } from "../core/logica_ui/search.ui.js";
-
-// Traducciones de los nombres de los astros a español
-const ASTRO_NAMES = {
-    sun: "Sol",
-    mercury: "Mercurio",
-    venus: "Venus",
-    earth: "Tierra",
-    mars: "Marte",
-    jupiter: "Júpiter",
-    saturn: "Saturno",
-    uranus: "Urano",
-    neptune: "Neptuno",
-    moon: "Luna",
-    phobos: "Fobos",
-    deimos: "Deimos",
-    io: "Ío",
-    europa: "Europa",
-    ganymede: "Ganímedes",
-    callisto: "Calisto",
-    titan: "Titán",
-    enceladus: "Encélado",
-    titania: "Titania",
-    oberon: "Oberón",
-    triton: "Tritón",
-    charon: "Caronte",
-    pluto: "Plutón",
-    eris: "Eris",
-    ceres: "Ceres"
-};
-
-const astros = [];
-
-// Fecha inicial
-const EPOCH_DATE = new Date("2026-01-01T00:00:00Z");
-const DAY_MS = 1000 * 60 * 60 * 24;
-
-// Cuando el planeta ocupa muchos píxeles, ocultamos el label
-const LABEL_HIDE_PX = 2;
-const MOON_LABEL_HIDE_PX = 1.5;
-
-
-/* ================= PALETA DE COLORES ================= */
-
-const PLANET_COLORS = {
-    mercury: { color: 0xb5b5b5, emissive: 0x333333, orbit: 0xffffff }, // Blanco brillante
-    venus: { color: 0xe6c47a, emissive: 0x443311, orbit: 0xffd700 }, // Dorado brillante
-    earth: { color: 0x22aaff, emissive: 0x112244, orbit: 0x00ffff }, // Cyan brillante
-    mars: { color: 0xff3300, emissive: 0x441100, orbit: 0xff4500 }, // Naranja rojizo brillante
-    jupiter: { color: 0xd8a86a, emissive: 0x442211, orbit: 0xffa500 }, // Naranja brillante
-    saturn: {
-        color: 0xe3d5a3,
-        emissive: 0x443322,
-        orbit: 0xffff00, // Amarillo brillante
-        rings: {
-            innerRadius: 1.4, // Veces el radio del planeta
-            outerRadius: 2.3,
-            color: 0xc9b879,
-            opacity: 0.6
-        }
-    },
-    uranus: { color: 0xa3e8e8, emissive: 0x224444, orbit: 0x00ffff }, // Cyan neón
-    neptune: { color: 0x5b7fc4, emissive: 0x112244, orbit: 0x4488ff }, // Azul eléctrico
-    ceres: { color: 0x8b8b8b, emissive: 0x222222, orbit: 0xaaaaaa }, // Gris claro
-    pluto: { color: 0xc9b8a0, emissive: 0x332211, orbit: 0xffcc99 }, // Beige claro
-    eris: { color: 0xf0f0f0, emissive: 0x333333, orbit: 0xffffff }, // Blanco puro
-};
-
-const MOON_COLORS = {
-    moon: { color: 0xbfbfbf, emissive: 0x222222, orbit: 0xbfbfbf },
-    phobos: { color: 0x8b7355, emissive: 0x221100, orbit: 0x666655 },
-    deimos: { color: 0x8b7355, emissive: 0x221100, orbit: 0x666655 },
-    io: { color: 0xffcc00, emissive: 0x443300, orbit: 0xccaa00 },
-    europa: { color: 0xc9c9c9, emissive: 0x222222, orbit: 0xaaaaaa },
-    ganymede: { color: 0x8b8b8b, emissive: 0x222222, orbit: 0x777777 },
-    callisto: { color: 0x666666, emissive: 0x111111, orbit: 0x555555 },
-    titan: { color: 0xffaa55, emissive: 0x331100, orbit: 0xcc8844 },
-    enceladus: { color: 0xffffff, emissive: 0x333333, orbit: 0xdddddd },
-    titania: { color: 0x8ba5b5, emissive: 0x223344, orbit: 0x778899 },
-    oberon: { color: 0x7a8a8a, emissive: 0x223333, orbit: 0x667777 },
-    triton: { color: 0xc9d9e9, emissive: 0x223344, orbit: 0xaabbcc },
-    charon: { color: 0x999999, emissive: 0x222222, orbit: 0x777777 },
-};
-
-/* ================= CAMERA FOCUS STATE ================= */
-
-const CameraState = {
-    FREE: "free",
-    FOCUS: "focus",
-};
-
-let cameraState = CameraState.FREE;
-let focusedObject = null;
-
-let focusTarget = new THREE.Vector3();
-let focusDistance = 10;
-
-const FOCUS_LERP = 0.08;
-
-/* ================= RAYCASTER ================= */
-
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-
-// Lista clicable (la llenamos después de crear los meshes)
-const clickableObjects = [];
-
-/* ================= HELPERS ================= */
-
-// Órbita como línea fina
-// Órbita como anillo (con grosor)
-function createOrbitLine(radius, color = 0xffffff, segments = 256, thickness = 1) {
-    const innerRadius = Math.max(0, radius - thickness / 2);
-    const outerRadius = radius + thickness / 2;
-
-    const geometry = new THREE.RingGeometry(innerRadius, outerRadius, segments);
-    const material = new THREE.MeshBasicMaterial({
-        color,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.4,
-        depthWrite: false,
-    });
-
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = -Math.PI / 2;
-    mesh.position.y = 0; // En el plano
-    mesh.renderOrder = 1;
-    return mesh;
-}
-
-function createLabel(text) {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = 256;
-    canvas.height = 64;
-
-    ctx.fillStyle = "rgba(255,255,255,0.9)";
-    ctx.font = "28px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText(text.toUpperCase(), 128, 42);
-
-    const texture = new THREE.CanvasTexture(canvas);
-    const material = new THREE.SpriteMaterial({
-        map: texture,
-        transparent: true,
-        depthTest: false,
-    });
-
-    const sprite = new THREE.Sprite(material);
-    sprite.scale.set(40, 10, 1);
-    sprite.renderOrder = 999;
-    return sprite;
-}
-
-function getScreenRadius(mesh, camera) {
-    const vector = new THREE.Vector3();
-    mesh.getWorldPosition(vector);
-
-    const distance = camera.position.distanceTo(vector);
-    const vFOV = THREE.MathUtils.degToRad(camera.fov);
-    const screenHeight = window.innerHeight;
-
-    mesh.geometry.computeBoundingSphere();
-    const radius = mesh.geometry.boundingSphere.radius;
-
-    return (radius / distance) * (screenHeight / (2 * Math.tan(vFOV / 2)));
-}
-
-function startFocusOn(object, distanceMultiplier = 6) {
-    if (!object || !object.geometry) return;
-
-    object.geometry.computeBoundingSphere();
-
-    const worldPos = new THREE.Vector3();
-    object.getWorldPosition(worldPos);
-
-    focusedObject = object;
-    focusTarget.copy(worldPos);
-
-    const radius = object.geometry.boundingSphere.radius || 1;
-    focusDistance = radius * distanceMultiplier;
-
-    cameraState = CameraState.FOCUS;
-}
-
-/* ================= FACTORY FUNCTIONS ================= */
-
-function createPlanet(id, colorConfig, parentScene) {
-    const orbitData = ORBITS[id];
-    if (!orbitData) {
-        console.warn(`No orbit data found for planet: ${id}`);
-        return null;
-    }
-
-    const orbitRadius = orbitData.distance_km * DISTANCE_SCALE;
-    const planetRadius = orbitData.radius_km * RADIUS_SCALE;
-
-    // Grupo para la inclinación orbital
-    const inclinedGroup = new THREE.Group();
-    if (orbitData.inclination_deg) {
-        inclinedGroup.rotation.x = THREE.MathUtils.degToRad(orbitData.inclination_deg);
-    }
-    parentScene.add(inclinedGroup);
-
-    // Crear órbita (dentro del grupo inclinado)
-    // Usamos thickness = 3.5 para planetas (Feedback Usuario: mucho más visibles)
-    const orbitMesh = createOrbitLine(orbitRadius, colorConfig.orbit, 256, 3.5);
-    inclinedGroup.add(orbitMesh);
-
-    // Crear grupo para el planeta (animación de traslación)
-    const group = new THREE.Group();
-    inclinedGroup.add(group);
-
-    // Crear mesh del planeta
-    const mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(planetRadius, 32, 32),
-        new THREE.MeshStandardMaterial({
-            color: colorConfig.color,
-            emissive: colorConfig.emissive,
-            emissiveIntensity: 0.2,
-        })
-    );
-    group.add(mesh);
-
-    // Añadir anillos si el planeta los tiene configurados
-    if (colorConfig.rings) {
-        const inner = planetRadius * colorConfig.rings.innerRadius;
-        const outer = planetRadius * colorConfig.rings.outerRadius;
-        const ringGeo = new THREE.RingGeometry(inner, outer, 64);
-        const ringMat = new THREE.MeshStandardMaterial({
-            color: colorConfig.rings.color,
-            side: THREE.DoubleSide,
-            transparent: true,
-            opacity: colorConfig.rings.opacity,
-            emissive: colorConfig.rings.color,
-            emissiveIntensity: 0.1
-        });
-        const ringsMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringsMesh.rotation.x = Math.PI / 2; // Acostar los anillos
-        group.add(ringsMesh);
-    }
-
-    // Crear label
-    // Crear label
-    const displayName = ASTRO_NAMES[id] || (id.charAt(0).toUpperCase() + id.slice(1));
-    const label = createLabel(displayName);
-    // Escala aumentada para planetas (x2.5 aprox respecto al original)
-    label.scale.set(50, 12.5, 1);
-    label.position.y = planetRadius * 12; // Un poco más alto para no solapar
-    mesh.add(label);
-
-    // Configurar click en label
-    label.userData.target = mesh;
-    label.userData.focusDistance = 6;
-
-    // Añadir a lista de astros
-    astros.push({
-        id,
-        displayName,
-        mesh,
-        group,
-        orbitMesh,
-        orbitRadius,
-        period_days: orbitData.period_days,
-        initial_phase: orbitData.initial_phase || 0,
-        parentGroup: parentScene,
-        label,
-    });
-
-    return { mesh, group, label };
-}
-
-function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
-    const orbitData = ORBITS[id];
-    if (!orbitData) {
-        console.warn(`No orbit data found for moon: ${id}`);
-        return null;
-    }
-
-    // Usar RADIUS_SCALE para distancias de lunas (misma escala que los radios)
-    // Esto asegura que la proporción visual Luna-Planeta sea real (tipo NASA Eyes)
-    const orbitRadius = orbitData.distance_km * RADIUS_SCALE;
-
-    // Radio de la luna en la misma escala que todos los astros
-    // Aseguramos un tamaño mínimo para que lunas pequeñas (Fobos, Deimos) sean visibles
-    const MIN_MOON_RADIUS = 0.005;
-    const moonRadius = Math.max(orbitData.radius_km * RADIUS_SCALE, MIN_MOON_RADIUS);
-
-    // Grupo para la inclinación orbital de la luna
-    const inclinedGroup = new THREE.Group();
-    if (orbitData.inclination_deg) {
-        inclinedGroup.rotation.x = THREE.MathUtils.degToRad(orbitData.inclination_deg);
-    }
-    parentGroup.add(inclinedGroup);
-
-    // Crear pivot para la órbita
-    const pivot = new THREE.Group();
-    inclinedGroup.add(pivot);
-
-    // Crear órbita
-    // Grosor dinámico: Para lunas muy cercanas (Fobos), el grosor fijo de 0.15 es demasiado grande (parece un donut).
-    // Lo hacemos proporcional al radio (máx 10% del radio) pero con un tope de 0.15.
-    const orbitThickness = Math.min(0.15, orbitRadius * 0.1);
-    const orbitMesh = createOrbitLine(orbitRadius, colorConfig.orbit, 128, orbitThickness);
-    pivot.add(orbitMesh);
-
-    // Crear mesh de la luna
-    const mesh = new THREE.Mesh(
-        new THREE.SphereGeometry(moonRadius, 32, 32),
-        new THREE.MeshStandardMaterial({
-            color: colorConfig.color,
-            emissive: colorConfig.emissive,
-            emissiveIntensity: 0.35,
-            roughness: 1,
-            metalness: 0,
-        })
-    );
-    // Posicionar la luna en el plano de la órbita (Y=0.01 para coincidir con createOrbitLine)
-    mesh.position.set(orbitRadius, 0.01, 0);
-    mesh.renderOrder = 2;
-    pivot.add(mesh);
-
-    // Asegurar que el pivot esté en el centro del planeta padre
-    pivot.position.set(0, 0, 0);
-
-    // Crear grupo para label
-    const labelGroup = new THREE.Group();
-    pivot.add(labelGroup);
-    labelGroup.position.copy(mesh.position);
-
-    // Crear label con escala proporcional al tamaño de la luna
-    const displayName = ASTRO_NAMES[id] || (id.charAt(0).toUpperCase() + id.slice(1));
-    const label = createLabel(displayName);
-    // Escalar label proporcionalmente al radio de la luna
-    const labelScale = Math.max(moonRadius * 8, 0.5);
-    label.scale.set(labelScale * 4, labelScale, 1);
-    label.position.set(0, moonRadius * 3 + labelScale * 0.5, 0);
-    labelGroup.add(label);
-
-    // Configurar click en label
-    label.userData.target = mesh;
-    label.userData.focusDistance = 4;
-
-    // Añadir a lista de astros
-    astros.push({
-        id,
-        displayName,
-        mesh,
-        group: pivot,
-        orbitRadius,
-        orbitMesh,
-        period_days: orbitData.period_days,
-        initial_phase: orbitData.initial_phase || 0,
-        parentGroup,
-        parentPlanetId,
-        label,
-        labelGroup,
-        isMoon: true,
-    });
-
-    return { mesh, pivot, label, labelGroup };
-}
-
-/* ================= INIT ================= */
-
-const canvas = document.getElementById("solarCanvas");
-const renderer = createRenderer(canvas);
-const scene = createScene();
-const { camera, controls } = createCamera(renderer);
-
-timeEngine.init();
-
-window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-/* ================= CAMERA UX ================= */
-
-// Si el usuario empieza a mover la cámara, cancelamos el focus
-controls.addEventListener("start", () => {
-    if (cameraState === CameraState.FOCUS) {
-        cameraState = CameraState.FREE;
-        focusedObject = null;
-    }
-});
-
-/* ================= SOL ================= */
-
-const sun = new THREE.Mesh(
-    new THREE.SphereGeometry(5, 32, 32),
-    new THREE.MeshStandardMaterial({
-        color: 0xffff00,
-        emissive: 0xffaa00,
-        emissiveIntensity: 1,
-    })
-);
-scene.add(sun);
-
-// Label para el Sol
-const sunLabel = createLabel(ASTRO_NAMES.sun);
-sunLabel.scale.set(20, 5, 1);
-sunLabel.position.y = 8;
-sun.add(sunLabel);
-
-// Configurar click en label del Sol
-sunLabel.userData.target = sun;
-sunLabel.userData.focusDistance = 10;
-
-// Increased light intensity
-scene.add(new THREE.PointLight(0xffffff, 5.0, 2000));
-scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-
-const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
-fillLight.position.set(1, 1, 1);
-scene.add(fillLight);
-
-clickableObjects.push(sun, sunLabel);
-
-/* ================= PLANETAS ================= */
-
-// Mercurio
-const mercury = createPlanet("mercury", PLANET_COLORS.mercury, scene);
-clickableObjects.push(mercury.mesh, mercury.label);
-
-// Venus
-const venus = createPlanet("venus", PLANET_COLORS.venus, scene);
-clickableObjects.push(venus.mesh, venus.label);
-
-// Tierra
-const earth = createPlanet("earth", PLANET_COLORS.earth, scene);
-clickableObjects.push(earth.mesh, earth.label);
-
-// Marte
-const mars = createPlanet("mars", PLANET_COLORS.mars, scene);
-clickableObjects.push(mars.mesh, mars.label);
-
-// Júpiter
-const jupiter = createPlanet("jupiter", PLANET_COLORS.jupiter, scene);
-clickableObjects.push(jupiter.mesh, jupiter.label);
-
-// Saturno
-const saturn = createPlanet("saturn", PLANET_COLORS.saturn, scene);
-clickableObjects.push(saturn.mesh, saturn.label);
-
-// Urano
-const uranus = createPlanet("uranus", PLANET_COLORS.uranus, scene);
-clickableObjects.push(uranus.mesh, uranus.label);
-
-// Neptuno
-const neptune = createPlanet("neptune", PLANET_COLORS.neptune, scene);
-clickableObjects.push(neptune.mesh, neptune.label);
-
-/* ================= PLANETAS ENANOS ================= */
-
-// Ceres
-const ceres = createPlanet("ceres", PLANET_COLORS.ceres, scene);
-clickableObjects.push(ceres.mesh, ceres.label);
-
-// Plutón
-const pluto = createPlanet("pluto", PLANET_COLORS.pluto, scene);
-clickableObjects.push(pluto.mesh, pluto.label);
-
-// Eris
-const eris = createPlanet("eris", PLANET_COLORS.eris, scene);
-clickableObjects.push(eris.mesh, eris.label);
-
-/* ================= LUNAS ================= */
-
-// Luna (Tierra)
-const moon = createMoon("moon", MOON_COLORS.moon, earth.group, "earth");
-clickableObjects.push(moon.mesh, moon.label);
-
-// Phobos y Deimos (Marte)
-const phobos = createMoon("phobos", MOON_COLORS.phobos, mars.group, "mars");
-clickableObjects.push(phobos.mesh, phobos.label);
-
-const deimos = createMoon("deimos", MOON_COLORS.deimos, mars.group, "mars");
-clickableObjects.push(deimos.mesh, deimos.label);
-
-// Lunas de Júpiter (Galileanas)
-const io = createMoon("io", MOON_COLORS.io, jupiter.group, "jupiter");
-clickableObjects.push(io.mesh, io.label);
-
-const europa = createMoon("europa", MOON_COLORS.europa, jupiter.group, "jupiter");
-clickableObjects.push(europa.mesh, europa.label);
-
-const ganymede = createMoon("ganymede", MOON_COLORS.ganymede, jupiter.group, "jupiter");
-clickableObjects.push(ganymede.mesh, ganymede.label);
-
-const callisto = createMoon("callisto", MOON_COLORS.callisto, jupiter.group, "jupiter");
-clickableObjects.push(callisto.mesh, callisto.label);
-
-// Lunas de Saturno
-const titan = createMoon("titan", MOON_COLORS.titan, saturn.group, "saturn");
-clickableObjects.push(titan.mesh, titan.label);
-
-const enceladus = createMoon("enceladus", MOON_COLORS.enceladus, saturn.group, "saturn");
-clickableObjects.push(enceladus.mesh, enceladus.label);
-
-// Lunas de Urano
-const titania = createMoon("titania", MOON_COLORS.titania, uranus.group, "uranus");
-clickableObjects.push(titania.mesh, titania.label);
-
-const oberon = createMoon("oberon", MOON_COLORS.oberon, uranus.group, "uranus");
-clickableObjects.push(oberon.mesh, oberon.label);
-
-// Luna de Neptuno
-const triton = createMoon("triton", MOON_COLORS.triton, neptune.group, "neptune");
-clickableObjects.push(triton.mesh, triton.label);
-
-// Luna de Plutón
-const charon = createMoon("charon", MOON_COLORS.charon, pluto.group, "pluto");
-clickableObjects.push(charon.mesh, charon.label);
-
-/* ================= CLICK HANDLERS ================= */
-
-window.addEventListener("click", (event) => {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-
-    const intersects = raycaster.intersectObjects(clickableObjects, false);
-    if (intersects.length === 0) return;
-
-    const clicked = intersects[0].object;
-
-    // Lógica para el Sol
-    if (clicked === sun) {
-        startFocusOn(sun, 10);
+/* LÓGICA DE LA BARRA DE BÚSQUEDA DE ASTROS */
+
+export function initSearchBar(astros, onFocusCallback) {
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    const searchContainer = document.querySelector(".search-bar-container");
+
+    if (!searchInput || !searchResults) {
+        console.warn("Search bar elements not found in DOM");
         return;
     }
 
-    // Lógica para labels y meshes (userData)
-    if (clicked.userData.target) {
-        startFocusOn(clicked.userData.target, clicked.userData.focusDistance || 6);
-        return;
-    }
-
-    // Buscar en astros
-    const astro = astros.find(a => a.mesh === clicked);
-    if (astro) {
-        startFocusOn(astro.mesh, astro.isMoon ? 4 : 6);
-    }
-});
-
-window.addEventListener("dblclick", () => {
-    startFocusOn(sun, 10);
-});
-
-/* ================= ANIMACIÓN ================= */
-
-function animate() {
-    timeEngine.update();
-
-    const now = timeEngine.getCurrentDate();
-    const daysElapsed = (now - EPOCH_DATE) / DAY_MS;
-
-    // Actualizar posiciones de todos los astros
-    for (const astro of astros) {
-        // ÁNGULO = fase_inicial - (días * velocidad_angular)
-        // Usamos resta para que el movimiento sea antihorario visto desde el norte
-        const angle =
-            (astro.initial_phase || 0) -
-            (daysElapsed / astro.period_days) * Math.PI * 2;
-
-        if (astro.isMoon) {
-            // Las lunas rotan su pivot
-            astro.group.rotation.y = angle;
+    // Indexar astros para búsqueda rápida
+    // Mapeamos a un formato simple: { id, name, type (planeta/luna), originalObject }
+    const searchableAstros = astros.map(astro => {
+        let name = astro.id;
+        // Intentar obtener nombre legible del label si existe, si no, capitalizar ID
+        if (astro.label && astro.label.userData && astro.label.userData.name) {
+            name = astro.label.userData.name;
         } else {
-            // Los planetas se posicionan en su órbita
-            astro.group.position.set(
-                Math.cos(angle) * astro.orbitRadius,
-                0,
-                Math.sin(angle) * astro.orbitRadius
-            );
+            // Fallback: usar el texto del canvas (si fuera accesible) o el ID traducido
+            // Como no tenemos acceso fácil al texto del sprite, usaremos una lógica simple basada en el ID
+            // Idealmente pasaríamos el nombre traducido en el objeto astro desde sistema_solar.js
+            name = astro.displayName || (astro.id.charAt(0).toUpperCase() + astro.id.slice(1));
         }
 
-        // Actualizar visibilidad del label basado en distancia
-        const px = getScreenRadius(astro.mesh, camera);
-        const threshold = astro.isMoon ? MOON_LABEL_HIDE_PX : LABEL_HIDE_PX;
+        return {
+            id: astro.id,
+            name: name,
+            type: astro.isMoon ? "Luna" : "Planeta", // Simplificación
+            data: astro
+        };
+    });
 
-        const isVisible = px < threshold;
-        astro.label.visible = isVisible;
-        if (astro.orbitMesh) {
-            astro.orbitMesh.visible = isVisible;
+    // Evento Input
+    searchInput.addEventListener("input", (e) => {
+        const query = e.target.value.trim().toLowerCase();
+
+        if (query.length === 0) {
+            hideResults();
+            return;
         }
 
-        // Billboard para labels
-        astro.label.quaternion.copy(camera.quaternion);
+        const matches = searchableAstros.filter(item =>
+            item.name.toLowerCase().includes(query)
+        );
+
+        renderResults(matches);
+    });
+
+    // Evento Focus (mostrar resultados si hay texto)
+    searchInput.addEventListener("focus", () => {
+        if (searchInput.value.trim().length > 0) {
+            searchResults.classList.add("is-visible");
+        }
+        searchContainer.classList.add("is-active");
+    });
+
+    // Evento Blur tardío (para permitir click en resultados)
+    searchInput.addEventListener("blur", () => {
+        setTimeout(() => {
+            hideResults();
+            searchContainer.classList.remove("is-active");
+        }, 200);
+    });
+
+    function renderResults(matches) {
+        searchResults.innerHTML = "";
+
+        if (matches.length === 0) {
+            const noRes = document.createElement("div");
+            noRes.className = "search-result-item no-results";
+            noRes.textContent = "No se encontraron astros";
+            searchResults.appendChild(noRes);
+            showResults();
+            return;
+        }
+
+        matches.forEach(match => {
+            const item = document.createElement("div");
+            item.className = "search-result-item";
+
+            // Icono según tipo (puedes mejorar esto con iconos reales)
+            const icon = match.type === "Luna" ? "🌑" : "🪐";
+
+            item.innerHTML = `
+                <span class="search-item-icon">${icon}</span>
+                <div class="search-item-info">
+                    <span class="search-item-name">${match.name}</span>
+                    <span class="search-item-type">${match.type}</span>
+                </div>
+            `;
+
+            item.addEventListener("click", () => {
+                searchInput.value = match.name;
+                onFocusCallback(match.data); // Llamar al callback de foco
+                hideResults();
+            });
+
+            searchResults.appendChild(item);
+        });
+
+        showResults();
     }
 
-    /* ================= CAMERA FOCUS UPDATE ================= */
-
-    if (cameraState === CameraState.FOCUS && focusedObject) {
-        focusedObject.getWorldPosition(focusTarget);
-
-        controls.target.lerp(focusTarget, FOCUS_LERP);
-
-        const dir = new THREE.Vector3()
-            .subVectors(camera.position, controls.target)
-            .normalize();
-
-        const desiredPos = new THREE.Vector3()
-            .copy(focusTarget)
-            .add(dir.multiplyScalar(focusDistance));
-
-        camera.position.lerp(desiredPos, FOCUS_LERP);
-
-        if (camera.position.distanceTo(desiredPos) < 0.05) {
-            cameraState = CameraState.FREE;
-            focusedObject = null;
-        }
+    function showResults() {
+        searchResults.classList.add("is-visible");
     }
 
-    controls.update();
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    function hideResults() {
+        searchResults.classList.remove("is-visible");
+    }
 }
-
-
-// Iniciar barra de búsqueda
-const searchList = [...astros];
-// Añadir el Sol manualmente a la búsqueda
-searchList.push({
-    id: "sun",
-    displayName: ASTRO_NAMES.sun, // Sol
-    mesh: sun,
-    isMoon: false
-});
-
-initSearchBar(searchList, (astroData) => {
-    // Callback al seleccionar un astro
-    if (astroData.mesh) {
-        startFocusOn(astroData.mesh, astroData.isMoon ? 4 : (astroData.id === "sun" ? 10 : 6));
-    }
-});
-
-animate();
