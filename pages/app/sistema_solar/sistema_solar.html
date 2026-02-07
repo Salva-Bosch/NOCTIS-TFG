@@ -30,6 +30,17 @@
   <!-- Canvas donde va el mapa 3D -->
   <canvas id="solarCanvas"></canvas>
 
+  <!-- ====== BARRA DE BÚSQUEDA ====== -->
+  <div class="search-bar-container">
+    <div class="search-input-wrapper">
+      <img src="../../../assets/icons/nav/search.svg" alt="Search" class="search-icon">
+      <input type="text" id="searchInput" placeholder="Buscar planeta o luna..." autocomplete="off">
+    </div>
+    <div class="search-results" id="searchResults">
+      <!-- Los resultados se inyectan via JS -->
+    </div>
+  </div>
+
   <!-- ====== BARRA DE TIEMPO ====== -->
   <div class="timebar timebar--realtime" id="timebar">
     <div class="timebar timebar--realtime" id="timebar">

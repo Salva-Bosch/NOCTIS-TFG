@@ -9,6 +9,36 @@ import { createScene } from "../core/three/scene.js";
 import { createCamera } from "../core/three/camera.js";
 import { ORBITS } from "../core/data/orbits.js";
 import { DISTANCE_SCALE, RADIUS_SCALE } from "../core/data/scales.js";
+import { initSearchBar } from "../core/logica_ui/search.ui.js";
+
+// Traducciones de los nombres de los astros a español
+const ASTRO_NAMES = {
+    sun: "Sol",
+    mercury: "Mercurio",
+    venus: "Venus",
+    earth: "Tierra",
+    mars: "Marte",
+    jupiter: "Júpiter",
+    saturn: "Saturno",
+    uranus: "Urano",
+    neptune: "Neptuno",
+    moon: "Luna",
+    phobos: "Fobos",
+    deimos: "Deimos",
+    io: "Ío",
+    europa: "Europa",
+    ganymede: "Ganímedes",
+    callisto: "Calisto",
+    titan: "Titán",
+    enceladus: "Encélado",
+    titania: "Titania",
+    oberon: "Oberón",
+    triton: "Tritón",
+    charon: "Caronte",
+    pluto: "Plutón",
+    eris: "Eris",
+    ceres: "Ceres"
+};
 
 const astros = [];
 
@@ -24,17 +54,27 @@ const MOON_LABEL_HIDE_PX = 1.5;
 /* ================= PALETA DE COLORES ================= */
 
 const PLANET_COLORS = {
-    mercury: { color: 0xb5b5b5, emissive: 0x333333, orbit: 0x888888 },
-    venus: { color: 0xe6c47a, emissive: 0x443311, orbit: 0xd4a855 },
-    earth: { color: 0x22aaff, emissive: 0x112244, orbit: 0x00d2ff },
-    mars: { color: 0xff3300, emissive: 0x441100, orbit: 0xff5500 },
-    jupiter: { color: 0xd8a86a, emissive: 0x442211, orbit: 0xc49353 },
-    saturn: { color: 0xe3d5a3, emissive: 0x443322, orbit: 0xc9b879 },
-    uranus: { color: 0xa3e8e8, emissive: 0x224444, orbit: 0x7ad1d1 },
-    neptune: { color: 0x5b7fc4, emissive: 0x112244, orbit: 0x4466aa },
-    ceres: { color: 0x8b8b8b, emissive: 0x222222, orbit: 0x666666 },
-    pluto: { color: 0xc9b8a0, emissive: 0x332211, orbit: 0xa89575 },
-    eris: { color: 0xf0f0f0, emissive: 0x333333, orbit: 0xcccccc },
+    mercury: { color: 0xb5b5b5, emissive: 0x333333, orbit: 0xffffff }, // Blanco brillante
+    venus: { color: 0xe6c47a, emissive: 0x443311, orbit: 0xffd700 }, // Dorado brillante
+    earth: { color: 0x22aaff, emissive: 0x112244, orbit: 0x00ffff }, // Cyan brillante
+    mars: { color: 0xff3300, emissive: 0x441100, orbit: 0xff4500 }, // Naranja rojizo brillante
+    jupiter: { color: 0xd8a86a, emissive: 0x442211, orbit: 0xffa500 }, // Naranja brillante
+    saturn: {
+        color: 0xe3d5a3,
+        emissive: 0x443322,
+        orbit: 0xffff00, // Amarillo brillante
+        rings: {
+            innerRadius: 1.4, // Veces el radio del planeta
+            outerRadius: 2.3,
+            color: 0xc9b879,
+            opacity: 0.6
+        }
+    },
+    uranus: { color: 0xa3e8e8, emissive: 0x224444, orbit: 0x00ffff }, // Cyan neón
+    neptune: { color: 0x5b7fc4, emissive: 0x112244, orbit: 0x4488ff }, // Azul eléctrico
+    ceres: { color: 0x8b8b8b, emissive: 0x222222, orbit: 0xaaaaaa }, // Gris claro
+    pluto: { color: 0xc9b8a0, emissive: 0x332211, orbit: 0xffcc99 }, // Beige claro
+    eris: { color: 0xf0f0f0, emissive: 0x333333, orbit: 0xffffff }, // Blanco puro
 };
 
 const MOON_COLORS = {
@@ -79,25 +119,25 @@ const clickableObjects = [];
 /* ================= HELPERS ================= */
 
 // Órbita como línea fina
-function createOrbitLine(radius, color = 0xffffff, segments = 256) {
-    const points = [];
-    for (let i = 0; i <= segments; i++) {
-        const a = (i / segments) * Math.PI * 2;
-        points.push(new THREE.Vector3(Math.cos(a) * radius, 0, Math.sin(a) * radius));
-    }
+// Órbita como anillo (con grosor)
+function createOrbitLine(radius, color = 0xffffff, segments = 256, thickness = 1) {
+    const innerRadius = Math.max(0, radius - thickness / 2);
+    const outerRadius = radius + thickness / 2;
 
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({
+    const geometry = new THREE.RingGeometry(innerRadius, outerRadius, segments);
+    const material = new THREE.MeshBasicMaterial({
         color,
+        side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.35,
-        depthTest: false,
+        opacity: 0.4,
+        depthWrite: false,
     });
 
-    const line = new THREE.LineLoop(geometry, material);
-    line.position.y = 0.01; // evita z-fighting
-    line.renderOrder = 1;
-    return line;
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.rotation.x = -Math.PI / 2;
+    mesh.position.y = 0; // En el plano
+    mesh.renderOrder = 1;
+    return mesh;
 }
 
 function createLabel(text) {
@@ -176,7 +216,9 @@ function createPlanet(id, colorConfig, parentScene) {
     parentScene.add(inclinedGroup);
 
     // Crear órbita (dentro del grupo inclinado)
-    inclinedGroup.add(createOrbitLine(orbitRadius, colorConfig.orbit));
+    // Usamos thickness = 3.5 para planetas (Feedback Usuario: mucho más visibles)
+    const orbitMesh = createOrbitLine(orbitRadius, colorConfig.orbit, 256, 3.5);
+    inclinedGroup.add(orbitMesh);
 
     // Crear grupo para el planeta (animación de traslación)
     const group = new THREE.Group();
@@ -193,10 +235,31 @@ function createPlanet(id, colorConfig, parentScene) {
     );
     group.add(mesh);
 
+    // Añadir anillos si el planeta los tiene configurados
+    if (colorConfig.rings) {
+        const inner = planetRadius * colorConfig.rings.innerRadius;
+        const outer = planetRadius * colorConfig.rings.outerRadius;
+        const ringGeo = new THREE.RingGeometry(inner, outer, 64);
+        const ringMat = new THREE.MeshStandardMaterial({
+            color: colorConfig.rings.color,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: colorConfig.rings.opacity,
+            emissive: colorConfig.rings.color,
+            emissiveIntensity: 0.1
+        });
+        const ringsMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringsMesh.rotation.x = Math.PI / 2; // Acostar los anillos
+        group.add(ringsMesh);
+    }
+
     // Crear label
-    const label = createLabel(id.charAt(0).toUpperCase() + id.slice(1));
-    label.scale.set(20, 5, 1);
-    label.position.y = planetRadius * 10;
+    // Crear label
+    const displayName = ASTRO_NAMES[id] || (id.charAt(0).toUpperCase() + id.slice(1));
+    const label = createLabel(displayName);
+    // Escala aumentada para planetas (x2.5 aprox respecto al original)
+    label.scale.set(50, 12.5, 1);
+    label.position.y = planetRadius * 12; // Un poco más alto para no solapar
     mesh.add(label);
 
     // Configurar click en label
@@ -206,8 +269,10 @@ function createPlanet(id, colorConfig, parentScene) {
     // Añadir a lista de astros
     astros.push({
         id,
+        displayName,
         mesh,
         group,
+        orbitMesh,
         orbitRadius,
         period_days: orbitData.period_days,
         initial_phase: orbitData.initial_phase || 0,
@@ -230,7 +295,9 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
     const orbitRadius = orbitData.distance_km * RADIUS_SCALE;
 
     // Radio de la luna en la misma escala que todos los astros
-    const moonRadius = orbitData.radius_km * RADIUS_SCALE;
+    // Aseguramos un tamaño mínimo para que lunas pequeñas (Fobos, Deimos) sean visibles
+    const MIN_MOON_RADIUS = 0.005;
+    const moonRadius = Math.max(orbitData.radius_km * RADIUS_SCALE, MIN_MOON_RADIUS);
 
     // Grupo para la inclinación orbital de la luna
     const inclinedGroup = new THREE.Group();
@@ -244,7 +311,11 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
     inclinedGroup.add(pivot);
 
     // Crear órbita
-    pivot.add(createOrbitLine(orbitRadius, colorConfig.orbit, 128));
+    // Grosor dinámico: Para lunas muy cercanas (Fobos), el grosor fijo de 0.15 es demasiado grande (parece un donut).
+    // Lo hacemos proporcional al radio (máx 10% del radio) pero con un tope de 0.15.
+    const orbitThickness = Math.min(0.15, orbitRadius * 0.1);
+    const orbitMesh = createOrbitLine(orbitRadius, colorConfig.orbit, 128, orbitThickness);
+    pivot.add(orbitMesh);
 
     // Crear mesh de la luna
     const mesh = new THREE.Mesh(
@@ -271,7 +342,7 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
     labelGroup.position.copy(mesh.position);
 
     // Crear label con escala proporcional al tamaño de la luna
-    const displayName = id.charAt(0).toUpperCase() + id.slice(1);
+    const displayName = ASTRO_NAMES[id] || (id.charAt(0).toUpperCase() + id.slice(1));
     const label = createLabel(displayName);
     // Escalar label proporcionalmente al radio de la luna
     const labelScale = Math.max(moonRadius * 8, 0.5);
@@ -286,9 +357,11 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
     // Añadir a lista de astros
     astros.push({
         id,
+        displayName,
         mesh,
         group: pivot,
         orbitRadius,
+        orbitMesh,
         period_days: orbitData.period_days,
         initial_phase: orbitData.initial_phase || 0,
         parentGroup,
@@ -338,6 +411,16 @@ const sun = new THREE.Mesh(
 );
 scene.add(sun);
 
+// Label para el Sol
+const sunLabel = createLabel(ASTRO_NAMES.sun);
+sunLabel.scale.set(20, 5, 1);
+sunLabel.position.y = 8;
+sun.add(sunLabel);
+
+// Configurar click en label del Sol
+sunLabel.userData.target = sun;
+sunLabel.userData.focusDistance = 10;
+
 // Increased light intensity
 scene.add(new THREE.PointLight(0xffffff, 5.0, 2000));
 scene.add(new THREE.AmbientLight(0xffffff, 0.6));
@@ -346,7 +429,7 @@ const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
 fillLight.position.set(1, 1, 1);
 scene.add(fillLight);
 
-clickableObjects.push(sun);
+clickableObjects.push(sun, sunLabel);
 
 /* ================= PLANETAS ================= */
 
@@ -511,7 +594,12 @@ function animate() {
         // Actualizar visibilidad del label basado en distancia
         const px = getScreenRadius(astro.mesh, camera);
         const threshold = astro.isMoon ? MOON_LABEL_HIDE_PX : LABEL_HIDE_PX;
-        astro.label.visible = px < threshold;
+
+        const isVisible = px < threshold;
+        astro.label.visible = isVisible;
+        if (astro.orbitMesh) {
+            astro.orbitMesh.visible = isVisible;
+        }
 
         // Billboard para labels
         astro.label.quaternion.copy(camera.quaternion);
@@ -544,5 +632,23 @@ function animate() {
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
 }
+
+
+// Iniciar barra de búsqueda
+const searchList = [...astros];
+// Añadir el Sol manualmente a la búsqueda
+searchList.push({
+    id: "sun",
+    displayName: ASTRO_NAMES.sun, // Sol
+    mesh: sun,
+    isMoon: false
+});
+
+initSearchBar(searchList, (astroData) => {
+    // Callback al seleccionar un astro
+    if (astroData.mesh) {
+        startFocusOn(astroData.mesh, astroData.isMoon ? 4 : (astroData.id === "sun" ? 10 : 6));
+    }
+});
 
 animate();
