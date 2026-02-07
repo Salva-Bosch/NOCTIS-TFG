@@ -168,12 +168,19 @@ function createPlanet(id, colorConfig, parentScene) {
     const orbitRadius = orbitData.distance_km * DISTANCE_SCALE;
     const planetRadius = orbitData.radius_km * RADIUS_SCALE;
 
-    // Crear órbita
-    parentScene.add(createOrbitLine(orbitRadius, colorConfig.orbit));
+    // Grupo para la inclinación orbital
+    const inclinedGroup = new THREE.Group();
+    if (orbitData.inclination_deg) {
+        inclinedGroup.rotation.x = THREE.MathUtils.degToRad(orbitData.inclination_deg);
+    }
+    parentScene.add(inclinedGroup);
 
-    // Crear grupo para el planeta
+    // Crear órbita (dentro del grupo inclinado)
+    inclinedGroup.add(createOrbitLine(orbitRadius, colorConfig.orbit));
+
+    // Crear grupo para el planeta (animación de traslación)
     const group = new THREE.Group();
-    parentScene.add(group);
+    inclinedGroup.add(group);
 
     // Crear mesh del planeta
     const mesh = new THREE.Mesh(
@@ -218,12 +225,23 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
         return null;
     }
 
-    const orbitRadius = orbitData.distance_km * DISTANCE_SCALE;
+    // Usar RADIUS_SCALE para distancias de lunas (misma escala que los radios)
+    // Esto asegura que la proporción visual Luna-Planeta sea real (tipo NASA Eyes)
+    const orbitRadius = orbitData.distance_km * RADIUS_SCALE;
+
+    // Radio de la luna en la misma escala que todos los astros
     const moonRadius = orbitData.radius_km * RADIUS_SCALE;
+
+    // Grupo para la inclinación orbital de la luna
+    const inclinedGroup = new THREE.Group();
+    if (orbitData.inclination_deg) {
+        inclinedGroup.rotation.x = THREE.MathUtils.degToRad(orbitData.inclination_deg);
+    }
+    parentGroup.add(inclinedGroup);
 
     // Crear pivot para la órbita
     const pivot = new THREE.Group();
-    parentGroup.add(pivot);
+    inclinedGroup.add(pivot);
 
     // Crear órbita
     pivot.add(createOrbitLine(orbitRadius, colorConfig.orbit, 128));
@@ -239,20 +257,26 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
             metalness: 0,
         })
     );
-    mesh.position.set(orbitRadius, 0, 0);
+    // Posicionar la luna en el plano de la órbita (Y=0.01 para coincidir con createOrbitLine)
+    mesh.position.set(orbitRadius, 0.01, 0);
     mesh.renderOrder = 2;
     pivot.add(mesh);
+
+    // Asegurar que el pivot esté en el centro del planeta padre
+    pivot.position.set(0, 0, 0);
 
     // Crear grupo para label
     const labelGroup = new THREE.Group();
     pivot.add(labelGroup);
     labelGroup.position.copy(mesh.position);
 
-    // Crear label
+    // Crear label con escala proporcional al tamaño de la luna
     const displayName = id.charAt(0).toUpperCase() + id.slice(1);
     const label = createLabel(displayName);
-    label.scale.set(6, 1.5, 1);
-    label.position.set(0, moonRadius * 6, 0);
+    // Escalar label proporcionalmente al radio de la luna
+    const labelScale = Math.max(moonRadius * 8, 0.5);
+    label.scale.set(labelScale * 4, labelScale, 1);
+    label.position.set(0, moonRadius * 3 + labelScale * 0.5, 0);
     labelGroup.add(label);
 
     // Configurar click en label
@@ -466,6 +490,8 @@ function animate() {
 
     // Actualizar posiciones de todos los astros
     for (const astro of astros) {
+        // ÁNGULO = fase_inicial - (días * velocidad_angular)
+        // Usamos resta para que el movimiento sea antihorario visto desde el norte
         const angle =
             (astro.initial_phase || 0) -
             (daysElapsed / astro.period_days) * Math.PI * 2;
