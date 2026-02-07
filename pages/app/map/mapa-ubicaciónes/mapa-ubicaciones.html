@@ -23,96 +23,118 @@
     
     <!-- SideNav se carga dinámicamente -->
 
-    <!-- BARRA SUPERIOR -->
+    <!-- HEADER -->
     <header class="map-header">
-        <div class="header-content">
-            <h1>Mejores Lugares para Observar las Estrellas</h1>
-        </div>
+        <h1>Mapa de Observación Astronómica</h1>
     </header>
 
     <!-- MAPA COMPLETO -->
     <div id="map"></div>
 
     <!-- BOTÓN DE INFORMACIÓN -->
-    <button class="noctis-btn info-btn" id="infoBtn" aria-label="Información">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        </svg>
+    <button class="info-button" id="infoBtn" aria-label="Información">
+        <img src="../../../../assets/icons/ui/info.svg" alt="Info" width="20" height="20">
     </button>
 
-    <!-- MODAL DE INFORMACIÓN -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="closeModal" aria-label="Cerrar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <!-- MODAL DE UBICACIÓN (lateral derecho) -->
+    <div class="location-panel" id="locationPanel">
+        <button class="panel-close" id="panelClose" aria-label="Cerrar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="panel-content" id="panelContent">
+            <!-- Contenido dinámico generado por JS -->
+        </div>
+    </div>
+
+    <!-- MODAL DE INFORMACIÓN (centro) -->
+    <div class="info-modal-overlay" id="infoModal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" id="infoClose" aria-label="Cerrar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-            
-            <div class="modal-header">
-                <div class="modal-icon">🌌</div>
-                <h2>Mapa de Observación Astronómica</h2>
-            </div>
-            
-            <p class="modal-intro">
-                Este mapa muestra los mejores lugares de España para la observación de estrellas, 
-                seleccionados por su <strong>baja contaminación lumínica</strong> y excelentes 
-                condiciones atmosféricas.
-            </p>
+
+            <h2>Guía del Mapa de Observación</h2>
 
             <div class="info-section">
-                <h3>🔍 Cómo usar el mapa</h3>
-                <ul>
-                    <li>Haz clic en los marcadores ⭐ para ver información de cada ubicación</li>
-                    <li>Cambia entre vista oscura y satélite usando el control superior derecho</li>
-                    <li>Usa los botones + / - o la rueda del ratón para hacer zoom</li>
-                    <li>Arrastra el mapa para explorar diferentes zonas</li>
-                </ul>
+                <h3>¿Qué es la Escala Bortle?</h3>
+                <p>
+                    La Escala Bortle mide la oscuridad del cielo nocturno, siendo una herramienta 
+                    fundamental para astrónomos aficionados y profesionales. Va desde Clase 1 
+                    (cielo excepcionalmente oscuro) hasta Clase 9 (cielo urbano con alta contaminación lumínica).
+                </p>
+                <p>
+                    <strong>Cuanto menor es el número, más estrellas y objetos celestes podrás observar.</strong>
+                </p>
             </div>
 
             <div class="info-section">
-                <h3>⭐ Tipos de ubicaciones</h3>
-                <div class="location-types">
-                    <div class="location-type">
-                        <span class="type-badge observatory">🔭</span>
+                <h3>¿Cómo interpretar los colores del mapa?</h3>
+                <div class="color-guide">
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #b07cff;"></span>
                         <div>
-                            <strong>Observatorios</strong>
-                            <p>Instalaciones profesionales con equipamiento avanzado</p>
+                            <strong>Morado - Excepcional (Bortle 1)</strong>
+                            <p>Cielo prístino. Vía Láctea espectacular. Ideal para astrofotografía profesional.</p>
                         </div>
                     </div>
-                    <div class="location-type">
-                        <span class="type-badge dark-sky">🌌</span>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #7aa2ff;"></span>
                         <div>
-                            <strong>Reservas Starlight</strong>
-                            <p>Certificación de cielos oscuros protegidos</p>
+                            <strong>Azul - Excelente (Bortle 2)</strong>
+                            <p>Cielo muy oscuro. Vía Láctea visible con estructura. Perfecto para observación profunda.</p>
                         </div>
                     </div>
-                    <div class="location-type">
-                        <span class="type-badge natural">🏔️</span>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #4dd4ac;"></span>
                         <div>
-                            <strong>Parques Naturales</strong>
-                            <p>Zonas de baja contaminación lumínica</p>
+                            <strong>Verde-Cyan - Muy Bueno (Bortle 3)</strong>
+                            <p>Cielo rural oscuro. Buena visibilidad de objetos del cielo profundo.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="info-section">
-                <h3>💡 Consejos para observar</h3>
-                <ul>
-                    <li>Elige noches sin luna o con luna nueva para mejor visibilidad</li>
-                    <li>Evita las luces artificiales al menos 30 minutos antes</li>
-                    <li>Comprueba las condiciones meteorológicas previamente</li>
-                    <li>Lleva ropa de abrigo, incluso en verano las noches son frías</li>
+                <h3>¿Qué puedo ver en cada nivel?</h3>
+                <ul class="visibility-list">
+                    <li><strong>Bortle 1:</strong> Zodiacal light, gegenschein, objetos Messier visibles a simple vista</li>
+                    <li><strong>Bortle 2:</strong> Vía Láctea con estructura, nubes de Magallanes, M31 fácilmente visible</li>
+                    <li><strong>Bortle 3:</strong> Vía Láctea clara, mayoría de constelaciones, objetos brillantes del catálogo Messier</li>
                 </ul>
             </div>
 
-            <p class="modal-footer">
-                <small>Datos actualizados • Selección basada en certificaciones oficiales y estudios de contaminación lumínica</small>
-            </p>
+            <div class="info-section">
+                <h3>¿Cómo usar este mapa?</h3>
+                <ol class="usage-list">
+                    <li>Haz clic en cualquier marcador para ver detalles de la ubicación</li>
+                    <li>Revisa la calidad del cielo y las características del lugar</li>
+                    <li>Guarda tus ubicaciones favoritas para consultarlas después</li>
+                    <li>Planifica tu visita considerando la fase lunar y el clima</li>
+                </ol>
+            </div>
+
+            <div class="info-section">
+                <h3>Consejos para observar</h3>
+                <ul class="tips-list">
+                    <li>Consulta el calendario lunar: las noches sin luna son ideales</li>
+                    <li>Adapta tu vista a la oscuridad durante al menos 20-30 minutos</li>
+                    <li>Evita usar luz blanca, utiliza linternas rojas</li>
+                    <li>Verifica las condiciones meteorológicas antes de viajar</li>
+                    <li>Lleva ropa de abrigo, incluso en verano las noches pueden ser frías</li>
+                </ul>
+            </div>
+
+            <div class="info-footer">
+                <p>Los datos de este mapa se basan en mediciones científicas, certificaciones oficiales 
+                y estudios de contaminación lumínica de organismos internacionales.</p>
+            </div>
         </div>
     </div>
 

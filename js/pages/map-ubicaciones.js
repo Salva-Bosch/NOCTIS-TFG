@@ -1,29 +1,26 @@
 import { loadSideNav } from "../core/loadSideNav.js";
 import { requireSession } from "../guards/sessionGuard.js";
 
-// Cargar autenticación y navegación
 await requireSession();
 await loadSideNav();
 
-console.log('✅ Session y SideNav cargados');
+console.log('Session y SideNav cargados');
 
 /* ============================================
    CONFIGURACIÓN DEL MAPA
    ============================================ */
 
-// Crear mapa centrado en España
 const map = L.map('map', {
-    center: [40.4168, -3.7038], // Madrid
-    zoom: 6,
-    minZoom: 5,
+    center: [30.0, 0.0], // Centro mundial
+    zoom: 3,
+    minZoom: 2,
     maxZoom: 18,
-    zoomControl: true,
+    zoomControl: false,
     attributionControl: true
 });
 
-console.log('✅ Mapa creado');
+console.log('Mapa creado');
 
-// Límites del mundo
 const worldBounds = L.latLngBounds(
     L.latLng(-85, -180),
     L.latLng(85, 180)
@@ -34,205 +31,578 @@ map.on('drag', function() {
 });
 
 /* ============================================
-   CAPAS DEL MAPA
+   CAPA BASE
    ============================================ */
 
-// CAPA BASE: Mapa oscuro suave
 const darkBase = L.tileLayer(
     'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
     {
-        attribution: '© <a href="https://stadiamaps.com/">Stadia Maps</a> © <a href="https://openmaptiles.org/">OpenMapTiles</a> © <a href="http://openstreetmap.org">OpenStreetMap</a>',
+        attribution: '© Stadia Maps © OpenStreetMap',
         maxZoom: 20,
         noWrap: true
     }
 );
 
-// CAPA ALTERNATIVA: Vista Satélite
-const satelliteView = L.tileLayer(
-    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    {
-        attribution: 'Esri, Maxar, Earthstar Geographics',
-        maxZoom: 18,
-        noWrap: true
-    }
-);
-
-// Añadir capa base por defecto
 darkBase.addTo(map);
-
-console.log('✅ Tiles añadidos');
-
-// Control de capas
-const baseMaps = {
-    "Mapa Oscuro": darkBase,
-    "Vista Satélite": satelliteView
-};
-
-L.control.layers(baseMaps, null, {
-    position: 'topright',
-    collapsed: true
-}).addTo(map);
+console.log('Mapa base añadido');
 
 /* ============================================
-   UBICACIONES ASTRONÓMICAS EN ESPAÑA
+   DATOS DE UBICACIONES - 20 MEJORES DEL MUNDO
    ============================================ */
 
-// Icono personalizado para ubicaciones
-const starIcon = L.divIcon({
-    className: 'custom-star-icon',
-    html: `
-        <div style="
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #7aa2ff 0%, #b07cff 100%);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(122, 162, 255, 0.5);
-            font-size: 20px;
-            backdrop-filter: blur(8px);
-        ">⭐</div>
-    `,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    popupAnchor: [0, -20]
-});
-
-// Lista de ubicaciones
 const locations = [
+    // BORTLE 1 - EXCEPCIONAL
     {
+        id: 1,
         name: "Observatorio del Teide",
         coords: [28.3009, -16.5098],
+        region: "Tenerife, Islas Canarias, España",
+        bortle: 1,
         type: "Observatorio",
-        description: "Uno de los observatorios más importantes del mundo. Cielos excepcionalmente limpios.",
-        features: ["Certificación Starlight", "Baja humedad", "Visitas guiadas"]
+        certification: "Reserva Starlight",
+        description: "Uno de los mejores observatorios del mundo. Cielo excepcionalmente oscuro con más de 300 noches despejadas al año.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Baja humedad atmosférica",
+            "Altitud: 2.390 metros",
+            "Instalaciones profesionales",
+            "Visitas guiadas disponibles"
+        ],
+        quality: "Excepcional"
     },
     {
+        id: 2,
         name: "Observatorio del Roque de los Muchachos",
         coords: [28.7569, -17.8850],
+        region: "La Palma, Islas Canarias, España",
+        bortle: 1,
         type: "Observatorio",
-        description: "Instalación astronómica de referencia mundial en La Palma.",
-        features: ["Cielo protegido", "Instalaciones profesionales", "Altitud óptima"]
+        certification: "Reserva Starlight",
+        description: "Instalación astronómica de referencia mundial. Ley de protección del cielo desde 1988.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Protección lumínica legal",
+            "Altitud: 2.396 metros",
+            "Seeing excepcional",
+            "Telescopios de clase mundial"
+        ],
+        quality: "Excepcional"
     },
     {
+        id: 3,
+        name: "Observatorio Paranal",
+        coords: [-24.6272, -70.4040],
+        region: "Desierto de Atacama, Chile",
+        bortle: 1,
+        type: "Observatorio",
+        certification: "ESO",
+        description: "Hogar del Very Large Telescope (VLT). Uno de los cielos más oscuros y secos del planeta.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Humedad extremadamente baja",
+            "Altitud: 2.635 metros",
+            "Más de 330 noches despejadas/año",
+            "Instalación ESO"
+        ],
+        quality: "Excepcional"
+    },
+    {
+        id: 4,
+        name: "Observatorio de Mauna Kea",
+        coords: [19.8207, -155.4681],
+        region: "Hawái, Estados Unidos",
+        bortle: 1,
+        type: "Observatorio",
+        certification: null,
+        description: "El observatorio más alto del mundo. Atmósfera excepcionalmente estable.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Altitud: 4.205 metros",
+            "Atmósfera estable",
+            "13 telescopios internacionales",
+            "Seeing de 0.5 arcsec"
+        ],
+        quality: "Excepcional"
+    },
+    {
+        id: 5,
+        name: "NamibRand Nature Reserve",
+        coords: [-25.0833, 16.2000],
+        region: "Namibia",
+        bortle: 1,
+        type: "Reserva Dark Sky",
+        certification: "International Dark Sky Reserve",
+        description: "Primera Reserva Internacional de Cielo Oscuro de África. Cielos prístinos.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Certificación Dark Sky 2012",
+            "Desierto del Namib",
+            "Ausencia total de contaminación",
+            "Safari nocturno disponible"
+        ],
+        quality: "Excepcional"
+    },
+    {
+        id: 6,
+        name: "Aoraki Mackenzie",
+        coords: [-43.9859, 170.4714],
+        region: "Isla Sur, Nueva Zelanda",
+        bortle: 1,
+        type: "Reserva Dark Sky",
+        certification: "International Dark Sky Reserve",
+        description: "Mayor Reserva de Cielo Oscuro certificada del mundo. Hemisferio sur excepcional.",
+        features: [
+            "Cielo Clase 1 (Bortle)",
+            "Reserva más grande del mundo",
+            "Hemisferio sur privilegiado",
+            "Vía Láctea espectacular",
+            "Turismo astronómico desarrollado"
+        ],
+        quality: "Excepcional"
+    },
+    
+    // BORTLE 2 - EXCELENTE
+    {
+        id: 7,
         name: "Parque Nacional de Monfragüe",
         coords: [39.8578, -6.0483],
+        region: "Cáceres, Extremadura, España",
+        bortle: 2,
         type: "Reserva Starlight",
-        description: "Reserva y Destino Turístico Starlight en Extremadura.",
-        features: ["Certificación Starlight", "Actividades nocturnas", "Fauna nocturna"]
+        certification: "Destino Turístico Starlight",
+        description: "Primera Reserva Starlight de Extremadura. Cielos oscuros certificados.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Certificación Starlight 2016",
+            "Turismo astronómico activo",
+            "Observaciones guiadas",
+            "Biodiversidad única"
+        ],
+        quality: "Excelente"
     },
     {
-        name: "Sierra de Gredos",
-        coords: [40.2983, -5.2858],
-        type: "Parque Natural",
-        description: "Excelentes condiciones para observación en el centro peninsular.",
-        features: ["Baja contaminación lumínica", "Fácil acceso", "Rutas nocturnas"]
+        id: 8,
+        name: "Cherry Springs State Park",
+        coords: [41.6628, -77.8236],
+        region: "Pensilvania, Estados Unidos",
+        bortle: 2,
+        type: "Parque Dark Sky",
+        certification: "International Dark Sky Park",
+        description: "Uno de los mejores lugares de la costa este de EE.UU. para observación.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Gold-tier Dark Sky Park",
+            "Campo de observación público",
+            "Eventos astronómicos regulares",
+            "Fácil acceso"
+        ],
+        quality: "Excelente"
     },
     {
-        name: "Montsec - Centre d'Observació de l'Univers",
+        id: 9,
+        name: "Parque Nacional Jasper",
+        coords: [52.8734, -117.9543],
+        region: "Alberta, Canadá",
+        bortle: 2,
+        type: "Reserva Dark Sky",
+        certification: "Dark Sky Preserve",
+        description: "Segunda reserva de cielo oscuro más grande del mundo. Montañas Rocosas.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "11.000 km² protegidos",
+            "Festival anual de astronomía",
+            "Paisajes de montaña",
+            "Auroras boreales"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 10,
+        name: "Montsec - Centre d'Observació",
         coords: [42.0472, 0.7311],
-        type: "Observatorio",
-        description: "Reserva Starlight en Lleida con planetario y observatorio público.",
-        features: ["Planetario", "Actividades educativas", "Cielo protegido"]
+        region: "Lleida, Cataluña, España",
+        bortle: 2,
+        type: "Observatorio Público",
+        certification: "Reserva Starlight",
+        description: "Primera Reserva Starlight de Cataluña con planetario.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Planetario digital",
+            "Observatorio público",
+            "Actividades educativas",
+            "Certificación Starlight 2013"
+        ],
+        quality: "Excelente"
     },
     {
+        id: 11,
         name: "Parque Nacional de Cabañeros",
         coords: [39.3711, -4.4586],
+        region: "Ciudad Real, Castilla-La Mancha, España",
+        bortle: 2,
         type: "Reserva Starlight",
-        description: "Reserva Starlight en Castilla-La Mancha.",
-        features: ["Certificación Starlight", "Naturaleza virgen", "Observaciones guiadas"]
+        certification: "Reserva Starlight",
+        description: "Uno de los mejores espacios naturales de España para observación.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Certificación Starlight",
+            "Naturaleza virgen",
+            "Observaciones guiadas",
+            "Bajo impacto lumínico"
+        ],
+        quality: "Excelente"
     },
     {
-        name: "Sierra de Albarracín",
-        coords: [40.4081, -1.4397],
-        type: "Reserva Starlight",
-        description: "Destino Turístico Starlight en Teruel.",
-        features: ["Pueblo medieval", "Cielos oscuros", "Turismo astronómico"]
+        id: 12,
+        name: "Westhavelland Nature Park",
+        coords: [52.7000, 12.4500],
+        region: "Brandeburgo, Alemania",
+        bortle: 2,
+        type: "Parque Dark Sky",
+        certification: "International Dark Sky Reserve",
+        description: "Primera Reserva de Cielo Oscuro de Alemania. Protección activa.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Reserva desde 2014",
+            "Protección lumínica estricta",
+            "Eventos astronómicos",
+            "Fácil acceso desde Berlín"
+        ],
+        quality: "Excelente"
     },
     {
-        name: "Parque Natural de la Sierra de Grazalema",
-        coords: [36.7594, -5.3983],
+        id: 13,
+        name: "Pic du Midi",
+        coords: [42.9364, 0.1414],
+        region: "Pirineos, Francia",
+        bortle: 2,
+        type: "Observatorio",
+        certification: null,
+        description: "Observatorio en alta montaña con hotel astronómico.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Altitud: 2.877 metros",
+            "Hotel con cúpula",
+            "Experiencia nocturna única",
+            "Telescopios históricos"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 14,
+        name: "Brecon Beacons",
+        coords: [51.8833, -3.4333],
+        region: "Gales, Reino Unido",
+        bortle: 2,
+        type: "Parque Dark Sky",
+        certification: "International Dark Sky Reserve",
+        description: "Primera Reserva de Cielo Oscuro de Gales.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Reserva desde 2013",
+            "Eventos astronómicos anuales",
+            "Paisajes de montaña",
+            "Red de observatorios públicos"
+        ],
+        quality: "Excelente"
+    },
+    
+    // BORTLE 3 - MUY BUENO
+    {
+        id: 15,
+        name: "Sierra de Gredos",
+        coords: [40.2983, -5.2858],
+        region: "Ávila, Castilla y León, España",
+        bortle: 3,
         type: "Parque Natural",
-        description: "Excelentes condiciones en Andalucía con baja contaminación.",
-        features: ["Reserva de la Biosfera", "Cielos limpios", "Clima mediterráneo"]
+        certification: null,
+        description: "Excelentes condiciones en el centro peninsular. Acceso fácil desde Madrid.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Baja contaminación lumínica",
+            "Altitud media: 1.500 metros",
+            "Acceso relativamente fácil",
+            "Rutas de senderismo nocturno"
+        ],
+        quality: "Muy Bueno"
     },
     {
-        name: "Alto Tajo",
-        coords: [40.7083, -2.0486],
-        type: "Reserva Starlight",
-        description: "Parque Natural en Guadalajara con certificación Starlight.",
-        features: ["Certificación Starlight", "Paisajes espectaculares", "Observaciones públicas"]
+        id: 16,
+        name: "Parque Nacional de los Glaciares",
+        coords: [48.7596, -113.7870],
+        region: "Montana, Estados Unidos",
+        bortle: 3,
+        type: "Parque Nacional",
+        certification: null,
+        description: "Parque de montaña con excelentes condiciones para observación.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Parque Nacional",
+            "Montañas Rocosas",
+            "Baja densidad poblacional",
+            "Vida silvestre nocturna"
+        ],
+        quality: "Muy Bueno"
     },
     {
+        id: 17,
+        name: "Parque Nacional Sierra de Grazalema",
+        coords: [36.7594, -5.3983],
+        region: "Cádiz, Andalucía, España",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: "Reserva de la Biosfera",
+        description: "Excelentes condiciones en Andalucía con cielos oscuros.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Reserva de la Biosfera",
+            "Clima mediterráneo",
+            "Baja contaminación lumínica",
+            "Observatorios amateur activos"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 18,
+        name: "Parque Nacional de Yellowstone",
+        coords: [44.4280, -110.5885],
+        region: "Wyoming, Estados Unidos",
+        bortle: 3,
+        type: "Parque Nacional",
+        certification: null,
+        description: "Primer parque nacional del mundo con cielos relativamente oscuros.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Parque Nacional histórico",
+            "Geotermia nocturna",
+            "Alta altitud",
+            "Programas ranger-led"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 19,
         name: "Picos de Europa",
         coords: [43.1956, -4.8514],
-        type: "Parque Natural",
-        description: "Zona de baja contaminación lumínica en el norte de España.",
-        features: ["Alta montaña", "Cielos despejados", "Parque Nacional"]
+        region: "Cantabria/Asturias/León, España",
+        bortle: 3,
+        type: "Parque Nacional",
+        certification: "Reserva de la Biosfera",
+        description: "Alta montaña con cielos oscuros en el norte de España.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Parque Nacional",
+            "Alta montaña",
+            "Clima atlántico",
+            "Mirador de estrellas"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 20,
+        name: "Parque Nacional de Snowdonia",
+        coords: [53.0686, -3.9287],
+        region: "Gales, Reino Unido",
+        bortle: 3,
+        type: "Parque Nacional",
+        certification: null,
+        description: "Montañas galesas con buenas condiciones para observación.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Parque Nacional",
+            "Montañas de Gales",
+            "Red de observatorios",
+            "Eventos astronómicos"
+        ],
+        quality: "Muy Bueno"
     }
 ];
 
-// Añadir marcadores al mapa
-locations.forEach(location => {
-    const popupContent = `
-        <div class="popup-noctis">
-            <h3>${location.name}</h3>
-            <span class="popup-type">${location.type}</span>
-            <p>${location.description}</p>
-            <div class="popup-features">
-                ${location.features.map(feature => `
-                    <div class="popup-feature">${feature}</div>
-                `).join('')}
+/* ============================================
+   LÓGICA DE COLORES - ACTUALIZADA
+   ============================================ */
+
+function getBortleColor(bortle) {
+    const colors = {
+        1: '#b07cff',  // Morado brillante (Excepcional)
+        2: '#7aa2ff',  // Azul claro (Excelente)
+        3: '#4dd4ac'   // Verde-cyan (Muy bueno) - NUEVO COLOR MÁS DISTINTIVO
+    };
+    return colors[bortle] || '#8b9cff';
+}
+
+function createMarkerIcon(bortle) {
+    const color = getBortleColor(bortle);
+
+    return L.divIcon({
+        className: 'custom-marker-icon',
+        html: `
+            <div style="
+                width: 32px;
+                height: 32px;
+                background: ${color};
+                border: 2.5px solid rgba(255, 255, 255, 0.9);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 16px ${color}60;
+                backdrop-filter: blur(4px);
+                cursor: pointer;
+            ">
+                <!-- REEMPLAZAR CON TU SVG -->
+                <!-- <img src="../../../../assets/icons/map/marker-${bortle}.svg" width="18" height="18"> -->
             </div>
+        `,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -16]
+    });
+}
+
+/* ============================================
+   AÑADIR MARCADORES
+   ============================================ */
+
+locations.forEach(location => {
+    const marker = L.marker(location.coords, {
+        icon: createMarkerIcon(location.bortle)
+    }).addTo(map);
+
+    marker.on('click', function() {
+        openLocationModal(location);
+    });
+});
+
+console.log(`${locations.length} ubicaciones añadidas`);
+
+/* ============================================
+   MODAL LATERAL
+   ============================================ */
+
+const panel = document.getElementById('locationPanel');
+const panelContent = document.getElementById('panelContent');
+const panelClose = document.getElementById('panelClose');
+
+const heartOutline = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+const heartFilled = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+
+function openLocationModal(location) {
+    const isFavorited = isFavorite(location.id);
+    const color = getBortleColor(location.bortle);
+    
+    panelContent.innerHTML = `
+        <div class="panel-header">
+            <h1 class="panel-location-name">${location.name}</h1>
+            <div class="panel-region">${location.region}</div>
+        </div>
+
+        <div class="quality-indicator">
+            <div class="quality-label">Calidad del Cielo</div>
+            <div class="quality-badge">
+                <span class="quality-dot" style="background: ${color}; color: ${color};"></span>
+                <span class="quality-text">${location.quality}</span>
+            </div>
+            <div class="bortle-scale">
+                <strong>Escala Bortle:</strong> Clase ${location.bortle} de 9
+            </div>
+        </div>
+
+        <div class="panel-badges">
+            <span class="badge">${location.type}</span>
+            ${location.certification ? `<span class="badge certification">${location.certification}</span>` : ''}
+        </div>
+
+        <div class="panel-description">
+            <p>${location.description}</p>
+        </div>
+
+        <div class="panel-features">
+            <h3 class="panel-section-title">Características</h3>
+            <ul class="features-list">
+                ${location.features.map(feature => `<li>${feature}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="panel-actions">
+            <button class="btn-favorite ${isFavorited ? 'favorited' : ''}" data-location-id="${location.id}">
+                <span class="heart-icon">${isFavorited ? heartFilled : heartOutline}</span>
+                <span>${isFavorited ? 'Guardado en Favoritos' : 'Añadir a Favoritos'}</span>
+            </button>
         </div>
     `;
 
-    L.marker(location.coords, { icon: starIcon })
-        .addTo(map)
-        .bindPopup(popupContent, {
-            maxWidth: 300,
-            className: 'noctis-popup'
-        });
-});
+    const favBtn = panelContent.querySelector('.btn-favorite');
+    favBtn.addEventListener('click', function() {
+        toggleFavorite(location);
+        openLocationModal(location);
+    });
 
-console.log('✅ Ubicaciones añadidas al mapa');
+    panel.classList.add('active');
+}
+
+function closeLocationModal() {
+    panel.classList.remove('active');
+}
+
+panelClose.addEventListener('click', closeLocationModal);
+
+map.on('click', function() {
+    closeLocationModal();
+});
 
 /* ============================================
    MODAL DE INFORMACIÓN
    ============================================ */
 
 const infoBtn = document.getElementById('infoBtn');
-const modal = document.getElementById('modal');
-const closeBtn = document.getElementById('closeModal');
+const infoModal = document.getElementById('infoModal');
+const infoClose = document.getElementById('infoClose');
 
-if (infoBtn && modal && closeBtn) {
-    // Abrir modal
-    infoBtn.addEventListener('click', () => {
-        modal.classList.add('active');
-    });
+infoBtn.addEventListener('click', () => {
+    infoModal.classList.add('active');
+});
 
-    // Cerrar modal
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
+infoClose.addEventListener('click', () => {
+    infoModal.classList.remove('active');
+});
 
-    // Cerrar al hacer clic fuera
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
+infoModal.addEventListener('click', (e) => {
+    if (e.target === infoModal) {
+        infoModal.classList.remove('active');
+    }
+});
 
-    // Cerrar con ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-        }
-    });
+/* ============================================
+   SISTEMA DE FAVORITOS
+   ============================================ */
 
-    console.log('✅ Modal configurado');
+function getFavorites() {
+    const favs = localStorage.getItem('noctis_favorites');
+    return favs ? JSON.parse(favs) : [];
+}
+
+function saveFavorites(favorites) {
+    localStorage.setItem('noctis_favorites', JSON.stringify(favorites));
+}
+
+function isFavorite(locationId) {
+    const favorites = getFavorites();
+    return favorites.includes(locationId);
+}
+
+function toggleFavorite(location) {
+    let favorites = getFavorites();
+    
+    if (favorites.includes(location.id)) {
+        favorites = favorites.filter(id => id !== location.id);
+        console.log(`Eliminado de favoritos: ${location.name}`);
+    } else {
+        favorites.push(location.id);
+        console.log(`Añadido a favoritos: ${location.name}`);
+    }
+    
+    saveFavorites(favorites);
 }
 
 /* ============================================
@@ -241,5 +611,5 @@ if (infoBtn && modal && closeBtn) {
 
 setTimeout(() => {
     map.invalidateSize();
-    console.log('✅ Mapa redimensionado y listo');
+    console.log('Mapa listo con 20 ubicaciones mundiales');
 }, 200);
