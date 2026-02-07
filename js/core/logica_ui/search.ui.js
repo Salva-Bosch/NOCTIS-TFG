@@ -11,23 +11,16 @@ export function initSearchBar(astros, onFocusCallback) {
     }
 
     // Indexar astros para búsqueda rápida
-    // Mapeamos a un formato simple: { id, name, type (planeta/luna), originalObject }
     const searchableAstros = astros.map(astro => {
-        let name = astro.id;
-        // Intentar obtener nombre legible del label si existe, si no, capitalizar ID
-        if (astro.label && astro.label.userData && astro.label.userData.name) {
-            name = astro.label.userData.name;
-        } else {
-            // Fallback: usar el texto del canvas (si fuera accesible) o el ID traducido
-            // Como no tenemos acceso fácil al texto del sprite, usaremos una lógica simple basada en el ID
-            // Idealmente pasaríamos el nombre traducido en el objeto astro desde sistema_solar.js
-            name = astro.displayName || (astro.id.charAt(0).toUpperCase() + astro.id.slice(1));
-        }
+        const name =
+            astro.displayName ||
+            (astro.label?.userData?.name) ||
+            astro.id.charAt(0).toUpperCase() + astro.id.slice(1);
 
         return {
             id: astro.id,
-            name: name,
-            type: astro.isMoon ? "Luna" : "Planeta", // Simplificación
+            name,
+            type: astro.isMoon ? "Luna" : "Planeta",
             data: astro
         };
     });
