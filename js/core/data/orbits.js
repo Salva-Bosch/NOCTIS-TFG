@@ -1,12 +1,14 @@
 /* DATOS ORBITALES REALES DE LOS ASTROS */
 export const ORBITS = {
     sun: {
+        displayName: "Sol",
         radius_km: 696340,
         distance_km: 0,
         period_days: 0
     },
 
     mercury: {
+        displayName: "Mercurio",
         radius_km: 2439.7,
         distance_km: 57_909_227,
         period_days: 87.97,
@@ -15,6 +17,7 @@ export const ORBITS = {
     },
 
     venus: {
+        displayName: "Venus",
         radius_km: 6051.8,
         distance_km: 108_209_475,
         period_days: 224.7,
@@ -23,6 +26,7 @@ export const ORBITS = {
     },
 
     earth: {
+        displayName: "Tierra",
         radius_km: 6371,
         distance_km: 149_597_870,
         period_days: 365.25,
@@ -31,6 +35,7 @@ export const ORBITS = {
     },
 
     mars: {
+        displayName: "Marte",
         radius_km: 3389.5,
         distance_km: 227_943_824,
         period_days: 686.98,
@@ -39,6 +44,7 @@ export const ORBITS = {
     },
 
     jupiter: {
+        displayName: "Jupiter",
         radius_km: 69_911,
         distance_km: 778_340_821,
         period_days: 4332.59,
@@ -47,6 +53,7 @@ export const ORBITS = {
     },
 
     saturn: {
+        displayName: "Saturno",
         radius_km: 58_232,
         distance_km: 1_426_666_422,
         period_days: 10_759,
@@ -55,6 +62,7 @@ export const ORBITS = {
     },
 
     uranus: {
+        displayName: "Urano",
         radius_km: 25_362,
         distance_km: 2_870_658_186,
         period_days: 30_688.5,
@@ -63,6 +71,7 @@ export const ORBITS = {
     },
 
     neptune: {
+        displayName: "Neptuno",
         radius_km: 24_622,
         distance_km: 4_498_396_441,
         period_days: 60_182,
@@ -72,6 +81,7 @@ export const ORBITS = {
 
     // === LUNAS ===
     moon: {
+        displayName: "Luna",
         radius_km: 1737.4,
         distance_km: 384_400,
         period_days: 27.32,
@@ -81,6 +91,7 @@ export const ORBITS = {
     },
 
     phobos: {
+        displayName: "Fobos",
         radius_km: 11.3,
         distance_km: 9_378,
         period_days: 0.32,
@@ -90,6 +101,7 @@ export const ORBITS = {
     },
 
     deimos: {
+        displayName: "Deimos",
         radius_km: 6.2,
         distance_km: 23_460,
         period_days: 1.26,
@@ -100,6 +112,7 @@ export const ORBITS = {
 
     // Júpiter (galileanas)
     io: {
+        displayName: "Io",
         radius_km: 1821.6,
         distance_km: 421_700,
         period_days: 1.77,
@@ -109,6 +122,7 @@ export const ORBITS = {
     },
 
     europa: {
+        displayName: "Europa",
         radius_km: 1560.8,
         distance_km: 671_034,
         period_days: 3.55,
@@ -118,6 +132,7 @@ export const ORBITS = {
     },
 
     ganymede: {
+        displayName: "Ganimedes",
         radius_km: 2634.1,
         distance_km: 1_070_412,
         period_days: 7.15,
@@ -127,6 +142,7 @@ export const ORBITS = {
     },
 
     callisto: {
+        displayName: "Calisto",
         radius_km: 2410.3,
         distance_km: 1_882_709,
         period_days: 16.69,
@@ -137,6 +153,7 @@ export const ORBITS = {
 
     // Saturno (principales)
     titan: {
+        displayName: "Titán",
         radius_km: 2574.7,
         distance_km: 1_221_870,
         period_days: 15.95,
@@ -146,6 +163,7 @@ export const ORBITS = {
     },
 
     enceladus: {
+        displayName: "Encélado",
         radius_km: 252.1,
         distance_km: 238_020,
         period_days: 1.37,
@@ -156,6 +174,7 @@ export const ORBITS = {
 
     // Urano
     titania: {
+        displayName: "Titania",
         radius_km: 788.9,
         distance_km: 435_910,
         period_days: 8.71,
@@ -165,6 +184,7 @@ export const ORBITS = {
     },
 
     oberon: {
+        displayName: "Oberón",
         radius_km: 761.4,
         distance_km: 583_520,
         period_days: 13.46,
@@ -175,6 +195,7 @@ export const ORBITS = {
 
     // Neptuno
     triton: {
+        displayName: "Tritón",
         radius_km: 1353.4,
         distance_km: 354_759,
         period_days: 5.88,
@@ -185,6 +206,7 @@ export const ORBITS = {
 
     // Plutón
     charon: {
+        displayName: "Caronte",
         radius_km: 606,
         distance_km: 19_640,
         period_days: 6.39,
@@ -195,6 +217,7 @@ export const ORBITS = {
 
     // === PLANETAS ENANOS ===
     pluto: {
+        displayName: "Plutón",
         radius_km: 1188.3,
         distance_km: 5_906_380_000,
         period_days: 90_560,
@@ -203,6 +226,7 @@ export const ORBITS = {
     },
 
     eris: {
+        displayName: "Éris",
         radius_km: 1163,
         distance_km: 10_120_000_000,
         period_days: 203_600,
@@ -211,6 +235,7 @@ export const ORBITS = {
     },
 
     ceres: {
+        displayName: "Céres",
         radius_km: 473,
         distance_km: 413_700_000,
         period_days: 1680,
