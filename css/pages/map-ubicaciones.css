@@ -42,7 +42,7 @@ body {
 }
 
 /* ============================================
-   HEADER SUPERIOR
+   HEADER PREMIUM - FINO Y CURVADO
    ============================================ */
 
 .map-header {
@@ -50,30 +50,131 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.25rem 0;
+    padding: 0.85rem 0 1rem 0; /* Reducido */
     z-index: 2000;
     text-align: center;
     
-    background: linear-gradient(
-        180deg, 
-        rgba(12, 14, 24, 0.95) 0%, 
-        rgba(12, 14, 24, 0.75) 70%,
-        rgba(12, 14, 24, 0) 100%
-    );
+    /* Fondo sólido */
+    background: rgba(12, 14, 24, 0.98);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(139, 156, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Curva inferior */
+    border-bottom-left-radius: 50% 25px;
+    border-bottom-right-radius: 50% 25px;
+    
+    /* Solo sombra, SIN borde inferior */
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
     
     pointer-events: none;
+    
+    /* Importante: ocultar cualquier overflow de la línea recta */
+    overflow: hidden;
 }
 
 .map-header h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    background: linear-gradient(135deg, #8b9cff 0%, #b5a0ff 100%);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    margin-bottom: 0.55rem; /* Reducido */
+}
+
+/* Degradado solo en "Astronómica" */
+.map-header h1 .highlight {
+    display: block;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: linear-gradient(
+        120deg,
+        #7aa2ff 0%,
+        #8b9cff 30%,
+        #b07cff 70%,
+        #c89fff 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 2px 8px rgba(139, 156, 255, 0.2));
+}
+
+/* Línea orbital decorativa */
+.orbital-line {
+    position: relative;
+    width: 220px;
+    height: 1px;
+    margin: 0 auto;
+    
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(122, 162, 255, 0.4) 20%,
+        rgba(139, 156, 255, 0.7) 50%,
+        rgba(176, 124, 255, 0.4) 80%,
+        transparent 100%
+    );
+    
+    box-shadow: 0 0 6px rgba(139, 156, 255, 0.25);
+}
+
+/* Puntos decorativos */
+.orbital-line::before,
+.orbital-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #8b9cff;
+    box-shadow: 0 0 4px rgba(139, 156, 255, 0.5);
+}
+
+.orbital-line::before {
+    left: 0;
+}
+
+.orbital-line::after {
+    right: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .map-header {
+        padding: 0.75rem 0 0.85rem 0;
+        border-bottom-left-radius: 50% 20px;
+        border-bottom-right-radius: 50% 20px;
+    }
+    
+    .map-header h1 {
+        font-size: 1.15rem;
+    }
+    
+    .orbital-line {
+        width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-header {
+        padding: 0.65rem 0 0.75rem 0;
+        border-bottom-left-radius: 50% 18px;
+        border-bottom-right-radius: 50% 18px;
+    }
+    
+    .map-header h1 {
+        font-size: 1rem;
+    }
+    
+    .orbital-line {
+        width: 150px;
+    }
 }
 
 /* ============================================
