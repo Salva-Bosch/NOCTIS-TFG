@@ -535,7 +535,7 @@ body {
 .info-button {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    left: 2.25rem;
     z-index: 2000;
     
     width: 56px;
