@@ -71,13 +71,19 @@ function renderFavorites(favorites) {
     favoritesList.innerHTML = "";
     favorites.forEach(fav => {
         const typeEmoji = TYPE_EMOJIS[fav.type] || "✨";
-        const imgUrl = ASTRO_IMAGES[fav.id] || "../../../assets/branding/logo/noctis-logo.png";
+        const imgUrl = ASTRO_IMAGES[fav.id];
 
         const item = document.createElement("div");
         item.className = "favorite-item";
+
+        // Si no hay imagen, usamos el emoji del tipo en grande
+        const thumbContent = imgUrl
+            ? `<img src="${imgUrl}" alt="${fav.name}">`
+            : `<span style="font-size: 32px;">${typeEmoji}</span>`;
+
         item.innerHTML = `
             <div class="favorite-thumb">
-                <img src="${imgUrl}" alt="${fav.name}">
+                ${thumbContent}
             </div>
             <div class="favorite-info">
                 <div class="favorite-type">${typeEmoji} ${fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta')}</div>

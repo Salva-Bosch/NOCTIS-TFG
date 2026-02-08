@@ -5,27 +5,36 @@
     padding: 40px 20px;
     padding-left: 100px;
     /* Espacio para el navbar lateral */
+    padding-top: 15vh;
+    /* Espacio para el header fijo */
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: url('../../../assets/backgrounds/app/home_bg.png') no-repeat center center fixed;
+    background: url('../../../assets/backgrounds/app/Favoritos_Noctis.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Inter', sans-serif;
 }
 
 .favorites-header {
+    height: 10vh;
     width: 100%;
-    max-width: 800px;
-    text-align: center;
-    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, .06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: 9999;
 }
 
 .favorites-header h1 {
     color: white;
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 /* SEARCH BAR */

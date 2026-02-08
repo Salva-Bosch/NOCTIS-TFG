@@ -7,14 +7,32 @@
 
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../css/components/navbar.css">
+    <style>
+        body {
+            background-color: var(--bg-blue-settings);
+            color: white;
+            font-family: var(--font-main);
+        }
+
+        main {
+            padding: 40px;
+            padding-left: 120px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Ajustes</h1>
+    <main>
+        <h1>Ajustes</h1>
+        <p>Próximamente más opciones de configuración.</p>
+    </main>
 
     <script type="module">
         import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { loadSideNav } from "../../../js/core/loadSideNav.js";
         await requireSession();
+        await loadSideNav();
     </script>
 </body>
 

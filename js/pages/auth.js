@@ -33,7 +33,7 @@ registerForm.addEventListener("submit", async (e) => {
 
   try {
     await register(name, email, password);
-    window.location.replace("../app/home.html");
+    window.location.replace("../app/home/home.html");
   } catch (err) {
     alert(err.message);
   }

@@ -14,13 +14,8 @@
     <h1>Mapa de Ubicaciones</h1>
 
     <script type="module">
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        await requireSession();
-    </script>
-    
-    <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
 
         await requireSession();
         await loadSideNav();
