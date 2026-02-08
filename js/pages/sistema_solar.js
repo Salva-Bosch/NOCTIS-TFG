@@ -119,9 +119,11 @@ async function updateFavoriteUI(astroId) {
     const isFav = await checkIfFavorite(astroId);
     if (isFav) {
         btnToggleFavorite.classList.add("is-favorite");
+        favoriteHeartIcon.src = "../../../assets/icons/user/favourite_red.svg";
         favoriteHeartIcon.style.filter = "none";
     } else {
         btnToggleFavorite.classList.remove("is-favorite");
+        favoriteHeartIcon.src = "../../../assets/icons/nav/favourites.svg";
         favoriteHeartIcon.style.filter = "brightness(0) invert(1)";
     }
 }
