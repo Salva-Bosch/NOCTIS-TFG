@@ -68,27 +68,27 @@
     <button class="live-btn" id="liveBtn">
       <span class="live-dot"></span> LIVE
     </button>
+  </div>
 
+  <!-- Menú lateral de Noctis -->
+  <script type="module">
+    import { loadSideNav } from "../../../js/core/loadSideNav.js";
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+    await requireSession();
+    await loadSideNav();
+  </script>
 
-    <!-- Menú lateral de Noctis -->
-    <script type="module">
-      import { loadSideNav } from "../../../js/core/loadSideNav.js";
-      import { requireSession } from "../../../js/guards/sessionGuard.js";
-      await requireSession();
-      await loadSideNav();
-    </script>
+  <!-- Script de seguridad de Auth -->
+  <script type="module">
+    import { requireSession } from "../../../js/guards/sessionGuard.js";
+    await requireSession();
+  </script>
 
-    <!-- Script de seguridad de Auth -->
-    <script type="module">
-      import { requireSession } from "../../../js/guards/sessionGuard.js";
-      await requireSession();
-    </script>
+  <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
+  <script type="module" src="../../../js/core/logica_ui/sistema_solar.ui.js"></script>
 
-    <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
-    <script type="module" src="../../../js/core/logica_ui/sistema_solar.ui.js"></script>
-
-    <!-- Conexión con JS de Sistema Solar -->
-    <script type="module" src="../../../js/pages/sistema_solar.js"></script>
+  <!-- Conexión con JS de Sistema Solar -->
+  <script type="module" src="../../../js/pages/sistema_solar.js"></script>
 </body>
 
 </html>

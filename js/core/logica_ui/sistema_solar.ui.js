@@ -165,6 +165,7 @@ function syncUI() {
 
 // Init
 (function initUI() {
+    timeEngine.play();
     syncUI();
     updateClock();
 })();
