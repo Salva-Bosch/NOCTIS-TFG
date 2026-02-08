@@ -749,30 +749,45 @@ function getBortleColor(bortle) {
 
 function createMarkerIcon(bortle) {
     const color = getBortleColor(bortle);
+    
+    // Mapeo de Bortle a nombre de archivo
+    const iconNames = {
+        1: 'excepcional',
+        2: 'excelente',
+        3: 'muy-bueno',
+        4: 'bueno',
+        5: 'moderado',
+        6: 'suburbano-brillante',
+        7: 'transicion-urbana',
+        8: 'ciudad',
+        9: 'centro-urbano'
+    };
+    
+    const iconName = iconNames[bortle] || 'bueno';
 
     return L.divIcon({
         className: 'custom-marker-icon',
         html: `
             <div style="
-                width: 32px;
-                height: 32px;
-                background: ${color};
-                border: 2.5px solid rgba(255, 255, 255, 0.9);
-                border-radius: 50%;
+                width: 36px;
+                height: 36px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 16px ${color}60;
-                backdrop-filter: blur(4px);
+                filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px ${color}40);
                 cursor: pointer;
+                transition: all 0.3s ease;
             ">
-                <!-- REEMPLAZAR CON TU SVG -->
-                <!-- <img src="../../../../assets/icons/map/marker-${bortle}.svg" width="18" height="18"> -->
+                <img src="../../../../assets/icons/ui/ubicaciónes/${iconName}.svg" 
+                     alt="Marcador ${iconName}" 
+                     width="36" 
+                     height="36"
+                     style="display: block;">
             </div>
         `,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-        popupAnchor: [0, -16]
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -18]
     });
 }
 
