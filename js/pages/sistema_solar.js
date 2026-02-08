@@ -40,6 +40,103 @@ const ASTRO_NAMES = {
     ceres: "Ceres"
 };
 
+/* Firebase logic for Favorites */
+import { auth, db } from "../core/firebase.js";
+import {
+    doc,
+    setDoc,
+    deleteDoc,
+    getDoc,
+    onSnapshot,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const favoriteCard = document.getElementById("favoriteCard");
+const favoriteAstroName = document.getElementById("favoriteAstroName");
+const btnToggleFavorite = document.getElementById("btnToggleFavorite");
+const favoriteHeartIcon = document.getElementById("favoriteHeartIcon");
+
+let currentFocusedAstroId = null;
+
+async function checkIfFavorite(astroId) {
+    const user = auth.currentUser;
+    if (!user) {
+        console.log("checkIfFavorite: No hay usuario");
+        return false;
+    }
+    try {
+        const favRef = doc(db, "users", user.uid, "favorites", astroId);
+        const snap = await getDoc(favRef);
+        return snap.exists();
+    } catch (e) {
+        console.error("Error en checkIfFavorite:", e);
+        return false;
+    }
+}
+
+async function toggleFavorite(astroId) {
+    console.log("toggleFavorite llamado para:", astroId);
+    const user = auth.currentUser;
+    if (!user) {
+        alert("Debes iniciar sesión para guardar favoritos");
+        console.warn("No hay usuario autenticado");
+        return;
+    }
+
+    const favRef = doc(db, "users", user.uid, "favorites", astroId);
+
+    // Deshabilitar botón mientras procesa
+    btnToggleFavorite.style.pointerEvents = "none";
+    btnToggleFavorite.style.opacity = "0.5";
+
+    try {
+        const isFav = await checkIfFavorite(astroId);
+        if (isFav) {
+            await deleteDoc(favRef);
+        } else {
+            // Buscar datos del astro
+            const astroData = astros.find(a => a.id === astroId) || (astroId === "sun" ? { id: "sun", displayName: "Sol", isMoon: false } : null);
+
+            if (!astroData) return;
+
+            await setDoc(favRef, {
+                id: astroId,
+                name: astroData.displayName,
+                type: astroData.isMoon ? "moon" : (astroId === "sun" ? "star" : "planet"),
+                timestamp: serverTimestamp()
+            });
+        }
+    } catch (error) {
+        console.error("Error al gestionar favorito:", error);
+    } finally {
+        btnToggleFavorite.style.pointerEvents = "auto";
+        btnToggleFavorite.style.opacity = "1";
+        updateFavoriteUI(astroId);
+    }
+}
+
+async function updateFavoriteUI(astroId) {
+    const isFav = await checkIfFavorite(astroId);
+    if (isFav) {
+        btnToggleFavorite.classList.add("is-favorite");
+        favoriteHeartIcon.style.filter = "none";
+    } else {
+        btnToggleFavorite.classList.remove("is-favorite");
+        favoriteHeartIcon.style.filter = "brightness(0) invert(1)";
+    }
+}
+
+btnToggleFavorite.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Click en corazón. Astro actual:", currentFocusedAstroId);
+    if (currentFocusedAstroId) {
+        toggleFavorite(currentFocusedAstroId);
+    } else {
+        console.warn("No hay astro enfocado para guardar");
+    }
+});
+
 const astros = [];
 
 // Fecha inicial
@@ -194,6 +291,16 @@ function startFocusOn(object, distanceMultiplier = 6) {
     focusDistance = radius * distanceMultiplier;
 
     cameraState = CameraState.FOCUS;
+
+    // UI Favoritos
+    const astroId = object.userData.astroId || (object === sun ? "sun" : null);
+    if (astroId) {
+        currentFocusedAstroId = astroId;
+        const displayName = ASTRO_NAMES[astroId] || "Desconocido";
+        favoriteAstroName.textContent = displayName;
+        favoriteCard.style.display = "block";
+        updateFavoriteUI(astroId);
+    }
 }
 
 /* ================= FACTORY FUNCTIONS ================= */
@@ -233,6 +340,7 @@ function createPlanet(id, colorConfig, parentScene) {
             emissiveIntensity: 0.2,
         })
     );
+    mesh.userData.astroId = id;
     group.add(mesh);
 
     // Añadir anillos si el planeta los tiene configurados
@@ -331,6 +439,7 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
     // Posicionar la luna en el plano de la órbita (Y=0.01 para coincidir con createOrbitLine)
     mesh.position.set(orbitRadius, 0.01, 0);
     mesh.renderOrder = 2;
+    mesh.userData.astroId = id;
     pivot.add(mesh);
 
     // Asegurar que el pivot esté en el centro del planeta padre
@@ -396,6 +505,8 @@ controls.addEventListener("start", () => {
     if (cameraState === CameraState.FOCUS) {
         cameraState = CameraState.FREE;
         focusedObject = null;
+        favoriteCard.style.display = "none";
+        currentFocusedAstroId = null;
     }
 });
 
@@ -625,6 +736,8 @@ function animate() {
         if (camera.position.distanceTo(desiredPos) < 0.05) {
             cameraState = CameraState.FREE;
             focusedObject = null;
+            // No ocultamos el card aquí, para que el usuario pueda darle a favoritos
+            // El card se oculta cuando el usuario mueve la cámara manualmente (arriba en controls handler)
         }
     }
 
@@ -650,5 +763,18 @@ initSearchBar(searchList, (astroData) => {
         startFocusOn(astroData.mesh, astroData.isMoon ? 4 : (astroData.id === "sun" ? 10 : 6));
     }
 });
+
+// --- DEEP LINKING: Check URL params for focus ---
+const urlParams = new URLSearchParams(window.location.search);
+const focusAstroId = urlParams.get('focus');
+if (focusAstroId) {
+    // Esperar un poco a que todo cargue
+    setTimeout(() => {
+        const astro = searchList.find(a => a.id === focusAstroId);
+        if (astro && astro.mesh) {
+            startFocusOn(astro.mesh, astro.isMoon ? 4 : (astro.id === "sun" ? 10 : 6));
+        }
+    }, 500);
+}
 
 animate();
