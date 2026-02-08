@@ -16,7 +16,7 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     await login(email, password);
-    window.location.replace("../app/home/home.html");
+    window.location.replace("../../pages/app/home/home.html");
   } catch (err) {
     alert(err.message);
   }
@@ -33,7 +33,7 @@ registerForm.addEventListener("submit", async (e) => {
 
   try {
     await register(name, email, password);
-    window.location.replace("../app/home/home.html");
+    window.location.replace("../../pages/app/home/home.html");
   } catch (err) {
     alert(err.message);
   }
