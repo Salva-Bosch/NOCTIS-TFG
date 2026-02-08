@@ -4,8 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Noctis - Sistema Solar</title>
-  <meta charset="UTF-8">
-  <title>Noctis - Sistema Solar</title>
 
   <!-- Importamos ThreeJS para el mapa 3D -->
   <script type="importmap">
@@ -55,21 +53,26 @@
 
     <!-- Capa controles (solo hover) -->
     <div class="timebar-controls">
-      <!-- Controles principales -->
       <div class="timebar-buttons">
-        <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind"><img
-            src="../../../assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn"></button>
-        <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">⏸</button>
-        <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward"><img
-            src="../../../assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn"></button>
+        <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind">
+          <img src="../../../assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn">
+        </button>
+
+        <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">
+          ⏸
+        </button>
+
+        <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward">
+          <img src="../../../assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn">
+        </button>
       </div>
     </div>
-
-    <!-- Botón de Live -->
-    <button class="live-btn" id="liveBtn">
-      <span class="live-dot"></span> LIVE
-    </button>
   </div>
+
+  <!-- ====== BOTÓN LIVE (FUERA DEL TIMEBAR) ====== -->
+  <button class="live-btn" id="liveBtn">
+    <span class="live-dot"></span> LIVE
+  </button>
 
   <!-- Menú lateral de Noctis -->
   <script type="module">
@@ -85,10 +88,10 @@
     await requireSession();
   </script>
 
-  <!-- Conexión con JS de la barra del tiempo de Sistema Solar -->
+  <!-- UI Timebar -->
   <script type="module" src="../../../js/core/logica_ui/sistema_solar.ui.js"></script>
 
-  <!-- Conexión con JS de Sistema Solar -->
+  <!-- Sistema Solar -->
   <script type="module" src="../../../js/pages/sistema_solar.js"></script>
 </body>
 
