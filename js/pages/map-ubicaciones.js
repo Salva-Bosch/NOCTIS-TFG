@@ -26,7 +26,7 @@ const worldBounds = L.latLngBounds(
     L.latLng(85, 180)
 );
 map.setMaxBounds(worldBounds);
-map.on('drag', function() {
+map.on('drag', function () {
     map.panInsideBounds(worldBounds, { animate: false });
 });
 
@@ -160,7 +160,7 @@ const locations = [
         ],
         quality: "Excepcional"
     },
-    
+
     // BORTLE 2 - EXCELENTE
     {
         id: 7,
@@ -306,7 +306,7 @@ const locations = [
         ],
         quality: "Excelente"
     },
-    
+
     // BORTLE 3 - MUY BUENO
     {
         id: 15,
@@ -416,6 +416,316 @@ const locations = [
         ],
         quality: "Muy Bueno"
     }
+    , {
+        id: 21,
+        name: "Sierra de Guadarrama",
+        coords: [40.7831, -4.0139],
+        region: "Madrid/Segovia, España",
+        bortle: 4,
+        type: "Parque Nacional",
+        certification: null,
+        description: "Muy accesible desde Madrid. Popular entre astrónomos amateur por su proximidad.",
+        features: [
+            "Cielo Clase 4 (Bortle)",
+            "1 hora desde Madrid",
+            "Puerto de Navacerrada popular",
+            "Grupos de observación activos",
+            "Bueno para iniciación"
+        ],
+        quality: "Bueno"
+    },
+    {
+        id: 22,
+        name: "Montseny",
+        coords: [41.7667, 2.4500],
+        region: "Barcelona/Girona, España",
+        bortle: 4,
+        type: "Parque Natural",
+        certification: "Reserva de la Biosfera",
+        description: "Accesible desde Barcelona. Zona protegida con cielos aceptables.",
+        features: [
+            "Cielo Clase 4 (Bortle)",
+            "1 hora desde Barcelona",
+            "Reserva de la Biosfera",
+            "Refugios de montaña",
+            "Observaciones organizadas"
+        ],
+        quality: "Bueno"
+    },
+    {
+        id: 23,
+        name: "Parque Natural de las Bardenas Reales",
+        coords: [42.1333, -1.5167],
+        region: "Navarra, España",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: "Reserva de la Biosfera",
+        description: "Desierto semiárido con cielos oscuros. Paisaje único y accesible.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Paisaje desértico",
+            "Poca población cercana",
+            "Acceso en coche",
+            "Observaciones desde parking"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 24,
+        name: "Els Ports",
+        coords: [40.7000, 0.2667],
+        region: "Tarragona/Castellón, España",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: null,
+        description: "Zona montañosa entre Cataluña y Comunidad Valenciana con buenos cielos.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Baja densidad poblacional",
+            "Miradores naturales",
+            "Acceso por carretera",
+            "Pueblo astronómico La Sénia"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 25,
+        name: "Sierra de la Demanda",
+        coords: [42.2167, -3.1167],
+        region: "Burgos/La Rioja, España",
+        bortle: 3,
+        type: "Zona Rural",
+        certification: null,
+        description: "Zona tranquila con cielos oscuros entre Burgos y Logroño.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Pueblos con encanto",
+            "Poco turismo nocturno",
+            "Carreteras accesibles",
+            "Ideal fines de semana"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 26,
+        name: "Parque Natural de Cazorla",
+        coords: [37.9167, -2.9167],
+        region: "Jaén, Andalucía, España",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: "Reserva de la Biosfera",
+        description: "Mayor espacio protegido de España. Buenos cielos en zona rural.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Mayor parque natural de España",
+            "Zonas de acampada",
+            "Miradores panorámicos",
+            "Turismo astronómico en desarrollo"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 27,
+        name: "Sierra de Aracena",
+        coords: [37.8833, -6.5500],
+        region: "Huelva, Andalucía, España",
+        bortle: 4,
+        type: "Parque Natural",
+        certification: null,
+        description: "Accesible desde Sevilla. Cielos razonables para observación amateur.",
+        features: [
+            "Cielo Clase 4 (Bortle)",
+            "1.5 horas desde Sevilla",
+            "Pueblos con gastronomía",
+            "Rutas de senderismo",
+            "Grupos locales de astronomía"
+        ],
+        quality: "Bueno"
+    },
+    {
+        id: 28,
+        name: "Parque Natural del Maestrazgo",
+        coords: [40.5833, -0.4167],
+        region: "Teruel, Aragón, España",
+        bortle: 2,
+        type: "Parque Natural",
+        certification: null,
+        description: "Zona despoblada con excelentes cielos en el interior de Aragón.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Muy baja densidad de población",
+            "Pueblos medievales",
+            "Acceso por carretera",
+            "Ideal para escapadas"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 29,
+        name: "Laguna de Gallocanta",
+        coords: [40.9833, -1.5000],
+        region: "Zaragoza/Teruel, España",
+        bortle: 3,
+        type: "Reserva Natural",
+        certification: null,
+        description: "Mayor laguna natural de España. Horizonte despejado ideal para observación.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Horizonte completamente despejado",
+            "Observatorios amateur",
+            "Aves migratorias",
+            "Parking habilitado"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 30,
+        name: "Parque Natural de Somiedo",
+        coords: [43.0833, -6.2500],
+        region: "Asturias, España",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: "Reserva de la Biosfera",
+        description: "Cielos oscuros en Asturias. Posibilidad de ver osos pardos.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Reserva de la Biosfera",
+            "Fauna salvaje",
+            "Valles glaciares",
+            "Rutas de montaña"
+        ],
+        quality: "Muy Bueno"
+    },
+
+    // FRANCIA - Ubicaciones accesibles
+    {
+        id: 31,
+        name: "Parque Nacional de los Pirineos",
+        coords: [42.8667, -0.1333],
+        region: "Hautes-Pyrénées, Francia",
+        bortle: 2,
+        type: "Parque Nacional",
+        certification: null,
+        description: "Zona de alta montaña con cielos excelentes en el lado francés de los Pirineos.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Alta montaña",
+            "Observatorios amateur",
+            "Refugios de montaña",
+            "Frontera con España"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 32,
+        name: "Parque Natural Regional de Causses du Quercy",
+        coords: [44.6000, 1.6667],
+        region: "Lot, Francia",
+        bortle: 2,
+        type: "Parque Natural",
+        certification: "Réserve Internationale de Ciel Étoilé",
+        description: "Primera Reserva de Cielo Estrellado de Francia. Accesible desde Toulouse.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Certificación internacional 2013",
+            "Turismo astronómico",
+            "Festivales de estrellas",
+            "Alojamientos especializados"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 33,
+        name: "Cévennes",
+        coords: [44.3667, 3.6167],
+        region: "Languedoc, Francia",
+        bortle: 2,
+        type: "Parque Nacional",
+        certification: "Réserve Internationale de Ciel Étoilé",
+        description: "Reserva de Cielo Oscuro con programa educativo extenso.",
+        features: [
+            "Cielo Clase 2 (Bortle)",
+            "Parque Nacional UNESCO",
+            "Programa educativo",
+            "Albergues astronómicos",
+            "Eventos regulares"
+        ],
+        quality: "Excelente"
+    },
+    {
+        id: 34,
+        name: "Alpes del Sur",
+        coords: [44.2833, 6.6333],
+        region: "Alpes-de-Haute-Provence, Francia",
+        bortle: 3,
+        type: "Zona de Montaña",
+        certification: null,
+        description: "Alta montaña accesible con buenos cielos. Popular entre astrónomos franceses.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Altitud elevada",
+            "Observatorio de Haute-Provence cerca",
+            "Estaciones de esquí (fuera temporada)",
+            "Clima seco mediterráneo"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 35,
+        name: "Millevaches en Limousin",
+        coords: [45.6500, 1.9667],
+        region: "Corrèze, Francia",
+        bortle: 3,
+        type: "Parque Natural Regional",
+        certification: null,
+        description: "Meseta rural con poca población. Buenos cielos en el centro de Francia.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Región poco poblada",
+            "Lagos y bosques",
+            "Turismo rural",
+            "Grupos de astronomía locales"
+        ],
+        quality: "Muy Bueno"
+    },
+
+    // ANDORRA
+    {
+        id: 36,
+        name: "Estany de Juclà",
+        coords: [42.5667, 1.5333],
+        region: "Andorra",
+        bortle: 3,
+        type: "Zona de Montaña",
+        certification: null,
+        description: "Lago de alta montaña en Andorra. Acceso por sendero.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Altitud: 2.310 metros",
+            "Lagos de montaña",
+            "Rutas de trekking",
+            "Ideal verano"
+        ],
+        quality: "Muy Bueno"
+    },
+    {
+        id: 37,
+        name: "Vall de Sorteny",
+        coords: [42.5833, 1.5167],
+        region: "Andorra",
+        bortle: 3,
+        type: "Parque Natural",
+        certification: null,
+        description: "Valle protegido en Andorra con buenos cielos y fácil acceso.",
+        features: [
+            "Cielo Clase 3 (Bortle)",
+            "Parque Natural",
+            "Centro de interpretación",
+            "Parking habilitado",
+            "Rutas señalizadas"
+        ],
+        quality: "Muy Bueno"
+    }
 ];
 
 /* ============================================
@@ -424,9 +734,15 @@ const locations = [
 
 function getBortleColor(bortle) {
     const colors = {
-        1: '#b07cff',  // Morado brillante (Excepcional)
-        2: '#7aa2ff',  // Azul claro (Excelente)
-        3: '#4dd4ac'   // Verde-cyan (Muy bueno) - NUEVO COLOR MÁS DISTINTIVO
+        1: '#b07cff',  // Excepcional – morado brillante
+        2: '#7aa2ff', // Excelente – azul claro
+        3: '#4dd4ac',  // Muy bueno – verde-cyan
+        4: '#6fdc8c',  // Bueno – verde suave
+        5: '#a8e063',  // Moderado – verde amarillento
+        6: '#ffd166',  // Suburbano brillante – amarillo
+        7: '#f4a261',  // Transición urbana – naranja
+        8: '#e76f51',  // Ciudad – naranja rojizo
+        9: '#ffffff'   // Centro urbano – blanco/gris muy claro
     };
     return colors[bortle] || '#8b9cff';
 }
@@ -469,7 +785,7 @@ locations.forEach(location => {
         icon: createMarkerIcon(location.bortle)
     }).addTo(map);
 
-    marker.on('click', function() {
+    marker.on('click', function () {
         openLocationModal(location);
     });
 });
@@ -490,7 +806,7 @@ const heartFilled = `<svg width="18" height="18" viewBox="0 0 24 24" fill="curre
 function openLocationModal(location) {
     const isFavorited = isFavorite(location.id);
     const color = getBortleColor(location.bortle);
-    
+
     panelContent.innerHTML = `
         <div class="panel-header">
             <h1 class="panel-location-name">${location.name}</h1>
@@ -533,7 +849,7 @@ function openLocationModal(location) {
     `;
 
     const favBtn = panelContent.querySelector('.btn-favorite');
-    favBtn.addEventListener('click', function() {
+    favBtn.addEventListener('click', function () {
         toggleFavorite(location);
         openLocationModal(location);
     });
@@ -547,7 +863,7 @@ function closeLocationModal() {
 
 panelClose.addEventListener('click', closeLocationModal);
 
-map.on('click', function() {
+map.on('click', function () {
     closeLocationModal();
 });
 
@@ -593,7 +909,7 @@ function isFavorite(locationId) {
 
 function toggleFavorite(location) {
     let favorites = getFavorites();
-    
+
     if (favorites.includes(location.id)) {
         favorites = favorites.filter(id => id !== location.id);
         console.log(`Eliminado de favoritos: ${location.name}`);
@@ -601,7 +917,7 @@ function toggleFavorite(location) {
         favorites.push(location.id);
         console.log(`Añadido a favoritos: ${location.name}`);
     }
-    
+
     saveFavorites(favorites);
 }
 

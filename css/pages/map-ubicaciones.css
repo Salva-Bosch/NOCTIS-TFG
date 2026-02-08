@@ -567,6 +567,23 @@ body {
     margin-top: 0;
 }
 
+/* Imagen de la Escala Bortle */
+.bortle-image-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 156, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.bortle-scale-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
 /* Guía de colores */
 .color-guide {
     display: flex;
@@ -588,6 +605,12 @@ body {
     flex-shrink: 0;
     margin-top: 0.2rem;
     box-shadow: 0 0 12px currentColor;
+}
+
+/* Borde para el color blanco (Bortle 9) */
+.color-dot[style*="background: #ffffff"] {
+    border: 1px solid rgba(139, 156, 255, 0.3);
+    box-shadow: none; /* Quitar el glow para el blanco */
 }
 
 .color-item strong {
