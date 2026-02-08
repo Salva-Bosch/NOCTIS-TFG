@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noctis · Mapa de Observación</title>
+
+    <!-- CSS base -->
+    <link rel="stylesheet" href="../../../../css/base/reset.css">
+    <link rel="stylesheet" href="../../../../css/base/variables.css">
+    <link rel="stylesheet" href="../../../../css/components/navbar.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- CSS del mapa -->
+    <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
+</head>
+
+<body>
+
+    <!-- SideNav se carga dinámicamente -->
+
+    <!-- HEADER -->
+    <header class="map-header">
+        <h1>
+            Mapa de Observación
+            <span class="highlight">Astronómica</span>
+        </h1>
+        <div class="orbital-line"></div>
+    </header>
+
+    <!-- MAPA COMPLETO -->
+    <div id="map"></div>
+
+    <!-- BOTÓN DE INFORMACIÓN -->
+    <button class="info-button" id="infoBtn" aria-label="Información">
+        <img src="../../../../assets/icons/ui/info.svg" alt="Info" width="20" height="20">
+    </button>
+
+    <!-- MODAL DE UBICACIÓN (lateral derecho) -->
+    <div class="location-panel" id="locationPanel">
+        <button class="panel-close" id="panelClose" aria-label="Cerrar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="panel-content" id="panelContent">
+            <!-- Contenido dinámico generado por JS -->
+        </div>
+    </div>
+
+    <!-- MODAL DE INFORMACIÓN (centro) -->
+    <div class="info-modal-overlay" id="infoModal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" id="infoClose" aria-label="Cerrar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <h2>Guía del Mapa de Observación</h2>
+
+            <div class="info-section">
+                <h3>¿Qué es la Escala Bortle?</h3>
+
+                <!-- IMAGEN DE LA ESCALA BORTLE -->
+                <div class="bortle-image-container">
+                    <img src="../../../../assets/illustrations/escala-bortle.png" alt="Escala Bortle"
+                        class="bortle-scale-image">
+                </div>
+
+                <p>
+                    La Escala Bortle mide la oscuridad del cielo nocturno, siendo una herramienta
+                    fundamental para astrónomos aficionados y profesionales. Va desde Clase 1
+                    (cielo excepcionalmente oscuro) hasta Clase 9 (cielo urbano con alta contaminación lumínica).
+                </p>
+                <p>
+                    <strong>Cuanto menor es el número, más estrellas y objetos celestes podrás observar.</strong>
+                </p>
+            </div>
+
+            <div class="info-section">
+                <h3>¿Cómo interpretar los colores del mapa?</h3>
+                <div class="color-guide">
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #b07cff;"></span>
+                        <div>
+                            <strong>Morado - Excepcional (Bortle 1)</strong>
+                            <p>Cielo prístino y totalmente oscuro. La Vía Láctea proyecta sombras. Zodiacal light
+                                visible. Ideal para astrofotografía profesional y observación de objetos extremadamente
+                                débiles.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #7aa2ff;"></span>
+                        <div>
+                            <strong>Azul - Excelente (Bortle 2)</strong>
+                            <p>Cielo muy oscuro. Vía Láctea altamente estructurada. Las nubes de Magallanes son obvias.
+                                M31, M33 y otros objetos Messier visibles a simple vista. Perfecto para observación
+                                profunda.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #4dd4ac;"></span>
+                        <div>
+                            <strong>Verde-Cyan - Muy Bueno (Bortle 3)</strong>
+                            <p>Cielo rural oscuro. Vía Láctea claramente visible con detalles. La mayoría de objetos
+                                Messier detectables. Excelente para observación amateur avanzada.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #6fdc8c;"></span>
+                        <div>
+                            <strong>Verde - Bueno (Bortle 4)</strong>
+                            <p>Cielo rural/suburbano. Vía Láctea visible pero sin gran detalle. M31 visible a simple
+                                vista. Bueno para iniciación y accesible desde ciudades cercanas.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #a8e063;"></span>
+                        <div>
+                            <strong>Verde Amarillento - Moderado (Bortle 5)</strong>
+                            <p>Cielo suburbano. Vía Láctea muy débil o invisible. Solo los objetos Messier más
+                                brillantes son visibles. Adecuado para observación lunar y planetaria.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #ffd166;"></span>
+                        <div>
+                            <strong>Amarillo - Suburbano Brillante (Bortle 6)</strong>
+                            <p>Cielo suburbano brillante. Vía Láctea invisible. Solo M31, M42 y M44 visibles con
+                                esfuerzo. Contaminación lumínica notable. Limitado para cielo profundo.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #f4a261;"></span>
+                        <div>
+                            <strong>Naranja - Transición Urbana (Bortle 7)</strong>
+                            <p>Cielo suburbano/urbano. Nubes iluminadas por luces. Solo objetos muy brillantes visibles.
+                                Principalmente útil para Luna, planetas y estrellas brillantes.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot" style="background: #e76f51;"></span>
+                        <div>
+                            <strong>Naranja Rojizo - Ciudad (Bortle 8)</strong>
+                            <p>Cielo urbano. Cielo brillantemente iluminado. Solo Luna, planetas y las estrellas más
+                                brillantes son visibles. No recomendado para observación de cielo profundo.</p>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <span class="color-dot"
+                            style="background: #ffffff; border: 1px solid rgba(139, 156, 255, 0.3);"></span>
+                        <div>
+                            <strong>Blanco - Centro Urbano (Bortle 9)</strong>
+                            <p>Cielo de centro urbano. Completamente iluminado. Solo Luna y planetas más brillantes
+                                visibles. Cielo profundo imposible. No recomendado para observación astronómica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>¿Qué puedo ver en cada nivel?</h3>
+                <ul class="visibility-list">
+                    <li><strong>Bortle 1:</strong> Zodiacal light, gegenschein, objetos Messier visibles a simple vista
+                    </li>
+                    <li><strong>Bortle 2:</strong> Vía Láctea con estructura, nubes de Magallanes, M31 fácilmente
+                        visible</li>
+                    <li><strong>Bortle 3:</strong> Vía Láctea clara, mayoría de constelaciones, objetos brillantes del
+                        catálogo Messier</li>
+                </ul>
+            </div>
+
+            <div class="info-section">
+                <h3>¿Cómo usar este mapa?</h3>
+                <ol class="usage-list">
+                    <li>Haz clic en cualquier marcador para ver detalles de la ubicación</li>
+                    <li>Revisa la calidad del cielo y las características del lugar</li>
+                    <li>Guarda tus ubicaciones favoritas para consultarlas después</li>
+                    <li>Planifica tu visita considerando la fase lunar y el clima</li>
+                </ol>
+            </div>
+
+            <div class="info-section">
+                <h3>Consejos para observar</h3>
+                <ul class="tips-list">
+                    <li>Consulta el calendario lunar: las noches sin luna son ideales</li>
+                    <li>Adapta tu vista a la oscuridad durante al menos 20-30 minutos</li>
+                    <li>Evita usar luz blanca, utiliza linternas rojas</li>
+                    <li>Verifica las condiciones meteorológicas antes de viajar</li>
+                    <li>Lleva ropa de abrigo, incluso en verano las noches pueden ser frías</li>
+                </ul>
+            </div>
+
+            <div class="info-footer">
+                <p>Los datos de este mapa se basan en mediciones científicas, certificaciones oficiales
+                    y estudios de contaminación lumínica de organismos internacionales.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- JavaScript del mapa -->
+    <script type="module" src="../../../../js/pages/map-ubicaciones.js"></script>
+
+</body>
+
+</html>
