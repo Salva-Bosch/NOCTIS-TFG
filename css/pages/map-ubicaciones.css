@@ -215,6 +215,15 @@ body {
     cursor: pointer;
 }
 
+/* Efecto hover en marcadores */
+.custom-marker-icon:hover div {
+    transform: scale(1.05);
+}
+
+.custom-marker-icon img {
+    transition: all 0.3s ease;
+}
+
 /* ============================================
    PANEL LATERAL DERECHO
    ============================================ */
