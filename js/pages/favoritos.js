@@ -19,7 +19,8 @@ const TYPE_EMOJIS = {
     planet: "🪐",
     moon: "🌙",
     star: "☀️",
-    dwarf: "☄️" // U otro para planetas enanos
+    dwarf: "☄️",
+    location: "📍" // Nuevo tipo
 };
 
 // Mapeo de IDs a imágenes de assets
@@ -86,7 +87,11 @@ function renderFavorites(favorites) {
                 ${thumbContent}
             </div>
             <div class="favorite-info">
-                <div class="favorite-type">${typeEmoji} ${fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta')}</div>
+                <div class="favorite-type">${typeEmoji} ${fav.type === 'star' ? 'Estrella' :
+                (fav.type === 'moon' ? 'Luna' :
+                    (fav.type === 'planet' ? 'Planeta' :
+                        (fav.type === 'location' ? 'Ubicación' : 'Astro')))
+            }</div>
                 <div class="favorite-name">${fav.name}</div>
             </div>
             <div class="favorite-actions">
@@ -99,8 +104,12 @@ function renderFavorites(favorites) {
         // Navegar al sistema solar y centrar el planeta (opcional, por ahora solo UI)
         item.addEventListener("click", (e) => {
             if (e.target.closest(".btn-remove-favorite")) return;
-            // Podríamos redirigir con un parámetro ?focus=mars
-            window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
+
+            if (fav.type === 'location') {
+                window.location.href = `../map/mapa-ubicaciónes/mapa-ubicaciones.html?focus=${fav.id}`;
+            } else {
+                window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
+            }
         });
 
         const btnRemove = item.querySelector(".btn-remove-favorite");

@@ -1,5 +1,13 @@
 import { loadSideNav } from "../core/loadSideNav.js";
 import { requireSession } from "../guards/sessionGuard.js";
+import { auth, db } from "../core/firebase.js";
+import {
+    doc,
+    setDoc,
+    deleteDoc,
+    onSnapshot,
+    collection
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 await requireSession();
 await loadSideNav();
@@ -749,7 +757,7 @@ function getBortleColor(bortle) {
 
 function createMarkerIcon(bortle) {
     const color = getBortleColor(bortle);
-    
+
     // Mapeo de Bortle a nombre de archivo
     const iconNames = {
         1: 'excepcional',
@@ -762,7 +770,7 @@ function createMarkerIcon(bortle) {
         8: 'ciudad',
         9: 'centro-urbano'
     };
-    
+
     const iconName = iconNames[bortle] || 'bueno';
 
     return L.divIcon({
@@ -819,6 +827,7 @@ const heartOutline = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none
 const heartFilled = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
 function openLocationModal(location) {
+    panel.dataset.activeLocationId = location.id; // Para actualizar UI en tiempo real
     const isFavorited = isFavorite(location.id);
     const color = getBortleColor(location.bortle);
 
@@ -908,33 +917,99 @@ infoModal.addEventListener('click', (e) => {
    SISTEMA DE FAVORITOS
    ============================================ */
 
-function getFavorites() {
-    const favs = localStorage.getItem('noctis_favorites');
-    return favs ? JSON.parse(favs) : [];
-}
+/* ============================================
+   SISTEMA DE FAVORITOS (FIREBASE)
+   ============================================ */
 
-function saveFavorites(favorites) {
-    localStorage.setItem('noctis_favorites', JSON.stringify(favorites));
+let userFavorites = new Set();
+let unsubscribeFavorites = null;
+
+// Inicializar escucha de favoritos
+function initFavorites() {
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            const favoritesRef = collection(db, "users", user.uid, "favorites");
+
+            if (unsubscribeFavorites) {
+                unsubscribeFavorites();
+            }
+
+            unsubscribeFavorites = onSnapshot(favoritesRef, (snapshot) => {
+                userFavorites.clear();
+                snapshot.forEach(doc => {
+                    if (doc.data().type === 'location') {
+                        userFavorites.add(parseInt(doc.id)); // Asumimos que los IDs de ubicación son numéricos en local pero string en DB key si se quiere, aquí usaremos el ID numérico como documento ID para facilitar
+                        // Ojo: Firestore IDs son strings. Si location.id es numero, lo convertiremos.
+                    }
+                });
+
+                // Actualizar UI si hay modal abierto
+                const activeLocationId = panel.dataset.activeLocationId;
+                if (activeLocationId) {
+                    const location = locations.find(l => l.id == activeLocationId);
+                    if (location) openLocationModal(location); // Re-render btn
+                }
+            });
+        } else {
+            userFavorites.clear();
+        }
+    });
 }
 
 function isFavorite(locationId) {
-    const favorites = getFavorites();
-    return favorites.includes(locationId);
+    return userFavorites.has(locationId);
 }
 
-function toggleFavorite(location) {
-    let favorites = getFavorites();
+async function toggleFavorite(location) {
+    const user = auth.currentUser;
+    if (!user) return;
 
-    if (favorites.includes(location.id)) {
-        favorites = favorites.filter(id => id !== location.id);
-        console.log(`Eliminado de favoritos: ${location.name}`);
-    } else {
-        favorites.push(location.id);
-        console.log(`Añadido a favoritos: ${location.name}`);
+    const locationIdStr = location.id.toString();
+    const docRef = doc(db, "users", user.uid, "favorites", locationIdStr);
+
+    try {
+        if (isFavorite(location.id)) {
+            await deleteDoc(docRef);
+            console.log(`Eliminado de favoritos: ${location.name}`);
+        } else {
+            await setDoc(docRef, {
+                id: location.id,
+                name: location.name, // Importante para la lista
+                type: 'location',
+                region: location.region,
+                bortle: location.bortle,
+                coords: location.coords,
+                timestamp: Date.now()
+            });
+            console.log(`Añadido a favoritos: ${location.name}`);
+        }
+    } catch (error) {
+        console.error("Error actualizando favorito:", error);
     }
-
-    saveFavorites(favorites);
 }
+
+/* ============================================
+   DEEP LINKING (URL PARAMS)
+   ============================================ */
+function checkUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const focusId = params.get('focus');
+
+    if (focusId) {
+        const location = locations.find(l => l.id == focusId);
+        if (location) {
+            // Esperar un poco a que el mapa cargue
+            setTimeout(() => {
+                map.setView(location.coords, 10); // Zoom in
+                openLocationModal(location);
+            }, 500);
+        }
+    }
+}
+
+// Iniciar
+initFavorites();
+checkUrlParams();
 
 /* ============================================
    AJUSTES FINALES
