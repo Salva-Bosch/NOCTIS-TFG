@@ -24,6 +24,7 @@ async function initSettings() {
     const btnSaveMedidas = document.getElementById("save-medidas");
     const btnSaveHora = document.getElementById("save-hora");
     const btnResetMedidas = document.getElementById("reset-defaults");
+    const msgEl = document.getElementById("msg");
 
     /* SESIÓN */
     const user = await requireSession();
@@ -96,10 +97,17 @@ async function initSettings() {
                 ...data,
                 updatedAt: serverTimestamp()
             }, { merge: true });
-            alert("Ajustes guardados correctamente");
+
+            msgEl.textContent = "Cambios guardados correctamente";
+            setTimeout(() => {
+                msgEl.textContent = "";
+            }, 3000);
         } catch (error) {
             console.error("Error al guardar ajustes:", error);
-            alert("Error al guardar los ajustes");
+            msgEl.textContent = "Error al guardar los ajustes";
+            setTimeout(() => {
+                msgEl.textContent = "";
+            }, 3000);
         }
     };
 

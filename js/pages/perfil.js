@@ -5,6 +5,7 @@ LÓGICA DE LA PÁGINA PERFIL
 import { auth, db } from "../core/firebase.js";
 import { requireSession } from "../guards/sessionGuard.js";
 import { logout } from "../core/auth_logic.js";
+import { getSettings } from "../core/settingsManager.js";
 
 import {
     doc,
@@ -55,12 +56,27 @@ async function initPerfil() {
 
     let currentPhotoURL = "/assets/avatars/avatar-luna.png";
 
+    // Helper para formatear fecha según ajustes
+    function formatUserDate(date) {
+        if (!date) return "";
+        const settings = getSettings();
+        const options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: settings.timeFormat === "12"
+        };
+        return date.toLocaleString(undefined, options);
+    }
+
     if (snap.exists()) {
         const data = snap.data();
 
         inputName.value = data.name ?? "";
         inputEmail.value = data.email ?? "";
-        createdEl.textContent = data.createdAt?.toDate().toLocaleString() ?? "";
+        createdEl.textContent = formatUserDate(data.createdAt?.toDate());
         profileNameEl.textContent = data.name ?? "Perfil";
 
         currentPhotoURL = data.photoURL ?? currentPhotoURL;

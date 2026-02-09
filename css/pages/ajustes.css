@@ -343,3 +343,12 @@ input:checked+.slider:before {
 .timezone-text {
     font-size: 15px;
 }
+
+/* ===== FEEDBACK ===== */
+.feedback {
+    margin-top: 20px;
+    min-height: 18px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+}
