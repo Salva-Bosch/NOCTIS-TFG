@@ -53,7 +53,7 @@ async function initPerfil() {
     /* CARGAR DATOS */
     const snap = await getDoc(userRef);
 
-    let currentPhotoURL = "/assets/avatars/avatar-luna.png";
+    let currentPhotoURL = "../../../assets/avatars/avatar-luna.png";
 
     if (snap.exists()) {
         const data = snap.data();
