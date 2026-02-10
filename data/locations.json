@@ -1,0 +1,1082 @@
+[
+  {
+    "id": 1,
+    "name": "Observatorio del Teide",
+    "coords": [28.3009, -16.5098],
+    "region": "Tenerife, Islas Canarias, España",
+    "bortle": 1,
+    "type": "Observatorio",
+    "certification": "Reserva Starlight",
+    "description": "Uno de los mejores observatorios del mundo. Cielo excepcionalmente oscuro con más de 300 noches despejadas al año.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Baja humedad atmosférica",
+      "Altitud: 2.390 metros",
+      "Instalaciones profesionales",
+      "Visitas guiadas disponibles"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 2,
+    "name": "Observatorio del Roque de los Muchachos",
+    "coords": [28.7569, -17.885],
+    "region": "La Palma, Islas Canarias, España",
+    "bortle": 1,
+    "type": "Observatorio",
+    "certification": "Reserva Starlight",
+    "description": "Instalación astronómica de referencia mundial. Ley de protección del cielo desde 1988.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Protección lumínica legal",
+      "Altitud: 2.396 metros",
+      "Seeing excepcional",
+      "Telescopios de clase mundial"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 3,
+    "name": "Observatorio Paranal",
+    "coords": [-24.6272, -70.404],
+    "region": "Desierto de Atacama, Chile",
+    "bortle": 1,
+    "type": "Observatorio",
+    "certification": "ESO",
+    "description": "Hogar del Very Large Telescope (VLT). Uno de los cielos más oscuros y secos del planeta.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Humedad extremadamente baja",
+      "Altitud: 2.635 metros",
+      "Más de 330 noches despejadas/año",
+      "Instalación ESO"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 4,
+    "name": "Observatorio de Mauna Kea",
+    "coords": [19.8207, -155.4681],
+    "region": "Hawái, Estados Unidos",
+    "bortle": 1,
+    "type": "Observatorio",
+    "certification": null,
+    "description": "El observatorio más alto del mundo. Atmósfera excepcionalmente estable.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Altitud: 4.205 metros",
+      "Atmósfera estable",
+      "13 telescopios internacionales",
+      "Seeing de 0.5 arcsec"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 5,
+    "name": "NamibRand Nature Reserve",
+    "coords": [-25.0833, 16.2],
+    "region": "Namibia",
+    "bortle": 1,
+    "type": "Reserva Dark Sky",
+    "certification": "International Dark Sky Reserve",
+    "description": "Primera Reserva Internacional de Cielo Oscuro de África. Cielos prístinos.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Certificación Dark Sky 2012",
+      "Desierto del Namib",
+      "Ausencia total de contaminación",
+      "Safari nocturno disponible"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 6,
+    "name": "Aoraki Mackenzie",
+    "coords": [-43.9859, 170.4714],
+    "region": "Isla Sur, Nueva Zelanda",
+    "bortle": 1,
+    "type": "Reserva Dark Sky",
+    "certification": "International Dark Sky Reserve",
+    "description": "Mayor Reserva de Cielo Oscuro certificada del mundo. Hemisferio sur excepcional.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Reserva más grande del mundo",
+      "Hemisferio sur privilegiado",
+      "Vía Láctea espectacular",
+      "Turismo astronómico desarrollado"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 7,
+    "name": "Parque Nacional de Monfragüe",
+    "coords": [39.8578, -6.0483],
+    "region": "Cáceres, Extremadura, España",
+    "bortle": 2,
+    "type": "Reserva Starlight",
+    "certification": "Destino Turístico Starlight",
+    "description": "Primera Reserva Starlight de Extremadura. Cielos oscuros certificados.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Certificación Starlight 2016",
+      "Turismo astronómico activo",
+      "Observaciones guiadas",
+      "Biodiversidad única"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 8,
+    "name": "Cherry Springs State Park",
+    "coords": [41.6628, -77.8236],
+    "region": "Pensilvania, Estados Unidos",
+    "bortle": 2,
+    "type": "Parque Dark Sky",
+    "certification": "International Dark Sky Park",
+    "description": "Uno de los mejores lugares de la costa este de EE.UU. para observación.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Gold-tier Dark Sky Park",
+      "Campo de observación público",
+      "Eventos astronómicos regulares",
+      "Fácil acceso"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 9,
+    "name": "Parque Nacional Jasper",
+    "coords": [52.8734, -117.9543],
+    "region": "Alberta, Canadá",
+    "bortle": 2,
+    "type": "Reserva Dark Sky",
+    "certification": "Dark Sky Preserve",
+    "description": "Segunda reserva de cielo oscuro más grande del mundo. Montañas Rocosas.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "11.000 km² protegidos",
+      "Festival anual de astronomía",
+      "Paisajes de montaña",
+      "Auroras boreales"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 10,
+    "name": "Montsec - Centre d'Observació",
+    "coords": [42.0472, 0.7311],
+    "region": "Lleida, Cataluña, España",
+    "bortle": 2,
+    "type": "Observatorio Público",
+    "certification": "Reserva Starlight",
+    "description": "Primera Reserva Starlight de Cataluña con planetario.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Planetario digital",
+      "Observatorio público",
+      "Actividades educativas",
+      "Certificación Starlight 2013"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 11,
+    "name": "Parque Nacional de Cabañeros",
+    "coords": [39.3711, -4.4586],
+    "region": "Ciudad Real, Castilla-La Mancha, España",
+    "bortle": 2,
+    "type": "Reserva Starlight",
+    "certification": "Reserva Starlight",
+    "description": "Uno de los mejores espacios naturales de España para observación.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Certificación Starlight",
+      "Naturaleza virgen",
+      "Observaciones guiadas",
+      "Bajo impacto lumínico"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 12,
+    "name": "Westhavelland Nature Park",
+    "coords": [52.7, 12.45],
+    "region": "Brandeburgo, Alemania",
+    "bortle": 2,
+    "type": "Parque Dark Sky",
+    "certification": "International Dark Sky Reserve",
+    "description": "Primera Reserva de Cielo Oscuro de Alemania. Protección activa.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Reserva desde 2014",
+      "Protección lumínica estricta",
+      "Eventos astronómicos",
+      "Fácil acceso desde Berlín"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 13,
+    "name": "Pic du Midi",
+    "coords": [42.9364, 0.1414],
+    "region": "Pirineos, Francia",
+    "bortle": 2,
+    "type": "Observatorio",
+    "certification": null,
+    "description": "Observatorio en alta montaña con hotel astronómico.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Altitud: 2.877 metros",
+      "Hotel con cúpula",
+      "Experiencia nocturna única",
+      "Telescopios históricos"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 14,
+    "name": "Brecon Beacons",
+    "coords": [51.8833, -3.4333],
+    "region": "Gales, Reino Unido",
+    "bortle": 2,
+    "type": "Parque Dark Sky",
+    "certification": "International Dark Sky Reserve",
+    "description": "Primera Reserva de Cielo Oscuro de Gales.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Reserva desde 2013",
+      "Eventos astronómicos anuales",
+      "Paisajes de montaña",
+      "Red de observatorios públicos"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 15,
+    "name": "Sierra de Gredos",
+    "coords": [40.2983, -5.2858],
+    "region": "Ávila, Castilla y León, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Excelentes condiciones en el centro peninsular. Acceso fácil desde Madrid.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Baja contaminación lumínica",
+      "Altitud media: 1.500 metros",
+      "Acceso relativamente fácil",
+      "Rutas de senderismo nocturno"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 16,
+    "name": "Parque Nacional de los Glaciares",
+    "coords": [48.7596, -113.787],
+    "region": "Montana, Estados Unidos",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Parque de montaña con excelentes condiciones para observación.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Parque Nacional",
+      "Montañas Rocosas",
+      "Baja densidad poblacional",
+      "Vida silvestre nocturna"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 17,
+    "name": "Parque Nacional Sierra de Grazalema",
+    "coords": [36.7594, -5.3983],
+    "region": "Cádiz, Andalucía, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": "Reserva de la Biosfera",
+    "description": "Excelentes condiciones en Andalucía con cielos oscuros.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Reserva de la Biosfera",
+      "Clima mediterráneo",
+      "Baja contaminación lumínica",
+      "Observatorios amateur activos"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 18,
+    "name": "Parque Nacional de Yellowstone",
+    "coords": [44.428, -110.5885],
+    "region": "Wyoming, Estados Unidos",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Primer parque nacional del mundo con cielos relativamente oscuros.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Parque Nacional histórico",
+      "Geotermia nocturna",
+      "Alta altitud",
+      "Programas ranger-led"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 19,
+    "name": "Picos de Europa",
+    "coords": [43.1956, -4.8514],
+    "region": "Cantabria/Asturias/León, España",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": "Reserva de la Biosfera",
+    "description": "Alta montaña con cielos oscuros en el norte de España.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Parque Nacional",
+      "Alta montaña",
+      "Clima atlántico",
+      "Mirador de estrellas"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 20,
+    "name": "Parque Nacional de Snowdonia",
+    "coords": [53.0686, -3.9287],
+    "region": "Gales, Reino Unido",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Montañas galesas con buenas condiciones para observación.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Parque Nacional",
+      "Montañas de Gales",
+      "Red de observatorios",
+      "Eventos astronómicos"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 21,
+    "name": "Sierra de Guadarrama",
+    "coords": [40.7831, -4.0139],
+    "region": "Madrid/Segovia, España",
+    "bortle": 4,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Muy accesible desde Madrid. Popular entre astrónomos amateur por su proximidad.",
+    "features": [
+      "Cielo Clase 4 (Bortle)",
+      "1 hora desde Madrid",
+      "Puerto de Navacerrada popular",
+      "Grupos de observación activos",
+      "Bueno para iniciación"
+    ],
+    "quality": "Bueno"
+  },
+  {
+    "id": 22,
+    "name": "Montseny",
+    "coords": [41.7667, 2.45],
+    "region": "Barcelona/Girona, España",
+    "bortle": 4,
+    "type": "Parque Natural",
+    "certification": "Reserva de la Biosfera",
+    "description": "Accesible desde Barcelona. Zona protegida con cielos aceptables.",
+    "features": [
+      "Cielo Clase 4 (Bortle)",
+      "1 hora desde Barcelona",
+      "Reserva de la Biosfera",
+      "Refugios de montaña",
+      "Observaciones organizadas"
+    ],
+    "quality": "Bueno"
+  },
+  {
+    "id": 23,
+    "name": "Parque Natural de las Bardenas Reales",
+    "coords": [42.1333, -1.5167],
+    "region": "Navarra, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": "Reserva de la Biosfera",
+    "description": "Desierto semiárido con cielos oscuros. Paisaje único y accesible.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Paisaje desértico",
+      "Poca población cercana",
+      "Acceso en coche",
+      "Observaciones desde parking"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 24,
+    "name": "Els Ports",
+    "coords": [40.7, 0.2667],
+    "region": "Tarragona/Castellón, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Zona montañosa entre Cataluña y Comunidad Valenciana con buenos cielos.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Baja densidad poblacional",
+      "Miradores naturales",
+      "Acceso por carretera",
+      "Pueblo astronómico La Sénia"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 25,
+    "name": "Sierra de la Demanda",
+    "coords": [42.2167, -3.1167],
+    "region": "Burgos/La Rioja, España",
+    "bortle": 3,
+    "type": "Zona Rural",
+    "certification": null,
+    "description": "Zona tranquila con cielos oscuros entre Burgos y Logroño.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Pueblos con encanto",
+      "Poco turismo nocturno",
+      "Carreteras accesibles",
+      "Ideal fines de semana"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 26,
+    "name": "Parque Natural de Cazorla",
+    "coords": [37.9167, -2.9167],
+    "region": "Jaén, Andalucía, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": "Reserva de la Biosfera",
+    "description": "Mayor espacio protegido de España. Buenos cielos en zona rural.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Mayor parque natural de España",
+      "Zonas de acampada",
+      "Miradores panorámicos",
+      "Turismo astronómico en desarrollo"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 27,
+    "name": "Sierra de Aracena",
+    "coords": [37.8833, -6.55],
+    "region": "Huelva, Andalucía, España",
+    "bortle": 4,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Accesible desde Sevilla. Cielos razonables para observación amateur.",
+    "features": [
+      "Cielo Clase 4 (Bortle)",
+      "1.5 horas desde Sevilla",
+      "Pueblos con gastronomía",
+      "Rutas de senderismo",
+      "Grupos locales de astronomía"
+    ],
+    "quality": "Bueno"
+  },
+  {
+    "id": 28,
+    "name": "Parque Natural del Maestrazgo",
+    "coords": [40.5833, -0.4167],
+    "region": "Teruel, Aragón, España",
+    "bortle": 2,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Zona despoblada con excelentes cielos en el interior de Aragón.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Muy baja densidad de población",
+      "Pueblos medievales",
+      "Acceso por carretera",
+      "Ideal para escapadas"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 29,
+    "name": "Laguna de Gallocanta",
+    "coords": [40.9833, -1.5],
+    "region": "Zaragoza/Teruel, España",
+    "bortle": 3,
+    "type": "Reserva Natural",
+    "certification": null,
+    "description": "Mayor laguna natural de España. Horizonte despejado ideal para observación.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Horizonte completamente despejado",
+      "Observatorios amateur",
+      "Aves migratorias",
+      "Parking habilitado"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 30,
+    "name": "Parque Natural de Somiedo",
+    "coords": [43.0833, -6.25],
+    "region": "Asturias, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": "Reserva de la Biosfera",
+    "description": "Cielos oscuros en Asturias. Posibilidad de ver osos pardos.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Reserva de la Biosfera",
+      "Fauna salvaje",
+      "Valles glaciares",
+      "Rutas de montaña"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 31,
+    "name": "Parque Nacional de los Pirineos",
+    "coords": [42.8667, -0.1333],
+    "region": "Hautes-Pyrénées, Francia",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Zona de alta montaña con cielos excelentes en el lado francés de los Pirineos.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Alta montaña",
+      "Observatorios amateur",
+      "Refugios de montaña",
+      "Frontera con España"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 32,
+    "name": "Parque Natural Regional de Causses du Quercy",
+    "coords": [44.6, 1.6667],
+    "region": "Lot, Francia",
+    "bortle": 2,
+    "type": "Parque Natural",
+    "certification": "Réserve Internationale de Ciel Étoilé",
+    "description": "Primera Reserva de Cielo Estrellado de Francia. Accesible desde Toulouse.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Certificación internacional 2013",
+      "Turismo astronómico",
+      "Festivales de estrellas",
+      "Alojamientos especializados"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 33,
+    "name": "Cévennes",
+    "coords": [44.3667, 3.6167],
+    "region": "Languedoc, Francia",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": "Réserve Internationale de Ciel Étoilé",
+    "description": "Reserva de Cielo Oscuro con programa educativo extenso.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Parque Nacional UNESCO",
+      "Programa educativo",
+      "Albergues astronómicos",
+      "Eventos regulares"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 34,
+    "name": "Alpes del Sur",
+    "coords": [44.2833, 6.6333],
+    "region": "Alpes-de-Haute-Provence, Francia",
+    "bortle": 3,
+    "type": "Zona de Montaña",
+    "certification": null,
+    "description": "Alta montaña accesible con buenos cielos. Popular entre astrónomos franceses.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Altitud elevada",
+      "Observatorio de Haute-Provence cerca",
+      "Estaciones de esquí (fuera temporada)",
+      "Clima seco mediterráneo"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 35,
+    "name": "Millevaches en Limousin",
+    "coords": [45.65, 1.9667],
+    "region": "Corrèze, Francia",
+    "bortle": 3,
+    "type": "Parque Natural Regional",
+    "certification": null,
+    "description": "Meseta rural con poca población. Buenos cielos en el centro de Francia.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Región poco poblada",
+      "Lagos y bosques",
+      "Turismo rural",
+      "Grupos de astronomía locales"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 36,
+    "name": "Estany de Juclà",
+    "coords": [42.5667, 1.5333],
+    "region": "Andorra",
+    "bortle": 3,
+    "type": "Zona de Montaña",
+    "certification": null,
+    "description": "Lago de alta montaña en Andorra. Acceso por sendero.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Altitud: 2.310 metros",
+      "Lagos de montaña",
+      "Rutas de trekking",
+      "Ideal verano"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 37,
+    "name": "Vall de Sorteny",
+    "coords": [42.5833, 1.5167],
+    "region": "Andorra",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Valle protegido en Andorra con buenos cielos y fácil acceso.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Parque Natural",
+      "Centro de interpretación",
+      "Parking habilitado",
+      "Rutas señalizadas"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 38,
+    "name": "Death Valley National Park",
+    "coords": [36.5054, -117.0794],
+    "region": "California, Estados Unidos",
+    "bortle": 1,
+    "type": "Parque Nacional",
+    "certification": "International Dark Sky Park",
+    "description": "Uno de los cielos más oscuros de Estados Unidos. Desierto extremo.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Gold-tier Dark Sky Park",
+      "Desierto extremo",
+      "Acceso en coche",
+      "Camping astronómico"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 39,
+    "name": "Big Bend National Park",
+    "coords": [29.1275, -103.2428],
+    "region": "Texas, Estados Unidos",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": "International Dark Sky Park",
+    "description": "Cielos oscuros en la frontera con México. Zona remota y protegida.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Parque Nacional",
+      "Zona remota",
+      "Programas de observación",
+      "Desierto de Chihuahua"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 40,
+    "name": "Exmoor National Park",
+    "coords": [51.1481, -3.6475],
+    "region": "Somerset/Devon, Reino Unido",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": "International Dark Sky Reserve",
+    "description": "Primera Reserva de Cielo Oscuro de Europa. Accesible desde Londres.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Primera Dark Sky Reserve de Europa",
+      "Festivales de astronomía",
+      "3 horas desde Londres",
+      "Costa espectacular"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 41,
+    "name": "Parque Nacional Natural El Cocuy",
+    "coords": [6.3833, -72.3333],
+    "region": "Boyacá, Colombia",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Alta montaña andina con cielos excelentes. Glaciares tropicales.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Altitud: 4.000+ metros",
+      "Glaciares tropicales",
+      "Hemisferio norte ecuatorial",
+      "Acceso regulado"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 42,
+    "name": "Parque Nacional Torres del Paine",
+    "coords": [-51.0, -73.0],
+    "region": "Magallanes, Chile",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Patagonia chilena con cielos oscuros. Paisajes espectaculares.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patagonia remota",
+      "Glaciares y montañas",
+      "Hemisferio sur",
+      "Turismo astronómico"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 43,
+    "name": "Parque Nacional Kruger",
+    "coords": [-24.0, 31.5],
+    "region": "Mpumalanga/Limpopo, Sudáfrica",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": null,
+    "description": "Safari y observación astronómica. Cielos oscuros africanos.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Safari nocturno",
+      "Hemisferio sur",
+      "Alojamientos con telescopios",
+      "Experiencia única"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 44,
+    "name": "Parque Nacional Kakadu",
+    "coords": [-12.6464, 132.4928],
+    "region": "Northern Territory, Australia",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Cielos oscuros en el norte de Australia. Cultura aborigen.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patrimonio UNESCO",
+      "Cultura aborigen",
+      "Hemisferio sur",
+      "Zona remota"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 45,
+    "name": "Uluru-Kata Tjuta National Park",
+    "coords": [-25.3444, 131.0369],
+    "region": "Northern Territory, Australia",
+    "bortle": 1,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Desierto australiano con cielos prístinos. Uluru icónico.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Desierto central",
+      "Patrimonio UNESCO",
+      "Experiencia cultural",
+      "Tours astronómicos aborígenes"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 46,
+    "name": "Parque Nacional de Ordesa y Monte Perdido",
+    "coords": [42.6667, 0.0333],
+    "region": "Huesca, Aragón, España",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Pirineos centrales con excelentes cielos. Patrimonio Mundial.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patrimonio UNESCO",
+      "Alta montaña",
+      "Cañones espectaculares",
+      "Acceso regulado"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 47,
+    "name": "Parque Natural de la Sierra de Baza",
+    "coords": [37.3333, -2.8],
+    "region": "Granada, Andalucía, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Montañas de Granada con buenos cielos. Accesible desde la ciudad.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "2 horas desde Granada",
+      "Bosques de pino",
+      "Observatorio amateur",
+      "Rutas nocturnas"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 48,
+    "name": "Parque Natural Sierra de Espadán",
+    "coords": [39.9167, -0.3833],
+    "region": "Castellón, Comunidad Valenciana, España",
+    "bortle": 3,
+    "type": "Parque Natural",
+    "certification": null,
+    "description": "Montañas de Castellón con cielos oscuros. Alcornocales únicos.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "1 hora desde Valencia",
+      "Alcornocales",
+      "Pueblos abandonados",
+      "Observación amateur"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 49,
+    "name": "Parque Nacional de Garajonay",
+    "coords": [28.1167, -17.2333],
+    "region": "La Gomera, Islas Canarias, España",
+    "bortle": 2,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Laurisilva canaria con cielos oscuros. Patrimonio Mundial.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patrimonio UNESCO",
+      "Bosque de laurisilva",
+      "Islas Canarias",
+      "Mar de nubes"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 50,
+    "name": "Natural Bridges National Monument",
+    "coords": [37.6, -110.0],
+    "region": "Utah, Estados Unidos",
+    "bortle": 1,
+    "type": "Monumento Nacional",
+    "certification": "International Dark Sky Park",
+    "description": "Primer Dark Sky Park certificado del mundo. Desierto de Utah.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Primer Dark Sky Park (2007)",
+      "Puentes naturales",
+      "Desierto de Colorado",
+      "Programas nocturnos"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 51,
+    "name": "Observatorio Astrofísico Especial",
+    "coords": [43.65, 41.4333],
+    "region": "Cáucaso Norte, Rusia",
+    "bortle": 2,
+    "type": "Observatorio",
+    "certification": null,
+    "description": "Mayor observatorio óptico de Rusia. Montañas del Cáucaso con cielos excelentes.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Telescopio BTA 6m",
+      "Altitud: 2.070 metros",
+      "Montañas del Cáucaso",
+      "Investigación astronómica activa"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 52,
+    "name": "Reserva Natural de Altái",
+    "coords": [51.0, 88.0],
+    "region": "República de Altái, Rusia",
+    "bortle": 1,
+    "type": "Reserva Natural",
+    "certification": "UNESCO",
+    "description": "Montañas remotas de Siberia. Cielos prístinos en zona protegida.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Patrimonio UNESCO",
+      "Zona muy remota",
+      "Montañas de Altái",
+      "Mínima contaminación lumínica"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 53,
+    "name": "Lago Baikal",
+    "coords": [53.5587, 108.165],
+    "region": "Siberia, Rusia",
+    "bortle": 2,
+    "type": "Lago/Zona Natural",
+    "certification": "UNESCO",
+    "description": "Lago más profundo del mundo. Cielos oscuros en ubicación remota de Siberia.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patrimonio UNESCO",
+      "Lago más profundo del mundo",
+      "Zona remota siberiana",
+      "Observación en hielo en invierno"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 54,
+    "name": "Parque Nacional de los Cárpatos",
+    "coords": [48.2167, 24.5833],
+    "region": "Óblast de Ivano-Frankivsk, Ucrania",
+    "bortle": 3,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Montañas de los Cárpatos con buenos cielos. Bosques primarios.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Patrimonio UNESCO",
+      "Bosques primarios",
+      "Montañas Cárpatos",
+      "Observación en altura"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 55,
+    "name": "Reserva de la Biosfera del Cáucaso",
+    "coords": [43.8833, 40.55],
+    "region": "Krasnodar/Adygea, Rusia",
+    "bortle": 2,
+    "type": "Reserva de la Biosfera",
+    "certification": "UNESCO",
+    "description": "Mayor área protegida de montaña en Europa. Cielos excelentes.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Patrimonio UNESCO",
+      "Mayor reserva de montaña de Europa",
+      "Altitud variable",
+      "Biodiversidad única"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 56,
+    "name": "Península de Kamchatka",
+    "coords": [56.0, 160.0],
+    "region": "Kamchatka, Rusia",
+    "bortle": 1,
+    "type": "Zona Volcánica",
+    "certification": "UNESCO",
+    "description": "Península volcánica remota. Cielos prístinos del Pacífico norte.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Patrimonio UNESCO",
+      "Volcanes activos",
+      "Extremadamente remota",
+      "Auroras boreales"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 57,
+    "name": "Reserva Natural de Crimea",
+    "coords": [44.65, 34.2667],
+    "region": "Península de Crimea",
+    "bortle": 3,
+    "type": "Reserva Natural",
+    "certification": null,
+    "description": "Montañas de Crimea con cielos oscuros. Costa del Mar Negro.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Montañas de Crimea",
+      "Costa del Mar Negro",
+      "Observatorio histórico cercano",
+      "Clima favorable"
+    ],
+    "quality": "Muy Bueno"
+  },
+  {
+    "id": 58,
+    "name": "Parque Nacional Yugyd Va",
+    "coords": [64.5, 59.5],
+    "region": "República de Komi, Rusia",
+    "bortle": 1,
+    "type": "Parque Nacional",
+    "certification": "UNESCO",
+    "description": "Mayor parque nacional de Rusia. Cielos oscuros del Ártico.",
+    "features": [
+      "Cielo Clase 1 (Bortle)",
+      "Patrimonio UNESCO",
+      "Mayor parque de Rusia",
+      "Región ártica",
+      "Noches polares en verano"
+    ],
+    "quality": "Excepcional"
+  },
+  {
+    "id": 59,
+    "name": "Montes Urales",
+    "coords": [60.0, 59.0],
+    "region": "Urales, Rusia",
+    "bortle": 2,
+    "type": "Zona de Montaña",
+    "certification": null,
+    "description": "Frontera Europa-Asia con cielos oscuros. Montañas remotas.",
+    "features": [
+      "Cielo Clase 2 (Bortle)",
+      "Frontera Europa-Asia",
+      "Zona montañosa remota",
+      "Poca población",
+      "Observación en altura"
+    ],
+    "quality": "Excelente"
+  },
+  {
+    "id": 60,
+    "name": "Delta del Danubio",
+    "coords": [45.0667, 29.5],
+    "region": "Tulcea, Rumanía",
+    "bortle": 3,
+    "type": "Reserva de la Biosfera",
+    "certification": "UNESCO",
+    "description": "Delta del Danubio con cielos oscuros. Horizonte despejado sobre el agua.",
+    "features": [
+      "Cielo Clase 3 (Bortle)",
+      "Patrimonio UNESCO",
+      "Delta fluvial",
+      "Horizonte despejado",
+      "Observación sobre agua"
+    ],
+    "quality": "Muy Bueno"
+  }
+]
