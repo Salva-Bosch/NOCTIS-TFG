@@ -19,7 +19,8 @@ const TYPE_EMOJIS = {
     planet: "🪐",
     moon: "🌙",
     star: "☀️",
-    dwarf: "☄️" // U otro para planetas enanos
+    dwarf: "☄️",
+    location: "📍"
 };
 
 // Mapeo de IDs a imágenes de assets
@@ -70,8 +71,9 @@ function renderFavorites(favorites) {
 
     favoritesList.innerHTML = "";
     favorites.forEach(fav => {
-        const typeEmoji = TYPE_EMOJIS[fav.type] || "✨";
-        const imgUrl = ASTRO_IMAGES[fav.id];
+        const isLocation = fav.type === 'location';
+        const typeEmoji = isLocation ? (TYPE_EMOJIS.location) : (TYPE_EMOJIS[fav.type] || "✨");
+        const imgUrl = isLocation ? null : ASTRO_IMAGES[fav.id];
 
         const item = document.createElement("div");
         item.className = "favorite-item";
@@ -81,12 +83,20 @@ function renderFavorites(favorites) {
             ? `<img src="${imgUrl}" alt="${fav.name}">`
             : `<span style="font-size: 32px;">${typeEmoji}</span>`;
 
+        // Determinar subtítulo y tipo a mostrar
+        let subTitle = "";
+        if (isLocation) {
+            subTitle = fav.subType || "Ubicación";
+        } else {
+            subTitle = fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta');
+        }
+
         item.innerHTML = `
             <div class="favorite-thumb">
                 ${thumbContent}
             </div>
             <div class="favorite-info">
-                <div class="favorite-type">${typeEmoji} ${fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta')}</div>
+                <div class="favorite-type">${typeEmoji} ${subTitle}</div>
                 <div class="favorite-name">${fav.name}</div>
             </div>
             <div class="favorite-actions">
@@ -96,11 +106,15 @@ function renderFavorites(favorites) {
             </div>
         `;
 
-        // Navegar al sistema solar y centrar el planeta (opcional, por ahora solo UI)
+        // Navegar al sistema solar o al mapa
         item.addEventListener("click", (e) => {
             if (e.target.closest(".btn-remove-favorite")) return;
-            // Podríamos redirigir con un parámetro ?focus=mars
-            window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
+
+            if (isLocation) {
+                window.location.href = `../map/mapa-ubicaciones/mapa-ubicaciones.html`;
+            } else {
+                window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
+            }
         });
 
         const btnRemove = item.querySelector(".btn-remove-favorite");

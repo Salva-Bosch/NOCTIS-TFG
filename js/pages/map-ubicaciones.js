@@ -1,6 +1,16 @@
 import { loadSideNav } from "../core/loadSideNav.js";
 import { requireSession } from "../guards/sessionGuard.js";
 
+// Firebase
+import { auth, db } from "../core/firebase.js";
+import {
+    doc,
+    setDoc,
+    deleteDoc,
+    getDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 await requireSession();
 await loadSideNav();
 
@@ -749,7 +759,7 @@ function getBortleColor(bortle) {
 
 function createMarkerIcon(bortle) {
     const color = getBortleColor(bortle);
-    
+
     // Mapeo de Bortle a nombre de archivo
     const iconNames = {
         1: 'excepcional',
@@ -762,7 +772,7 @@ function createMarkerIcon(bortle) {
         8: 'ciudad',
         9: 'centro-urbano'
     };
-    
+
     const iconName = iconNames[bortle] || 'bueno';
 
     return L.divIcon({
@@ -800,8 +810,8 @@ locations.forEach(location => {
         icon: createMarkerIcon(location.bortle)
     }).addTo(map);
 
-    marker.on('click', function () {
-        openLocationModal(location);
+    marker.on('click', async function () {
+        await openLocationModal(location);
     });
 });
 
@@ -818,8 +828,8 @@ const panelClose = document.getElementById('panelClose');
 const heartOutline = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 const heartFilled = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
-function openLocationModal(location) {
-    const isFavorited = isFavorite(location.id);
+async function openLocationModal(location) {
+    const isFavorited = await isFavorite(location.id);
     const color = getBortleColor(location.bortle);
 
     panelContent.innerHTML = `
@@ -864,9 +874,9 @@ function openLocationModal(location) {
     `;
 
     const favBtn = panelContent.querySelector('.btn-favorite');
-    favBtn.addEventListener('click', function () {
-        toggleFavorite(location);
-        openLocationModal(location);
+    favBtn.addEventListener('click', async function () {
+        await toggleFavorite(location);
+        await openLocationModal(location);
     });
 
     panel.classList.add('active');
@@ -908,32 +918,50 @@ infoModal.addEventListener('click', (e) => {
    SISTEMA DE FAVORITOS
    ============================================ */
 
-function getFavorites() {
-    const favs = localStorage.getItem('noctis_favorites');
-    return favs ? JSON.parse(favs) : [];
+async function isFavorite(locationId) {
+    const user = auth.currentUser;
+    if (!user) return false;
+
+    const favId = `location_${locationId}`;
+    try {
+        const favRef = doc(db, "users", user.uid, "favorites", favId);
+        const snap = await getDoc(favRef);
+        return snap.exists();
+    } catch (e) {
+        console.error("Error en isFavorite:", e);
+        return false;
+    }
 }
 
-function saveFavorites(favorites) {
-    localStorage.setItem('noctis_favorites', JSON.stringify(favorites));
-}
-
-function isFavorite(locationId) {
-    const favorites = getFavorites();
-    return favorites.includes(locationId);
-}
-
-function toggleFavorite(location) {
-    let favorites = getFavorites();
-
-    if (favorites.includes(location.id)) {
-        favorites = favorites.filter(id => id !== location.id);
-        console.log(`Eliminado de favoritos: ${location.name}`);
-    } else {
-        favorites.push(location.id);
-        console.log(`Añadido a favoritos: ${location.name}`);
+async function toggleFavorite(location) {
+    const user = auth.currentUser;
+    if (!user) {
+        alert("Debes iniciar sesión para guardar favoritos");
+        return;
     }
 
-    saveFavorites(favorites);
+    const favId = `location_${location.id}`;
+    const favRef = doc(db, "users", user.uid, "favorites", favId);
+
+    try {
+        const isFav = await isFavorite(location.id);
+        if (isFav) {
+            await deleteDoc(favRef);
+            console.log(`Eliminado de favoritos: ${location.name}`);
+        } else {
+            await setDoc(favRef, {
+                id: favId,
+                locationId: location.id,
+                name: location.name,
+                type: "location",
+                subType: location.type,
+                timestamp: serverTimestamp()
+            });
+            console.log(`Añadido a favoritos: ${location.name}`);
+        }
+    } catch (error) {
+        console.error("Error al gestionar favorito:", error);
+    }
 }
 
 /* ============================================
