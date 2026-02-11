@@ -1,79 +1,20 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
-
-/**
- * Convierte RA / DEC (grados) a coordenadas 3D
- * r = radio de la esfera celeste
- */
-function raDecToXYZ(raDeg, decDeg, r = 1000) {
-  const ra = THREE.MathUtils.degToRad(raDeg);
-  const dec = THREE.MathUtils.degToRad(decDeg);
-
-  const x = r * Math.cos(dec) * Math.cos(ra);
-  const y = r * Math.sin(dec);
-  const z = r * Math.cos(dec) * Math.sin(ra);
-
-  return new THREE.Vector3(x, y, z);
-}
-
-/**
- * Convierte magnitud aparente a tamaño visual
- * (más negativa = más grande)
- */
-function magnitudeToSize(mag) {
-  return Math.max(0.5, 4 - mag);
-}
-
-export async function loadStars(scene) {
-  const res = await fetch("data/stars.json");
-  const stars = await res.json();
-
-  const positions = [];
-  const sizes = [];
-
-  stars.forEach(star => {
-    const pos = raDecToXYZ(star.ra, star.dec);
-    positions.push(pos.x, pos.y, pos.z);
-    sizes.push(magnitudeToSize(star.mag));
-  });
-
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(positions, 3)
-  );
-
-  geometry.setAttribute(
-    "size",
-    new THREE.Float32BufferAttribute(sizes, 1)
-  );
-
-  /**
-   * Shader para tamaño variable por estrella
-   */
-  const material = new THREE.ShaderMaterial({
-    transparent: true,
-    depthTest: true,
-    uniforms: {
-      color: { value: new THREE.Color(0xffffff) }
-    },
-    vertexShader: `
-      attribute float size;
-      void main() {
-        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = size * (300.0 / -mvPosition.z);
-        gl_Position = projectionMatrix * mvPosition;
-      }
-    `,
-    fragmentShader: `
-      uniform vec3 color;
-      void main() {
-        float d = distance(gl_PointCoord, vec2(0.5));
-        if (d > 0.5) discard;
-        gl_FragColor = vec4(color, 1.0);
-      }
-    `
-  });
-
-  const starsPoints = new THREE.Points(geometry, material);
-  scene.add(starsPoints);
-}
+[
+  { "id": 32349, "name": "Sirius", "ra": 101.287, "dec": -16.716, "mag": -1.46 },
+  { "id": 27989, "name": "Betelgeuse", "ra": 88.793, "dec": 7.407, "mag": 0.42 },
+  { "id": 24436, "name": "Rigel", "ra": 78.634, "dec": -8.201, "mag": 0.13 },
+  { "id": 11767, "name": "Aldebaran", "ra": 68.980, "dec": 16.509, "mag": 0.85 },
+  { "id": 91262, "name": "Vega", "ra": 279.234, "dec": 38.783, "mag": 0.03 },
+  { "id": 97649, "name": "Altair", "ra": 297.695, "dec": 8.868, "mag": 0.77 },
+  { "id": 102098, "name": "Deneb", "ra": 310.358, "dec": 45.280, "mag": 1.25 },
+  { "id": 60718, "name": "Regulus", "ra": 152.093, "dec": 11.967, "mag": 1.35 },
+  { "id": 65474, "name": "Spica", "ra": 201.298, "dec": -11.161, "mag": 0.98 },
+  { "id": 71683, "name": "Arcturus", "ra": 213.915, "dec": 19.182, "mag": -0.05 },
+  { "id": 7588, "name": "Capella", "ra": 79.172, "dec": 45.997, "mag": 0.08 },
+  { "id": 85927, "name": "Antares", "ra": 247.351, "dec": -26.432, "mag": 1.06 },
+  { "id": 68702, "name": "Procyon", "ra": 114.825, "dec": 5.225, "mag": 0.34 },
+  { "id": 49669, "name": "Pollux", "ra": 113.650, "dec": 28.026, "mag": 1.14 },
+  { "id": 37826, "name": "Castor", "ra": 113.215, "dec": 31.888, "mag": 1.58 },
+  { "id": 113368, "name": "Fomalhaut", "ra": 344.412, "dec": -29.622, "mag": 1.16 },
+  { "id": 9884, "name": "Achernar", "ra": 24.428, "dec": -57.236, "mag": 0.46 },
+  { "id": 5447, "name": "Mirfak", "ra": 51.080, "dec": 49.861, "mag": 1.79 }
+]

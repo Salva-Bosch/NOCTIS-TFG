@@ -1,13 +1,21 @@
-import { initScene, animate } from "./scene.js";
-import { initControls } from "./controls.js";
-import { loadStars } from "./stars.js";
-import { loadConstellations } from "./constellations.js";
+import { initScene, animate } from "./scene-constelacion.js";
+import { initControls } from "./control-constelacion.js";
+import { loadStars } from "./estrellas-constelaciones.js";
+import { loadConstellations } from "./lineas-constelaciones.js";
 
-const app = document.getElementById("app");
+console.log("MAIN EJECUTANDO");
 
-const { scene, camera, renderer } = initScene(app);
+const canvas = document.getElementById("app");
+console.log("CANVAS =", canvas);
+
+const { scene, camera, renderer } = initScene(canvas);
+
+console.log("SCENE =", scene);
+console.log("CAMERA =", camera);
+console.log("RENDERER =", renderer);
 
 initControls(camera);
+
 await loadStars(scene);
 await loadConstellations(scene);
 
