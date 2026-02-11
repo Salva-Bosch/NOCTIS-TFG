@@ -971,4 +971,19 @@ async function toggleFavorite(location) {
 setTimeout(() => {
     map.invalidateSize();
     console.log('Mapa listo con 20 ubicaciones mundiales');
+
+    // --- DEEP LINKING: Check URL params for focus ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const focusId = urlParams.get('focus');
+    console.log('Deep linking check:', focusId);
+    if (focusId) {
+        const location = locations.find(l => l.id == focusId);
+        if (location) {
+            console.log('Focusing on location:', location.name);
+            // Centrar mapa
+            map.setView(location.coords, 10);
+            // Abrir modal
+            openLocationModal(location);
+        }
+    }
 }, 200);
