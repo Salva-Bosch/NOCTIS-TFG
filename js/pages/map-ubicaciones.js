@@ -1,5 +1,13 @@
 import { loadSideNav } from "../core/loadSideNav.js";
 import { requireSession } from "../guards/sessionGuard.js";
+import { auth, db } from "../core/firebase.js";
+import {
+    doc,
+    setDoc,
+    deleteDoc,
+    getDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 await requireSession();
 await loadSideNav();
@@ -82,7 +90,7 @@ function getBortleColor(bortle) {
 
 function createMarkerIcon(bortle) {
     const color = getBortleColor(bortle);
-    
+
     const iconNames = {
         1: 'excepcional',
         2: 'excelente',
@@ -94,7 +102,7 @@ function createMarkerIcon(bortle) {
         8: 'ciudad',
         9: 'centro-urbano'
     };
-    
+
     const iconName = iconNames[bortle] || 'bueno';
 
     return L.divIcon({
@@ -110,9 +118,9 @@ function createMarkerIcon(bortle) {
                 cursor: pointer;
                 transition: all 0.3s ease;
             ">
-                <img src="../../../../assets/icons/ui/ubicaciones/${iconName}.svg" 
-                     alt="Marcador ${iconName}" 
-                     width="36" 
+                <img src="../../../../assets/icons/ui/ubicaciones/${iconName}.svg"
+                     alt="Marcador ${iconName}"
+                     width="36"
                      height="36"
                      style="display: block;">
             </div>
@@ -150,9 +158,9 @@ const panelClose = document.getElementById('panelClose');
 const heartOutline = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 const heartFilled = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
 
-function openLocationModal(location) {
-    const isFavorited = isFavorite(location.id);
+async function openLocationModal(location) {
     const color = getBortleColor(location.bortle);
+    const isFavorited = await isFavorite(location.id);
 
     panelContent.innerHTML = `
         <div class="panel-header">
@@ -195,10 +203,21 @@ function openLocationModal(location) {
         </div>
     `;
 
+    // Actualizar botón sin recargar todo el panel
     const favBtn = panelContent.querySelector('.btn-favorite');
-    favBtn.addEventListener('click', function () {
-        toggleFavorite(location);
-        openLocationModal(location);
+
+    function updateFavBtn(favorited) {
+        favBtn.className = `btn-favorite ${favorited ? 'favorited' : ''}`;
+        favBtn.innerHTML = `
+            <span class="heart-icon">${favorited ? heartFilled : heartOutline}</span>
+            <span>${favorited ? 'Guardado en Favoritos' : 'Añadir a Favoritos'}</span>
+        `;
+    }
+
+    favBtn.addEventListener('click', async function () {
+        await toggleFavorite(location);
+        const nowFavorited = await isFavorite(location.id);
+        updateFavBtn(nowFavorited);
     });
 
     panel.classList.add('active');
@@ -237,41 +256,40 @@ infoModal.addEventListener('click', (e) => {
 });
 
 /* ============================================
-   SISTEMA DE FAVORITOS
+   SISTEMA DE FAVORITOS - FIREBASE
    ============================================ */
 
-function getFavorites() {
-    const favs = localStorage.getItem('noctis_favorites');
-    return favs ? JSON.parse(favs) : [];
+async function isFavorite(locationId) {
+    const user = auth.currentUser;
+    if (!user) return false;
+
+    const ref = doc(db, "users", user.uid, "favorites", `map_${locationId}`);
+    const snap = await getDoc(ref);
+    return snap.exists();
 }
 
-function saveFavorites(favorites) {
-    localStorage.setItem('noctis_favorites', JSON.stringify(favorites));
-    console.log('Favoritos guardados:', favorites);
-}
+async function toggleFavorite(location) {
+    const user = auth.currentUser;
+    if (!user) return;
 
-function isFavorite(locationId) {
-    const favorites = getFavorites();
-    // Asegurar que comparamos números con números
-    const id = parseInt(locationId);
-    const result = favorites.includes(id);
-    console.log(`🔍 ¿Es favorito ${id}?`, result, 'Lista:', favorites);
-    return result;
-}
+    const ref = doc(db, "users", user.uid, "favorites", `map_${location.id}`);
+    const snap = await getDoc(ref);
 
-function toggleFavorite(location) {
-    let favorites = getFavorites();
-    const id = parseInt(location.id);
-
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(favId => favId !== id);
-        console.log(`Eliminado de favoritos: ${location.name} (ID: ${id})`);
+    if (snap.exists()) {
+        await deleteDoc(ref);
+        console.log(`Eliminado de favoritos: ${location.name}`);
     } else {
-        favorites.push(id);
-        console.log(`Añadido a favoritos: ${location.name} (ID: ${id})`);
+        await setDoc(ref, {
+            id: `map_${location.id}`,
+            name: location.name,
+            type: "location",
+            region: location.region,
+            bortle: location.bortle,
+            quality: location.quality,
+            timestamp: serverTimestamp()
+        });
+        console.log(`Añadido a favoritos: ${location.name}`);
     }
-
-    saveFavorites(favorites);
 }
 
 /* ============================================
