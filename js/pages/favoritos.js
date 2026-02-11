@@ -111,7 +111,8 @@ function renderFavorites(favorites) {
             if (e.target.closest(".btn-remove-favorite")) return;
 
             if (isLocation) {
-                window.location.href = `../map/mapa-ubicaciones/mapa-ubicaciones.html`;
+                // fav.locationId es el ID numérico (ej: 1, 2)
+                window.location.href = `../map/mapa-ubicaciones/mapa-ubicaciones.html?focus=${fav.locationId}`;
             } else {
                 window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
             }

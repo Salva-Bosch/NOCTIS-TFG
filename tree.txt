@@ -84,7 +84,7 @@ NOCTIS-TFG/
     │   │   └── home.html
     │   ├── map/
     │   │   ├── mapa_estrellas.html
-    │   │   └── mapa-ubicaciónes/
+    │   │   └── mapa-ubicaciones/
     │   │       └── mapa_ubicaciones.html
     │   ├── noctis-lab/
     │   │   ├── constelaciones.html
