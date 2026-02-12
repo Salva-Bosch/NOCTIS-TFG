@@ -50,24 +50,25 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0.85rem 0 1rem 0; /* Reducido */
+    padding: 0.85rem 0 1rem 0;
+    /* Reducido */
     z-index: 2000;
     text-align: center;
-    
+
     /* Fondo sólido */
     background: rgba(12, 14, 24, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    
+
     /* Curva inferior */
     border-bottom-left-radius: 50% 25px;
     border-bottom-right-radius: 50% 25px;
-    
+
     /* Solo sombra, SIN borde inferior */
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-    
+
     pointer-events: none;
-    
+
     /* Importante: ocultar cualquier overflow de la línea recta */
     overflow: hidden;
 }
@@ -79,7 +80,8 @@ body {
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.92);
     margin: 0;
-    margin-bottom: 0.55rem; /* Reducido */
+    margin-bottom: 0.55rem;
+    /* Reducido */
 }
 
 /* Degradado solo en "Astronómica" */
@@ -87,13 +89,11 @@ body {
     display: block;
     font-weight: 700;
     letter-spacing: 0.12em;
-    background: linear-gradient(
-        120deg,
-        #7aa2ff 0%,
-        #8b9cff 30%,
-        #b07cff 70%,
-        #c89fff 100%
-    );
+    background: linear-gradient(120deg,
+            #7aa2ff 0%,
+            #8b9cff 30%,
+            #b07cff 70%,
+            #c89fff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -106,16 +106,14 @@ body {
     width: 220px;
     height: 1px;
     margin: 0 auto;
-    
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(122, 162, 255, 0.4) 20%,
-        rgba(139, 156, 255, 0.7) 50%,
-        rgba(176, 124, 255, 0.4) 80%,
-        transparent 100%
-    );
-    
+
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(122, 162, 255, 0.4) 20%,
+            rgba(139, 156, 255, 0.7) 50%,
+            rgba(176, 124, 255, 0.4) 80%,
+            transparent 100%);
+
     box-shadow: 0 0 6px rgba(139, 156, 255, 0.25);
 }
 
@@ -151,11 +149,11 @@ body {
         border-bottom-left-radius: 50% 20px;
         border-bottom-right-radius: 50% 20px;
     }
-    
+
     .map-header h1 {
         font-size: 1.15rem;
     }
-    
+
     .orbital-line {
         width: 180px;
     }
@@ -167,11 +165,11 @@ body {
         border-bottom-left-radius: 50% 18px;
         border-bottom-right-radius: 50% 18px;
     }
-    
+
     .map-header h1 {
         font-size: 1rem;
     }
-    
+
     .orbital-line {
         width: 150px;
     }
@@ -235,15 +233,15 @@ body {
     width: 420px;
     height: 100vh;
     z-index: 3000;
-    
+
     background: rgba(18, 20, 35, 0.98);
     backdrop-filter: blur(32px);
     border-left: 1px solid rgba(139, 156, 255, 0.12);
     box-shadow: -12px 0 48px rgba(0, 0, 0, 0.5);
-    
+
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    
+
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -256,17 +254,17 @@ body {
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
-    
+
     width: 36px;
     height: 36px;
     border-radius: 8px;
     border: 1px solid rgba(139, 156, 255, 0.15);
     background: rgba(139, 156, 255, 0.05);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     cursor: pointer;
     transition: all 0.25s ease;
     z-index: 10;
@@ -479,7 +477,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -508,6 +506,33 @@ body {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.btn-favorite:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.2);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
 }
 
 /* Scrollbar del panel */
@@ -537,18 +562,18 @@ body {
     bottom: 2rem;
     left: 2.23rem;
     z-index: 2000;
-    
+
     width: 56px;
     height: 56px;
     border-radius: 50%;
     border: 1px solid rgba(139, 156, 255, 0.2);
     background: rgba(18, 20, 35, 0.9);
     backdrop-filter: blur(16px);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
@@ -573,15 +598,15 @@ body {
     position: fixed;
     inset: 0;
     z-index: 5000;
-    
+
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(12px);
-    
+
     display: none;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    
+
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -597,15 +622,15 @@ body {
     max-width: 800px;
     max-height: 90vh;
     overflow-y: auto;
-    
+
     background: rgba(18, 20, 35, 0.98);
     backdrop-filter: blur(32px);
     border: 1px solid rgba(139, 156, 255, 0.15);
     border-radius: 20px;
     padding: 3rem 2.5rem;
-    
+
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
-    
+
     transform: scale(0.95);
     transition: transform 0.3s ease;
 }
@@ -618,17 +643,17 @@ body {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    
+
     width: 36px;
     height: 36px;
     border-radius: 8px;
     border: 1px solid rgba(139, 156, 255, 0.15);
     background: rgba(139, 156, 255, 0.05);
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     cursor: pointer;
     transition: all 0.25s ease;
 }
@@ -720,7 +745,8 @@ body {
 /* Borde para el color blanco (Bortle 9) */
 .color-dot[style*="background: #ffffff"] {
     border: 1px solid rgba(139, 156, 255, 0.3);
-    box-shadow: none; /* Quitar el glow para el blanco */
+    box-shadow: none;
+    /* Quitar el glow para el blanco */
 }
 
 .color-item strong {
@@ -838,15 +864,15 @@ body {
         bottom: 1.5rem;
         right: 1.5rem;
     }
-    
+
     .info-modal-content {
         padding: 2rem 1.5rem;
     }
-    
+
     .info-modal-content h2 {
         font-size: 1.6rem;
     }
-    
+
     .color-guide {
         gap: 1.2rem;
     }
@@ -860,15 +886,15 @@ body {
     .map-header h1 {
         font-size: 1.2rem;
     }
-    
+
     .location-panel {
         width: 100%;
     }
-    
+
     .panel-content {
         padding: 2rem 1.5rem;
     }
-    
+
     .panel-location-name {
         font-size: 1.5rem;
     }

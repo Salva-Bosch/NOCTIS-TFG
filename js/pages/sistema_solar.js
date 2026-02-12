@@ -40,7 +40,6 @@ const ASTRO_NAMES = {
     ceres: "Ceres"
 };
 
-/* Firebase logic for Favorites */
 import { auth, db } from "../core/firebase.js";
 import {
     doc,
@@ -51,10 +50,19 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const favoriteCard = document.getElementById("favoriteCard");
-const favoriteAstroName = document.getElementById("favoriteAstroName");
 const btnToggleFavorite = document.getElementById("btnToggleFavorite");
+const favoriteAstroName = document.getElementById("favoriteAstroName");
 const favoriteHeartIcon = document.getElementById("favoriteHeartIcon");
+
+// Activate search input when clicking anywhere on wrapper
+const searchInputWrapper = document.querySelector(".search-input-wrapper");
+const searchInputElement = document.getElementById("searchInput");
+
+if (searchInputWrapper && searchInputElement) {
+    searchInputWrapper.addEventListener("click", () => {
+        searchInputElement.focus();
+    });
+}
 
 let currentFocusedAstroId = null;
 
@@ -124,7 +132,7 @@ async function updateFavoriteUI(astroId) {
     } else {
         btnToggleFavorite.classList.remove("is-favorite");
         favoriteHeartIcon.src = "../../../assets/icons/nav/favourites.svg";
-        favoriteHeartIcon.style.filter = "brightness(0) invert(1)";
+        favoriteHeartIcon.style.filter = "brightness(0) saturate(100%) invert(74%) sepia(18%) saturate(1096%) hue-rotate(198deg) brightness(103%) contrast(101%)";
     }
 }
 
@@ -132,6 +140,16 @@ btnToggleFavorite.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("Click en corazón. Astro actual:", currentFocusedAstroId);
+
+    // Add heartbeat animation to heart icon container
+    const heartIcon = btnToggleFavorite.querySelector('.heart-icon');
+    if (heartIcon) {
+        heartIcon.style.animation = 'heartBeat 0.3s ease';
+        setTimeout(() => {
+            heartIcon.style.animation = '';
+        }, 300);
+    }
+
     if (currentFocusedAstroId) {
         toggleFavorite(currentFocusedAstroId);
     } else {
@@ -300,7 +318,7 @@ function startFocusOn(object, distanceMultiplier = 6) {
         currentFocusedAstroId = astroId;
         const displayName = ASTRO_NAMES[astroId] || "Desconocido";
         favoriteAstroName.textContent = displayName;
-        favoriteCard.style.display = "block";
+        btnToggleFavorite.style.display = "flex";
         updateFavoriteUI(astroId);
     }
 }
@@ -489,7 +507,75 @@ function createMoon(id, colorConfig, parentGroup, parentPlanetId) {
 
 const canvas = document.getElementById("solarCanvas");
 const renderer = createRenderer(canvas);
-const scene = createScene();
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000); // Pure black space
+
+// ================= STARFIELD BACKGROUND =================
+function createStarfield() {
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 8000;
+    const positions = new Float32Array(starCount * 3);
+    const colors = new Float32Array(starCount * 3);
+    const sizes = new Float32Array(starCount);
+
+    for (let i = 0; i < starCount; i++) {
+        const i3 = i * 3;
+
+        // Random position in a massive sphere - stars appear infinitely far away
+        const radius = 20000 + Math.random() * 10000; // Much larger distances (5000-15000)
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+
+        positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+        positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+        positions[i3 + 2] = radius * Math.cos(phi);
+
+        // Subtle color variation (mostly white with slight blue/purple tint)
+        const colorVariation = Math.random();
+        if (colorVariation > 0.95) {
+            // Rare purple stars
+            colors[i3] = 0.7 + Math.random() * 0.3;
+            colors[i3 + 1] = 0.6 + Math.random() * 0.2;
+            colors[i3 + 2] = 1.0;
+        } else if (colorVariation > 0.85) {
+            // Blue stars
+            colors[i3] = 0.6 + Math.random() * 0.2;
+            colors[i3 + 1] = 0.7 + Math.random() * 0.2;
+            colors[i3 + 2] = 1.0;
+        } else {
+            // White stars (majority)
+            const brightness = 0.8 + Math.random() * 0.2;
+            colors[i3] = brightness;
+            colors[i3 + 1] = brightness;
+            colors[i3 + 2] = brightness;
+        }
+
+        // Varying sizes for depth perception
+        sizes[i] = Math.random() * 2.5 + 0.5;
+    }
+
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    starGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    starGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    const starMaterial = new THREE.PointsMaterial({
+        size: 1.5,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending
+    });
+
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    return stars;
+}
+
+const starfield = createStarfield();
+
+// ================= CAMERA =================
 const { camera, controls } = createCamera(renderer);
 
 timeEngine.init();
@@ -507,7 +593,7 @@ controls.addEventListener("start", () => {
     if (cameraState === CameraState.FOCUS) {
         cameraState = CameraState.FREE;
         focusedObject = null;
-        favoriteCard.style.display = "none";
+        btnToggleFavorite.style.display = "none";
         currentFocusedAstroId = null;
     }
 });
