@@ -1,5 +1,22 @@
 /* ====== CSS DEL SISTEMA SOLAR ====== */
 
+/* Página a pantalla completa sin scroll */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Canvas del sistema solar ocupa todo el viewport */
+#solarCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
 /* SEARCH BAR */
 .search-bar-container {
     position: fixed;
@@ -407,6 +424,53 @@
 .favorite-toggle-btn.is-favorite img {
     filter: none;
     /* Color original (purpura #9d85ff o similar) */
+}
+
+/* Botón de favoritos (mismo estilo que mapa-ubicaciones) */
+.btn-favorite {
+    width: 100%;
+    padding: 0.95rem;
+    background: rgba(139, 156, 255, 0.12);
+    border: 1px solid rgba(139, 156, 255, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+}
+
+.btn-favorite:hover {
+    background: rgba(139, 156, 255, 0.2);
+    border-color: rgba(139, 156, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(139, 156, 255, 0.25);
+}
+
+.btn-favorite .heart-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estado guardado, igual que en mapa-ubicaciones */
+.btn-favorite.favorited {
+    background: rgba(255, 100, 120, 0.15);
+    border-color: rgba(255, 100, 120, 0.35);
+    color: #ff6478;
+}
+
+.btn-favorite.favorited:hover {
+    background: rgba(255, 100, 120, 0.25);
+    border-color: rgba(255, 100, 120, 0.5);
 }
 
 @keyframes slideUp {
