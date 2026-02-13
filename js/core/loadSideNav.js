@@ -1,5 +1,5 @@
 export async function loadSideNav() {
-    const res = await fetch("../components/side-nav.html");
+    const res = await fetch("/pages/app/components/side-nav.html?v=1");
     const html = await res.text();
     document.body.insertAdjacentHTML("afterbegin", html);
 }
