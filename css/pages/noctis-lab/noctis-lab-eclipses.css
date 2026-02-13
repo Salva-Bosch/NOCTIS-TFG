@@ -1,1 +1,438 @@
-/* Página Eclipses */
+/* =========================
+   ECLIPSES PAGE STYLES
+   ========================= */
+
+/* Background specific to Eclipses */
+.eclipses-page {
+    background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(10, 11, 13, 0.95)),
+        url('../../../assets/backgrounds/app/eclipses-bg.jpg');
+    /* Placeholder background */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--white);
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+.eclipses-hero {
+    text-align: center;
+    padding: 4rem 0 6rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.eclipses-hero__title {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(142, 197, 252, 0.3);
+}
+
+.eclipses-hero__divider {
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--purple-soft);
+    margin: 0 auto 2rem;
+    border-radius: 2px;
+}
+
+.eclipses-hero__intro {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================
+   SHARED COMPONENTS
+   ========================= */
+.glass-card {
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+section {
+    margin-bottom: 6rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--white);
+    text-align: center;
+}
+
+/* =========================
+   DEFINITION
+   ========================= */
+.def-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(145deg, rgba(20, 20, 30, 0.7), rgba(40, 40, 60, 0.4));
+}
+
+.def-card h2 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.def-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* =========================
+   TYPES GRID
+   ========================= */
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.type-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.type-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.type-header h3 {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.type-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.type-content p {
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+}
+
+.type-img-placeholder {
+    margin-top: auto;
+    width: 100%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.type-img-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.type-card:hover .type-img-placeholder img {
+    opacity: 1;
+}
+
+/* Solar specific */
+.solar .type-header h3 {
+    color: #fdb813;
+}
+
+/* Lunar specific */
+.lunar .type-header h3 {
+    color: #ff5f5f;
+    /* Reddish for blood moon */
+}
+
+/* =========================
+   ALIGNMENT
+   ========================= */
+.alignment-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title p {
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+.alignment-display {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 0;
+    /* Remove padding from card to style inner */
+    overflow: hidden;
+}
+
+.alignment-visual-placeholder {
+    background: rgba(0, 0, 0, 0.2);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.alignment-visual-placeholder img {
+    max-width: 80%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.placeholder-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.alignment-info {
+    padding: 2rem;
+}
+
+.alignment-info p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--white);
+}
+
+/* =========================
+   PHASES TIMELINE
+   ========================= */
+.phases-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.phases-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 4rem;
+}
+
+.phases-timeline::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple-soft), transparent);
+    z-index: 0;
+}
+
+.phase-item {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 30%;
+}
+
+.phase-time {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-dark);
+    border: 2px solid var(--purple-soft);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px var(--purple);
+}
+
+.phase-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #e0c3fc;
+}
+
+.phase-item p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* =========================
+   FACTS GRID
+   ========================= */
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.fact-card {
+    text-align: center;
+}
+
+.fact-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.fact-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.fact-card p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* =========================
+   UPCOMING TABLE
+   ========================= */
+.upcoming-section {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.eclipse-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.eclipse-table th,
+.eclipse-table td {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+}
+
+.eclipse-table th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #8ec5fc;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.eclipse-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s;
+}
+
+.eclipse-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.eclipse-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.eclipse-table td {
+    color: var(--white);
+    font-size: 1rem;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+    .alignment-display {
+        grid-template-columns: 1fr;
+    }
+
+    .alignment-visual-placeholder {
+        height: 250px;
+    }
+
+    .phases-timeline {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .phases-timeline::before {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, transparent, var(--purple-soft), transparent);
+    }
+
+    .phase-item {
+        width: 80%;
+    }
+}

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noctis · NoctisLab Eventos Astronómicos</title>
 
     <!-- CSS base -->
@@ -16,6 +18,7 @@
     <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab.css">
     <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-eventos.css">
 </head>
+
 <body>
 
     <!-- NAVBAR SUPERIOR NOCTIS LAB -->
@@ -35,7 +38,7 @@
 
                 <div class="nav-right">
                     <a href="./constelaciones.html" class="nav-link">Constelaciones</a>
-                    <a href="#" class="nav-link">Eventos astronómicos</a>
+                    <a href="#" class="nav-link active">Eventos astronómicos</a>
                 </div>
 
             </div>
@@ -43,18 +46,212 @@
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="noctis-lab-content eventos">
+    <main class="noctis-lab-content eventos-page">
 
         <!-- HERO -->
-        <section class="eventos-hero">
-            <h1>Eventos Astronómicos</h1>
-            <p class="eventos-intro">
-                Descubre los próximos eventos astronómicos y fenómenos celestes que podrás observar.
+        <section class="eventos-hero reveal">
+            <h1 class="hero-title">Eventos Astronómicos</h1>
+            <p class="hero-subtitle">
+                El universo está en constante movimiento. Descubre los espectáculos celestes que no te puedes perder.
             </p>
         </section>
 
+        <!-- INTRO -->
+        <section class="intro-eventos reveal">
+            <div class="intro-box">
+                <h2>¿Qué observar?</h2>
+                <p>
+                    Llamamos <strong>evento astronómico</strong> a cualquier fenómeno celeste observable, ya sea a
+                    simple vista o con telescopios, que ocurre en un momento y lugar determinados. Desde las fugaces
+                    estrellas hasta el paso lento de un cometa.
+                </p>
+            </div>
+        </section>
+
+        <!-- TIPOS DE EVENTOS -->
+        <section class="events-types-section">
+            <h2 class="section-heading reveal">Tipos de Eventos</h2>
+
+            <div class="types-grid">
+
+                <!-- METEOROS -->
+                <div class="type-card reveal">
+                    <div class="card-image">
+                        <img src="../../../assets/illustrations/eventos/lluvia-estrellas.png" alt="Lluvia de estrellas">
+                    </div>
+                    <div class="card-content">
+                        <h3>Lluvias de Meteoros</h3>
+                        <p>Partículas de polvo cósmico quemándose en la atmósfera. Las más famosas (Perseidas,
+                            Gemínidas) ocurren anualmente cuando la Tierra cruza la estela de un cometa.</p>
+                    </div>
+                </div>
+
+                <!-- CONJUNCIONES -->
+                <div class="type-card reveal">
+                    <div class="card-image">
+                        <img src="../../../assets/illustrations/eventos/conjuncion.png" alt="Conjunción planetaria">
+                    </div>
+                    <div class="card-content">
+                        <h3>Conjunciones</h3>
+                        <p>Alineaciones aparentes de planetas o la Luna desde nuestra perspectiva. Ofrecen vistas
+                            espectaculares al atardecer o amanecer.</p>
+                    </div>
+                </div>
+
+                <!-- SUPERLUNAS -->
+                <div class="type-card reveal">
+                    <div class="card-image">
+                        <img src="../../../assets/illustrations/eventos/superluna.png" alt="Superluna">
+                    </div>
+                    <div class="card-content">
+                        <h3>Superlunas</h3>
+                        <p>Ocurren cuando la Luna Llena coincide con el perigeo (su punto más cercano a la Tierra),
+                            viéndose hasta un 14% más grande y 30% más brillante.</p>
+                    </div>
+                </div>
+
+                <!-- COMETAS -->
+                <div class="type-card reveal">
+                    <div class="card-image">
+                        <img src="../../../assets/illustrations/eventos/cometa.png" alt="Cometa visible">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cometas</h3>
+                        <p>Visitantes helados del sistema solar exterior que, al acercarse al Sol, despliegan colas de
+                            gas y polvo visibles en el cielo nocturno.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CALENDARIO 2025-2026 -->
+        <section class="calendar-section reveal">
+            <h2 class="section-heading">Calendario 2025 - 2026</h2>
+            <div class="calendar-container glass-panel">
+
+                <div class="calendar-header">
+                    <span>Fecha</span>
+                    <span>Evento</span>
+                    <span>Tipo</span>
+                </div>
+
+                <div class="calendar-list">
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">03</span>
+                            <span class="month">ENE</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Cuadrántidas</h4>
+                            <p>Pico de actividad de lluvia de meteoros.</p>
+                        </div>
+                        <div class="event-type type-meteor">Lluvia de Meteoros</div>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">29</span>
+                            <span class="month">MAR</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Eclipse Solar Parcial</h4>
+                            <p>Visible en Europa y norte de Asia.</p>
+                        </div>
+                        <div class="event-type type-eclipse">Eclipse</div>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">12</span>
+                            <span class="month">AGO</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Perseidas</h4>
+                            <p>La lluvia de estrellas más popular del hemisferio norte.</p>
+                        </div>
+                        <div class="event-type type-meteor">Lluvia de Meteoros</div>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">07</span>
+                            <span class="month">SEP</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Eclipse Lunar Total</h4>
+                            <p>La "Luna de Sangre".</p>
+                        </div>
+                        <div class="event-type type-eclipse">Eclipse</div>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">17</span>
+                            <span class="month">NOV</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Leónidas</h4>
+                            <p>Lluvia de meteoros rápida y brillante.</p>
+                        </div>
+                        <div class="event-type type-meteor">Lluvia de Meteoros</div>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <span class="day">12</span>
+                            <span class="month">AGO</span>
+                            <span class="year">2026</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>El Gran Eclipse Español</h4>
+                            <p>Eclipse solar total visible en Islandia y España.</p>
+                        </div>
+                        <div class="event-type type-eclipse-total">Eclipse Total</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RECOMENDACIONES & VISIBILIDAD -->
+        <section class="tips-visibility-section reveal">
+            <div class="tips-grid">
+
+                <div class="tips-card">
+                    <h3>💡 Consejos de Observación</h3>
+                    <ul class="tips-list">
+                        <li><strong>Aléjate de la ciudad:</strong> La contaminación lumínica es el peor enemigo.</li>
+                        <li><strong>Adapta tu vista:</strong> Tus ojos tardan unos 20 minutos en ver en la oscuridad
+                            total.</li>
+                        <li><strong>Revisa el clima:</strong> Nubes y humedad pueden arruinar la noche.</li>
+                        <li><strong>Usa luz roja:</strong> Para consultar mapas sin deslumbrarte.</li>
+                    </ul>
+                </div>
+
+                <div class="visibility-card">
+                    <h3>🌍 Visibilidad por Región</h3>
+                    <p>
+                        Ten en cuenta que no todos los eventos son globales.
+                        Los eclipses tienen una franja de totalidad muy estrecha.
+                        Las fases lunares son universales, pero su orientación cambia según el hemisferio.
+                        <br><br>
+                        Las lluvias de meteoros suelen verse mejor de madrugada, cuando tu ubicación en la Tierra avanza
+                        hacia la nube de polvo.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
     </main>
-    
+
     <!-- Scripts -->
     <script type="module">
         import { loadSideNav } from "../../../js/core/loadSideNav.js";
@@ -62,7 +259,19 @@
 
         await requireSession();
         await loadSideNav();
-    </script>
 
+        // Reveal animation script
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal--visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
+
 </html>
