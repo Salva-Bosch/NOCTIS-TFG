@@ -1,0 +1,354 @@
+/* CSS DE LA PÁGINA AJUSTES */
+
+.settings-page {
+    min-height: 100vh;
+    background: url("../../../assets/Fondos/Perfil_fondo.png");
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    font-family: var(--font-main);
+    overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.settings-header {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    z-index: 100;
+}
+
+.settings-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.back-btn {
+    position: absolute;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== LAYOUT ===== */
+.settings-layout {
+    display: flex;
+    height: 90vh;
+}
+
+/* ===== SIDEBAR (PANEL IZQUIERDO) ===== */
+.settings-sidebar {
+    width: 35vw;
+    background-color: var(--bg-blue-settings);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0;
+    z-index: 10;
+}
+
+.user-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.avatar-container img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    object-fit: cover;
+}
+
+.user-summary h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 90%;
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 40px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.nav-item img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.8;
+}
+
+.nav-item span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    background: var(--purple);
+}
+
+.nav-item.active img {
+    opacity: 1;
+}
+
+/* ===== CONTENT AREA (PANEL DERECHO) ===== */
+.settings-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.glass-panel {
+    width: 100%;
+    max-width: 700px;
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-section {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+}
+
+.settings-section.active {
+    display: flex;
+}
+
+.settings-section h2 {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.setting-group {
+    margin-bottom: 25px;
+}
+
+.group-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+/* Radio buttons custom */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-row {
+    display: flex;
+    gap: 40px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    user-select: none;
+}
+
+.radio-label input {
+    display: none;
+}
+
+.radio-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    position: relative;
+}
+
+.radio-label input:checked+.radio-custom {
+    border-color: var(--white);
+}
+
+.radio-label input:checked+.radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+}
+
+/* Divider inside panel */
+.divider-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 10px 0 25px;
+}
+
+/* Switch toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--purple);
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+/* Buttons */
+.section-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-save {
+    background: var(--purple);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background: var(--purple-soft);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.location-info {
+    font-size: 18px;
+}
+
+.location-name {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.location-coords {
+    color: var(--muted);
+    font-family: monospace;
+}
+
+.timezone-text {
+    font-size: 15px;
+}
+
+/* ===== FEEDBACK ===== */
+.feedback {
+    margin-top: 20px;
+    min-height: 18px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+}

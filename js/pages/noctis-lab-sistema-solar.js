@@ -1,3 +1,6 @@
+import { onChange } from "../core/settingsManager.js";
+import { updatePageUnits } from "../core/unitConverter.js";
+
 // ScrollReveal
 const revealElements = document.querySelectorAll('.reveal');
 
@@ -45,3 +48,9 @@ document.querySelectorAll('.rocky-planets__carousel, .gas-planets__carousel')
             showSlide(currentSlide);
         });
     });
+
+// Unidades dinámicas
+onChange(() => {
+    updatePageUnits();
+});
+updatePageUnits();

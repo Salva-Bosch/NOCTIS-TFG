@@ -2,6 +2,7 @@
 
 // UI del control temporal (NASA Eyes style)
 import * as timeEngine from "../timeEngine.js";
+import { getSettings } from "../settingsManager.js";
 
 const State = {
     REAL: "realtime",
@@ -25,7 +26,23 @@ const liveBtn = document.getElementById("liveBtn");
 
 // Helpers formato
 const pad = n => String(n).padStart(2, "0");
-const fmtTime = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+const fmtTime = d => {
+    const settings = getSettings();
+    const is12h = settings.timeFormat === "12";
+
+    let hours = d.getHours();
+    const minutes = pad(d.getMinutes());
+    const seconds = pad(d.getSeconds());
+
+    if (is12h) {
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // el 0 es 12 en 12h
+        return `${pad(hours)}:${minutes}:${seconds} ${ampm}`;
+    }
+
+    return `${pad(hours)}:${minutes}:${seconds}`;
+};
 const fmtDate = d =>
     d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
 

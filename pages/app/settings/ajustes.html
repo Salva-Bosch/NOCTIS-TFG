@@ -2,38 +2,193 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Noctis - Ajustes</title>
+    <meta charset="UTF-8" />
+    <title>Noctis – Ajustes</title>
 
     <link rel="stylesheet" href="../../../css/base/reset.css">
     <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
-    <style>
-        body {
-            background-color: var(--bg-blue-settings);
-            color: white;
-            font-family: var(--font-main);
-        }
-
-        main {
-            padding: 40px;
-            padding-left: 120px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../../css/pages/ajustes.css">
 </head>
 
 <body>
-    <main>
-        <h1>Ajustes</h1>
-        <p>Próximamente más opciones de configuración.</p>
+    <main class="settings-page">
+
+        <!-- HEADER -->
+        <header class="settings-header">
+            <a href="/pages/app/home/home.html" class="back-btn">
+                <img src="/assets/icons/ui/arrow.svg" alt="Volver">
+            </a>
+            <h1>Ajustes</h1>
+        </header>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <section class="settings-layout">
+
+            <!-- PANEL IZQUIERDO (SIDEBAR) -->
+            <aside class="settings-sidebar">
+                <div class="user-summary">
+                    <div class="avatar-container">
+                        <img id="userAvatar" src="../../../assets/avatars/avatar-luna.png" alt="Avatar">
+                    </div>
+                    <h2 id="userName">Cargando...</h2>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <nav class="settings-nav">
+                    <div class="nav-item" data-section="ubicacion" id="nav-ubicacion">
+                        <img src="../../../assets/icons/ui/ubicaciónes/centro-urbano.svg" alt="">
+                        <span>Ubicación</span>
+                    </div>
+                    <div class="nav-item" data-section="idiomas" id="nav-idiomas">
+                        <img src="../../../assets/icons/ui/idiomas.svg" alt="">
+                        <span>Idiomas</span>
+                    </div>
+                    <div class="nav-item" data-section="medidas" id="nav-medidas">
+                        <img src="../../../assets/icons/ui/medidas.svg" alt="">
+                        <span>Medidas</span>
+                    </div>
+                    <div class="nav-item" data-section="hora" id="nav-hora">
+                        <img src="../../../assets/icons/ui/clock.svg" alt="">
+                        <span>Hora</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- PANEL DERECHO (CONTENT) -->
+            <div class="settings-content">
+                <div class="glass-panel">
+
+                    <!-- SECCIÓN IDIOMAS (Default) -->
+                    <section id="section-idiomas" class="settings-section active">
+                        <h2>Idiomas</h2>
+                        <div class="setting-group">
+                            <span class="group-label">Idioma de la aplicación</span>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="language" value="es" checked>
+                                    <span class="radio-custom"></span>
+                                    Español (España)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="language" value="en">
+                                    <span class="radio-custom"></span>
+                                    Ingles
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="language" value="it">
+                                    <span class="radio-custom"></span>
+                                    Italiano
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section-footer">
+                            <button class="btn-save" id="save-idiomas">Guardar cambios</button>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN UBICACIÓN -->
+                    <section id="section-ubicacion" class="settings-section">
+                        <h2>Ubicación</h2>
+                        <div class="location-info">
+                            <p class="location-name" id="display-location">Cargando...</p>
+                            <p class="location-coords" id="display-coords">--°--'--"-- N --°--'--"-- O</p>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN MEDIDAS -->
+                    <section id="section-medidas" class="settings-section">
+                        <h2>Medidas</h2>
+
+                        <div class="setting-group">
+                            <span class="group-label">Distacia</span>
+                            <div class="radio-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="distance" value="km" checked>
+                                    <span class="radio-custom"></span>
+                                    Kilómetros
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="distance" value="mi">
+                                    <span class="radio-custom"></span>
+                                    Millas
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="divider-line"></div>
+
+                        <div class="setting-group">
+                            <span class="group-label">Temperatura</span>
+                            <div class="radio-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="temp" value="c" checked>
+                                    <span class="radio-custom"></span>
+                                    °C (Celsius)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="temp" value="f">
+                                    <span class="radio-custom"></span>
+                                    °F (Fahrenheit)
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn-secondary" id="reset-defaults">Restablecer valores recomendados para
+                            España</button>
+
+                        <div class="section-footer">
+                            <button class="btn-save" id="save-medidas">Guardar Cambios</button>
+                        </div>
+                    </section>
+
+                    <!-- SECCIÓN HORA -->
+                    <section id="section-hora" class="settings-section">
+                        <h2>Hora</h2>
+
+                        <div class="setting-group">
+                            <span class="group-label">Zona horaria</span>
+                            <p class="timezone-text">UTC +1 / UTC +2 (Europe/Madrid)</p>
+                        </div>
+
+                        <div class="divider-line"></div>
+
+                        <div class="setting-group flex-row">
+                            <span class="group-label">Hora automática</span>
+                            <label class="switch">
+                                <input type="checkbox" id="auto-time" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="radio-group mt-20">
+                            <label class="radio-label">
+                                <input type="radio" name="time-format" value="24" checked>
+                                <span class="radio-custom"></span>
+                                24 Horas
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="time-format" value="12">
+                                <span class="radio-custom"></span>
+                                12 Horas
+                            </label>
+                        </div>
+
+                        <div class="section-footer">
+                            <button class="btn-save" id="save-hora">Guardar cambios</button>
+                        </div>
+                    </section>
+
+                    <div id="msg" class="feedback"></div>
+
+                </div>
+            </div>
+
+        </section>
+
     </main>
 
-    <script type="module">
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        await requireSession();
-        await loadSideNav();
-    </script>
+    <script type="module" src="../../../js/pages/ajustes.js"></script>
 </body>
 
 </html>
