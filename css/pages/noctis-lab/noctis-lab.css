@@ -10,7 +10,9 @@ body {
 }
 
 .noctis-lab-content {
-    margin-left: 120px;     /* espacio para side nav */
+    margin-left: 120px;
+    /* espacio para side nav */
     padding: 48px;
-    padding-top: 140px;     /* espacio para navbar superior */
+    padding-top: 140px;
+    /* espacio para navbar superior */
 }
