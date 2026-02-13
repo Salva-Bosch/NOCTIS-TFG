@@ -63,7 +63,8 @@ body::before {
     align-items: center;
     gap: 28px;
     padding: 18px 24px;
-    margin-top: 20px;  /* Para controlar el espacio del nav y el logo */
+    margin-top: 20px;
+    /* Para controlar el espacio del nav y el logo */
 
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
@@ -122,4 +123,43 @@ body::before {
     background: rgba(255, 255, 255, .15);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, .4);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .logo-text {
+        width: 70vw;
+    }
+
+    .logo-symbol {
+        width: 30vw;
+    }
+
+    .home-nav {
+        gap: 16px;
+        padding: 12px 16px;
+        margin-top: 10px;
+        border-radius: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 90vw;
+    }
+
+    .home-nav img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .home-nav a:not(:last-child)::after {
+        display: none;
+        /* Quitar separadores en móvil para que fluya mejor */
+    }
+
+    .home-avatar {
+        bottom: 20px;
+        left: 20px;
+    }
 }

@@ -59,7 +59,7 @@
 }
 
 /* Contenido por encima */
-.auth__side > * {
+.auth__side>* {
     position: relative;
     z-index: 1;
 }
@@ -252,4 +252,40 @@
 .auth__side a:active {
     transform: translateY(0);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   RESPONSIVE OVERRIDES
+========================= */
+
+@media (max-width: 768px) {
+
+    .auth--login,
+    .auth--register {
+        flex-direction: column !important;
+    }
+
+    .auth-panel {
+        transform: translateX(0);
+    }
+
+    .auth__side::before {
+        transform: none !important;
+        opacity: 0.6;
+    }
+
+    .auth-divider {
+        margin: 1.5rem 0 1rem;
+    }
+
+    .input-group.has-icon .input-icon {
+        width: 20px;
+        height: 20px;
+        top: 28px;
+    }
+
+    .input-group.has-icon input {
+        padding-left: 50px;
+        font-size: 15px;
+    }
 }

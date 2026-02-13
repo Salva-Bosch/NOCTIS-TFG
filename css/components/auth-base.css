@@ -109,18 +109,19 @@
 
 /* Animación salida hacia login */
 .auth--slide-out {
-  animation: slideOutToLeft 0.6s ease forwards;
+    animation: slideOutToLeft 0.6s ease forwards;
 }
 
 @keyframes slideOutToLeft {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }
 
 /* Animación salida hacia la derecha */
@@ -133,8 +134,46 @@
         transform: translateX(0);
         opacity: 1;
     }
+
     to {
         transform: translateX(100%);
         opacity: 0;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .auth {
+        flex-direction: column !important;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .auth__form,
+    .auth__side {
+        width: 100% !important;
+        padding: 60px 24px;
+    }
+
+    .auth__form h1 {
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+
+    .auth__side {
+        order: -1;
+        /* Mover el lado informativo arriba en móvil */
+        min-height: 300px;
+    }
+
+    .auth__side h2 {
+        font-size: 36px;
+    }
+
+    .auth__side p {
+        font-size: 16px;
     }
 }
