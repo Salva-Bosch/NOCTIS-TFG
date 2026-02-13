@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Noctis · NoctisLab Constelaciones</title>
 
     <!-- CSS base -->
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
 
     <!-- Componentes -->
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-topnav.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/pages/noctis-lab/noctis-lab-topnav.css">
 
     <!-- Página específica -->
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab.css">
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-constelaciones.css">
+    <link rel="stylesheet" href="/css/pages/noctis-lab/noctis-lab.css">
+    <link rel="stylesheet" href="/css/pages/noctis-lab/noctis-lab-constelaciones.css">
 </head>
+
 <body>
 
     <!-- NAVBAR SUPERIOR NOCTIS LAB -->
@@ -29,7 +31,7 @@
                 </div>
 
                 <div class="nav-logo">
-                    <img src="../../../assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
+                    <img src="/assets/branding/logo/noctis-logo.png" alt="Logo Noctis">
                     <span>NOCTIS</span>
                 </div>
 
@@ -54,15 +56,16 @@
         </section>
 
     </main>
-    
+
     <!-- Scripts -->
     <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
 
         await requireSession();
         await loadSideNav();
     </script>
 
 </body>
+
 </html>

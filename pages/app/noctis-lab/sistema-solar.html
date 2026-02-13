@@ -6,15 +6,15 @@
     <title>Noctis · NoctisLab Sistema Solar</title>
 
     <!-- CSS base -->
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
 
     <!-- Componentes -->
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-topnav.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/pages/noctis-lab/noctis-lab-topnav.css">
 
     <!-- Página específica -->
-    <link rel="stylesheet" href="../../../css/pages/noctis-lab/noctis-lab-sistema-solar.css">
+    <link rel="stylesheet" href="/css/pages/noctis-lab/noctis-lab-sistema-solar.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                     <a href="./eclipses.html" class="nav-link">Eclipses</a>
                 </div>
                 <div class="nav-logo">
-                    <img src="../../../assets/branding/logo/noctis-logo.png">
+                    <img src="/assets/branding/logo/noctis-logo.png">
                     <span>NOCTIS</span>
                 </div>
                 <div class="nav-right">
@@ -49,7 +49,7 @@
                     Explora los planetas, sus órbitas y los cuerpos que forman nuestro sistema.
                 </p>
                 <div class="solar-hero__image">
-                    <img src="../../../assets/illustrations/space/sistema-solar.PNG">
+                    <img src="/assets/illustrations/space/sistema-solar.PNG">
                 </div>
             </div>
         </section>
@@ -74,7 +74,7 @@
                     </p>
                 </div>
                 <div class="solar-info__image">
-                    <img src="../../../assets/illustrations/planets/sol.png">
+                    <img src="/assets/illustrations/planets/sol.png">
                 </div>
             </div>
         </section>
@@ -111,7 +111,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/rocky/mercurio.png">
+                            <img src="/assets/illustrations/planets/rocky/mercurio.png">
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/rocky/venus.png">
+                            <img src="/assets/illustrations/planets/rocky/venus.png">
                         </div>
                     </div>
 
@@ -161,7 +161,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/rocky/tierra.png">
+                            <img src="/assets/illustrations/planets/rocky/tierra.png">
                         </div>
                     </div>
 
@@ -186,7 +186,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/rocky/marte.png">
+                            <img src="/assets/illustrations/planets/rocky/marte.png">
                         </div>
                     </div>
 
@@ -209,8 +209,7 @@
                 </p>
             </div>
 
-            <img src="../../../assets/illustrations/space/asteroid-belt.png" alt="Cinturón de asteroides"
-                class="asteroid-bg">
+            <img src="/assets/illustrations/space/asteroid-belt.png" alt="Cinturón de asteroides" class="asteroid-bg">
 
         </section>
 
@@ -245,7 +244,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/gas/jupiter.png">
+                            <img src="/assets/illustrations/planets/gas/jupiter.png">
                         </div>
                     </div>
 
@@ -270,7 +269,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/gas/saturno.png">
+                            <img src="/assets/illustrations/planets/gas/saturno.png">
                         </div>
                     </div>
 
@@ -295,7 +294,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/gas/urano.png">
+                            <img src="/assets/illustrations/planets/gas/urano.png">
                         </div>
                     </div>
 
@@ -320,7 +319,7 @@
                             </p>
                         </div>
                         <div class="solar-info__image planet-image">
-                            <img src="../../../assets/illustrations/planets/gas/neptuno.png">
+                            <img src="/assets/illustrations/planets/gas/neptuno.png">
                         </div>
                     </div>
 
@@ -335,9 +334,9 @@
     </main>
 
     <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
-        import "../../../js/pages/noctis-lab-sistema-solar.js";
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
+        import "/js/pages/noctis-lab-sistema-solar.js";
         await requireSession();
         await loadSideNav();
     </script>

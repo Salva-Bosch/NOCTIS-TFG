@@ -16,10 +16,10 @@
   </script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../../../css/base/reset.css">
-  <link rel="stylesheet" href="../../../css/base/variables.css">
-  <link rel="stylesheet" href="../../../css/components/navbar.css">
-  <link rel="stylesheet" href="../../../css/pages/sistema_solar.css">
+  <link rel="stylesheet" href="/css/base/reset.css">
+  <link rel="stylesheet" href="/css/base/variables.css">
+  <link rel="stylesheet" href="/css/components/navbar.css">
+  <link rel="stylesheet" href="/css/pages/sistema_solar.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
   <!-- ====== BARRA DE BÚSQUEDA ====== -->
   <div class="search-bar-container">
     <div class="search-input-wrapper">
-      <img src="../../../assets/icons/nav/search.svg" alt="Search" class="search-icon">
+      <img src="/assets/icons/nav/search.svg" alt="Search" class="search-icon">
       <input type="text" id="searchInput" placeholder="Buscar planeta o luna..." autocomplete="off">
     </div>
     <div class="search-results" id="searchResults">
@@ -55,7 +55,7 @@
     <div class="timebar-controls">
       <div class="timebar-buttons">
         <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind">
-          <img src="../../../assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn">
+          <img src="/assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn">
         </button>
 
         <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">
@@ -63,7 +63,7 @@
         </button>
 
         <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward">
-          <img src="../../../assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn">
+          <img src="/assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn">
         </button>
       </div>
     </div>
@@ -79,30 +79,24 @@
     <div class="favorite-card-content">
       <span id="favoriteAstroName" class="astro-name">Nombre</span>
       <button id="btnToggleFavorite" class="favorite-toggle-btn" aria-label="Guardar en favoritos">
-        <img id="favoriteHeartIcon" src="../../../assets/icons/nav/favourites.svg" alt="Favorito">
+        <img id="favoriteHeartIcon" src="/assets/icons/nav/favourites.svg" alt="Favorito">
       </button>
     </div>
   </div>
 
   <!-- Menú lateral de Noctis -->
   <script type="module">
-    import { loadSideNav } from "../../../js/core/loadSideNav.js";
-    import { requireSession } from "../../../js/guards/sessionGuard.js";
+    import { loadSideNav } from "/js/core/loadSideNav.js";
+    import { requireSession } from "/js/guards/sessionGuard.js";
     await requireSession();
     await loadSideNav();
   </script>
 
-  <!-- Script de seguridad de Auth -->
-  <script type="module">
-    import { requireSession } from "../../../js/guards/sessionGuard.js";
-    await requireSession();
-  </script>
-
   <!-- UI Timebar -->
-  <script type="module" src="../../../js/core/logica_ui/sistema_solar.ui.js"></script>
+  <script type="module" src="/js/core/logica_ui/sistema_solar.ui.js"></script>
 
   <!-- Sistema Solar -->
-  <script type="module" src="../../../js/pages/sistema_solar.js"></script>
+  <script type="module" src="/js/pages/sistema_solar.js"></script>
 </body>
 
 </html>

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <title>Noctis | Favoritos</title>
 
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/components/navbar.css">
-    <link rel="stylesheet" href="../../../css/pages/favoritos.css">
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/pages/favoritos.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 
         <section class="search-container">
             <div class="search-wrapper">
-                <img src="../../../assets/icons/nav/search.svg" alt="Buscar" class="search-icon">
+                <img src="/assets/icons/nav/search.svg" alt="Buscar" class="search-icon">
                 <input type="text" id="searchFavorites" placeholder="Buscar en favoritos..." autocomplete="off">
             </div>
         </section>
@@ -34,14 +34,14 @@
 
     <!-- Menú lateral de Noctis -->
     <script type="module">
-        import { loadSideNav } from "../../../js/core/loadSideNav.js";
-        import { requireSession } from "../../../js/guards/sessionGuard.js";
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
 
         await requireSession();
         await loadSideNav();
     </script>
 
-    <script type="module" src="../../../js/pages/favoritos.js"></script>
+    <script type="module" src="/js/pages/favoritos.js"></script>
 </body>
 
 </html>
