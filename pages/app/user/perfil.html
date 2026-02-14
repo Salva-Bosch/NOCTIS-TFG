@@ -5,9 +5,10 @@
     <meta charset="UTF-8" />
     <title>Noctis – Perfil</title>
 
-    <link rel="stylesheet" href="../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../css/pages/perfil.css">
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/pages/perfil.css">
 </head>
 
 <body>
@@ -15,8 +16,8 @@
 
         <!-- HEADER -->
         <header class="profile-header">
-            <a href="../home/home.html" class="back-btn">
-                <img src="../../../assets/icons/ui/arrow.svg" alt="Volver">
+            <a href="/pages/app/home/home.html" class="back-btn">
+                <img src="/assets/icons/ui/arrow.svg" alt="Volver">
             </a>
             <h1>Perfil</h1>
         </header>
@@ -38,7 +39,7 @@
 
                 <div class="profile-card-bottom">
                     <button class="btn btn-primary pill">
-                        <img src="../../../assets/icons/user/account.svg" alt="">
+                        <img src="/assets/icons/user/account.svg" alt="">
                         Perfil
                     </button>
                 </div>
@@ -59,24 +60,21 @@
 
                 <!-- AVATAR PICKER -->
                 <div id="avatarPicker" class="avatar-picker" style="display:none;">
-                    <img data-avatar="../../../assets/avatars/avatar-alien.png"
-                        src="../../../assets/avatars/avatar-alien.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-astronauta.png"
-                        src="../../../assets/avatars/avatar-astronauta.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-blackhole.png"
-                        src="../../../assets/avatars/avatar-blackhole.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-eclipse.png"
-                        src="../../../assets/avatars/avatar-eclipse.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-galaxia.png"
-                        src="../../../assets/avatars/avatar-galaxia.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-luna.png"
-                        src="../../../assets/avatars/avatar-luna.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-nave.png"
-                        src="../../../assets/avatars/avatar-nave.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-planeta.png"
-                        src="../../../assets/avatars/avatar-planeta.png" alt="">
-                    <img data-avatar="../../../assets/avatars/avatar-telescopio.png"
-                        src="../../../assets/avatars/avatar-telescopio.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-alien.png" src="/assets/avatars/avatar-alien.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-astronauta.png" src="/assets/avatars/avatar-astronauta.png"
+                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-blackhole.png" src="/assets/avatars/avatar-blackhole.png"
+                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-eclipse.png" src="/assets/avatars/avatar-eclipse.png"
+                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-galaxia.png" src="/assets/avatars/avatar-galaxia.png"
+                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-luna.png" src="/assets/avatars/avatar-luna.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-nave.png" src="/assets/avatars/avatar-nave.png" alt="">
+                    <img data-avatar="/assets/avatars/avatar-planeta.png" src="/assets/avatars/avatar-planeta.png"
+                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-telescopio.png" src="/assets/avatars/avatar-telescopio.png"
+                        alt="">
                 </div>
 
                 <!-- FORM -->
@@ -122,7 +120,16 @@
 
     </main>
 
-    <script type="module" src="../../../js/pages/perfil.js"></script>
+    <!-- Menú lateral de Noctis -->
+    <script type="module">
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
+
+        await requireSession();
+        await loadSideNav();
+    </script>
+
+    <script type="module" src="/js/pages/perfil.js"></script>
 </body>
 
 </html>

@@ -788,7 +788,7 @@ function createMarkerIcon(bortle) {
                 cursor: pointer;
                 transition: all 0.3s ease;
             ">
-                <img src="../../../../assets/icons/ui/ubicaciónes/${iconName}.svg" 
+                <img src="/assets/icons/ui/ubicaciónes/${iconName}.svg" 
                      alt="Marcador ${iconName}" 
                      width="36" 
                      height="36"

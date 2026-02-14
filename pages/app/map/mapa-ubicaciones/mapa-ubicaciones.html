@@ -7,16 +7,15 @@
     <title>Noctis · Mapa de Observación</title>
 
     <!-- CSS base -->
-    <link rel="stylesheet" href="../../../../css/base/reset.css">
-    <link rel="stylesheet" href="../../../../css/base/variables.css">
-    <link rel="stylesheet" href="../../../../css/components/navbar.css">
+    <link rel="stylesheet" href="/css/base/reset.css">
+    <link rel="stylesheet" href="/css/base/variables.css">
+    <link rel="stylesheet" href="/css/components/navbar.css">
+    <link rel="stylesheet" href="/css/pages/map-ubicaciones.css">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-    <!-- CSS del mapa -->
-    <link rel="stylesheet" href="../../../../css/pages/map-ubicaciones.css">
 </head>
 
 <body>
@@ -37,7 +36,7 @@
 
     <!-- BOTÓN DE INFORMACIÓN -->
     <button class="info-button" id="infoBtn" aria-label="Información">
-        <img src="../../../../assets/icons/ui/info.svg" alt="Info" width="20" height="20">
+        <img src="/assets/icons/ui/info.svg" alt="Info" width="20" height="20">
     </button>
 
     <!-- MODAL DE UBICACIÓN (lateral derecho) -->
@@ -71,8 +70,7 @@
 
                 <!-- IMAGEN DE LA ESCALA BORTLE -->
                 <div class="bortle-image-container">
-                    <img src="../../../../assets/illustrations/escala-bortle.png" alt="Escala Bortle"
-                        class="bortle-scale-image">
+                    <img src="/assets/illustrations/escala-bortle.png" alt="Escala Bortle" class="bortle-scale-image">
                 </div>
 
                 <p>
@@ -206,12 +204,21 @@
         </div>
     </div>
 
+    <!-- Menú lateral de Noctis -->
+    <script type="module">
+        import { loadSideNav } from "/js/core/loadSideNav.js";
+        import { requireSession } from "/js/guards/sessionGuard.js";
+
+        await requireSession();
+        await loadSideNav();
+    </script>
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!-- JavaScript del mapa -->
-    <script type="module" src="../../../../js/pages/map-ubicaciones.js"></script>
+    <script type="module" src="/js/pages/map-ubicaciones.js"></script>
 
 </body>
 
