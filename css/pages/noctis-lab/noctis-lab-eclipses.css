@@ -20,9 +20,14 @@
    ========================= */
 .eclipses-hero {
     text-align: center;
-    padding: 4rem 0 6rem;
+    padding: 6rem 0 8rem;
+    /* Increased padding for better breathing room with image */
     max-width: 1000px;
     margin: 0 auto;
+    background-image: url('../../../assets/illustrations/eclipses/hero-fases.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .eclipses-hero__title {
@@ -260,7 +265,8 @@ h2 {
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin-top: 4rem;
+    margin-top: 8rem;
+    /* Increased from 4rem for better separation */
 }
 
 .phases-timeline::before {
