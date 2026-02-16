@@ -1,7 +1,6 @@
 import { initScene, animate } from "./scene-constelacion.js";
 import { initControls } from "./control-constelacion.js";
 import { loadStars } from "./estrellas-constelaciones.js";
-import { loadConstellations } from "./lineas-constelaciones.js";
 
 console.log("MAIN EJECUTANDO");
 
@@ -17,6 +16,7 @@ console.log("RENDERER =", renderer);
 initControls(camera);
 
 await loadStars(scene);
-await loadConstellations(scene);
+
+/* loadConstellations eliminado */
 
 animate(scene, camera, renderer);

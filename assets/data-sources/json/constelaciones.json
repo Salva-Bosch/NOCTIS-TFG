@@ -1,21 +1,55 @@
 [
   {
-    "name": "Orion",
-    "lines": [
-      { "x": -200, "y": -50, "z": -800 },
-      { "x": -100, "y": 100, "z": -800 },
-      { "x": 0, "y": -50, "z": -800 },
-      { "x": 100, "y": 100, "z": -800 },
-      { "x": 200, "y": -50, "z": -800 }
+    "name": "Orión",
+    "connections": [
+      ["Betelgeuse", "Rigel"],
+      ["Betelgeuse", "Bellatrix"],
+      ["Rigel", "Saiph"],
+      ["Bellatrix", "Alnilam"],
+      ["Alnilam", "Mintaka"],
+      ["Mintaka", "Alnitak"]
     ]
   },
   {
-    "name": "Triangulo de Verano",
-    "lines": [
-      { "x": -300, "y": 200, "z": -900 },
-      { "x": 0, "y": 400, "z": -900 },
-      { "x": 300, "y": 200, "z": -900 },
-      { "x": -300, "y": 200, "z": -900 }
+    "name": "Casiopea",
+    "connections": [
+      ["Schedar", "Caph"],
+      ["Caph", "Gamma Cassiopeiae"],
+      ["Gamma Cassiopeiae", "Ruchbah"],
+      ["Ruchbah", "Segin"]
+    ]
+  },
+  {
+    "name": "Cruz del Sur",
+    "connections": [
+      ["Acrux", "Mimosa"],
+      ["Mimosa", "Gacrux"],
+      ["Gacrux", "Imai"]
+    ]
+  },
+  {
+    "name": "Cánido Mayor",
+    "connections": [
+      ["Sirius", "Adhara"],
+      ["Adhara", "Wezen"],
+      ["Wezen", "Aludra"]
+    ]
+  },  
+  {
+    "name": "León",
+    "connections": [
+      ["Regulus", "Algieba"],
+      ["Algieba", "Denebola"],
+      ["Denebola", "Zosma"]
+    ]
+  },
+  {
+    "name": "Acuario",
+    "connections": [
+      ["Sadalmelik", "Sadalsuud"],
+      ["Sadalsuud", "Fomalhaut"],
+      ["Fomalhaut", "Scheat"]
     ]
   }
 ]
+
