@@ -1,55 +1,43 @@
 [
   {
-    "name": "Orión",
+    "name": "Triángulo de Verano",
     "connections": [
-      ["Betelgeuse", "Rigel"],
-      ["Betelgeuse", "Bellatrix"],
-      ["Rigel", "Saiph"],
-      ["Bellatrix", "Alnilam"],
-      ["Alnilam", "Mintaka"],
-      ["Mintaka", "Alnitak"]
+      [91262, 97649],
+      [97649, 102098],
+      [102098, 91262]
     ]
   },
   {
-    "name": "Casiopea",
+    "name": "Orión (simplificado)",
     "connections": [
-      ["Schedar", "Caph"],
-      ["Caph", "Gamma Cassiopeiae"],
-      ["Gamma Cassiopeiae", "Ruchbah"],
-      ["Ruchbah", "Segin"]
+      [27989, 24436]
     ]
   },
   {
-    "name": "Cruz del Sur",
+    "name": "Géminis (simplificado)",
     "connections": [
-      ["Acrux", "Mimosa"],
-      ["Mimosa", "Gacrux"],
-      ["Gacrux", "Imai"]
+      [37826, 49669]
     ]
   },
   {
-    "name": "Cánido Mayor",
+    "name": "Can Mayor (simplificado)",
     "connections": [
-      ["Sirius", "Adhara"],
-      ["Adhara", "Wezen"],
-      ["Wezen", "Aludra"]
-    ]
-  },  
-  {
-    "name": "León",
-    "connections": [
-      ["Regulus", "Algieba"],
-      ["Algieba", "Denebola"],
-      ["Denebola", "Zosma"]
+      [32349, 68702]
     ]
   },
   {
-    "name": "Acuario",
+    "name": "Triángulo de Invierno",
     "connections": [
-      ["Sadalmelik", "Sadalsuud"],
-      ["Sadalsuud", "Fomalhaut"],
-      ["Fomalhaut", "Scheat"]
+      [32349, 27989],
+      [27989, 68702],
+      [68702, 32349]
+    ]
+  },
+  {
+    "name": "Eje Galáctico (visual)",
+    "connections": [
+      [71683, 91262],
+      [91262, 102098]
     ]
   }
 ]
-

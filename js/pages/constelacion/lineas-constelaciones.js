@@ -1,6 +1,6 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
 
-function raDecToXYZ(raDeg, decDeg, r = 1000) {
+function raDecToXYZ(raDeg, decDeg, r = 300) {
   const ra = THREE.MathUtils.degToRad(raDeg);
   const dec = THREE.MathUtils.degToRad(decDeg);
 
@@ -22,19 +22,43 @@ export async function loadConstellations(scene) {
   const constellations = await constRes.json();
 
   const starMap = new Map();
-  stars.forEach(star => starMap.set(star.name, raDecToXYZ(star.ra, star.dec)));
+  stars.forEach(star => {
+    starMap.set(star.id, raDecToXYZ(star.ra, star.dec));
+  });
 
-  const material = new THREE.LineBasicMaterial({ color: 0x00aaff });
+  /* MATERIAL MUY VISIBLE */
+  const material = new THREE.LineBasicMaterial({
+    color: 0x00ffff,      // cian brillante (mucho más visible)
+    transparent: true,
+    opacity: 1
+  });
 
   constellations.forEach(constellation => {
-    constellation.connections.forEach(([nameA, nameB]) => {
-      const a = starMap.get(nameA);
-      const b = starMap.get(nameB);
+
+    constellation.connections.forEach(([idA, idB]) => {
+
+      const a = starMap.get(idA);
+      const b = starMap.get(idB);
+
       if (!a || !b) return;
 
-      const geometry = new THREE.BufferGeometry().setFromPoints([a, b]);
+      const points = [];
+
+      /* subdividir línea → sensación de grosor */
+      const segments = 12;
+
+      for (let i = 0; i <= segments; i++) {
+        const t = i / segments;
+        points.push(new THREE.Vector3().lerpVectors(a, b, t));
+      }
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
       const line = new THREE.Line(geometry, material);
       scene.add(line);
     });
+
   });
+
+  console.log("CONSTELACIONES CARGADAS");
 }

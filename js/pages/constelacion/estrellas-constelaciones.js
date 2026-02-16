@@ -1,43 +1,97 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.158/build/three.module.js";
 
-function raDecToXYZ(raDeg, decDeg, r = 1000) {
+function raDecToXYZ(raDeg, decDeg, r = 300) {
   const ra = THREE.MathUtils.degToRad(raDeg);
   const dec = THREE.MathUtils.degToRad(decDeg);
 
-  const x = r * Math.cos(dec) * Math.cos(ra);
-  const y = r * Math.sin(dec);
-  const z = r * Math.cos(dec) * Math.sin(ra);
-
-  return new THREE.Vector3(x, y, z);
-}
-
-function magnitudeToSize(mag) {
-  return Math.max(0.5, 4 - mag);
+  return [
+    r * Math.cos(dec) * Math.cos(ra),
+    r * Math.sin(dec),
+    r * Math.cos(dec) * Math.sin(ra)
+  ];
 }
 
 export async function loadStars(scene) {
 
+  /* ===== CAPA 1 — RELLENO SUAVE (FONDO) ===== */
+
+  const bgGeometry = new THREE.BufferGeometry();
+  const bgCount = 1500;
+
+  const bgPositions = new Float32Array(bgCount * 3);
+
+  for (let i = 0; i < bgCount * 3; i++) {
+    bgPositions[i] = (Math.random() - 0.5) * 2000;
+  }
+
+  bgGeometry.setAttribute("position", new THREE.BufferAttribute(bgPositions, 3));
+
+  const bgMaterial = new THREE.PointsMaterial({
+    size: 1.2,
+    transparent: true,
+    opacity: 0.25
+  });
+
+  const bgStars = new THREE.Points(bgGeometry, bgMaterial);
+  scene.add(bgStars);
+
+  /* ===== CAPA 2 — ESTRELLAS REALES (CONSTELACIONES) ===== */
+
   const res = await fetch("/assets/data-sources/json/estrellas-constelacion.json");
   const stars = await res.json();
 
-  const positions = [];
-  const sizes = [];
+  const realPositions = new Float32Array(stars.length * 3);
+
+  stars.forEach((star, i) => {
+    const [x, y, z] = raDecToXYZ(star.ra, star.dec);
+
+    realPositions[i * 3] = x;
+    realPositions[i * 3 + 1] = y;
+    realPositions[i * 3 + 2] = z;
+  });
+
+  const realGeometry = new THREE.BufferGeometry();
+  realGeometry.setAttribute("position", new THREE.BufferAttribute(realPositions, 3));
+
+  const realMaterial = new THREE.PointsMaterial({
+    size: 6
+  });
+
+  const realStars = new THREE.Points(realGeometry, realMaterial);
+  scene.add(realStars);
+
+  /* ===== CAPA 3 — REFUERZO VISUAL EN CONSTELACIONES ===== */
+  /* Añade pequeñas nubes alrededor de estrellas reales */
+
+  const haloGeometry = new THREE.BufferGeometry();
+  const haloCountPerStar = 12;
+
+  const haloPositions = new Float32Array(stars.length * haloCountPerStar * 3);
+
+  let ptr = 0;
 
   stars.forEach(star => {
-    const pos = raDecToXYZ(star.ra, star.dec);
-    positions.push(pos.x, pos.y, pos.z);
-    sizes.push(magnitudeToSize(star.mag));
+
+    const [cx, cy, cz] = raDecToXYZ(star.ra, star.dec);
+
+    for (let i = 0; i < haloCountPerStar; i++) {
+
+      haloPositions[ptr++] = cx + (Math.random() - 0.5) * 8;
+      haloPositions[ptr++] = cy + (Math.random() - 0.5) * 8;
+      haloPositions[ptr++] = cz + (Math.random() - 0.5) * 8;
+    }
   });
 
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setAttribute("size", new THREE.Float32BufferAttribute(sizes, 1));
+  haloGeometry.setAttribute("position", new THREE.BufferAttribute(haloPositions, 3));
 
-  const material = new THREE.PointsMaterial({
-    color: 0xffffff,
-    size: 5
+  const haloMaterial = new THREE.PointsMaterial({
+    size: 1.8,
+    transparent: true,
+    opacity: 0.35
   });
 
-  const points = new THREE.Points(geometry, material);
-  scene.add(points);
+  const haloStars = new THREE.Points(haloGeometry, haloMaterial);
+  scene.add(haloStars);
+
+  console.log("Stars:", stars.length);
 }
