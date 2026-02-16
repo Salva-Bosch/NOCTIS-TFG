@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="/css/base/reset.css">
     <link rel="stylesheet" href="/css/base/variables.css">
-    <link rel="stylesheet" href="/css/components/navbar.css">
     <link rel="stylesheet" href="/css/pages/perfil.css">
 </head>
 
@@ -119,15 +118,6 @@
         </section>
 
     </main>
-
-    <!-- Menú lateral de Noctis -->
-    <script type="module">
-        import { loadSideNav } from "/js/core/loadSideNav.js";
-        import { requireSession } from "/js/guards/sessionGuard.js";
-
-        await requireSession();
-        await loadSideNav();
-    </script>
 
     <script type="module" src="/js/pages/perfil.js"></script>
 </body>
