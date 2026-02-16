@@ -36,7 +36,9 @@ async function initSettings() {
     if (userSnap.exists()) {
         const userData = userSnap.data();
         userName.textContent = userData.name || "Usuario";
-        if (userData.photoURL) userAvatar.src = userData.photoURL;
+        if (userData.photoURL) {
+            userAvatar.src = userData.photoURL.replace(/\.(png|jpg|jpeg)$/, '.webp');
+        }
 
         // Simular ubicación si estuviera en el perfil
         displayLocation.textContent = "Valencia, España";

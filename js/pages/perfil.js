@@ -79,7 +79,7 @@ async function initPerfil() {
         createdEl.textContent = formatUserDate(data.createdAt?.toDate());
         profileNameEl.textContent = data.name ?? "Perfil";
 
-        currentPhotoURL = data.photoURL ?? currentPhotoURL;
+        currentPhotoURL = (data.photoURL ? data.photoURL.replace(/\.(png|jpg|jpeg)$/, '.webp') : currentPhotoURL);
     }
 
     avatarImg.src = currentPhotoURL;
