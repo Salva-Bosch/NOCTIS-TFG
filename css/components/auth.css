@@ -6,7 +6,7 @@
     position: relative;
     overflow: hidden;
 
-    background-image: url("../../assets/backgrounds/auth/auth-bg.jpg");
+    background-image: url("../../assets/backgrounds/auth/auth-bg.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -50,7 +50,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("../../assets/backgrounds/auth/register-side.png");
+    background-image: url("../../assets/backgrounds/auth/register-side.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

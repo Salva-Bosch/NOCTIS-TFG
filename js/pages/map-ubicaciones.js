@@ -45,7 +45,7 @@ map.on('drag', function () {
    ============================================ */
 
 const darkBase = L.tileLayer(
-    'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+    'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.webp',
     {
         attribution: '© Stadia Maps © OpenStreetMap',
         maxZoom: 20,

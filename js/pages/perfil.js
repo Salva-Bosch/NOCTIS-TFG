@@ -54,7 +54,7 @@ async function initPerfil() {
     /* CARGAR DATOS */
     const snap = await getDoc(userRef);
 
-    let currentPhotoURL = "../../../assets/avatars/avatar-luna.png";
+    let currentPhotoURL = "../../../assets/avatars/avatar-luna.webp";
 
     // Helper para formatear fecha según ajustes
     function formatUserDate(date) {

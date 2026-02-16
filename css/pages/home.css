@@ -4,7 +4,7 @@ body {
     color: var(--white);
     overflow: hidden;
 
-    --bg-image: url("../../assets/backgrounds/app/home_bg.png");
+    --bg-image: url("../../assets/backgrounds/app/home_bg.webp");
     position: relative;
 }
 

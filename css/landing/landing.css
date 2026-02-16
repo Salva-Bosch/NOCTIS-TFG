@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background-image: url("../../assets/backgrounds/landing/landing-bg-2.jpg");
+    background-image: url("../../assets/backgrounds/landing/landing-bg-2.webp");
     background-size: cover;
     background-position: center;
     color: var(--white);

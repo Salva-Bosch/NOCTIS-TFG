@@ -1,14 +1,14 @@
 // Lógica de los avatares
 export const AVATARS = [
-    "../../../assets/avatars/avatar-alien.png",
-    "../../../assets/avatars/avatar-astronauta.png",
-    "../../../assets/avatars/avatar-blackhole.png",
-    "../../../assets/avatars/avatar-eclipse.png",
-    "../../../assets/avatars/avatar-galaxia.png",
-    "../../../assets/avatars/avatar-luna.png",
-    "../../../assets/avatars/avatar-nave.png",
-    "../../../assets/avatars/avatar-planeta.png",
-    "../../../assets/avatars/avatar-telescopio.png"
+    "../../../assets/avatars/avatar-alien.webp",
+    "../../../assets/avatars/avatar-astronauta.webp",
+    "../../../assets/avatars/avatar-blackhole.webp",
+    "../../../assets/avatars/avatar-eclipse.webp",
+    "../../../assets/avatars/avatar-galaxia.webp",
+    "../../../assets/avatars/avatar-luna.webp",
+    "../../../assets/avatars/avatar-nave.webp",
+    "../../../assets/avatars/avatar-planeta.webp",
+    "../../../assets/avatars/avatar-telescopio.webp"
 ];
 
 export function getRandomAvatar() {

@@ -45,7 +45,7 @@
 .profile-page {
     min-height: 100vh;
     background:
-        url("../../assets/Fondos/Perfil_fondo.png");
+        url("../../assets/Fondos/Perfil_fondo.webp");
     background-size: cover;
     background-position: center;
     color: var(--white);

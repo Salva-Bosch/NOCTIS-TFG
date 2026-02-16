@@ -23,7 +23,7 @@ body {
 .main-content {
     background-image:
         linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.3)),
-        url('../../../assets/backgrounds/app/sistema-solar-bg.jpg');
+        url('../../../assets/backgrounds/app/sistema-solar-bg.webp');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;

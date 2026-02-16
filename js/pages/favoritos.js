@@ -25,17 +25,17 @@ const TYPE_EMOJIS = {
 
 // Mapeo de IDs a imágenes de assets
 const ASTRO_IMAGES = {
-    sun: "../../../assets/illustrations/planets/sol.png",
-    mercury: "../../../assets/illustrations/planets/rocky/mercurio.png",
-    venus: "../../../assets/illustrations/planets/rocky/venus.png",
-    earth: "../../../assets/illustrations/planets/rocky/tierra.png",
-    mars: "../../../assets/illustrations/planets/rocky/marte.png",
-    jupiter: "../../../assets/illustrations/planets/gas/jupiter.png",
-    saturn: "../../../assets/illustrations/planets/gas/saturno.png",
-    uranus: "../../../assets/illustrations/planets/gas/urano.png",
-    neptune: "../../../assets/illustrations/planets/gas/neptuno.png",
-    moon: "../../../assets/illustrations/landing/luna.png", // Ajustar si hay una mejor
-    pluto: "../../../assets/illustrations/planets/pluton.png",
+    sun: "../../../assets/illustrations/planets/sol.webp",
+    mercury: "../../../assets/illustrations/planets/rocky/mercurio.webp",
+    venus: "../../../assets/illustrations/planets/rocky/venus.webp",
+    earth: "../../../assets/illustrations/planets/rocky/tierra.webp",
+    mars: "../../../assets/illustrations/planets/rocky/marte.webp",
+    jupiter: "../../../assets/illustrations/planets/gas/jupiter.webp",
+    saturn: "../../../assets/illustrations/planets/gas/saturno.webp",
+    uranus: "../../../assets/illustrations/planets/gas/urano.webp",
+    neptune: "../../../assets/illustrations/planets/gas/neptuno.webp",
+    moon: "../../../assets/illustrations/landing/luna.webp", // Ajustar si hay una mejor
+    pluto: "../../../assets/illustrations/planets/pluton.webp",
     // Para lunas se podría usar un icono genérico si no hay ilustración específica
 };
 
