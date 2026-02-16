@@ -8,24 +8,6 @@
     ]
   },
   {
-    "name": "Orión (simplificado)",
-    "connections": [
-      [27989, 24436]
-    ]
-  },
-  {
-    "name": "Géminis (simplificado)",
-    "connections": [
-      [37826, 49669]
-    ]
-  },
-  {
-    "name": "Can Mayor (simplificado)",
-    "connections": [
-      [32349, 68702]
-    ]
-  },
-  {
     "name": "Triángulo de Invierno",
     "connections": [
       [32349, 27989],
@@ -34,10 +16,15 @@
     ]
   },
   {
-    "name": "Eje Galáctico (visual)",
+    "name": "Géminis",
     "connections": [
-      [71683, 91262],
-      [91262, 102098]
+      [37826, 49669]
+    ]
+  },
+  {
+    "name": "Eje Brillante",
+    "connections": [
+      [71683, 91262]
     ]
   }
 ]
