@@ -1,1 +1,402 @@
-/* Página Eventos astronómicos */
+/* =========================
+   EVENTS PAGE STYLES
+   ========================= */
+
+.eventos-page {
+    /* Fondo con mezcla de colores fríos y toques de aurora */
+    background:
+        linear-gradient(135deg, rgba(10, 10, 15, 0.9), rgba(20, 25, 40, 0.85)),
+        url('../../../assets/backgrounds/app/eventos-bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    color: var(--white);
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+.eventos-hero {
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.hero-title {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #ffd194, #70e1f5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* =========================
+   INTRO
+   ========================= */
+.intro-eventos {
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+}
+
+.intro-box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #70e1f5;
+}
+
+.intro-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.intro-box p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =========================
+   EVENT TYPES GRID
+   ========================= */
+.events-types-section {
+    max-width: 1200px;
+    margin: 0 auto 6rem;
+    padding: 0 2rem;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.type-card {
+    background: rgba(18, 18, 25, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-image {
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.type-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #70e1f5;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* =========================
+   CALENDAR
+   ========================= */
+.calendar-section {
+    max-width: 1000px;
+    margin: 0 auto 6rem;
+    padding: 0 2rem;
+}
+
+.calendar-container {
+    background: rgba(20, 20, 30, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: 100px 1fr 140px;
+    padding: 1.2rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.event-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 140px;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.event-row:last-child {
+    border-bottom: none;
+}
+
+.event-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Date Box */
+.event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 8px;
+    width: 70px;
+}
+
+.day {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.month {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #70e1f5;
+}
+
+.year {
+    font-size: 0.65rem;
+    opacity: 0.6;
+}
+
+/* Event Info */
+.event-info {
+    padding-left: 1.5rem;
+}
+
+.event-info h4 {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+}
+
+.event-info p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Badges */
+.event-type {
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.type-meteor {
+    background: rgba(112, 225, 245, 0.15);
+    color: #70e1f5;
+    border: 1px solid rgba(112, 225, 245, 0.3);
+}
+
+.type-eclipse {
+    background: rgba(255, 209, 148, 0.15);
+    color: #ffd194;
+    border: 1px solid rgba(255, 209, 148, 0.3);
+}
+
+.type-eclipse-total {
+    background: rgba(255, 95, 109, 0.15);
+    color: #ff5f6d;
+    border: 1px solid rgba(255, 95, 109, 0.3);
+    box-shadow: 0 0 10px rgba(255, 95, 109, 0.2);
+}
+
+
+/* =========================
+   TIPS & VISIBILITY
+   ========================= */
+.tips-visibility-section {
+    max-width: 1000px;
+    margin: 0 auto 6rem;
+    padding: 0 2rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.tips-card,
+.visibility-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 16px;
+    border-left: 3px solid #70e1f5;
+}
+
+.visibility-card {
+    border-left-color: #ffd194;
+}
+
+.tips-card h3,
+.visibility-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+}
+
+.tips-list li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+.tips-list li::before {
+    content: '•';
+    color: #70e1f5;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    top: -2px;
+}
+
+.tips-list strong {
+    color: #fff;
+    font-weight: 500;
+}
+
+.visibility-card p {
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+}
+
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 768px) {
+    .calendar-header {
+        display: none;
+        /* Hide header on mobile */
+    }
+
+    .event-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .event-date {
+        flex-direction: row;
+        width: auto;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 auto;
+    }
+
+    .day,
+    .month,
+    .year {
+        font-size: 1.1rem;
+    }
+
+    .event-info {
+        padding-left: 0;
+    }
+
+    .event-type {
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}

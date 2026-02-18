@@ -128,6 +128,7 @@ body {
     font-size: 2.6rem;
     margin: 1rem 0 1.5rem;
     background: linear-gradient(90deg, #ffb347, #ffcc33);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -184,12 +185,13 @@ body {
     font-size: 2.4rem;
     margin-bottom: 2rem;
     color: white;
+    margin-left: auto;
+    margin-right: auto;
     background: linear-gradient(90deg, #b19273, #d9b38c);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .rocky-planets__carousel {
@@ -239,6 +241,7 @@ body {
     color: white;
     margin-top: 0.5rem;
     background: linear-gradient(90deg, #ffb347, #ffcc33);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -324,24 +327,40 @@ body {
 }
 
 /* Slider wrapper */
-.rocky-planets__slider {
+.rocky-planets__slider,
+.gas-planets__slider {
     position: relative;
+    /* Removed overflow: hidden so buttons can be outside if needed,
+       but usually we want it hidden for sliding. For fade, it's less critical
+       but good to keep to contain the absolute slides. */
     overflow: hidden;
     text-align: center;
     display: flex;
     justify-content: center;
     width: 100%;
+    /* Need a minimum height because children are absolute */
+    min-height: 500px;
 }
 
 /* Ocultar todas las cards excepto la visible */
 .planet-slide {
-    display: none;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.planet-slide.active {
     display: grid;
+    /* Always keep layout calculation */
+    /* Absolute positioning for cross-fade overlap */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* max-width matches the container */
+    max-width: 1200px;
+
+    /* Transition props */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s;
+    z-index: 1;
+
+    /* Apply grid styles here so they are ready */
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
     align-items: center;
@@ -350,6 +369,18 @@ body {
     border-radius: 22px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     padding: 3rem 2rem;
+}
+
+.planet-slide.active {
+    /* Make visible */
+    opacity: 1;
+    visibility: visible;
+    z-index: 5;
+    position: relative;
+    /* Trick: One active element can take up space if we want auto-height?
+                           Actually, if we want smooth FADE, usually all are absolute.
+                           But if we want the container to size to the content, one needs to be relative.
+                           Let's try making the active one relative to dictate height. */
 }
 
 /* Botones */
@@ -478,7 +509,7 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    
+
 
 }
 
@@ -559,6 +590,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     background: linear-gradient(90deg, #7ad0d6, #4b6fff);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

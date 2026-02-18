@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noctis · NoctisLab Eclipses</title>
 
     <!-- CSS base -->
@@ -27,7 +28,7 @@
 
                 <div class="nav-left">
                     <a href="./sistema-solar.html" class="nav-link">Sistema Solar</a>
-                    <a href="#" class="nav-link">Eclipses</a>
+                    <a href="#" class="nav-link active">Eclipses</a>
                 </div>
 
                 <div class="nav-logo">
@@ -45,14 +46,182 @@
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="noctis-lab-content eclipses">
+    <main class="noctis-lab-content eclipses-page">
 
         <!-- HERO -->
-        <section class="eclipses-hero">
-            <h1>Eclipses</h1>
-            <p class="eclipses-intro">
-                Descubre los eclipses solares y lunares, sus características y cuándo podrás observarlos.
+        <section class="eclipses-hero reveal">
+            <h1 class="eclipses-hero__title">Eclipses</h1>
+            <span class="eclipses-hero__divider"></span>
+            <p class="eclipses-hero__intro">
+                Cuando la luz se oculta y la sombra revela los secretos del cosmos.
+                Descubre la danza precisa entre el Sol, la Tierra y la Luna.
             </p>
+        </section>
+
+        <!-- DEFINICIÓN -->
+        <section class="eclipse-def reveal">
+            <div class="glass-card def-card">
+                <h2>¿Qué es un eclipse?</h2>
+                <p>
+                    Un eclipse es un fenómeno astronómico que ocurre cuando un cuerpo celeste se interpone
+                    en la trayectoria de la luz de otro, proyectando una sombra sobre un tercero.
+                    En nuestro sistema, esto sucede cuando el Sol, la Tierra y la Luna se alinean de manera precisa.
+                </p>
+            </div>
+        </section>
+
+        <!-- TIPOS DE ECLIPSE -->
+        <section class="eclipse-types reveal">
+            <div class="types-grid">
+                <!-- SOLAR -->
+                <div class="glass-card type-card solar">
+                    <div class="type-header">
+                        <h3>Eclipse Solar</h3>
+                        <span class="type-tag">Luna entre Sol y Tierra</span>
+                    </div>
+                    <div class="type-content">
+                        <p>
+                            Ocurre cuando la Luna pasa directamente entre el Sol y la Tierra,
+                            bloqueando total o parcialmente la luz solar. Solo puede suceder durante la <strong>Luna
+                                Nueva</strong>.
+                        </p>
+                        <div class="type-img-placeholder">
+                            <img src="../../../assets/illustrations/eclipses/solar-eclipse.jpg"
+                                alt="Representación Eclipse Solar">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUNAR -->
+                <div class="glass-card type-card lunar">
+                    <div class="type-header">
+                        <h3>Eclipse Lunar</h3>
+                        <span class="type-tag">Tierra entre Sol y Luna</span>
+                    </div>
+                    <div class="type-content">
+                        <p>
+                            Sucede cuando la Tierra se interpone entre el Sol y la Luna,
+                            proyectando su sombra sobre la superficie lunar. Solo ocurre durante la <strong>Luna
+                                Llena</strong>.
+                        </p>
+                        <div class="type-img-placeholder">
+                            <img src="../../../assets/illustrations/eclipses/lunar-eclipse.png"
+                                alt="Representación Eclipse Lunar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALINEACIÓN -->
+        <section class="alignment-section reveal">
+            <div class="section-title">
+                <h2>Alineación Perfecta</h2>
+                <p>La mecánica celeste en acción</p>
+            </div>
+
+            <div class="glass-card alignment-display">
+                <div class="alignment-visual-placeholder">
+                    <!-- Aquí iría una animación CSS o imagen compleja -->
+                    <img src="../../../assets/illustrations/eclipses/alignment-diagram.png"
+                        alt="Diagrama de alineación">
+                    <p class="placeholder-caption">Diagrama de alineación (Syzygy)</p>
+                </div>
+                <div class="alignment-info">
+                    <p>
+                        Para que se produzca un eclipse, la Luna debe estar en uno de sus nodos orbitales,
+                        los puntos donde su órbita cruza el plano de la órbita terrestre.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASES DEL ECLIPSE -->
+        <section class="phases-section reveal">
+            <h2>Fases del Eclipse</h2>
+            <div class="phases-timeline">
+                <div class="phase-item">
+                    <span class="phase-time">1</span>
+                    <h4>Primer Contacto</h4>
+                    <p>La sombra comienza a tocar el cuerpo celeste.</p>
+                </div>
+                <div class="phase-item">
+                    <span class="phase-time">2</span>
+                    <h4>Totalidad / Máximo</h4>
+                    <p>El momento de mayor oscurecimiento.</p>
+                </div>
+                <div class="phase-item">
+                    <span class="phase-time">3</span>
+                    <h4>Último Contacto</h4>
+                    <p>La sombra abandona completamente la superficie.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATOS CURIOSOS -->
+        <section class="facts-section reveal">
+            <div class="facts-grid">
+                <div class="glass-card fact-card">
+                    <span class="fact-icon">⏱️</span>
+                    <h3>Duración</h3>
+                    <p>Un eclipse solar total puede durar hasta 7.5 minutos, mientras que uno lunar puede superar la
+                        hora.</p>
+                </div>
+                <div class="glass-card fact-card">
+                    <span class="fact-icon">📐</span>
+                    <h3>Coincidencia Cósmica</h3>
+                    <p>El Sol es 400 veces más grande que la Luna, pero está 400 veces más lejos, por eso parecen del
+                        mismo tamaño.</p>
+                </div>
+                <div class="glass-card fact-card">
+                    <span class="fact-icon">🔭</span>
+                    <h3>Frecuencia</h3>
+                    <p>Hay entre 2 y 5 eclipses solares cada año, aunque los totales son raros en un mismo lugar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRÓXIMOS ECLIPSES -->
+        <section class="upcoming-section reveal">
+            <h2>Próximos Eclipses</h2>
+            <div class="glass-card table-wrapper">
+                <table class="eclipse-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Visibilidad Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>14 Mar 2025</td>
+                            <td>Lunar Total</td>
+                            <td>América, Europa, África</td>
+                        </tr>
+                        <tr>
+                            <td>29 Mar 2025</td>
+                            <td>Solar Parcial</td>
+                            <td>Europa, Norte de Asia</td>
+                        </tr>
+                        <tr>
+                            <td>21 Sep 2025</td>
+                            <td>Solar Parcial</td>
+                            <td>Pacífico Sur, Antártida</td>
+                        </tr>
+                        <tr>
+                            <td>03 Mar 2026</td>
+                            <td>Lunar Total</td>
+                            <td>Asia, Australia, América</td>
+                        </tr>
+                        <tr>
+                            <td>12 Ago 2026</td>
+                            <td>Solar Total</td>
+                            <td>Ártico, Groenlandia, Islandia, España</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
     </main>
@@ -64,6 +233,23 @@
 
         await requireSession();
         await loadSideNav();
+
+        // Simple scroll reveal script (inline for now as it's specific visual logic)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal--visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 
 </body>

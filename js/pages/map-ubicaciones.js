@@ -875,8 +875,30 @@ async function openLocationModal(location) {
 
     const favBtn = panelContent.querySelector('.btn-favorite');
     favBtn.addEventListener('click', async function () {
-        await toggleFavorite(location);
-        await openLocationModal(location);
+        const heartIcon = this.querySelector('.heart-icon');
+        const buttonText = this.querySelector('span:last-child');
+
+        // Add animation class
+        if (heartIcon) {
+            heartIcon.style.animation = 'heartBeat 0.3s ease';
+            setTimeout(() => {
+                heartIcon.style.animation = '';
+            }, 300);
+        }
+
+        await toggleFavorite(location, this);
+
+        // Update button state after toggle
+        const isFavorited = await isFavorite(location.id);
+        if (isFavorited) {
+            this.classList.add('favorited');
+            if (heartIcon) heartIcon.innerHTML = heartFilled;
+            if (buttonText) buttonText.textContent = 'Guardado en Favoritos';
+        } else {
+            this.classList.remove('favorited');
+            if (heartIcon) heartIcon.innerHTML = heartOutline;
+            if (buttonText) buttonText.textContent = 'Añadir a Favoritos';
+        }
     });
 
     panel.classList.add('active');
@@ -933,7 +955,7 @@ async function isFavorite(locationId) {
     }
 }
 
-async function toggleFavorite(location) {
+async function toggleFavorite(location, buttonElement) {
     const user = auth.currentUser;
     if (!user) {
         alert("Debes iniciar sesión para guardar favoritos");
@@ -943,8 +965,17 @@ async function toggleFavorite(location) {
     const favId = `location_${location.id}`;
     const favRef = doc(db, "users", user.uid, "favorites", favId);
 
+    // Disable button during processing
+    if (buttonElement) {
+        buttonElement.disabled = true;
+        buttonElement.style.opacity = '0.6';
+        buttonElement.style.cursor = 'not-allowed';
+    }
+
     try {
         const isFav = await isFavorite(location.id);
+        const color = getBortleColor(location.bortle);
+
         if (isFav) {
             await deleteDoc(favRef);
             console.log(`Eliminado de favoritos: ${location.name}`);
@@ -955,12 +986,23 @@ async function toggleFavorite(location) {
                 name: location.name,
                 type: "location",
                 subType: location.type,
+                region: location.region,
+                quality: location.quality,
+                bortle: location.bortle,
+                bortleColor: color,
                 timestamp: serverTimestamp()
             });
             console.log(`Añadido a favoritos: ${location.name}`);
         }
     } catch (error) {
         console.error("Error al gestionar favorito:", error);
+    } finally {
+        // Re-enable button
+        if (buttonElement) {
+            buttonElement.disabled = false;
+            buttonElement.style.opacity = '1';
+            buttonElement.style.cursor = 'pointer';
+        }
     }
 }
 

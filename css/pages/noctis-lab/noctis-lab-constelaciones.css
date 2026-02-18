@@ -1,1 +1,260 @@
-/* Página Constelaciones */
+/* =========================
+   CONSTELLATIONS PAGE STYLES
+   ========================= */
+
+.constelaciones-page {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    min-height: 100vh;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+   STARRY BACKGROUND
+   ========================= */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+.constelaciones-hero {
+    text-align: center;
+    padding: 6rem 0 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    /* More elegant/thin */
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+/* =========================
+   DEFINITION & HISTORY
+   ========================= */
+section {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
+}
+
+.glass-panel {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: 3rem;
+    align-items: center;
+}
+
+.def-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #aabfff;
+}
+
+.def-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.def-image-placeholder img {
+    width: 100%;
+    border-radius: 12px;
+    opacity: 0.8;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.history-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem 0;
+}
+
+.history-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #d1d1d1;
+    font-family: serif;
+    /* More classical feel */
+}
+
+/* =========================
+   CONSTELLATIONS GRID
+   ========================= */
+.constellations-grid-section {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+}
+
+.constellations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.const-card {
+    background: rgba(15, 15, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.const-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(100, 149, 237, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.const-img-box {
+    height: 200px;
+    width: 100%;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.const-img-box img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    transition: transform 0.6s ease;
+}
+
+.const-card:hover .const-img-box img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+}
+
+.const-info {
+    padding: 1.5rem;
+}
+
+.const-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.const-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.2rem;
+    min-height: 40px;
+    /* Align cards somewhat */
+}
+
+/* Details list */
+.const-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.detail-item .label {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.detail-item .value {
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+    font-feature-settings: "tnum";
+}
+
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 900px) {
+    .glass-panel {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .def-image-placeholder {
+        order: -1;
+        /* Image first on mobile */
+    }
+}

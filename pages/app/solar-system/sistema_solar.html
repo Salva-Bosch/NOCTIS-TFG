@@ -74,15 +74,13 @@
     <span class="live-dot"></span> LIVE
   </button>
 
-  <!-- ====== TARJETA DE FAVORITO (Aparece al centrar un astro) ====== -->
-  <div id="favoriteCard" class="favorite-card" style="display: none;">
-    <div class="favorite-card-content">
-      <span id="favoriteAstroName" class="astro-name">Nombre</span>
-      <button id="btnToggleFavorite" class="favorite-toggle-btn" aria-label="Guardar en favoritos">
-        <img id="favoriteHeartIcon" src="/assets/icons/nav/favourites.svg" alt="Favorito">
-      </button>
-    </div>
-  </div>
+  <!-- ====== BOTÓN DE FAVORITO UNIFICADO (Aparece al centrar un astro) ====== -->
+  <button id="btnToggleFavorite" class="favorite-card" style="display: none;" aria-label="Guardar en favoritos">
+    <span id="favoriteAstroName" class="astro-name">Nombre</span>
+    <span class="heart-icon">
+      <img id="favoriteHeartIcon" src="../../../assets/icons/nav/favourites.svg" alt="Favorito">
+    </span>
+  </button>
 
   <!-- Menú lateral de Noctis -->
   <script type="module">

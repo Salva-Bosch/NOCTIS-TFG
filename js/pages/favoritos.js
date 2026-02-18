@@ -11,6 +11,14 @@ import {
 
 const favoritesList = document.getElementById("favoritesList");
 const searchInput = document.getElementById("searchFavorites");
+const searchWrapper = document.querySelector(".search-wrapper");
+
+// Activate search input when clicking anywhere on wrapper
+if (searchWrapper && searchInput) {
+    searchWrapper.addEventListener("click", () => {
+        searchInput.focus();
+    });
+}
 
 let allFavorites = [];
 
@@ -85,8 +93,27 @@ function renderFavorites(favorites) {
 
         // Determinar subtítulo y tipo a mostrar
         let subTitle = "";
+        let additionalInfo = "";
+
         if (isLocation) {
             subTitle = fav.subType || "Ubicación";
+
+            // Add location-specific info: region and quality
+            const region = fav.region || "Región desconocida";
+            const quality = fav.quality || "Calidad desconocida";
+            const bortleColor = fav.bortleColor || "#8b9cff";
+            const bortle = fav.bortle || "?";
+
+            additionalInfo = `
+                <div class="location-details">
+                    <div class="location-region">${region}</div>
+                    <div class="location-quality">
+                        <span class="bortle-dot" style="background: ${bortleColor}; box-shadow: 0 0 8px ${bortleColor}40;"></span>
+                        <span class="quality-text">${quality}</span>
+                        <span class="bortle-label">Bortle ${bortle}</span>
+                    </div>
+                </div>
+            `;
         } else {
             subTitle = fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta');
         }
@@ -98,17 +125,18 @@ function renderFavorites(favorites) {
             <div class="favorite-info">
                 <div class="favorite-type">${typeEmoji} ${subTitle}</div>
                 <div class="favorite-name">${fav.name}</div>
+                ${additionalInfo}
             </div>
             <div class="favorite-actions">
-                <button class="btn-remove-favorite" data-id="${fav.id_db}">
-                    <img src="../../../assets/icons/nav/favourites.svg" alt="Quitar">
+                <button class="btn-heart-delete" data-id="${fav.id_db}" aria-label="Eliminar de favoritos">
+                    <img src="../../../assets/icons/user/favourite_red.svg" alt="Eliminar">
                 </button>
             </div>
         `;
 
         // Navegar al sistema solar o al mapa
         item.addEventListener("click", (e) => {
-            if (e.target.closest(".btn-remove-favorite")) return;
+            if (e.target.closest(".btn-heart-delete")) return;
 
             if (isLocation) {
                 // fav.locationId es el ID numérico (ej: 1, 2)
@@ -118,7 +146,7 @@ function renderFavorites(favorites) {
             }
         });
 
-        const btnRemove = item.querySelector(".btn-remove-favorite");
+        const btnRemove = item.querySelector(".btn-heart-delete");
         btnRemove.addEventListener("click", async (e) => {
             e.stopPropagation();
             const user = auth.currentUser;

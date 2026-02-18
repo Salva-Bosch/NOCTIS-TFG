@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noctis · NoctisLab Constelaciones</title>
 
     <!-- CSS base -->
@@ -36,7 +37,7 @@
                 </div>
 
                 <div class="nav-right">
-                    <a href="#" class="nav-link">Constelaciones</a>
+                    <a href="#" class="nav-link active">Constelaciones</a>
                     <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
                 </div>
 
@@ -45,14 +46,266 @@
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="noctis-lab-content constelaciones">
+    <main class="noctis-lab-content constelaciones-page">
+
+        <!-- ESTRELLAS DE FONDO (Generadas por CSS) -->
+        <div class="stars-bg"></div>
 
         <!-- HERO -->
-        <section class="constelaciones-hero">
-            <h1>Constelaciones</h1>
-            <p class="constelaciones-intro">
-                Explora las constelaciones visibles en el cielo nocturno y sus historias mitológicas.
+        <section class="constelaciones-hero reveal">
+            <h1 class="hero-title">Constelaciones</h1>
+            <p class="hero-subtitle">
+                Mapas en el cielo. Historias trazadas en luz que han guiado a la humanidad durante milenios.
             </p>
+        </section>
+
+        <!-- INTRO Y DEFINICIÓN -->
+        <section class="definition-section reveal">
+            <div class="glass-panel">
+                <div class="def-content">
+                    <h2>¿Qué es una constelación?</h2>
+                    <p>
+                        Históricamente, una constelación era un patrón visual formado por estrellas que recordaba a una
+                        figura mitológica, animal u objeto.
+                        <br><br>
+                        En la astronomía moderna, una constelación es una <strong>región definida del cielo</strong>. La
+                        Unión Astronómica Internacional (IAU) divide la esfera celeste en 88 constelaciones oficiales,
+                        de modo que cada punto del cielo pertenece a una de ellas.
+                    </p>
+                </div>
+                <div class="def-image-placeholder">
+                    <img src="../../../assets/illustrations/constelaciones/sky-map.png" alt="Mapa estelar antiguo">
+                </div>
+            </div>
+        </section>
+
+        <!-- HISTORIA -->
+        <section class="history-section reveal">
+            <div class="history-content">
+                <h2>El Legado de las Estrellas</h2>
+                <p>
+                    Desde la antigua Mesopotamia hasta Grecia, pasando por los navegantes polinesios y los astrónomos
+                    árabes.
+                    Nuestras constelaciones actuales son un tapiz de mitos griegos (como Orión y Casiopea) y
+                    descubrimientos
+                    más recientes en el hemisferio sur durante la Era de los Descubrimientos.
+                </p>
+            </div>
+        </section>
+
+        <!-- GRID DE CONSTELACIONES -->
+        <section class="constellations-grid-section">
+            <h2 class="section-heading reveal">Constelaciones Destacadas</h2>
+
+            <div class="constellations-grid">
+
+                <!-- ORIÓN -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/orion.png" alt="Constelación de Orión">
+                    </div>
+                    <div class="const-info">
+                        <h3>Orión</h3>
+                        <p class="const-desc">El Cazador. Una de las más reconocibles por su "cinturón".</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Betelgeuse, Rigel, Bellatrix</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Invierno (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Ambos hemisferios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OSA MAYOR -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/osa-mayor.png"
+                            alt="Constelación Osa Mayor">
+                    </div>
+                    <div class="const-info">
+                        <h3>Osa Mayor</h3>
+                        <p class="const-desc">Ursa Major. Contiene el famoso "Carro" o "Cazo".</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Dubhe, Merak</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Primavera (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Hemisferio Norte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OSA MENOR -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/osa-menor.png"
+                            alt="Constelación Osa Menor">
+                    </div>
+                    <div class="const-info">
+                        <h3>Osa Menor</h3>
+                        <p class="const-desc">Ursa Minor. Hogar de Polaris, la Estrella del Norte.</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Polaris</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Todo el año (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Hemisferio Norte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESCORPIO -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/escorpio.png"
+                            alt="Constelación Escorpio">
+                    </div>
+                    <div class="const-info">
+                        <h3>Escorpio</h3>
+                        <p class="const-desc">Scorpius. Se asemeja claramente a un escorpión real.</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Antares</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Verano (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Princip. Sur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASIOPEA -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/casiopea.png"
+                            alt="Constelación Casiopea">
+                    </div>
+                    <div class="const-info">
+                        <h3>Casiopea</h3>
+                        <p class="const-desc">La Reina. Famosa por su forma de "W" o "M".</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Schedar, Caph</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Otoño (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Hemisferio Norte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRUZ DEL SUR -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/cruz-del-sur.png"
+                            alt="Constelación Cruz del Sur">
+                    </div>
+                    <div class="const-info">
+                        <h3>Cruz del Sur</h3>
+                        <p class="const-desc">Crux. La más pequeña de las 88, vital para la navegación austral.</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Acrux, Mimosa</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Primavera (HS)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Hemisferio Sur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANDRÓMEDA -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/andromeda.png"
+                            alt="Constelación Andrómeda">
+                    </div>
+                    <div class="const-info">
+                        <h3>Andrómeda</h3>
+                        <p class="const-desc">Contiene a la galaxia espiral más cercana a la Vía Láctea.</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Alpheratz, Mirach</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Otoño (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Ambos (N)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEO -->
+                <div class="const-card reveal">
+                    <div class="const-img-box">
+                        <img src="../../../assets/illustrations/constelaciones/leo.png" alt="Constelación Leo">
+                    </div>
+                    <div class="const-info">
+                        <h3>Leo</h3>
+                        <p class="const-desc">El León. Una de las constelaciones del zodiaco más fáciles de ver.</p>
+                        <div class="const-details">
+                            <div class="detail-item">
+                                <span class="label">Estrellas:</span>
+                                <span class="value">Regulus, Denebola</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Mejor época:</span>
+                                <span class="value">Primavera (HN)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Visible:</span>
+                                <span class="value">Ambos Hemisferios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
     </main>
@@ -64,8 +317,19 @@
 
         await requireSession();
         await loadSideNav();
-    </script>
 
+        // Reveal animation script
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal--visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
