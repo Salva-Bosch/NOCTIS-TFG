@@ -1,4 +1,6 @@
 // Lógica de los avatares
+export const DEFAULT_AVATAR = "../../../assets/avatars/avatar_default.svg";
+
 export const AVATARS = [
     "../../../assets/avatars/avatar-alien.webp",
     "../../../assets/avatars/avatar-astronauta.webp",

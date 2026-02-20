@@ -5,6 +5,7 @@ LÓGICA DE LA PÁGINA PERFIL
 import { auth, db } from "../core/firebase.js";
 import { requireSession } from "../guards/sessionGuard.js";
 import { logout } from "../core/auth_logic.js";
+import { DEFAULT_AVATAR } from "../core/avatars.js";
 import { getSettings } from "../core/settingsManager.js";
 
 import {
@@ -29,6 +30,7 @@ async function initPerfil() {
     const toggleBtn = document.getElementById("toggleAvatars");
     const avatarPicker = document.getElementById("avatarPicker");
     const avatarOptions = document.querySelectorAll("#avatarPicker img");
+    const btnRemoveAvatar = document.getElementById("btnRemoveAvatar");
 
     const inputName = document.getElementById("inputName");
     const inputEmail = document.getElementById("inputEmail");
@@ -54,7 +56,7 @@ async function initPerfil() {
     /* CARGAR DATOS */
     const snap = await getDoc(userRef);
 
-    let currentPhotoURL = "../../../assets/avatars/avatar-luna.webp";
+    let currentPhotoURL = DEFAULT_AVATAR;
 
     // Helper para formatear fecha según ajustes
     function formatUserDate(date) {
@@ -119,6 +121,21 @@ async function initPerfil() {
             msgEl.textContent = "Avatar actualizado";
         });
     });
+
+    /* ELIMINAR AVATAR */
+    if (btnRemoveAvatar) {
+        btnRemoveAvatar.addEventListener("click", async () => {
+            await setDoc(userRef, { photoURL: DEFAULT_AVATAR }, { merge: true });
+
+            currentPhotoURL = DEFAULT_AVATAR;
+            avatarImg.src = DEFAULT_AVATAR;
+
+            avatarOptions.forEach(i => i.classList.remove("active"));
+
+            avatarPicker.style.display = "none";
+            msgEl.textContent = "Avatar eliminado (vuelto al predeterminado)";
+        });
+    }
 
     /* GUARDAR CAMBIOS */
     if (btnSave) {

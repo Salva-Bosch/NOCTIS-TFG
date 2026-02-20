@@ -1,6 +1,6 @@
 // IMPORT FIREBASE
 import { auth, db } from "./firebase.js";
-import { getRandomAvatar } from "./avatars.js";
+import { DEFAULT_AVATAR } from "./avatars.js";
 
 import {
   createUserWithEmailAndPassword,
@@ -28,7 +28,7 @@ export async function register(name, email, password) {
   await setDoc(doc(db, "users", user.uid), {
     name,
     email,
-    photoURL: getRandomAvatar(),
+    photoURL: DEFAULT_AVATAR,
     createdAt: serverTimestamp()
   });
 
