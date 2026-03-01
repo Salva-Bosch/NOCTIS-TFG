@@ -28,7 +28,8 @@ const TYPE_EMOJIS = {
     moon: "🌙",
     star: "☀️",
     dwarf: "☄️",
-    location: "📍"
+    location: "📍",
+    constellation: "⭐"
 };
 
 // Mapeo de IDs a imágenes de assets
@@ -115,7 +116,10 @@ function renderFavorites(favorites) {
                 </div>
             `;
         } else {
-            subTitle = fav.type === 'star' ? 'Estrella' : (fav.type === 'moon' ? 'Luna' : 'Planeta');
+            subTitle = fav.type === 'star' ? 'Estrella'
+                : fav.type === 'moon' ? 'Luna'
+                    : fav.type === 'constellation' ? 'Constelación'
+                        : 'Planeta';
         }
 
         item.innerHTML = `
@@ -141,6 +145,8 @@ function renderFavorites(favorites) {
             if (isLocation) {
                 // fav.locationId es el ID numérico (ej: 1, 2)
                 window.location.href = `../map/mapa-ubicaciones/mapa-ubicaciones.html?focus=${fav.locationId}`;
+            } else if (fav.type === 'constellation') {
+                window.location.href = `../map/mapa-estrellas/mapa_estrellas.html?focus=${fav.id}`;
             } else {
                 window.location.href = `../solar-system/sistema_solar.html?focus=${fav.id}`;
             }

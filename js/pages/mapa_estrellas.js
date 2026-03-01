@@ -1,5 +1,8 @@
 /* LÓGICA DEL MAPA DE ESTRELLAS — Vista de planetario interactiva */
 import * as THREE from "three";
+import { Line2 } from "three/addons/lines/Line2.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
+import { LineGeometry } from "three/addons/lines/LineGeometry.js";
 import * as timeEngine from "../core/timeEngine.js";
 import { createRenderer } from "../core/three/renderer.js";
 import { createCelestialCamera } from "../core/three/celestialCamera.js";
@@ -42,6 +45,13 @@ window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Actualizar resolución de LineMaterial para grosor correcto
+    constellationData.forEach(c => {
+        if (c.lines && c.lines.material.resolution) {
+            c.lines.material.resolution.set(window.innerWidth, window.innerHeight);
+        }
+    });
 });
 
 /* ================= UI FAVORITOS ================= */
@@ -227,7 +237,7 @@ function createConstellationLines() {
             equatorialToCartesian(s.ra, s.dec, SPHERE_RADIUS * 0.999)
         );
 
-        // --- Líneas ---
+        // --- Líneas gruesas (Line2 para grosor visible) ---
         const linePositions = [];
         constellation.lines.forEach(([a, b]) => {
             const pA = starPositions[a];
@@ -235,18 +245,20 @@ function createConstellationLines() {
             linePositions.push(pA.x, pA.y, pA.z, pB.x, pB.y, pB.z);
         });
 
-        const lineGeometry = new THREE.BufferGeometry();
-        lineGeometry.setAttribute("position",
-            new THREE.Float32BufferAttribute(linePositions, 3));
+        const lineGeometry = new LineGeometry();
+        lineGeometry.setPositions(linePositions);
 
-        const lineMaterial = new THREE.LineBasicMaterial({
-            color: 0x4466aa,
+        const lineMaterial = new LineMaterial({
+            color: 0x4477bb,
+            linewidth: 2,    // px reales
             transparent: true,
-            opacity: 0.35,
+            opacity: 0.5,
             depthWrite: false,
+            resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
         });
 
-        const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+        const lines = new Line2(lineGeometry, lineMaterial);
+        lines.computeLineDistances();
         celestialSphere.add(lines);
 
         // --- Label (centrado en la constelación) ---
@@ -279,7 +291,7 @@ function createConstellationLines() {
         celestialSphere.add(hitSphere);
         clickableObjects.push(hitSphere);
 
-        // Esfera invisible en CADA estrella (para poder clickar en cualquier punto)
+        // Esfera invisible en CADA estrella
         starPositions.forEach(pos => {
             const starHit = new THREE.Mesh(
                 new THREE.SphereGeometry(15, 6, 6),
@@ -289,6 +301,22 @@ function createConstellationLines() {
             starHit.userData.constellationId = constellation.id;
             celestialSphere.add(starHit);
             clickableObjects.push(starHit);
+        });
+
+        // Esfera invisible en el PUNTO MEDIO de cada línea (para más clickabilidad)
+        constellation.lines.forEach(([a, b]) => {
+            const pA = starPositions[a];
+            const pB = starPositions[b];
+            const mid = new THREE.Vector3().addVectors(new THREE.Vector3(pA.x, pA.y, pA.z), new THREE.Vector3(pB.x, pB.y, pB.z)).multiplyScalar(0.5);
+
+            const lineHit = new THREE.Mesh(
+                new THREE.SphereGeometry(12, 6, 6),
+                new THREE.MeshBasicMaterial({ visible: false })
+            );
+            lineHit.position.copy(mid);
+            lineHit.userData.constellationId = constellation.id;
+            celestialSphere.add(lineHit);
+            clickableObjects.push(lineHit);
         });
 
         // Guardar datos para búsqueda y focus
@@ -484,8 +512,8 @@ function startFocusOn(constellationId, allowBelowHorizon = false) {
 
     // Resaltar líneas de la constelación
     constellationData.forEach(c => {
-        c.lines.material.opacity = c.id === constellationId ? 0.7 : 0.2;
-        c.lines.material.color.setHex(c.id === constellationId ? 0x88aaff : 0x4466aa);
+        c.lines.material.opacity = c.id === constellationId ? 0.85 : 0.2;
+        c.lines.material.color.set(c.id === constellationId ? 0x88aaff : 0x4477bb);
     });
 }
 
@@ -497,8 +525,8 @@ controls.addEventListener("start", () => {
         currentFocusedId = null;
 
         constellationData.forEach(c => {
-            c.lines.material.opacity = 0.35;
-            c.lines.material.color.setHex(0x4466aa);
+            c.lines.material.opacity = 0.5;
+            c.lines.material.color.set(0x4477bb);
         });
     }
 });
