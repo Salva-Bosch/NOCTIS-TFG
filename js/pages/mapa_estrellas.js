@@ -152,13 +152,13 @@ function createBackgroundStars() {
         allStars.push({ ra: s.ra, dec: s.dec, mag: s.mag });
     });
 
-    // Añadir estrellas procedurales tenues para llenar el cielo
-    const PROCEDURAL_COUNT = 3000;
+    // Añadir estrellas procedurales tenues para llenar el cielo (pocas)
+    const PROCEDURAL_COUNT = 800;
     for (let i = 0; i < PROCEDURAL_COUNT; i++) {
         allStars.push({
             ra: Math.random() * 24,
             dec: (Math.random() * 180 - 90),
-            mag: 4.0 + Math.random() * 2.5  // mag 4.0–6.5 (tenues)
+            mag: 4.5 + Math.random() * 1.5  // mag 4.5–6.0 (tenues)
         });
     }
 
@@ -269,7 +269,7 @@ function createConstellationLines() {
         label.scale.set(LABEL_SCALE, LABEL_SCALE * 0.25, 1);
         celestialSphere.add(label);
 
-        // Para raycasting, creamos una esfera invisible como target de click
+        // Esfera invisible en el centro (para raycasting del label)
         const hitSphere = new THREE.Mesh(
             new THREE.SphereGeometry(25, 8, 8),
             new THREE.MeshBasicMaterial({ visible: false })
@@ -278,6 +278,18 @@ function createConstellationLines() {
         hitSphere.userData.constellationId = constellation.id;
         celestialSphere.add(hitSphere);
         clickableObjects.push(hitSphere);
+
+        // Esfera invisible en CADA estrella (para poder clickar en cualquier punto)
+        starPositions.forEach(pos => {
+            const starHit = new THREE.Mesh(
+                new THREE.SphereGeometry(15, 6, 6),
+                new THREE.MeshBasicMaterial({ visible: false })
+            );
+            starHit.position.set(pos.x, pos.y, pos.z);
+            starHit.userData.constellationId = constellation.id;
+            celestialSphere.add(starHit);
+            clickableObjects.push(starHit);
+        });
 
         // Guardar datos para búsqueda y focus
         constellationData.push({
@@ -432,27 +444,12 @@ function createHorizon() {
     mtGeometry.computeVertexNormals();
 
     const mtMaterial = new THREE.MeshBasicMaterial({
-        color: 0x0a0a18,
+        color: 0x1a1a2e,
         side: THREE.DoubleSide,
     });
 
     const mountains = new THREE.Mesh(mtGeometry, mtMaterial);
     horizonGroup.add(mountains);
-
-    // --- Resplandor del horizonte (gradiente sutil) ---
-    const glowGeometry = new THREE.CylinderGeometry(
-        SPHERE_RADIUS * 0.6, SPHERE_RADIUS * 0.62, 60, 64, 1, true
-    );
-    const glowMaterial = new THREE.MeshBasicMaterial({
-        color: 0x0c1530,
-        transparent: true,
-        opacity: 0.5,
-        side: THREE.BackSide,
-        depthWrite: false,
-    });
-    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-    glow.position.y = 30;
-    horizonGroup.add(glow);
 }
 
 createHorizon();
@@ -468,12 +465,7 @@ const mouse = new THREE.Vector2();
 
 /* ================= CAMERA FOCUS ================= */
 
-const CameraState = { FREE: "free", FOCUS: "focus" };
-let cameraState = CameraState.FREE;
-let focusTarget = new THREE.Vector3();
-const FOCUS_LERP = 0.06;
-
-function startFocusOn(constellationId) {
+function startFocusOn(constellationId, allowBelowHorizon = false) {
     const data = constellationData.find(c => c.id === constellationId);
     if (!data) return;
 
@@ -481,9 +473,8 @@ function startFocusOn(constellationId) {
     const worldPos = new THREE.Vector3();
     data.hitSphere.getWorldPosition(worldPos);
 
-    // Focus: apuntamos el controls.target a esa posición
-    focusTarget.copy(worldPos).normalize().multiplyScalar(400);
-    cameraState = CameraState.FOCUS;
+    // Focus: apuntamos la cámara hacia esa dirección
+    controls.lookAt(worldPos, allowBelowHorizon);
 
     // UI de favoritos
     currentFocusedId = constellationId;
@@ -500,12 +491,11 @@ function startFocusOn(constellationId) {
 
 // Cancelar focus al mover la cámara
 controls.addEventListener("start", () => {
-    if (cameraState === CameraState.FOCUS) {
-        cameraState = CameraState.FREE;
+    // Al arrastrar, cerramos el card de favoritos y restauramos opacidad
+    if (currentFocusedId) {
         btnToggleFavorite.style.display = "none";
         currentFocusedId = null;
 
-        // Restaurar opacidad de líneas
         constellationData.forEach(c => {
             c.lines.material.opacity = 0.35;
             c.lines.material.color.setHex(0x4466aa);
@@ -606,14 +596,7 @@ function animate() {
     const latInclination = getLatitudeInclination(observerLat);
     celestialSphere.rotation.x = latInclination;
 
-    // --- Camera focus update ---
-    if (cameraState === CameraState.FOCUS) {
-        controls.target.lerp(focusTarget, FOCUS_LERP);
-
-        if (controls.target.distanceTo(focusTarget) < 0.5) {
-            cameraState = CameraState.FREE;
-        }
-    }
+    // La animación de focus se maneja internamente por el damping de los controles
 
     // Billboard para labels (siempre de frente a la cámara)
     constellationData.forEach(c => {
@@ -637,7 +620,7 @@ const searchList = constellationData.map(c => ({
 }));
 
 initSearchBar(searchList, (data) => {
-    startFocusOn(data.id);
+    startFocusOn(data.id, true);  // true = permite mirar bajo el horizonte
 });
 
 /* ================= DEEP LINKING ================= */
@@ -646,7 +629,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const focusId = urlParams.get("focus");
 if (focusId) {
     setTimeout(() => {
-        startFocusOn(focusId);
+        startFocusOn(focusId, true);  // true = permite mirar bajo el horizonte
     }, 500);
 }
 
