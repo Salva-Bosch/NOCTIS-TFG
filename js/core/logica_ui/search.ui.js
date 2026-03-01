@@ -20,7 +20,8 @@ export function initSearchBar(astros, onFocusCallback) {
         return {
             id: astro.id,
             name,
-            type: astro.isMoon ? "Luna" : "Planeta",
+            type: astro.type || (astro.isMoon ? "Luna" : "Planeta"),
+            icon: astro.icon || (astro.isMoon ? "🌑" : "🪐"),
             data: astro
         };
     });
@@ -74,7 +75,7 @@ export function initSearchBar(astros, onFocusCallback) {
             item.className = "search-result-item";
 
             // Icono según tipo (puedes mejorar esto con iconos reales)
-            const icon = match.type === "Luna" ? "🌑" : "🪐";
+            const icon = match.icon;
 
             item.innerHTML = `
                 <span class="search-item-icon">${icon}</span>

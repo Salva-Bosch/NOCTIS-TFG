@@ -2,25 +2,126 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Noctis - Mapa Estrellas</title>
+  <meta charset="UTF-8">
+  <title>Noctis - Mapa de Estrellas</title>
 
-    <link rel="stylesheet" href="/css/base/reset.css">
-    <link rel="stylesheet" href="/css/base/variables.css">
-    <link rel="stylesheet" href="/css/components/navbar.css">
+  <!-- Importamos ThreeJS para el mapa 3D -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/base/reset.css">
+  <link rel="stylesheet" href="/css/base/variables.css">
+  <link rel="stylesheet" href="/css/components/navbar.css">
+  <link rel="stylesheet" href="/css/pages/mapa_estrellas.css">
 </head>
 
 <body>
-    <h1>Mapa de Estrellas</h1>
+  <!-- Canvas donde va el mapa 3D -->
+  <canvas id="starCanvas"></canvas>
 
-    <script type="module">
-        import { loadSideNav } from "/js/core/loadSideNav.js";
-        import { requireSession } from "/js/guards/sessionGuard.js";
+  <!-- ====== BARRA DE BÚSQUEDA ====== -->
+  <div class="search-bar-container">
+    <div class="search-input-wrapper">
+      <img src="/assets/icons/nav/search.svg" alt="Search" class="search-icon">
+      <input type="text" id="searchInput" placeholder="Buscar constelación..." autocomplete="off">
+    </div>
+    <div class="search-results" id="searchResults">
+      <!-- Los resultados se inyectan via JS -->
+    </div>
+  </div>
 
-        await requireSession();
-        await loadSideNav();
-    </script>
+  <!-- ====== SELECTOR DE UBICACIÓN ====== -->
+  <div class="location-selector">
+    <button class="location-toggle" id="locationToggle" aria-label="Cambiar ubicación">
+      <img src="/assets/icons/ui/location_icon.svg" alt="Ubicación" class="location-icon"
+        onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin','📍')">
+      <span id="locationDisplay">39.5°N 0.4°W</span>
+    </button>
 
+    <div class="location-panel" id="locationPanel">
+      <div class="location-panel-title">Ubicación del observador</div>
+      <div class="location-fields">
+        <label>
+          <span>Latitud</span>
+          <input type="number" id="latInput" value="39.47" step="0.01" min="-90" max="90">
+        </label>
+        <label>
+          <span>Longitud</span>
+          <input type="number" id="lonInput" value="-0.38" step="0.01" min="-180" max="180">
+        </label>
+      </div>
+      <div class="location-actions">
+        <button class="location-btn" id="locationGeoBtn">📍 Mi ubicación</button>
+        <button class="location-btn location-btn--apply" id="locationApplyBtn">Aplicar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BARRA DE TIEMPO ====== -->
+  <div class="timebar timebar--realtime" id="timebar">
+    <!-- Capa visible siempre -->
+    <div class="timebar-display">
+      <div class="timebar-date" id="timeDate">MAR 01, 2026</div>
+
+      <div class="timebar-center">
+        <div class="timebar-orb" aria-hidden="true"></div>
+        <div class="timebar-status" id="timeStatus">TIEMPO REAL</div>
+      </div>
+
+      <div class="timebar-clock" id="timeClock">07:00:00 PM</div>
+    </div>
+
+    <!-- Capa controles (solo hover) -->
+    <div class="timebar-controls">
+      <div class="timebar-buttons">
+        <button class="timebar-btn" id="timeRewind" type="button" aria-label="Rewind">
+          <img src="/assets/icons/ui/backwad_icon.svg" alt="Backward Icon" class="timeBtn">
+        </button>
+
+        <button class="timebar-btn" id="timePlayPause" type="button" aria-label="Play/Pause">
+          ⏸
+        </button>
+
+        <button class="timebar-btn" id="timeForward" type="button" aria-label="Forward">
+          <img src="/assets/icons/ui/forward_icon.svg" alt="Forward Icon" class="timeBtn">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== BOTÓN LIVE (FUERA DEL TIMEBAR) ====== -->
+  <button class="live-btn" id="liveBtn">
+    <span class="live-dot"></span> LIVE
+  </button>
+
+  <!-- ====== BOTÓN DE FAVORITO (Aparece al centrar una constelación) ====== -->
+  <button id="btnToggleFavorite" class="favorite-card" style="display: none;" aria-label="Guardar en favoritos">
+    <span id="favoriteAstroName" class="astro-name">Nombre</span>
+    <span class="heart-icon">
+      <img id="favoriteHeartIcon" src="/assets/icons/nav/favourites.svg" alt="Favorito">
+    </span>
+  </button>
+
+  <!-- Menú lateral de Noctis -->
+  <script type="module">
+    import { loadSideNav } from "/js/core/loadSideNav.js";
+    import { requireSession } from "/js/guards/sessionGuard.js";
+    await requireSession();
+    await loadSideNav();
+  </script>
+
+  <!-- UI Timebar -->
+  <script type="module" src="/js/core/logica_ui/mapa_estrellas.ui.js"></script>
+
+  <!-- Mapa de Estrellas -->
+  <script type="module" src="/js/pages/mapa_estrellas.js"></script>
 </body>
 
 </html>

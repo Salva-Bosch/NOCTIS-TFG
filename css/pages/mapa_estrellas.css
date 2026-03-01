@@ -1,0 +1,562 @@
+/* ====== CSS DEL MAPA DE ESTRELLAS ====== */
+/* Basado en sistema_solar.css — reutiliza estilos comunes + selector de ubicación */
+
+/* ================= RESET & LAYOUT ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Lexend', sans-serif;
+    background: #020209;
+    color: white;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#starCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ================= SEARCH BAR ================= */
+.search-bar-container {
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 50;
+    width: 280px;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 10px 14px;
+    transition: all 0.2s ease;
+}
+
+.search-bar-container.is-active .search-input-wrapper {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    opacity: 0.6;
+}
+
+#searchInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* RESULTADOS */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.search-results.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.search-result-item.no-results {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    justify-content: center;
+    cursor: default;
+}
+
+.search-item-icon {
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+.search-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item-name {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.search-item-type {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2px;
+}
+
+/* ================= SELECTOR DE UBICACIÓN ================= */
+.location-selector {
+    position: fixed;
+    top: 22px;
+    left: 80px;
+    z-index: 50;
+    font-family: 'Inter', sans-serif;
+}
+
+.location-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.03em;
+}
+
+.location-toggle:hover {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.location-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.location-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    width: 260px;
+    padding: 16px;
+    background: rgba(10, 10, 18, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.location-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.location-panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.location-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.location-fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.location-fields label span {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.location-fields input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: white;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.location-fields input:focus {
+    border-color: rgba(100, 140, 255, 0.5);
+}
+
+.location-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.location-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.location-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-1px);
+}
+
+.location-btn--apply {
+    background: rgba(70, 100, 200, 0.3);
+    border-color: rgba(70, 100, 200, 0.4);
+}
+
+.location-btn--apply:hover {
+    background: rgba(70, 100, 200, 0.5);
+}
+
+/* ================= TIMEBAR ================= */
+.timebar {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    width: min(760px, calc(100% - 120px));
+    height: 64px;
+    padding: 10px 18px;
+    border-radius: 18px;
+    z-index: 20;
+    overflow: visible;
+    top: auto !important;
+}
+
+.timebar-display {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+.timebar-date {
+    justify-self: start;
+    letter-spacing: .10em;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.timebar-clock {
+    font-family: 'Inter', sans-serif;
+    justify-self: end;
+    letter-spacing: .10em;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.timebar-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.timebar-status {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: .18em;
+    font-size: 14px;
+}
+
+.timebar-orb {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    transition: background .2s, box-shadow .2s;
+}
+
+/* Controls (hover) */
+.timebar-controls {
+    position: absolute;
+    top: -18px;
+    left: 0;
+    right: 0;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .18s ease-out, transform .18s ease-out;
+}
+
+.timebar:hover .timebar-controls {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.timebar-buttons {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.timebar-btn {
+    width: 42px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s ease, transform .12s ease;
+}
+
+.timeBtn {
+    width: 1.5rem;
+}
+
+.timebar-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-1px);
+}
+
+/* STATES */
+.timebar--realtime .timebar-status {
+    color: var(--time-green);
+}
+
+.timebar--realtime .timebar-orb {
+    background: var(--time-green);
+    box-shadow: 0 0 14px var(--time-green-glow);
+}
+
+.timebar--paused .timebar-status {
+    color: var(--time-orange);
+}
+
+.timebar--paused .timebar-orb {
+    background: var(--time-orange);
+    box-shadow: 0 0 14px var(--time-orange-glow);
+}
+
+.timebar--rate .timebar-status,
+.timebar--rewind .timebar-status {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Curved timeline */
+.timebar::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 10px;
+    height: 2px;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scaleX(1.02);
+    pointer-events: none;
+}
+
+/* ================= LIVE BUTTON ================= */
+.live-btn {
+    position: fixed;
+    left: 22px;
+    bottom: 22px;
+    z-index: 21;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    letter-spacing: .08em;
+    cursor: pointer;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.live-btn.is-live {
+    color: var(--time-green);
+}
+
+.live-btn.is-live .live-dot {
+    background: var(--time-green);
+    box-shadow: 0 0 8px var(--time-green-glow);
+}
+
+/* ================= FAVORITE CARD ================= */
+.favorite-card {
+    position: fixed;
+    bottom: 100px;
+    right: 22px;
+    z-index: 50;
+    width: 100%;
+    max-width: 320px;
+    font-family: 'Inter', sans-serif;
+    animation: slideUp 0.3s ease-out;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(18, 20, 35, 0.98);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(139, 156, 255, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    text-align: left;
+}
+
+.favorite-card:hover {
+    background: rgba(139, 156, 255, 0.15);
+    border-color: rgba(139, 156, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(139, 156, 255, 0.25);
+}
+
+.favorite-card.is-favorite {
+    background: rgba(255, 100, 120, 0.15);
+    border-color: rgba(255, 100, 120, 0.35);
+}
+
+.favorite-card.is-favorite:hover {
+    background: rgba(255, 100, 120, 0.25);
+    border-color: rgba(255, 100, 120, 0.5);
+}
+
+.astro-name {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    flex: 1;
+}
+
+.favorite-card .heart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.favorite-card .heart-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(74%) sepia(18%) saturate(1096%) hue-rotate(198deg) brightness(103%) contrast(101%);
+    transition: all 0.3s ease;
+}
+
+.favorite-card.is-favorite .heart-icon img {
+    filter: none;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+}
