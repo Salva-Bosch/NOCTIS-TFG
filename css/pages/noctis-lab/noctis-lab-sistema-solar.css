@@ -427,6 +427,7 @@ body {
 /* Planet titles – SIN fondo, color sólido */
 .planet-title {
     background: none;
+    background-clip: border-box;
     -webkit-background-clip: initial;
     -webkit-text-fill-color: initial;
     color: white;
@@ -645,4 +646,43 @@ body {
 
 .planet--neptune img {
     filter: drop-shadow(0 0 40px rgba(75, 111, 255, 0.45));
+}
+
+/* BOTÓN SENCILLO "VER EN MAPA" */
+.btn-view-map {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #007bff;
+    /* Azul estándar del proyecto */
+    border: none;
+    border-radius: 12px;
+    /* Cuadrado con bordes redondeados */
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+    /* Espaciado superior */
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-view-map:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-view-map:active {
+    transform: translateY(0);
+}
+
+.btn-view-map svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
