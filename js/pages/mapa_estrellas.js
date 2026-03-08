@@ -616,13 +616,13 @@ function animate() {
 
     const now = timeEngine.getCurrentDate();
 
-    // Rotar la esfera celeste según el tiempo sidéreo local
+    // Rotar la esfera celeste según el tiempo sidéreo local (negativo para girar hacia el oeste)
     const siderealAngle = getSiderealRotation(observerLon, now);
-    celestialSphere.rotation.y = siderealAngle;
+    celestialSphere.rotation.y = -Math.PI / 2 - siderealAngle;
 
-    // Inclinar según la latitud del observador
+    // Inclinar según la latitud del observador (negativo para inclinar hacia el norte)
     const latInclination = getLatitudeInclination(observerLat);
-    celestialSphere.rotation.x = latInclination;
+    celestialSphere.rotation.x = -latInclination;
 
     // La animación de focus se maneja internamente por el damping de los controles
 
@@ -662,5 +662,34 @@ if (focusId) {
 }
 
 /* ================= START ================= */
+
+// --- Lógica de la Brújula ---
+const compassRing = document.querySelector(".compass-ring");
+const compassBtn = document.getElementById("compassBtn");
+
+if (compassBtn) {
+    compassBtn.addEventListener("click", () => {
+        controls.lookAtNorth();
+    });
+}
+
+function updateCompass() {
+    if (compassRing) {
+        // Obtenemos el azimuth de la cámara
+        const az = controls.getAzimuth();
+        // El anillo de la brújula debe rotar en sentido inverso a la cámara
+        // para que el Norte siempre apunte a la dirección real.
+        // Como az=0 es Norte, si movemos la cámara a la derecha (az+), 
+        // el Norte en el anillo debe desplazarse a la izquierda.
+        compassRing.style.transform = `rotate(${-az}rad)`;
+    }
+}
+
+// Sobrescribimos el animate para incluir la brújula
+const originalAnimate = animate;
+animate = function () {
+    originalAnimate();
+    updateCompass();
+};
 
 animate();

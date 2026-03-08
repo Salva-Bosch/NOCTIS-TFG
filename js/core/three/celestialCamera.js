@@ -134,6 +134,16 @@ export function createCelestialCamera(renderer) {
         /** Obtener la altitud actual (para saber si está cerca del horizonte) */
         getAltitude() { return altitude; },
 
+        /** Obtener el azimuth actual */
+        getAzimuth() { return azimuth; },
+
+        /** Apuntar directamente al norte */
+        lookAtNorth() {
+            targetAz = 0; // El Norte en este sistema es 0 (o 2*Math.PI)
+            // Mantener la altitud actual si es razonable
+            if (targetAlt < 0.2) targetAlt = 0.2;
+        },
+
         // --- Sistema de eventos ---
         _listeners: {},
         addEventListener(event, fn) {
