@@ -620,6 +620,28 @@ body {
     flex: 1;
 }
 
+.astro-coords {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0 15px;
+    padding-left: 15px;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.coord-item {
+    font-family: 'JetBrains Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.coord-item b {
+    color: #88aaff;
+    font-weight: 600;
+}
+
 .favorite-card .heart-icon {
     display: flex;
     align-items: center;

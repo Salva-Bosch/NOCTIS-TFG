@@ -11,7 +11,8 @@ import { BACKGROUND_STARS } from "../core/data/stars.js";
 import {
     equatorialToCartesian,
     getSiderealRotation,
-    getLatitudeInclination
+    getLatitudeInclination,
+    equatorialToHorizontal
 } from "../core/celestial.js";
 import { initSearchBar } from "../core/logica_ui/search.ui.js";
 import { auth, db } from "../core/firebase.js";
@@ -325,6 +326,8 @@ function createConstellationLines() {
             displayName: constellation.name,
             abbr: constellation.abbr,
             center: new THREE.Vector3(center.x, center.y, center.z),
+            ra: Math.atan2(-center.z, center.x) * (12 / Math.PI), // Convertir a horas
+            dec: Math.asin(center.y / SPHERE_RADIUS) * (180 / Math.PI), // Convertir a grados
             label,
             lines,
             hitSphere,
@@ -685,11 +688,29 @@ function updateCompass() {
     }
 }
 
-// Sobrescribimos el animate para incluir la brújula
+// --- Lógica de Coordenadas ---
+const coordAlt = document.getElementById("coordAlt");
+const coordAz = document.getElementById("coordAz");
+
+function updateAstroCoords() {
+    if (!currentFocusedId || !coordAlt || !coordAz) return;
+
+    const data = constellationData.find(c => c.id === currentFocusedId);
+    if (!data) return;
+
+    const now = timeEngine.getCurrentDate();
+    const pos = equatorialToHorizontal(data.ra, data.dec, observerLat, observerLon, now);
+
+    coordAlt.textContent = `${pos.alt >= 0 ? "+" : ""}${pos.alt.toFixed(1)}°`;
+    coordAz.textContent = `${pos.az.toFixed(1)}°`;
+}
+
+// Sobrescribimos el animate para incluir brújula y coordenadas
 const originalAnimate = animate;
 animate = function () {
     originalAnimate();
     updateCompass();
+    updateAstroCoords();
 };
 
 animate();
