@@ -247,6 +247,26 @@ body {
     box-shadow: 0 0 8px rgba(255, 77, 77, 0.6);
 }
 
+/* ================= DAY/NIGHT INDICATOR ================= */
+.day-night-indicator {
+    margin-top: 10px;
+    align-self: flex-end;
+    margin-left: auto;
+    font-size: 22px;
+    line-height: 1;
+    text-align: center;
+    width: 64px;
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    transition: opacity 0.4s ease;
+    cursor: default;
+    user-select: none;
+}
+
 /* ================= SELECTOR DE UBICACIÓN ================= */
 .location-selector {
     position: fixed;

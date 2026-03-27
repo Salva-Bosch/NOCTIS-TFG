@@ -157,12 +157,21 @@ presetBtns.forEach(btn => {
     });
 });
 
+// Indicador día/noche
+const dayNightEl = document.getElementById("dayNightIndicator");
+
+function updateDayNightIcon(date) {
+    const hour = date.getHours();
+    dayNightEl.textContent = (hour >= 7 && hour < 20) ? "☀️" : "🌙";
+}
+
 // Reloj en vivo
 function updateClock() {
     const d = timeEngine.getCurrentDate();
     if (d) {
         clockEl.textContent = fmtTime(d);
         dateEl.textContent = fmtDate(d);
+        updateDayNightIcon(d);
     }
     requestAnimationFrame(updateClock);
 }
