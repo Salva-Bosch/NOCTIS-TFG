@@ -50,16 +50,19 @@
     background-position: center;
     color: var(--white);
     font-family: 'Inter', sans-serif;
-
+    overflow-x: hidden;
 }
 
 /* ===== HEADER ===== */
 .profile-header {
-    height: 10vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 92px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     background: rgba(255, 255, 255, .06);
     backdrop-filter: blur(18px);
     z-index: 9999;
@@ -88,17 +91,16 @@
 
 /* ===== LAYOUT (FULL WIDTH, como Figma) ===== */
 .profile-layout {
-    width: 100vw;
-    height: auto;
-
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    gap: 50px;
-
-    padding-left: 2vw;
-    padding-right: 2vw;
-    margin-top: 10vh;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50vw; /* Keep right half for editor */
+    padding-top: 120px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
 }
 
 /* ===== LEFT CARD (azul sólido) ===== */
@@ -115,12 +117,12 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: top;
-    gap: 3vw;
+    justify-content: flex-start;
+    gap: 2rem;
 
-    padding: 92px 48px 48px; /* 92px = altura del header */
-    margin-top: 10vh;
+    padding: 140px 48px 48px; /* 92px header + offset */
     z-index: 1;
+    box-sizing: border-box;
 }
 
 
@@ -161,10 +163,12 @@
 .profile-editor {
     min-height: 560px;
     width: 100%;
+    max-width: 600px;
+    margin: 0 40px;
     
-    margin-left: 50vw;
     position: relative;
     padding: 34px 40px 42px;
+    box-sizing: border-box;
 
     background: rgba(255, 255, 255, .06);
     backdrop-filter: blur(18px);
