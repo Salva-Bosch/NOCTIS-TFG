@@ -42,6 +42,23 @@
                 </div>
 
             </div>
+
+            <!-- Menú hamburguesa mobile -->
+            <div class="nav-mobile">
+                <div class="nav-logo">
+                    <img src="/assets/branding/logo/noctis-logo.webp" alt="Logo Noctis">
+                    <span>NOCTIS</span>
+                </div>
+                <button class="hamburger-btn" aria-label="Abrir menú">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+            <div class="nav-dropdown">
+                <a href="./sistema-solar.html" class="nav-link">Sistema Solar</a>
+                <a href="#" class="nav-link active">Eclipses</a>
+                <a href="./constelaciones.html" class="nav-link">Constelaciones</a>
+                <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+            </div>
         </nav>
     </header>
 
@@ -250,6 +267,14 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Hamburguesa mobile
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        const navDropdown = document.querySelector('.nav-dropdown');
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('is-open');
+            navDropdown.classList.toggle('is-open');
+        });
     </script>
 
 </body>
