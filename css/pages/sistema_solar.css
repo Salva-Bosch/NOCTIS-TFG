@@ -500,7 +500,7 @@ body {
     }
 
     .live-btn {
-        bottom: calc(70px + 90px) !important;
+        bottom: calc(70px + 100px) !important;
         left: 16px !important;
     }
 
@@ -518,8 +518,22 @@ body {
     }
 
     .search-bar-container {
-        width: calc(100% - 44px);
-        top: 16px;
-        right: 22px;
+        width: calc(100% - 40px) !important;
+        top: 16px !important;
+        right: 20px !important;
+    }
+
+    /* Fix: Planet title overlapping search bar */
+    .selected-body-title {
+        margin-top: 80px !important;
+        font-size: 2rem !important;
+    }
+
+    /* Fix: Favorite card overlapping timebar */
+    .favorite-card {
+        bottom: calc(70px + 160px) !important;
+        width: calc(100% - 40px) !important;
+        left: 20px !important;
+        right: 20px !important;
     }
 }

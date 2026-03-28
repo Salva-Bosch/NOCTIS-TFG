@@ -856,13 +856,47 @@ body {
     background: rgba(139, 156, 255, 0.4);
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE - IMPROVED MOBILE SUPPORT
+   ============================================ */
+
 @media (max-width: 768px) {
+    /* Header more compact */
+    .map-header {
+        padding: 0.5rem 0 0.6rem 0 !important;
+        border-bottom-left-radius: 50% 12px;
+        border-bottom-right-radius: 50% 12px;
+    }
+
+    .map-header h1 {
+        font-size: 0.95rem !important;
+    }
+
+    .orbital-line {
+        width: 140px !important;
+    }
+
+    /* Info button ABOVE bottom nav */
     .info-button {
-        width: 48px;
-        height: 48px;
-        bottom: 1.5rem;
-        right: 1.5rem;
+        bottom: calc(70px + 20px) !important;
+        left: 20px !important;
+        width: 52px !important;
+        height: 52px !important;
+        z-index: 2000;
+    }
+
+    /* Location panel full width */
+    .location-panel {
+        width: 100% !important;
+        z-index: 3000;
+    }
+
+    .panel-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .panel-location-name {
+        font-size: 1.5rem;
     }
 
     .info-modal-content {
@@ -873,29 +907,9 @@ body {
         font-size: 1.6rem;
     }
 
-    .color-guide {
-        gap: 1.2rem;
-    }
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 768px) {
-    .map-header h1 {
-        font-size: 1.2rem;
-    }
-
-    .location-panel {
-        width: 100%;
-    }
-
-    .panel-content {
-        padding: 2rem 1.5rem;
-    }
-
-    .panel-location-name {
-        font-size: 1.5rem;
+    /* Adjust attribution for mobile nav */
+    .leaflet-control-attribution {
+        bottom: 80px !important;
+        margin-bottom: 0 !important;
     }
 }

@@ -723,7 +723,7 @@ body {
     }
 
     .live-btn {
-        bottom: calc(70px + 90px) !important; /* Above timebar */
+        bottom: calc(70px + 100px) !important; /* Slightly more gap above timebar */
         left: 16px !important;
     }
 
@@ -743,8 +743,20 @@ body {
 
     /* Adjust search bar for mobile */
     .search-bar-container {
-        width: calc(100% - 44px);
-        top: 16px;
-        right: 22px;
+        width: calc(100% - 40px) !important;
+        top: 16px !important;
+        right: 20px !important;
+        left: 20px !important;
+    }
+
+    /* Reposition location selector below search bar */
+    .location-selector {
+        top: 72px !important;
+        left: 20px !important;
+    }
+
+    /* Adjust compass/day-night position if needed */
+    .compass-wrapper {
+        margin-top: 12px;
     }
 }
