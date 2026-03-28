@@ -2,10 +2,23 @@
 LÓGICA DEL PROCESO DE AUTENTICACIÓN DE USUARIOS (LOGIN Y LOGOUT)
 */
 
-import { register, login } from "../core/auth_logic.js";
+import { register, login, loginWithGoogle } from "../core/auth_logic.js";
 
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
+
+// GOOGLE SIGN-IN (ambos botones: login y register)
+document.querySelectorAll(".google-btn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    try {
+      await loginWithGoogle();
+      window.location.replace("../../pages/app/home/home.html");
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+});
+
 
 // LOGIN
 loginForm.addEventListener("submit", async (e) => {

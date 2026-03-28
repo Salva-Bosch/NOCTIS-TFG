@@ -6,6 +6,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
@@ -49,4 +51,24 @@ export async function login(email, password) {
 // LOGOUT
 export async function logout() {
   await signOut(auth);
+}
+
+// GOOGLE SIGN-IN
+export async function loginWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
+  const user = result.user;
+
+  // Solo crear el documento en Firestore si es la primera vez
+  const isNew = result._tokenResponse?.isNewUser;
+  if (isNew) {
+    await setDoc(doc(db, "users", user.uid), {
+      name: user.displayName || "Usuario",
+      email: user.email,
+      photoURL: DEFAULT_AVATAR,
+      createdAt: serverTimestamp()
+    });
+  }
+
+  return user;
 }
