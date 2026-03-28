@@ -123,3 +123,39 @@ body::before {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, .4);
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .logo-text {
+        width: 60vw !important;
+    }
+
+    .logo-symbol {
+        width: 25vw !important;
+    }
+
+    .home-nav {
+        gap: 16px !important;
+        padding: 12px 16px !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 16px;
+        margin-top: 10px;
+    }
+
+    .home-nav img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .home-nav a:not(:last-child)::after {
+        right: -8px;
+    }
+
+    .home-avatar {
+        bottom: calc(70px + 20px) !important; /* Above bottom nav */
+        left: 20px !important;
+    }
+}

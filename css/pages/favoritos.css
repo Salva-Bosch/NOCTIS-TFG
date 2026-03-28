@@ -234,3 +234,37 @@
 .empty-state p {
     font-size: 18px;
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .favorites-page {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-bottom: 90px !important; /* Space for bottom nav */
+        padding-top: 12vh !important;
+    }
+
+    .favorites-header h1 {
+        font-size: 28px !important;
+    }
+
+    .favorites-list {
+        gap: 12px;
+    }
+
+    .favorite-item {
+        padding: 12px 14px;
+    }
+
+    .favorite-thumb {
+        width: 50px;
+        height: 50px;
+        margin-right: 14px;
+    }
+
+    .favorite-name {
+        font-size: 16px;
+    }
+}
