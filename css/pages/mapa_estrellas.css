@@ -759,4 +759,12 @@ body {
     .compass-wrapper {
         margin-top: 12px;
     }
+
+    /* Fix: Favorite card overlapping timebar */
+    .favorite-card {
+        bottom: calc(70px + 160px) !important;
+        width: calc(100% - 40px) !important;
+        left: 20px !important;
+        right: 20px !important;
+    }
 }
