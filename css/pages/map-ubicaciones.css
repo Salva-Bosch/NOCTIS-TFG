@@ -876,18 +876,20 @@ body {
         width: 120px !important;
     }
 
-    /* Info button - Pushed high enough to clear bottom nav and safe areas */
-    .info-button {
-        bottom: 130px !important;
+    /* Info button - High specificity ID selector + pushed even higher */
+    #infoBtn {
+        bottom: 160px !important;
         left: 20px !important;
         width: 52px !important;
         height: 52px !important;
         z-index: 2000 !important;
+        border: 2px solid #ff4d4d !important; /* DEBUG indicator */
+        display: flex !important;
     }
 
-    /* Attribution - Pushed up to verify media query is active */
+    /* Attribution - Pushed up further */
     .leaflet-control-attribution {
-        bottom: 85px !important;
+        bottom: 110px !important;
         background: rgba(18, 20, 35, 0.9) !important;
         z-index: 500 !important;
     }
