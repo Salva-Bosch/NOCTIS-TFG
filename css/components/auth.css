@@ -89,6 +89,29 @@
 }
 
 /* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .auth--register,
+    .auth--login {
+        flex-direction: column !important;
+    }
+
+    .auth__side::before {
+        transform: none !important; /* Keep original orientation of the image/circle */
+    }
+
+    .auth--login .auth__side::before,
+    .auth--register .auth__side::before {
+        transform: none !important;
+    }
+
+    .auth-divider {
+        margin: 1.5rem 0 1rem;
+    }
+}
+
+/* =========================
    DIVIDER GOOGLE (FONDO DIFUMINADO)
 ========================= */
 

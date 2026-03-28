@@ -185,6 +185,20 @@ function syncUI() {
     timeEngine.play();
     syncUI();
     updateClock();
+
+    // Mobile tap-to-expand logic
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        timebar.addEventListener("click", (e) => {
+            if (e.target.closest(".timebar-btn") || e.target.closest(".timebar-preset")) return;
+            timebar.classList.toggle("is-expanded");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!timebar.contains(e.target)) {
+                timebar.classList.remove("is-expanded");
+            }
+        });
+    }
 })();
 
 function getNearestStepIndex(scale) {

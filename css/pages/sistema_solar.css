@@ -488,3 +488,38 @@ body {
         transform: scale(1.1);
     }
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .timebar {
+        bottom: calc(70px + 16px) !important;
+        width: calc(100% - 32px) !important;
+        cursor: pointer;
+    }
+
+    .live-btn {
+        bottom: calc(70px + 90px) !important;
+        left: 16px !important;
+    }
+
+    .timebar .timebar-controls {
+        opacity: 0;
+        transform: translateY(6px);
+        pointer-events: none;
+        transition: opacity .18s ease-out, transform .18s ease-out;
+    }
+
+    .timebar.is-expanded .timebar-controls {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .search-bar-container {
+        width: calc(100% - 44px);
+        top: 16px;
+        right: 22px;
+    }
+}

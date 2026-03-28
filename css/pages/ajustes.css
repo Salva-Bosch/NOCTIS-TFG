@@ -352,3 +352,44 @@ input:checked+.slider:before {
     color: rgba(255, 255, 255, .7);
     text-align: center;
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .settings-layout {
+        flex-direction: column !important;
+        height: auto;
+        padding-bottom: 90px;
+    }
+
+    .settings-sidebar {
+        width: 100% !important;
+        padding: 24px 0;
+    }
+
+    .settings-nav {
+        padding: 0 20px;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .nav-item {
+        flex-shrink: 0;
+        padding: 10px 16px;
+    }
+
+    .settings-content {
+        padding: 20px 16px;
+    }
+
+    .glass-panel {
+        padding: 24px;
+        min-height: auto;
+    }
+
+    .settings-section h2 {
+        font-size: 24px;
+    }
+}

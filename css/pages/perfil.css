@@ -312,3 +312,61 @@
     font-size: 14px;
     color: rgba(255, 255, 255, .7);
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 28px !important;
+    }
+
+    .profile-layout {
+        flex-direction: column !important;
+        margin-top: 0;
+        padding-top: 20px;
+        padding-bottom: 100px; /* Space for bottom nav */
+        gap: 24px;
+    }
+
+    .profile-card {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 0 !important;
+        padding: 24px !important;
+        border-radius: 20px;
+    }
+
+    .profile-avatar img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-card h2 {
+        font-size: 28px;
+    }
+
+    .profile-editor {
+        margin-left: 0 !important;
+        padding: 24px !important;
+    }
+
+    .editor-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .editor-bottom {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .editor-bottom-left {
+        max-width: none;
+    }
+
+    .save {
+        width: 100%;
+    }
+}
