@@ -876,14 +876,13 @@ body {
         width: 120px !important;
     }
 
-    /* Info button - High specificity ID selector + pushed even higher */
+    /* Info button - High specificity ID selector + aligned with inline style */
     #infoBtn {
-        bottom: 160px !important;
+        bottom: 100px !important;
         left: 20px !important;
         width: 52px !important;
         height: 52px !important;
         z-index: 2000 !important;
-        border: 2px solid #ff4d4d !important; /* DEBUG indicator */
         display: flex !important;
     }
 

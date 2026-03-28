@@ -686,3 +686,123 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+/* =========================
+   RESPONSIVE – MOBILE (≤768px)
+========================= */
+
+@media (max-width: 768px) {
+    /* Hero */
+    .solar-hero__title {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+
+    .solar-hero__image img {
+        width: 100%;
+    }
+
+    /* Secciones: quitar padding lateral grande */
+    .solar-info,
+    .rocky-planets,
+    .gas-planets {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Card del Sol y planet slides */
+    .solar-info__container,
+    .planet-slide {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem 1.2rem;
+        gap: 2rem;
+    }
+
+    .solar-info__title {
+        font-size: 2rem;
+    }
+
+    .solar-info__intro {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .solar-info__data {
+        gap: 1.2rem;
+    }
+
+    .solar-info__data strong {
+        font-size: 0.95rem;
+    }
+
+    .solar-info__fact {
+        border-left: none;
+        border-top: 2px solid rgba(255, 180, 70, 0.7);
+        padding: 1rem 0 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .solar-info__image img {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    /* Planet slide image */
+    .planet-image img {
+        max-width: 220px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Slider min-height reducir */
+    .rocky-planets__slider,
+    .gas-planets__slider {
+        min-height: auto;
+    }
+
+    /* Títulos de secciones */
+    .rocky-planets__title,
+    .gas-planets__title {
+        font-size: 1.6rem;
+        padding: 0 20px;
+    }
+
+    /* Asteroid belt */
+    .asteroid-belt {
+        height: 300px;
+    }
+
+    .asteroid-text {
+        border-radius: 20px;
+        padding: 16px 20px;
+        width: 90%;
+    }
+
+    .asteroid-text h2 {
+        font-size: 1.3rem;
+    }
+
+    .asteroid-text p {
+        font-size: 0.85rem;
+    }
+
+    /* Carousel buttons */
+    .carousel-btn.prev {
+        display: none;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    /* Planet cards en carrusel horizontal */
+    .planet-card {
+        width: 160px;
+    }
+}
