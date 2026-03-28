@@ -876,9 +876,9 @@ body {
         width: 140px !important;
     }
 
-    /* Info button ABOVE bottom nav */
+    /* Info button ABOVE bottom nav - Pushed even higher to avoid conflict */
     .info-button {
-        bottom: calc(70px + 20px) !important;
+        bottom: calc(70px + 40px) !important;
         left: 20px !important;
         width: 52px !important;
         height: 52px !important;
