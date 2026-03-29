@@ -294,6 +294,72 @@ section {
 
     .def-image-placeholder {
         order: -1;
-        /* Image first on mobile */
+    }
+
+    .constellations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .constelaciones-hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+        letter-spacing: 0.05rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .glass-panel {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .def-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .def-content p {
+        font-size: 0.95rem;
+    }
+
+    .history-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .history-content p {
+        font-size: 0.95rem;
+    }
+
+    .section-heading {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .constellations-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .const-img-box {
+        height: 150px;
+    }
+
+    .const-info {
+        padding: 1rem;
+    }
+
+    .const-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .detail-item {
+        font-size: 0.8rem;
     }
 }
