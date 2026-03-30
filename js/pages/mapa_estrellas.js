@@ -15,6 +15,7 @@ import {
     equatorialToHorizontal
 } from "../core/celestial.js";
 import { initSearchBar } from "../core/logica_ui/search.ui.js";
+import { getLang } from "../core/i18n.js";
 import { auth, db } from "../core/firebase.js";
 import {
     doc, setDoc, deleteDoc, getDoc, serverTimestamp
@@ -277,7 +278,8 @@ function createConstellationLines() {
         center.y = (center.y / len) * SPHERE_RADIUS * 0.998;
         center.z = (center.z / len) * SPHERE_RADIUS * 0.998;
 
-        const label = createLabel(constellation.name);
+        const displayName = getLang() === 'en' ? (constellation.nameEn || constellation.name) : constellation.name;
+        const label = createLabel(displayName);
         label.position.set(center.x, center.y, center.z);
         label.scale.set(LABEL_SCALE, LABEL_SCALE * 0.25, 1);
         celestialSphere.add(label);
@@ -323,7 +325,7 @@ function createConstellationLines() {
         // Guardar datos para búsqueda y focus
         constellationData.push({
             id: constellation.id,
-            displayName: constellation.name,
+            displayName,
             abbr: constellation.abbr,
             center: new THREE.Vector3(center.x, center.y, center.z),
             ra: Math.atan2(-center.z, center.x) * (12 / Math.PI), // Convertir a horas

@@ -25,8 +25,8 @@
     <!-- HEADER -->
     <header class="map-header">
         <h1>
-            Mapa de Observación
-            <span class="highlight">Astronómica</span>
+            <span data-i18n="map.locations.title">Mapa de Observación</span>
+            <span class="highlight" data-i18n="map.locations.highlight">Astronómica</span>
         </h1>
         <div class="orbital-line"></div>
     </header>
@@ -209,9 +209,11 @@
     <script type="module">
         import { loadSideNav } from "/js/core/loadSideNav.js";
         import { requireSession } from "/js/guards/sessionGuard.js";
+        import { initI18n } from "/js/core/i18n.js";
 
         await requireSession();
         await loadSideNav();
+        await initI18n();
     </script>
 
     <!-- Leaflet JS -->

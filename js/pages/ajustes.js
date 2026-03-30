@@ -2,6 +2,7 @@
 
 import { auth, db } from "../core/firebase.js";
 import { requireSession } from "../guards/sessionGuard.js";
+import { initI18n, setLang, getLang } from "../core/i18n.js";
 import {
     doc,
     getDoc,
@@ -10,6 +11,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 async function initSettings() {
+    await initI18n();
     /* ELEMENTOS UI */
     const userAvatar = document.getElementById("userAvatar");
     const userName = document.getElementById("userName");
@@ -50,9 +52,11 @@ async function initSettings() {
     if (settingsSnap.exists()) {
         const settings = settingsSnap.data();
 
-        // Idiomas
+        // Idiomas — sincronizar con localStorage
         if (settings.language) {
-            document.querySelector(`input[name="language"][value="${settings.language}"]`).checked = true;
+            const savedInput = document.querySelector(`input[name="language"][value="${settings.language}"]`);
+            if (savedInput) savedInput.checked = true;
+            setLang(settings.language);
         }
 
         // Medidas
@@ -100,22 +104,29 @@ async function initSettings() {
                 updatedAt: serverTimestamp()
             }, { merge: true });
 
-            msgEl.textContent = "Cambios guardados correctamente";
+            const { getTranslations } = await import("../core/i18n.js");
+            const t = await getTranslations();
+            msgEl.textContent = t["settings.saved"] || "Cambios guardados correctamente";
             setTimeout(() => {
                 msgEl.textContent = "";
             }, 3000);
         } catch (error) {
             console.error("Error al guardar ajustes:", error);
-            msgEl.textContent = "Error al guardar los ajustes";
+            const { getTranslations } = await import("../core/i18n.js");
+            const t = await getTranslations();
+            msgEl.textContent = t["settings.error"] || "Error al guardar los ajustes";
             setTimeout(() => {
                 msgEl.textContent = "";
             }, 3000);
         }
     };
 
-    btnSaveIdiomas.addEventListener("click", () => {
+    btnSaveIdiomas.addEventListener("click", async () => {
         const selectedLang = document.querySelector('input[name="language"]:checked').value;
-        saveSettings({ language: selectedLang });
+        setLang(selectedLang);
+        await saveSettings({ language: selectedLang });
+        // Recargar para aplicar el nuevo idioma a toda la página
+        window.location.reload();
     });
 
     btnSaveMedidas.addEventListener("click", () => {

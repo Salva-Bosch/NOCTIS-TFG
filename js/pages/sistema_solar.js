@@ -11,34 +11,26 @@ import { ORBITS } from "../core/data/orbits.js";
 import { DISTANCE_SCALE, RADIUS_SCALE } from "../core/data/scales.js";
 import { initSearchBar } from "../core/logica_ui/search.ui.js";
 
-// Traducciones de los nombres de los astros a español
-const ASTRO_NAMES = {
-    sun: "Sol",
-    mercury: "Mercurio",
-    venus: "Venus",
-    earth: "Tierra",
-    mars: "Marte",
-    jupiter: "Júpiter",
-    saturn: "Saturno",
-    uranus: "Urano",
-    neptune: "Neptuno",
-    moon: "Luna",
-    phobos: "Fobos",
-    deimos: "Deimos",
-    io: "Ío",
-    europa: "Europa",
-    ganymede: "Ganímedes",
-    callisto: "Calisto",
-    titan: "Titán",
-    enceladus: "Encélado",
-    titania: "Titania",
-    oberon: "Oberón",
-    triton: "Tritón",
-    charon: "Caronte",
-    pluto: "Plutón",
-    eris: "Eris",
-    ceres: "Ceres"
+import { getLang } from "../core/i18n.js";
+
+// Nombres de los astros por idioma
+const ASTRO_NAMES_ES = {
+    sun: "Sol", mercury: "Mercurio", venus: "Venus", earth: "Tierra",
+    mars: "Marte", jupiter: "Júpiter", saturn: "Saturno", uranus: "Urano",
+    neptune: "Neptuno", moon: "Luna", phobos: "Fobos", deimos: "Deimos",
+    io: "Ío", europa: "Europa", ganymede: "Ganímedes", callisto: "Calisto",
+    titan: "Titán", enceladus: "Encélado", titania: "Titania", oberon: "Oberón",
+    triton: "Tritón", charon: "Caronte", pluto: "Plutón", eris: "Eris", ceres: "Ceres"
 };
+const ASTRO_NAMES_EN = {
+    sun: "Sun", mercury: "Mercury", venus: "Venus", earth: "Earth",
+    mars: "Mars", jupiter: "Jupiter", saturn: "Saturn", uranus: "Uranus",
+    neptune: "Neptune", moon: "Moon", phobos: "Phobos", deimos: "Deimos",
+    io: "Io", europa: "Europa", ganymede: "Ganymede", callisto: "Callisto",
+    titan: "Titan", enceladus: "Enceladus", titania: "Titania", oberon: "Oberon",
+    triton: "Triton", charon: "Charon", pluto: "Pluto", eris: "Eris", ceres: "Ceres"
+};
+const ASTRO_NAMES = getLang() === 'en' ? ASTRO_NAMES_EN : ASTRO_NAMES_ES;
 
 import { auth, db } from "../core/firebase.js";
 import {
@@ -103,7 +95,7 @@ async function toggleFavorite(astroId) {
             await deleteDoc(favRef);
         } else {
             // Buscar datos del astro
-            const astroData = astros.find(a => a.id === astroId) || (astroId === "sun" ? { id: "sun", displayName: "Sol", isMoon: false } : null);
+            const astroData = astros.find(a => a.id === astroId) || (astroId === "sun" ? { id: "sun", displayName: ASTRO_NAMES.sun, isMoon: false } : null);
 
             if (!astroData) return;
 

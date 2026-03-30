@@ -31,14 +31,14 @@
   <div class="search-bar-container">
     <div class="search-input-wrapper">
       <img src="/assets/icons/nav/search.svg" alt="Search" class="search-icon">
-      <input type="text" id="searchInput" placeholder="Buscar constelación..." autocomplete="off">
+      <input type="text" id="searchInput" data-i18n-placeholder="map.stars.search" placeholder="Buscar constelación..." autocomplete="off">
     </div>
     <div class="search-results" id="searchResults">
       <!-- Los resultados se inyectan via JS -->
     </div>
 
     <!-- BRÚJULA -->
-    <div class="compass-wrapper" id="compassBtn" title="Redirigir al Norte">
+    <div class="compass-wrapper" id="compassBtn" data-i18n-title="map.stars.compass.title" title="Redirigir al Norte">
       <div class="compass-ring">
         <span class="cardinal north">N</span>
         <span class="cardinal east">E</span>
@@ -49,7 +49,7 @@
     </div>
 
     <!-- INDICADOR DÍA / NOCHE -->
-    <div class="day-night-indicator" id="dayNightIndicator" title="Indicador día/noche">🌙</div>
+    <div class="day-night-indicator" id="dayNightIndicator" data-i18n-title="map.stars.daynightTitle" title="Indicador día/noche">🌙</div>
   </div>
 
   <!-- ====== SELECTOR DE UBICACIÓN ====== -->
@@ -61,20 +61,20 @@
     </button>
 
     <div class="location-panel" id="locationPanel">
-      <div class="location-panel-title">Ubicación del observador</div>
+      <div class="location-panel-title" data-i18n="map.stars.location.title">Ubicación del observador</div>
       <div class="location-fields">
         <label>
-          <span>Latitud</span>
+          <span data-i18n="map.stars.location.lat">Latitud</span>
           <input type="number" id="latInput" value="39.47" step="0.01" min="-90" max="90">
         </label>
         <label>
-          <span>Longitud</span>
+          <span data-i18n="map.stars.location.lon">Longitud</span>
           <input type="number" id="lonInput" value="-0.38" step="0.01" min="-180" max="180">
         </label>
       </div>
       <div class="location-actions">
-        <button class="location-btn" id="locationGeoBtn">📍 Mi ubicación</button>
-        <button class="location-btn location-btn--apply" id="locationApplyBtn">Aplicar</button>
+        <button class="location-btn" id="locationGeoBtn" data-i18n="map.stars.location.myLoc">📍 Mi ubicación</button>
+        <button class="location-btn location-btn--apply" id="locationApplyBtn" data-i18n="map.stars.location.apply">Aplicar</button>
       </div>
     </div>
   </div>
@@ -132,8 +132,10 @@
   <script type="module">
     import { loadSideNav } from "/js/core/loadSideNav.js";
     import { requireSession } from "/js/guards/sessionGuard.js";
+    import { initI18n } from "/js/core/i18n.js";
     await requireSession();
     await loadSideNav();
+    await initI18n();
   </script>
 
   <!-- UI Timebar -->

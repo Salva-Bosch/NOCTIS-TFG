@@ -17,9 +17,9 @@
         <!-- HEADER -->
         <header class="profile-header">
             <a href="/pages/app/home/home.html" class="back-btn">
-                <img src="/assets/icons/ui/arrow.svg" alt="Volver">
+                <img src="/assets/icons/ui/arrow.svg" data-i18n-aria="common.back" alt="Volver">
             </a>
-            <h1>Perfil</h1>
+            <h1 data-i18n="profile.title">Perfil</h1>
         </header>
 
         <!-- CONTENEDOR PRINCIPAL -->
@@ -40,7 +40,7 @@
                 <div class="profile-card-bottom">
                     <button class="btn btn-primary pill">
                         <img src="/assets/icons/user/account.svg" alt="">
-                        Perfil
+                        <span data-i18n="profile.profileBtn">Perfil</span>
                     </button>
                 </div>
             </aside>
@@ -50,10 +50,10 @@
 
                 <!-- TOP ACTIONS -->
                 <div class="editor-actions">
-                    <button id="toggleAvatars" class="btn btn-outline pill">
+                    <button id="toggleAvatars" class="btn btn-outline pill" data-i18n="profile.changePhoto">
                         Cambiar foto
                     </button>
-                    <button id="btnLogout" class="btn btn-outline pill">
+                    <button id="btnLogout" class="btn btn-outline pill" data-i18n="profile.logout">
                         Cerrar Sesión
                     </button>
                 </div>
@@ -61,21 +61,15 @@
                 <!-- AVATAR PICKER -->
                 <div id="avatarPicker" class="avatar-picker" style="display:none;">
                     <img data-avatar="/assets/avatars/avatar-alien.webp" src="/assets/avatars/avatar-alien.webp" alt="">
-                    <img data-avatar="/assets/avatars/avatar-astronauta.webp" src="/assets/avatars/avatar-astronauta.webp"
-                        alt="">
-                    <img data-avatar="/assets/avatars/avatar-blackhole.webp" src="/assets/avatars/avatar-blackhole.webp"
-                        alt="">
-                    <img data-avatar="/assets/avatars/avatar-eclipse.webp" src="/assets/avatars/avatar-eclipse.webp"
-                        alt="">
-                    <img data-avatar="/assets/avatars/avatar-galaxia.webp" src="/assets/avatars/avatar-galaxia.webp"
-                        alt="">
+                    <img data-avatar="/assets/avatars/avatar-astronauta.webp" src="/assets/avatars/avatar-astronauta.webp" alt="">
+                    <img data-avatar="/assets/avatars/avatar-blackhole.webp" src="/assets/avatars/avatar-blackhole.webp" alt="">
+                    <img data-avatar="/assets/avatars/avatar-eclipse.webp" src="/assets/avatars/avatar-eclipse.webp" alt="">
+                    <img data-avatar="/assets/avatars/avatar-galaxia.webp" src="/assets/avatars/avatar-galaxia.webp" alt="">
                     <img data-avatar="/assets/avatars/avatar-luna.webp" src="/assets/avatars/avatar-luna.webp" alt="">
                     <img data-avatar="/assets/avatars/avatar-nave.webp" src="/assets/avatars/avatar-nave.webp" alt="">
-                    <img data-avatar="/assets/avatars/avatar-planeta.webp" src="/assets/avatars/avatar-planeta.webp"
-                        alt="">
-                    <img data-avatar="/assets/avatars/avatar-telescopio.webp" src="/assets/avatars/avatar-telescopio.webp"
-                        alt="">
-                    <button id="btnRemoveAvatar" class="btn btn-outline pill danger" style="grid-column: span 3; margin-top: 1rem;">
+                    <img data-avatar="/assets/avatars/avatar-planeta.webp" src="/assets/avatars/avatar-planeta.webp" alt="">
+                    <img data-avatar="/assets/avatars/avatar-telescopio.webp" src="/assets/avatars/avatar-telescopio.webp" alt="">
+                    <button id="btnRemoveAvatar" class="btn btn-outline pill danger" data-i18n="profile.deleteAvatar" style="grid-column: span 3; margin-top: 1rem;">
                         Eliminar avatar
                     </button>
                 </div>
@@ -83,35 +77,35 @@
                 <!-- FORM -->
                 <div class="editor-form">
                     <label>
-                        <span>Nombre</span>
+                        <span data-i18n="profile.name">Nombre</span>
                         <input id="inputName" class="input" type="text">
                     </label>
 
                     <label>
-                        <span>Correo electronico</span>
+                        <span data-i18n="profile.email">Correo electronico</span>
                         <input id="inputEmail" class="input" type="email">
                     </label>
 
                     <label>
-                        <span>Cuenta creada</span>
+                        <span data-i18n="profile.created">Cuenta creada</span>
                         <div id="created" class="readonly"></div>
                     </label>
                 </div>
 
                 <div class="divider"></div>
 
-                <!-- BOTTOM ACTIONS (como en Figma) -->
+                <!-- BOTTOM ACTIONS -->
                 <div class="editor-bottom">
                     <div class="editor-bottom-left">
-                        <button id="btnPassword" class="btn btn-outline pill">
+                        <button id="btnPassword" class="btn btn-outline pill" data-i18n="profile.changePassword">
                             Cambiar contraseña
                         </button>
-                        <button id="btnDelete" class="btn btn-outline pill danger">
+                        <button id="btnDelete" class="btn btn-outline pill danger" data-i18n="profile.deleteAccount">
                             Eliminar cuenta
                         </button>
                     </div>
 
-                    <button id="btnSave" class="btn btn-primary pill save">
+                    <button id="btnSave" class="btn btn-primary pill save" data-i18n="profile.save">
                         Guardar
                     </button>
                 </div>
@@ -123,6 +117,10 @@
 
     </main>
 
+    <script type="module">
+        import { initI18n } from '/js/core/i18n.js';
+        initI18n();
+    </script>
     <script type="module" src="/js/pages/perfil.js"></script>
 </body>
 

@@ -3,6 +3,7 @@
 // UI del control temporal (idéntica a sistema_solar.ui.js)
 import * as timeEngine from "../timeEngine.js";
 import { getSettings } from "../settingsManager.js";
+import { getLang } from "../i18n.js";
 
 const State = {
     REAL: "realtime",
@@ -78,16 +79,18 @@ function setBarStateFromScale(scale) {
         "timebar--rewind"
     );
 
+    const en = getLang() === 'en';
+
     if (scale === 0) {
         timebar.classList.add("timebar--paused");
-        statusEl.textContent = "PAUSADO";
+        statusEl.textContent = en ? "PAUSED" : "PAUSADO";
         btnPlayPause.textContent = "▶";
         return;
     }
 
     if (scale === 1) {
         timebar.classList.add("timebar--realtime");
-        statusEl.textContent = "TIEMPO REAL";
+        statusEl.textContent = en ? "REAL TIME" : "TIEMPO REAL";
         btnPlayPause.textContent = "⏸";
         return;
     }
@@ -105,13 +108,14 @@ function setBarStateFromScale(scale) {
 function formatRate(scale) {
     const s = Math.abs(scale);
     const sign = scale < 0 ? "-" : "+";
+    const en = getLang() === 'en';
 
-    if (s >= 31536000) return `${sign}1 AÑO / S`;
-    if (s >= 2592000) return `${sign}30 DÍAS / S`;
-    if (s >= 86400) return `${sign}1 DÍA / S`;
-    if (s >= 3600) return `${sign}1 HORA / S`;
-    if (s >= 60) return `${sign}1 MIN / S`;
-    return `${sign}${s} SEC / S`;
+    if (s >= 31536000) return `${sign}1 ${en ? "YEAR / S" : "AÑO / S"}`;
+    if (s >= 2592000)  return `${sign}30 ${en ? "DAYS / S" : "DÍAS / S"}`;
+    if (s >= 86400)    return `${sign}1 ${en ? "DAY / S" : "DÍA / S"}`;
+    if (s >= 3600)     return `${sign}1 ${en ? "HOUR / S" : "HORA / S"}`;
+    if (s >= 60)       return `${sign}1 ${en ? "MIN / S" : "MIN / S"}`;
+    return `${sign}${s} ${en ? "SEC / S" : "SEG / S"}`;
 }
 
 function setActivePreset(scale) {

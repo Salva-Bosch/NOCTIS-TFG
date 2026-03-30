@@ -6,6 +6,7 @@ export const CONSTELLATIONS = [
     {
         id: "orion",
         name: "Orión",
+        nameEn: "Orion",
         abbr: "Ori",
         stars: [
             { name: "Betelgeuse", ra: 5.919, dec: 7.407, mag: 0.42 },  // 0 - α Ori
@@ -41,6 +42,7 @@ export const CONSTELLATIONS = [
     {
         id: "ursa_major",
         name: "Osa Mayor",
+        nameEn: "Ursa Major",
         abbr: "UMa",
         stars: [
             { name: "Dubhe", ra: 11.062, dec: 61.751, mag: 1.79 },  // 0 - α UMa
@@ -58,6 +60,7 @@ export const CONSTELLATIONS = [
     {
         id: "ursa_minor",
         name: "Osa Menor",
+        nameEn: "Ursa Minor",
         abbr: "UMi",
         stars: [
             { name: "Polaris", ra: 2.530, dec: 89.264, mag: 1.98 },  // 0 - α UMi
@@ -75,6 +78,7 @@ export const CONSTELLATIONS = [
     {
         id: "cassiopeia",
         name: "Casiopea",
+        nameEn: "Cassiopeia",
         abbr: "Cas",
         stars: [
             { name: "Schedar", ra: 0.675, dec: 56.537, mag: 2.23 },  // 0 - α Cas
@@ -90,6 +94,7 @@ export const CONSTELLATIONS = [
     {
         id: "scorpius",
         name: "Escorpio",
+        nameEn: "Scorpius",
         abbr: "Sco",
         stars: [
             { name: "Antares", ra: 16.490, dec: -26.432, mag: 0.96 },  // 0 - α Sco
@@ -113,6 +118,7 @@ export const CONSTELLATIONS = [
     {
         id: "leo",
         name: "Leo",
+        nameEn: "Leo",
         abbr: "Leo",
         stars: [
             { name: "Regulus", ra: 10.139, dec: 11.967, mag: 1.35 },  // 0 - α Leo
@@ -135,6 +141,7 @@ export const CONSTELLATIONS = [
     {
         id: "cygnus",
         name: "Cisne",
+        nameEn: "Cygnus",
         abbr: "Cyg",
         stars: [
             { name: "Deneb", ra: 20.690, dec: 45.281, mag: 1.25 },  // 0 - α Cyg
@@ -151,6 +158,7 @@ export const CONSTELLATIONS = [
     {
         id: "lyra",
         name: "Lira",
+        nameEn: "Lyra",
         abbr: "Lyr",
         stars: [
             { name: "Vega", ra: 18.616, dec: 38.784, mag: 0.03 },    // 0 - α Lyr
@@ -167,6 +175,7 @@ export const CONSTELLATIONS = [
     {
         id: "aquila",
         name: "Águila",
+        nameEn: "Aquila",
         abbr: "Aql",
         stars: [
             { name: "Altair", ra: 19.846, dec: 8.868, mag: 0.77 },   // 0 - α Aql
@@ -185,6 +194,7 @@ export const CONSTELLATIONS = [
     {
         id: "gemini",
         name: "Géminis",
+        nameEn: "Gemini",
         abbr: "Gem",
         stars: [
             { name: "Castor", ra: 7.577, dec: 31.888, mag: 1.58 },  // 0 - α Gem
@@ -201,6 +211,7 @@ export const CONSTELLATIONS = [
     {
         id: "taurus",
         name: "Tauro",
+        nameEn: "Taurus",
         abbr: "Tau",
         stars: [
             { name: "Aldebaran", ra: 4.598, dec: 16.509, mag: 0.85 },  // 0 - α Tau
@@ -217,6 +228,7 @@ export const CONSTELLATIONS = [
     {
         id: "virgo",
         name: "Virgo",
+        nameEn: "Virgo",
         abbr: "Vir",
         stars: [
             { name: "Spica", ra: 13.420, dec: -11.161, mag: 0.97 },  // 0 - α Vir
@@ -233,6 +245,7 @@ export const CONSTELLATIONS = [
     {
         id: "aquarius",
         name: "Acuario",
+        nameEn: "Aquarius",
         abbr: "Aqr",
         stars: [
             { name: "Sadalsuud", ra: 21.526, dec: -5.571, mag: 2.91 },  // 0 - β Aqr
@@ -248,6 +261,7 @@ export const CONSTELLATIONS = [
     {
         id: "pisces",
         name: "Piscis",
+        nameEn: "Pisces",
         abbr: "Psc",
         stars: [
             { name: "Alrescha", ra: 2.034, dec: 2.764, mag: 3.82 },  // 0 - α Psc
@@ -263,6 +277,7 @@ export const CONSTELLATIONS = [
     {
         id: "aries",
         name: "Aries",
+        nameEn: "Aries",
         abbr: "Ari",
         stars: [
             { name: "Hamal", ra: 2.120, dec: 23.462, mag: 2.00 },  // 0 - α Ari
@@ -277,6 +292,7 @@ export const CONSTELLATIONS = [
     {
         id: "cancer",
         name: "Cáncer",
+        nameEn: "Cancer",
         abbr: "Cnc",
         stars: [
             { name: "Acubens", ra: 8.975, dec: 11.858, mag: 4.25 },  // 0 - α Cnc
@@ -292,6 +308,7 @@ export const CONSTELLATIONS = [
     {
         id: "capricornus",
         name: "Capricornio",
+        nameEn: "Capricornus",
         abbr: "Cap",
         stars: [
             { name: "Algedi", ra: 20.294, dec: -12.509, mag: 3.57 },  // 0 - α Cap
@@ -306,6 +323,7 @@ export const CONSTELLATIONS = [
     {
         id: "sagittarius",
         name: "Sagitario",
+        nameEn: "Sagittarius",
         abbr: "Sgr",
         stars: [
             { name: "Kaus Aust", ra: 18.403, dec: -34.384, mag: 1.85 },  // 0 - ε Sgr
@@ -324,6 +342,7 @@ export const CONSTELLATIONS = [
     {
         id: "libra",
         name: "Libra",
+        nameEn: "Libra",
         abbr: "Lib",
         stars: [
             { name: "Zubenelg", ra: 14.848, dec: -16.041, mag: 2.75 },  // 0 - α Lib
@@ -339,6 +358,7 @@ export const CONSTELLATIONS = [
     {
         id: "canis_major",
         name: "Can Mayor",
+        nameEn: "Canis Major",
         abbr: "CMa",
         stars: [
             { name: "Sirio", ra: 6.752, dec: -16.716, mag: -1.46 },  // 0 - α CMa
@@ -355,6 +375,7 @@ export const CONSTELLATIONS = [
     {
         id: "canis_minor",
         name: "Can Menor",
+        nameEn: "Canis Minor",
         abbr: "CMi",
         stars: [
             { name: "Procyon", ra: 7.655, dec: 5.225, mag: 0.34 },  // 0 - α CMi
@@ -367,6 +388,7 @@ export const CONSTELLATIONS = [
     {
         id: "andromeda",
         name: "Andrómeda",
+        nameEn: "Andromeda",
         abbr: "And",
         stars: [
             { name: "Alpheratz", ra: 0.140, dec: 29.091, mag: 2.06 },  // 0 - α And
@@ -381,6 +403,7 @@ export const CONSTELLATIONS = [
     {
         id: "perseus",
         name: "Perseo",
+        nameEn: "Perseus",
         abbr: "Per",
         stars: [
             { name: "Mirfak", ra: 3.405, dec: 49.861, mag: 1.80 },  // 0 - α Per
@@ -396,6 +419,7 @@ export const CONSTELLATIONS = [
     {
         id: "pegasus",
         name: "Pegaso",
+        nameEn: "Pegasus",
         abbr: "Peg",
         stars: [
             { name: "Markab", ra: 23.079, dec: 15.205, mag: 2.49 },  // 0 - α Peg
@@ -412,6 +436,7 @@ export const CONSTELLATIONS = [
     {
         id: "corona_borealis",
         name: "Corona Boreal",
+        nameEn: "Corona Borealis",
         abbr: "CrB",
         stars: [
             { name: "Alphecca", ra: 15.578, dec: 26.715, mag: 2.23 },  // 0 - α CrB
@@ -428,6 +453,7 @@ export const CONSTELLATIONS = [
     {
         id: "bootes",
         name: "Boyero",
+        nameEn: "Boötes",
         abbr: "Boo",
         stars: [
             { name: "Arcturus", ra: 14.261, dec: 19.182, mag: -0.05 },  // 0 - α Boo
@@ -444,6 +470,7 @@ export const CONSTELLATIONS = [
     {
         id: "hercules",
         name: "Hércules",
+        nameEn: "Hercules",
         abbr: "Her",
         stars: [
             { name: "Kornephoros", ra: 16.504, dec: 21.490, mag: 2.77 },  // 0 - β Her
@@ -460,6 +487,7 @@ export const CONSTELLATIONS = [
     {
         id: "auriga",
         name: "Auriga",
+        nameEn: "Auriga",
         abbr: "Aur",
         stars: [
             { name: "Capella", ra: 5.278, dec: 45.998, mag: 0.08 },  // 0 - α Aur
@@ -475,6 +503,7 @@ export const CONSTELLATIONS = [
     {
         id: "crux",
         name: "Cruz del Sur",
+        nameEn: "Southern Cross",
         abbr: "Cru",
         stars: [
             { name: "Acrux", ra: 12.443, dec: -63.099, mag: 0.76 },  // 0 - α Cru
@@ -489,6 +518,7 @@ export const CONSTELLATIONS = [
     {
         id: "centaurus",
         name: "Centauro",
+        nameEn: "Centaurus",
         abbr: "Cen",
         stars: [
             { name: "Rigil Kent", ra: 14.660, dec: -60.835, mag: -0.01 },  // 0 - α Cen

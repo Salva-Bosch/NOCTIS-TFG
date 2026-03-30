@@ -27,8 +27,8 @@
             <div class="nav-items">
 
                 <div class="nav-left">
-                    <a href="./sistema-solar.html" class="nav-link">Sistema Solar</a>
-                    <a href="./eclipses.html" class="nav-link">Eclipses</a>
+                    <a href="./sistema-solar.html" class="nav-link" data-i18n="lab.nav.solar">Sistema Solar</a>
+                    <a href="./eclipses.html" class="nav-link" data-i18n="lab.nav.eclipses">Eclipses</a>
                 </div>
 
                 <div class="nav-logo">
@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="nav-right">
-                    <a href="#" class="nav-link active">Constelaciones</a>
-                    <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+                    <a href="#" class="nav-link active" data-i18n="lab.nav.constellations">Constelaciones</a>
+                    <a href="./eventos.html" class="nav-link" data-i18n="lab.nav.events">Eventos astronómicos</a>
                 </div>
 
             </div>
@@ -54,10 +54,10 @@
                 </button>
             </div>
             <div class="nav-dropdown">
-                <a href="./sistema-solar.html" class="nav-link">Sistema Solar</a>
-                <a href="./eclipses.html" class="nav-link">Eclipses</a>
-                <a href="#" class="nav-link active">Constelaciones</a>
-                <a href="./eventos.html" class="nav-link">Eventos astronómicos</a>
+                <a href="./sistema-solar.html" class="nav-link" data-i18n="lab.nav.solar">Sistema Solar</a>
+                <a href="./eclipses.html" class="nav-link" data-i18n="lab.nav.eclipses">Eclipses</a>
+                <a href="#" class="nav-link active" data-i18n="lab.nav.constellations">Constelaciones</a>
+                <a href="./eventos.html" class="nav-link" data-i18n="lab.nav.events">Eventos astronómicos</a>
             </div>
         </nav>
     </header>
@@ -70,8 +70,8 @@
 
         <!-- HERO -->
         <section class="constelaciones-hero reveal">
-            <h1 class="hero-title">Constelaciones</h1>
-            <p class="hero-subtitle">
+            <h1 class="hero-title" data-i18n="lab.const.hero.title">Constelaciones</h1>
+            <p class="hero-subtitle" data-i18n="lab.const.hero.subtitle">
                 Mapas en el cielo. Historias trazadas en luz que han guiado a la humanidad durante milenios.
             </p>
         </section>
@@ -80,8 +80,8 @@
         <section class="definition-section reveal">
             <div class="glass-panel">
                 <div class="def-content">
-                    <h2>¿Qué es una constelación?</h2>
-                    <p>
+                    <h2 data-i18n="lab.const.def.title">¿Qué es una constelación?</h2>
+                    <p data-i18n-html="lab.const.def.body">
                         Históricamente, una constelación era un patrón visual formado por estrellas que recordaba a una
                         figura mitológica, animal u objeto.
                         <br><br>
@@ -99,8 +99,8 @@
         <!-- HISTORIA -->
         <section class="history-section reveal">
             <div class="history-content">
-                <h2>El Legado de las Estrellas</h2>
-                <p>
+                <h2 data-i18n="lab.const.history.title">El Legado de las Estrellas</h2>
+                <p data-i18n="lab.const.history.body">
                     Desde la antigua Mesopotamia hasta Grecia, pasando por los navegantes polinesios y los astrónomos
                     árabes.
                     Nuestras constelaciones actuales son un tapiz de mitos griegos (como Orión y Casiopea) y
@@ -112,7 +112,7 @@
 
         <!-- GRID DE CONSTELACIONES -->
         <section class="constellations-grid-section">
-            <h2 class="section-heading reveal">Constelaciones Destacadas</h2>
+            <h2 class="section-heading reveal" data-i18n="lab.const.grid.title">Constelaciones Destacadas</h2>
 
             <div class="constellations-grid">
 
@@ -122,20 +122,20 @@
                         <img src="../../../assets/illustrations/constelaciones/orion.jpg" alt="Constelación de Orión">
                     </div>
                     <div class="const-info">
-                        <h3>Orión</h3>
-                        <p class="const-desc">El Cazador. Una de las más reconocibles por su "cinturón".</p>
+                        <h3 data-i18n="lab.const.orion.name">Orión</h3>
+                        <p class="const-desc" data-i18n="lab.const.orion.desc">El Cazador. Una de las más reconocibles por su "cinturón".</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Betelgeuse, Rigel, Bellatrix</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.orion.stars">Betelgeuse, Rigel, Bellatrix</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Invierno (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.orion.season">Invierno (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Ambos hemisferios</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.orion.visible">Ambos hemisferios</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=orion" class="btn-view-map">
@@ -143,7 +143,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -155,20 +155,20 @@
                             alt="Constelación Osa Mayor">
                     </div>
                     <div class="const-info">
-                        <h3>Osa Mayor</h3>
-                        <p class="const-desc">Ursa Major. Contiene el famoso "Carro" o "Cazo".</p>
+                        <h3 data-i18n="lab.const.ursamajor.name">Osa Mayor</h3>
+                        <p class="const-desc" data-i18n="lab.const.ursamajor.desc">Ursa Major. Contiene el famoso "Carro" o "Cazo".</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Dubhe, Merak</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.ursamajor.stars">Dubhe, Merak</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Primavera (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.ursamajor.season">Primavera (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Hemisferio Norte</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.ursamajor.visible">Hemisferio Norte</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=ursa_major" class="btn-view-map">
@@ -176,7 +176,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -188,20 +188,20 @@
                             alt="Constelación Osa Menor">
                     </div>
                     <div class="const-info">
-                        <h3>Osa Menor</h3>
-                        <p class="const-desc">Ursa Minor. Hogar de Polaris, la Estrella del Norte.</p>
+                        <h3 data-i18n="lab.const.ursaminor.name">Osa Menor</h3>
+                        <p class="const-desc" data-i18n="lab.const.ursaminor.desc">Ursa Minor. Hogar de Polaris, la Estrella del Norte.</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Polaris</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.ursaminor.stars">Polaris</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Todo el año (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.ursaminor.season">Todo el año (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Hemisferio Norte</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.ursaminor.visible">Hemisferio Norte</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=ursa_minor" class="btn-view-map">
@@ -209,7 +209,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -221,20 +221,20 @@
                             alt="Constelación Escorpio">
                     </div>
                     <div class="const-info">
-                        <h3>Escorpio</h3>
-                        <p class="const-desc">Scorpius. Se asemeja claramente a un escorpión real.</p>
+                        <h3 data-i18n="lab.const.scorpius.name">Escorpio</h3>
+                        <p class="const-desc" data-i18n="lab.const.scorpius.desc">Scorpius. Se asemeja claramente a un escorpión real.</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Antares</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.scorpius.stars">Antares</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Verano (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.scorpius.season">Verano (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Princip. Sur</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.scorpius.visible">Princip. Sur</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=scorpius" class="btn-view-map">
@@ -242,7 +242,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -254,20 +254,20 @@
                             alt="Constelación Casiopea">
                     </div>
                     <div class="const-info">
-                        <h3>Casiopea</h3>
-                        <p class="const-desc">La Reina. Famosa por su forma de "W" o "M".</p>
+                        <h3 data-i18n="lab.const.cassiopeia.name">Casiopea</h3>
+                        <p class="const-desc" data-i18n="lab.const.cassiopeia.desc">La Reina. Famosa por su forma de "W" o "M".</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Schedar, Caph</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.cassiopeia.stars">Schedar, Caph</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Otoño (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.cassiopeia.season">Otoño (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Hemisferio Norte</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.cassiopeia.visible">Hemisferio Norte</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=cassiopeia" class="btn-view-map">
@@ -275,7 +275,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -287,20 +287,20 @@
                             alt="Constelación Cruz del Sur">
                     </div>
                     <div class="const-info">
-                        <h3>Cruz del Sur</h3>
-                        <p class="const-desc">Crux. La más pequeña de las 88, vital para la navegación austral.</p>
+                        <h3 data-i18n="lab.const.crux.name">Cruz del Sur</h3>
+                        <p class="const-desc" data-i18n="lab.const.crux.desc">Crux. La más pequeña de las 88, vital para la navegación austral.</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Acrux, Mimosa</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.crux.stars">Acrux, Mimosa</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Primavera (HS)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.crux.season">Primavera (HS)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Hemisferio Sur</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.crux.visible">Hemisferio Sur</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=crux" class="btn-view-map">
@@ -308,7 +308,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -320,20 +320,20 @@
                             alt="Constelación Andrómeda">
                     </div>
                     <div class="const-info">
-                        <h3>Andrómeda</h3>
-                        <p class="const-desc">Contiene a la galaxia espiral más cercana a la Vía Láctea.</p>
+                        <h3 data-i18n="lab.const.andromeda.name">Andrómeda</h3>
+                        <p class="const-desc" data-i18n="lab.const.andromeda.desc">Contiene a la galaxia espiral más cercana a la Vía Láctea.</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Alpheratz, Mirach</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.andromeda.stars">Alpheratz, Mirach</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Otoño (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.andromeda.season">Otoño (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Ambos (N)</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.andromeda.visible">Ambos (N)</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=andromeda" class="btn-view-map">
@@ -341,7 +341,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -352,20 +352,20 @@
                         <img src="../../../assets/illustrations/constelaciones/leo.jpg" alt="Constelación Leo">
                     </div>
                     <div class="const-info">
-                        <h3>Leo</h3>
-                        <p class="const-desc">El León. Una de las constelaciones del zodiaco más fáciles de ver.</p>
+                        <h3 data-i18n="lab.const.leo.name">Leo</h3>
+                        <p class="const-desc" data-i18n="lab.const.leo.desc">El León. Una de las constelaciones del zodiaco más fáciles de ver.</p>
                         <div class="const-details">
                             <div class="detail-item">
-                                <span class="label">Estrellas:</span>
-                                <span class="value">Regulus, Denebola</span>
+                                <span class="label" data-i18n="lab.const.card.stars">Estrellas:</span>
+                                <span class="value" data-i18n="lab.const.leo.stars">Regulus, Denebola</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Mejor época:</span>
-                                <span class="value">Primavera (HN)</span>
+                                <span class="label" data-i18n="lab.const.card.season">Mejor época:</span>
+                                <span class="value" data-i18n="lab.const.leo.season">Primavera (HN)</span>
                             </div>
                             <div class="detail-item">
-                                <span class="label">Visible:</span>
-                                <span class="value">Ambos Hemisferios</span>
+                                <span class="label" data-i18n="lab.const.card.visible">Visible:</span>
+                                <span class="value" data-i18n="lab.const.leo.visible">Ambos Hemisferios</span>
                             </div>
                         </div>
                         <a href="../map/mapa-estrellas/mapa_estrellas.html?focus=leo" class="btn-view-map">
@@ -373,7 +373,7 @@
                                 <path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
-                            Ver en Mapa
+                            <span data-i18n="common.viewMap">Ver en Mapa</span>
                         </a>
                     </div>
                 </div>
@@ -387,9 +387,11 @@
     <script type="module">
         import { loadSideNav } from "/js/core/loadSideNav.js";
         import { requireSession } from "/js/guards/sessionGuard.js";
+        import { initI18n } from "/js/core/i18n.js";
 
         await requireSession();
         await loadSideNav();
+        await initI18n();
 
         // Reveal animation script
         const observer = new IntersectionObserver((entries) => {
