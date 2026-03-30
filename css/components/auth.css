@@ -93,17 +93,28 @@
 }
 
 /* =========================
-   LAYOUT DINÁMICO LOGIN / REGISTER
+   LAYOUT DINÁMICO LOGIN / REGISTER (ANIMACIÓN DESKTOP)
 ========================= */
 
-/* REGISTER → form izquierda, side derecha */
-.auth--register {
-    flex-direction: row;
+.auth__form, .auth__side {
+    transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* LOGIN → side izquierda, form derecha */
-.auth--login {
-    flex-direction: row-reverse;
+/* REGISTER → form izquierda, side derecha (ESTADO POR DEFECTO) */
+.auth--register .auth__form {
+    transform: translateX(0);
+}
+.auth--register .auth__side {
+    transform: translateX(0);
+}
+
+/* LOGIN → side izquierda, form derecha (CRUZAN SUS POSICIONES) */
+.auth--login .auth__form {
+    transform: translateX(100%);
+}
+
+.auth--login .auth__side {
+    transform: translateX(-100%);
 }
 
 /* =========================
@@ -114,6 +125,12 @@
     .auth--register,
     .auth--login {
         flex-direction: column !important;
+    }
+
+    .auth__form,
+    .auth__side {
+        transform: none !important;
+        transition: none !important;
     }
 
     .auth__side::before {
