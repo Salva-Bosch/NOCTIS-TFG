@@ -29,7 +29,7 @@ body {
 .navbar {
     position: fixed;
     width: 100%;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(10px);
     z-index: 100;
 }
@@ -135,11 +135,9 @@ body {
     font-size: 80px;
     font-weight: 700;
 
-    background: linear-gradient(
-        to right,
-        var(--white) 20%,
-        var(--bg-dark) 120%
-    );
+    background: linear-gradient(to right,
+            var(--white) 20%,
+            var(--bg-dark) 120%);
 
     -webkit-background-clip: text;
     background-clip: text;
@@ -211,20 +209,25 @@ body {
 }
 
 .about-description p {
-    line-height: 1.5;          /* más interlineado */
-    margin-bottom: 10px;       /* separación entre párrafos */
+    line-height: 1.5;
+    /* más interlineado */
+    margin-bottom: 10px;
+    /* separación entre párrafos */
     font-size: 14px;
     opacity: 0.9;
 }
 
 .about-description ul {
-    margin: 20px 0 24px 30px;  /* 🔑 más sangría hacia dentro */
+    margin: 20px 0 24px 30px;
+    /* 🔑 más sangría hacia dentro */
     padding-left: 20px;
 }
 
 .about-description li {
-    line-height: 1.8;          /* interlineado de cada punto */
-    margin-bottom: 10px;       /* separación entre li */
+    line-height: 1.8;
+    /* interlineado de cada punto */
+    margin-bottom: 10px;
+    /* separación entre li */
     font-size: 14px;
     opacity: 0.9;
 }
@@ -261,6 +264,7 @@ body {
 .feature-card img {
     width: 48px;
 }
+
 /* =========================
    FOOTER
 ========================= */
@@ -277,7 +281,7 @@ body {
     align-items: start;
     padding: 100px 0 60px;
     gap: 80px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* COLUMNAS */
@@ -323,7 +327,7 @@ body {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -358,7 +362,7 @@ body {
     align-items: center;
     gap: 14px;
     padding: 16px 18px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 14px;
 }
 
