@@ -59,7 +59,7 @@
 }
 
 /* Contenido por encima */
-.auth__side > * {
+.auth__side>* {
     position: relative;
     z-index: 1;
 }
@@ -92,13 +92,15 @@
    RESPONSIVE – MOBILE (≤768px)
 ========================= */
 @media (max-width: 768px) {
+
     .auth--register,
     .auth--login {
         flex-direction: column !important;
     }
 
     .auth__side::before {
-        transform: none !important; /* Keep original orientation of the image/circle */
+        transform: none !important;
+        /* Keep original orientation of the image/circle */
     }
 
     .auth--login .auth__side::before,

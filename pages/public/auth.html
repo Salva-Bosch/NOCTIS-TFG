@@ -19,6 +19,15 @@
         <!-- FORM -->
         <section class="auth__form">
 
+            <!-- MOBILE HEADER (TABS) -->
+            <div class="auth-mobile-header" aria-hidden="true">
+                <img src="../../assets/branding/logo/noctis-logo.webp" alt="Noctis" class="mobile-logo">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-target="login" type="button" data-i18n="auth.mobile.tab_login" aria-label="Tab Iniciar Sesión">Iniciar sesión</button>
+                    <button class="tab-btn" data-target="register" type="button" data-i18n="auth.mobile.tab_register" aria-label="Tab Registro">Registrarse</button>
+                </div>
+            </div>
+
             <!-- LOGIN -->
             <div class="auth-panel auth-panel--login active">
                 <h1 data-i18n="auth.login.title">Iniciar sesión</h1>
@@ -27,13 +36,15 @@
                     <div class="input-group has-icon">
                         <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
                         <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
-                        <input type="email" data-i18n-placeholder="auth.login.email" placeholder="Correo electrónico" required>
+                        <input type="email" data-i18n-placeholder="auth.login.email" placeholder="Correo electrónico"
+                            required>
                     </div>
 
                     <div class="input-group has-icon">
                         <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
                         <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
-                        <input type="password" data-i18n-placeholder="auth.login.password" placeholder="Contraseña" required>
+                        <input type="password" data-i18n-placeholder="auth.login.password" placeholder="Contraseña"
+                            required>
                     </div>
 
                     <button type="submit" data-i18n="auth.login.btn">Login</button>
@@ -63,13 +74,15 @@
                     <div class="input-group has-icon">
                         <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
                         <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
-                        <input type="email" data-i18n-placeholder="auth.register.email" placeholder="Correo electrónico" required>
+                        <input type="email" data-i18n-placeholder="auth.register.email" placeholder="Correo electrónico"
+                            required>
                     </div>
 
                     <div class="input-group has-icon">
                         <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
                         <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
-                        <input type="password" data-i18n-placeholder="auth.register.password" placeholder="Contraseña" required>
+                        <input type="password" data-i18n-placeholder="auth.register.password" placeholder="Contraseña"
+                            required>
                     </div>
 
                     <button type="submit" data-i18n="auth.register.btn">Crear cuenta</button>

@@ -9,10 +9,9 @@ const sideText = document.getElementById("side-text");
 
 let isLogin = true;
 
-toggleBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    isLogin = !isLogin;
+function setAuthMode(toLogin) {
+    if (isLogin === toLogin) return; // evita la doble animación
+    isLogin = toLogin;
 
     // Animación de formularios
     loginPanel.classList.toggle("active", isLogin);
@@ -22,7 +21,7 @@ toggleBtn.addEventListener("click", (e) => {
     auth.classList.toggle("auth--login", isLogin);
     auth.classList.toggle("auth--register", !isLogin);
 
-    // Textos del side
+    // Textos del side (desktop)
     if (isLogin) {
         sideTitle.textContent = "¡Hola!";
         sideText.textContent = "Crea tu cuenta";
@@ -32,4 +31,22 @@ toggleBtn.addEventListener("click", (e) => {
         sideText.textContent = "Inicia sesión con tu cuenta";
         toggleBtn.textContent = "Iniciar sesión";
     }
+
+    // Actualizar tabs móviles
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === (isLogin ? 'login' : 'register'));
+    });
+}
+
+toggleBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    setAuthMode(!isLogin);
+});
+
+// Eventos de tabs (móvil)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        setAuthMode(btn.dataset.target === 'login');
+    });
 });
