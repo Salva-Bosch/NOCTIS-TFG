@@ -21,6 +21,53 @@ body::before {
 }
 
 /* =========================
+   VOLVER AL INICIO
+========================= */
+
+.home-back-btn {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    z-index: 10;
+}
+
+.home-back-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.home-back-btn img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.home-back-btn:hover img {
+    transform: translateX(-4px);
+}
+
+/* =========================
    CENTRO
 ========================= */
 
@@ -157,5 +204,18 @@ body::before {
     .home-avatar {
         bottom: calc(70px + 20px) !important; /* Above bottom nav */
         left: 20px !important;
+    }
+
+    .home-back-btn {
+        top: 20px;
+        left: 20px;
+        padding: 8px 14px;
+        font-size: 13px;
+        border-radius: 16px;
+    }
+
+    .home-back-btn img {
+        width: 18px;
+        height: 18px;
     }
 }
