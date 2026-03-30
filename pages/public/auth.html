@@ -28,74 +28,76 @@
                 </div>
             </div>
 
-            <!-- LOGIN -->
-            <div class="auth-panel auth-panel--login active">
-                <h1 data-i18n="auth.login.title">Iniciar sesión</h1>
+            <div class="auth-panels-wrapper">
+                <!-- LOGIN -->
+                <div class="auth-panel auth-panel--login active">
+                    <h1 data-i18n="auth.login.title">Iniciar sesión</h1>
 
-                <form id="login-form">
-                    <div class="input-group has-icon">
-                        <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
-                        <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
-                        <input type="email" data-i18n-placeholder="auth.login.email" placeholder="Correo electrónico"
-                            required>
+                    <form id="login-form">
+                        <div class="input-group has-icon">
+                            <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
+                            <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
+                            <input type="email" data-i18n-placeholder="auth.login.email" placeholder="Correo electrónico"
+                                required>
+                        </div>
+
+                        <div class="input-group has-icon">
+                            <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
+                            <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
+                            <input type="password" data-i18n-placeholder="auth.login.password" placeholder="Contraseña"
+                                required>
+                        </div>
+
+                        <button type="submit" data-i18n="auth.login.btn">Login</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span data-i18n="auth.login.google">O accede con Google</span>
                     </div>
 
-                    <div class="input-group has-icon">
-                        <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
-                        <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
-                        <input type="password" data-i18n-placeholder="auth.login.password" placeholder="Contraseña"
-                            required>
-                    </div>
+                    <button class="google-btn" type="button" aria-label="Acceder con Google">
+                        <img src="../../assets/social/networks/google.svg" alt="Google">
+                    </button>
 
-                    <button type="submit" data-i18n="auth.login.btn">Login</button>
-                </form>
-
-                <div class="auth-divider">
-                    <span data-i18n="auth.login.google">O accede con Google</span>
                 </div>
 
-                <button class="google-btn" type="button" aria-label="Acceder con Google">
-                    <img src="../../assets/social/networks/google.svg" alt="Google">
-                </button>
+                <!-- REGISTER -->
+                <div class="auth-panel auth-panel--register">
+                    <h1 data-i18n="auth.register.title">Regístrate</h1>
 
-            </div>
+                    <form id="register-form">
+                        <div class="input-group has-icon">
+                            <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
+                            <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
+                            <input type="text" data-i18n-placeholder="auth.register.name" placeholder="Nombre" required>
+                        </div>
 
-            <!-- REGISTER -->
-            <div class="auth-panel auth-panel--register">
-                <h1 data-i18n="auth.register.title">Regístrate</h1>
+                        <div class="input-group has-icon">
+                            <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
+                            <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
+                            <input type="email" data-i18n-placeholder="auth.register.email" placeholder="Correo electrónico"
+                                required>
+                        </div>
 
-                <form id="register-form">
-                    <div class="input-group has-icon">
-                        <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
-                        <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
-                        <input type="text" data-i18n-placeholder="auth.register.name" placeholder="Nombre" required>
+                        <div class="input-group has-icon">
+                            <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
+                            <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
+                            <input type="password" data-i18n-placeholder="auth.register.password" placeholder="Contraseña"
+                                required>
+                        </div>
+
+                        <button type="submit" data-i18n="auth.register.btn">Crear cuenta</button>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span data-i18n="auth.register.google">O accede con Google</span>
                     </div>
 
-                    <div class="input-group has-icon">
-                        <img src="../../assets/icons/auth/user.svg" class="input-icon icon-default" alt="">
-                        <img src="../../assets/icons/auth/user-active.svg" class="input-icon icon-active" alt="">
-                        <input type="email" data-i18n-placeholder="auth.register.email" placeholder="Correo electrónico"
-                            required>
-                    </div>
+                    <button class="google-btn" type="button" aria-label="Acceder con Google">
+                        <img src="../../assets/social/networks/google.svg" alt="Google">
+                    </button>
 
-                    <div class="input-group has-icon">
-                        <img src="../../assets/icons/auth/lock.svg" class="input-icon icon-default" alt="">
-                        <img src="../../assets/icons/auth/lock-active.svg" class="input-icon icon-active" alt="">
-                        <input type="password" data-i18n-placeholder="auth.register.password" placeholder="Contraseña"
-                            required>
-                    </div>
-
-                    <button type="submit" data-i18n="auth.register.btn">Crear cuenta</button>
-                </form>
-
-                <div class="auth-divider">
-                    <span data-i18n="auth.register.google">O accede con Google</span>
                 </div>
-
-                <button class="google-btn" type="button" aria-label="Acceder con Google">
-                    <img src="../../assets/social/networks/google.svg" alt="Google">
-                </button>
-
             </div>
 
         </section>

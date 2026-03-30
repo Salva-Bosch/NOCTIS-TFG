@@ -18,23 +18,41 @@
 
 .auth__form {
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; Removed to allow dynamic sizing if needed, grid handles it mostly */
+}
+
+.auth-panels-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
 }
 
 .auth-panel {
-    position: absolute;
-    inset: 0;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    
     opacity: 0;
-    transform: translateX(40px);
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
 }
 
 .auth-panel.active {
     opacity: 1;
-    transform: translateX(0);
+    visibility: visible;
     pointer-events: all;
-    position: relative;
+    transform: translateX(0);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+}
+
+.auth-panel--login {
+    transform: translateX(-30px);
+}
+
+.auth-panel--register {
+    transform: translateX(30px);
 }
 
 /* =========================
