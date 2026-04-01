@@ -97,7 +97,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-left: 50vw; /* Keep right half for editor */
+    padding-left: 50vw;
+    /* Keep right half for editor */
     padding-top: 120px;
     padding-bottom: 60px;
     box-sizing: border-box;
@@ -120,7 +121,8 @@
     justify-content: flex-start;
     gap: 2rem;
 
-    padding: 140px 48px 48px; /* 92px header + offset */
+    padding: 140px 48px 48px;
+    /* 92px header + offset */
     z-index: 1;
     box-sizing: border-box;
 }
@@ -165,7 +167,7 @@
     width: 100%;
     max-width: 600px;
     margin: 0 40px;
-    
+
     position: relative;
     padding: 34px 40px 42px;
     box-sizing: border-box;
@@ -321,6 +323,11 @@
    RESPONSIVE – MOBILE (≤768px)
 ========================= */
 @media (max-width: 768px) {
+    .profile-header {
+        position: relative;
+        height: 10vh;
+    }
+
     .profile-header h1 {
         font-size: 28px !important;
     }
@@ -328,9 +335,11 @@
     .profile-layout {
         flex-direction: column !important;
         margin-top: 0;
-        padding-top: 20px;
-        padding-bottom: 100px; /* Space for bottom nav */
-        gap: 24px;
+        padding-top: 0;
+        padding-bottom: 90px;
+        padding-left: 0;
+        gap: 0;
+        align-items: stretch !important;
     }
 
     .profile-card {
@@ -338,22 +347,30 @@
         width: 100% !important;
         height: auto !important;
         margin-top: 0 !important;
-        padding: 24px !important;
-        border-radius: 20px;
+        padding: 24px 0 !important;
+        border-radius: 0;
+    }
+
+    .profile-card-top {
+        margin-top: 0;
+        gap: 20px;
     }
 
     .profile-avatar img {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
 
     .profile-card h2 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .profile-editor {
-        margin-left: 0 !important;
+        width: calc(100% - 32px) !important;
+        margin: 20px 16px !important;
         padding: 24px !important;
+        min-height: auto;
+        box-sizing: border-box;
     }
 
     .editor-actions {
